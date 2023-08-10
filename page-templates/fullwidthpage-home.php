@@ -24,14 +24,19 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 ?>
 
 <div class="wrapper" id="<?php echo $wrapper_id; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ok. ?>">
-    <div class="container-fluid major-container">
-        <div class="major-row row">
-            <?php if ( get_field('dlinq_description') ) : ?>
-                <div class="dlinq-description col-md-3">
-                    <h1 class="major-title">DLINQ</h1>
-                    <?php echo get_field('dlinq_description'); ?>
-                </div>
-            <?php endif; ?>
+    <div class="major-container">
+		<div class="container">
+			<div class="major-row row">
+				<?php if ( get_field('dlinq_description') ) : ?>
+					<div class="dlinq-description col-md-4">
+						<h1 class="major-title">DLINQ</h1>
+						<?php echo get_field('dlinq_description'); ?>
+					</div>
+					<div class="col-md-6 offset-md-1">
+						
+					</div>
+				<?php endif; ?>
+			</div>
 		</div>
     </div>
 	<div class="<?php echo esc_attr( $container ); ?>" id="content">

@@ -2,13 +2,36 @@
 
 body {
     background-color: $light-gray;
+    color: $black;
+}
+
+h1 {
+    font-size: clamp(1.875rem, 0.5357rem + 4.2857vw, 3.75rem);
 }
 
 .major-container {
     background-color: $light-blue;
-    padding: 3rem;
+    padding: 3rem 5rem;
+    margin-bottom: 5rem;
+}
+
+.dlinq-description {
+    padding: 2rem;
 }
 
 #full-width-home-wrapper {
     padding-top: 0;
+}
+
+.topic-row {
+    margin-top: 3rem;
+    padding: 2rem;
+}
+
+.topic-row:nth-of-type(even){
+    border-top: 3px solid $green;
+}
+
+.topic-list {
+    font-size: 1.3rem;
 }

@@ -20,9 +20,29 @@ defined( 'ABSPATH' ) || exit;
 	<div class="entry-content">
 
         <?php      
-		the_content();
+		//the_content();
 		understrap_link_pages();
 		?>
+
+		<?php if ( have_rows('main_topics') ) : ?>
+			<?php while( have_rows('main_topics') ) : the_row(); ?>
+				<div class="row topic-row">
+					<div class="col-md-5">
+						<h2>
+							<?php the_sub_field('title'); ?>
+						</h2>
+						<div class="topic-descriptor">
+							<?php the_sub_field('description'); ?>
+						</div>
+					</div>
+					<div class="col-md-5 offset-md-1">
+						<ul class="topic-list">
+							<?php dlinq_topic_list(get_sub_field('associated_pages'));?>
+						</ul>
+					</div>
+				</div>
+				<?php endwhile; ?>
+			<?php endif; ?>
 
 	</div><!-- .entry-content -->
 

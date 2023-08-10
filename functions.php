@@ -45,3 +45,12 @@ foreach ( $understrap_includes as $file ) {
 	require_once get_theme_file_path( $understrap_inc_dir . $file );
 }
 
+function dlinq_topic_list($pages){
+	foreach($pages as $page){
+		$title = $page->post_title;
+		$post_id = $page->ID;
+		$url = get_permalink($post_id);
+		$slug = $page->post_name;
+		echo "<li><a id='{$slug}' href='{$url}'>{$title}</a></li>";
+	}
+}
