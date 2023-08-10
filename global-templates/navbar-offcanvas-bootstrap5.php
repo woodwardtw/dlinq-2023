@@ -11,6 +11,9 @@ defined( 'ABSPATH' ) || exit;
 
 $container = get_theme_mod( 'understrap_container_type' );
 ?>
+	<?php if ( is_front_page() || is_home() ) : ?>
+	<!--if home page don't show top menu-->
+	<?php else : ?>
 
 <nav id="main-nav" class="navbar navbar-expand-md navbar-light" aria-labelledby="main-nav-label">
 
@@ -67,3 +70,4 @@ $container = get_theme_mod( 'understrap_container_type' );
 	</div><!-- .container(-fluid) -->
 
 </nav><!-- #main-nav -->
+<?php endif; ?>

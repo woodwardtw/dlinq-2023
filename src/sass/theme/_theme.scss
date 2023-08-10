@@ -1,1 +1,14 @@
 // This is an empty scss file for your custom styles - Please add your super duper awesome mega design styles here
+
+body {
+    background-color: $light-gray;
+}
+
+.major-container {
+    background-color: $light-blue;
+    padding: 3rem;
+}
+
+#full-width-home-wrapper {
+    padding-top: 0;
+}
