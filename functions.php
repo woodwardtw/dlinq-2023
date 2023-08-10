@@ -47,11 +47,17 @@ foreach ( $understrap_includes as $file ) {
 
 
 //home page 
+function dlinq_top_menu_list($title){
+			$title_id = sanitize_title($title);
+			echo "<a href='#{$title_id}'>{$title}</a>";
+}
 
 function dlinq_topic_title($title){
 	$title_id = sanitize_title($title);
 	echo "<h2 id='{$title_id}'>{$title}</h2>";
 }
+
+
 function dlinq_topic_list($pages){
 	foreach($pages as $page){
 		$title = $page->post_title;

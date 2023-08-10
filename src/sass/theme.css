@@ -15333,8 +15333,12 @@ h1, .h1 {
   padding: 2rem;
 }
 
-.topic-row:nth-of-type(even) {
+.topic-row {
   border-top: 3px solid #1A8574;
+}
+
+.topic-row:nth-of-type(1) {
+  border-top: none;
 }
 
 .topic-list {
