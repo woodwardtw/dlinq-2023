@@ -28,9 +28,7 @@ defined( 'ABSPATH' ) || exit;
 			<?php while( have_rows('main_topics') ) : the_row(); ?>
 				<div class="row topic-row">
 					<div class="col-md-5">
-						<h2>
-							<?php the_sub_field('title'); ?>
-						</h2>
+						<?php dlinq_topic_title(get_sub_field('title')); ?>
 						<div class="topic-descriptor">
 							<?php the_sub_field('description'); ?>
 						</div>

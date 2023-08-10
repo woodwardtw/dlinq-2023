@@ -45,6 +45,13 @@ foreach ( $understrap_includes as $file ) {
 	require_once get_theme_file_path( $understrap_inc_dir . $file );
 }
 
+
+//home page 
+
+function dlinq_topic_title($title){
+	$title_id = sanitize_title($title);
+	echo "<h2 id='{$title_id}'>{$title}</h2>";
+}
 function dlinq_topic_list($pages){
 	foreach($pages as $page){
 		$title = $page->post_title;

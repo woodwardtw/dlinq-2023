@@ -11,11 +11,11 @@ defined( 'ABSPATH' ) || exit;
 
 $container = get_theme_mod( 'understrap_container_type' );
 ?>
-	<?php if ( is_front_page() || is_home() ) : ?>
+	<?php //if ( is_front_page() || is_home() ) : ?>
 	<!--if home page don't show top menu-->
-	<?php else : ?>
+	<?php //else : ?>
 
-<nav id="main-nav" class="navbar navbar-expand-md navbar-light" aria-labelledby="main-nav-label">
+<nav id="main-nav" class="navbar navbar-expand-md navbar-light fixed-top" aria-labelledby="main-nav-label">
 
 	<h2 id="main-nav-label" class="screen-reader-text">
 		<?php esc_html_e( 'Main Navigation', 'understrap' ); ?>
@@ -39,11 +39,11 @@ $container = get_theme_mod( 'understrap_container_type' );
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="offcanvas offcanvas-end bg-primary" tabindex="-1" id="navbarNavOffcanvas">
+		<div class="offcanvas offcanvas-end" tabindex="-1" id="navbarNavOffcanvas">
 
 			<div class="offcanvas-header justify-content-end">
 				<button
-					class="btn-close btn-close-white text-reset"
+					class="btn-close btn-close-black text-reset"
 					type="button"
 					data-bs-dismiss="offcanvas"
 					aria-label="<?php esc_attr_e( 'Close menu', 'understrap' ); ?>"
@@ -70,4 +70,4 @@ $container = get_theme_mod( 'understrap_container_type' );
 	</div><!-- .container(-fluid) -->
 
 </nav><!-- #main-nav -->
-<?php endif; ?>
+<?php //endif; ?>
