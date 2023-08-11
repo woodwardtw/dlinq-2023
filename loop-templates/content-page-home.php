@@ -23,8 +23,30 @@ defined( 'ABSPATH' ) || exit;
 		//the_content();
 		understrap_link_pages();
 		?>
+		<!--FOCUS-->
+		<?php if ( have_rows('focus') ) : ?>
+		<div class="focus-holder">
+			<?php while( have_rows('focus') ) : the_row(); ?>
+				<div class="row alert-row">
+					<div class="col-md-4 offset-md-1">
+						<?php dlinq_topic_title(get_sub_field('title')); ?>
+						<div class="topic-descriptor">
+							<?php the_sub_field('description'); ?>
+						</div>
+					</div>
+					<div class="col-md-5 offset-md-2">
+						<?php dlinq_focus_image(get_sub_field('image'));?>
+					</div>
 
+				</div>
+				
+			<?php endwhile; ?>
+		</div>
+		<?php endif; ?>
+		
+		<!--TOPICS-->
 		<?php if ( have_rows('main_topics') ) : ?>
+		<div class="topic-holder">
 			<?php while( have_rows('main_topics') ) : the_row(); ?>
 				<div class="row topic-row">
 					<div class="col-md-5">
@@ -40,6 +62,7 @@ defined( 'ABSPATH' ) || exit;
 					</div>
 				</div>
 				<?php endwhile; ?>
+		</div>
 			<?php endif; ?>
 
 	</div><!-- .entry-content -->

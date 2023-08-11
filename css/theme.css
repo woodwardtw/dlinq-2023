@@ -15442,14 +15442,23 @@ h1, .h1 {
   padding-top: 0;
 }
 
+.alert-row {
+  padding: 5rem 2rem 2rem 2rem;
+  background-color: rgb(244, 184, 36);
+}
+
 .topic-row {
   margin-top: 3rem;
   padding: 5rem 2rem 2rem 2rem;
   border-top: 3px solid rgb(244, 184, 36);
 }
 
-.topic-row:nth-of-type(1) {
+.topic-row:first-of-type {
   border-top: none;
+}
+
+.topic-row:last-of-type {
+  padding-bottom: 10rem;
 }
 
 .topic-list {

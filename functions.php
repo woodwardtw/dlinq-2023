@@ -68,3 +68,10 @@ function dlinq_topic_list($pages){
 		echo "<li><a href='{$url}'>{$title}</a></li>";
 	}
 }
+
+function dlinq_focus_image($image){
+	//var_dump($image['sizes']);
+	$src = $image['sizes']['medium'];
+	$alt = $image['alt'];
+	echo "<img class='img-fluid focus' src='{$src}' alt='{$alt}'>";
+}
