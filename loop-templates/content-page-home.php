@@ -32,6 +32,9 @@ defined( 'ABSPATH' ) || exit;
 						<?php dlinq_topic_title(get_sub_field('title')); ?>
 						<div class="topic-descriptor">
 							<?php the_sub_field('description'); ?>
+							<a class="btn btn-dlinq" href="<?php the_sub_field('link'); ?>">
+								Learn more about <?php the_sub_field('title'); ?>
+							</a>
 						</div>
 					</div>
 					<div class="col-md-5 offset-md-2">

@@ -15461,8 +15461,17 @@ h1, .h1 {
   font-size: 1.3rem;
 }
 
+.btn-dlinq {
+  background-color: #1A8574;
+  color: #fff;
+  border-radius: 50px;
+  padding: 10px 20px;
+  display: block;
+  margin: 3rem auto;
+}
+
 #person-wrapper {
-  background-color: rgb(244, 184, 36);
+  background-color: #bfdaf2;
 }
 
 .person {

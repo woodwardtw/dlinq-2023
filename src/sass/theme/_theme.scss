@@ -52,11 +52,19 @@ h1 {
     font-size: 1.3rem;
 }
 
+.btn-dlinq {
+  background-color: $green;
+  color: $white;
+  border-radius: 50px;
+  padding: 10px 20px;
+  display: block;
+  margin: 3rem auto;
+}
 
 //person work
 
 #person-wrapper {
-  background-color: $yellow;
+  background-color: $light-blue;
 }
 
 .person {
