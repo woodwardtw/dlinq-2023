@@ -49,12 +49,13 @@ foreach ( $understrap_includes as $file ) {
 //home page 
 function dlinq_top_menu_list($title){
 			$title_id = sanitize_title($title);
+			$base_url = get_site_url();//{$base_url}
 			echo "<a href='#{$title_id}'>{$title}</a>";
 }
 
 function dlinq_topic_title($title){
 	$title_id = sanitize_title($title);
-	echo "<h2 id='{$title_id}'>{$title}</h2>";
+	echo "<h2 class='topic-title' id='{$title_id}' name='{$title_id}'>{$title}</h2>";
 }
 
 
@@ -64,6 +65,6 @@ function dlinq_topic_list($pages){
 		$post_id = $page->ID;
 		$url = get_permalink($post_id);
 		$slug = $page->post_name;
-		echo "<li><a id='{$slug}' href='{$url}'>{$title}</a></li>";
+		echo "<li><a href='{$url}'>{$title}</a></li>";
 	}
 }

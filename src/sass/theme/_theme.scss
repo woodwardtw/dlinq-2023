@@ -1,4 +1,8 @@
 // This is an empty scss file for your custom styles - Please add your super duper awesome mega design styles here
+html {
+	scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
 
 body {
     background-color: $light-gray;
@@ -27,13 +31,11 @@ h1 {
     padding-top: 0;
 }
 
+
 .topic-row {
     margin-top: 3rem;
-    padding: 2rem;
-}
-
-.topic-row{
-    border-top: 3px solid $green;
+    padding: 5rem 2rem 2rem 2rem;
+    border-top: 3px solid $yellow;
 }
 
 .topic-row:nth-of-type(1){

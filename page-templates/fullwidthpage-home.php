@@ -34,7 +34,8 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 					</div>
 					<div class="dlinq-description col-md-6 offset-md-2">
 						<?php if ( have_rows('main_topics') ) : ?>
-							<ul>
+						<h2>We can help.</h2>
+							<ul id="home-top-menu">
 							<?php while( have_rows('main_topics') ) : the_row(); ?>
 									<li><?php dlinq_top_menu_list(get_sub_field('title')); ?></li>
 							<?php endwhile;?>

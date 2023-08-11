@@ -15301,6 +15301,10 @@ figure.woocommerce-product-gallery__wrapper {
   clip: auto;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: rgba(222, 222, 222, 0.3);
   color: #000;
@@ -15331,10 +15335,10 @@ h1, .h1 {
 .topic-row {
   margin-top: 3rem;
   padding: 2rem;
-}
-
-.topic-row {
   border-top: 3px solid #1A8574;
+  height: 200px;
+  overflow: hidden;
+  border-left: red solid 10px;
 }
 
 .topic-row:nth-of-type(1) {
