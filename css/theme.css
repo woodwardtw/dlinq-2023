@@ -15453,16 +15453,20 @@ h1, .h1 {
   border-top: 3px solid rgb(244, 184, 36);
 }
 
-.topic-row:first-of-type {
-  border-top: none;
-}
-
 .topic-row:last-of-type {
   padding-bottom: 10rem;
 }
 
 .topic-list {
   font-size: 1.3rem;
+}
+
+#person-wrapper {
+  background-color: rgb(244, 184, 36);
+}
+
+.person {
+  margin-top: 6rem;
 }
 
 :root {

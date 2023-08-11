@@ -17,6 +17,8 @@ h1 {
     background-color: $white;
 }
 
+
+//home page work
 .major-container {
     background-color: $light-blue;
     padding: 6rem 5rem 3.5rem 5rem;
@@ -42,10 +44,6 @@ h1 {
     border-top: 3px solid $yellow;
 }
 
-.topic-row:first-of-type{
-    border-top: none;
-}
-
 .topic-row:last-of-type{
   padding-bottom: 10rem;
 }
@@ -53,6 +51,18 @@ h1 {
 .topic-list {
     font-size: 1.3rem;
 }
+
+
+//person work
+
+#person-wrapper {
+  background-color: $yellow;
+}
+
+.person {
+  margin-top: 6rem;
+}
+
 
 
 //deal with wp admin bar and fixed top menu really well
