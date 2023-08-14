@@ -32,7 +32,7 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 						<h1 class="major-title">DLINQ</h1>
 						<?php the_field('dlinq_description'); ?>
 					</div>
-					<div class="dlinq-description col-md-6 offset-md-2">
+					<div class="dlinq-description col-md-5 offset-md-3">
 						<?php if ( have_rows('main_topics') ) : ?>
 						<h2>We can help.</h2>
 							<ul id="home-top-menu">
