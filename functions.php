@@ -77,3 +77,20 @@ function dlinq_focus_image($image){
 	echo "<img class='img-fluid focus' src='{$src}' alt='{$alt}'>";
 }
 
+//Single person page
+
+function dlinq_person_details($field_name){
+	if ( get_field($field_name) ) {
+		$the_field = get_field($field_name);
+		$field_label = get_field_object($field_name)['label'];
+		$class = sanitize_title($field_name);
+		if($field_name == 'email'){
+			$the_field = "<a href='mailto:$the_field'>{$the_field}</a>";
+		}
+		echo "
+			<div class='{$class} person-detail'>
+				<span class='field-label'>{$field_label}</span>: {$the_field}
+			</div>
+		";
+	}
+}

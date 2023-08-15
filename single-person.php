@@ -23,10 +23,15 @@ $container = get_theme_mod( 'understrap_container_type' );
 							<h2>
 								<?php the_field('job_title') ;?>
 							</h2>
-							Pronouns: <?php the_field('pronouns'); ?>
+							<div class="person-details">
+								<?php dlinq_person_details('pronouns'); ?>
+								<?php dlinq_person_details('email'); ?>
+								<?php dlinq_person_details('phone'); ?>
+								<?php dlinq_person_details('office_location'); ?>
+							</div>
 						</div>
 						<div class="col-md-4 offset-md-2">
-							    <?php echo get_the_post_thumbnail( $post->ID, 'medium' ); ?>
+							    <?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-fluid aligncenter bio-pic') ); ?>
 						</div>
 				</div>
 			</div>

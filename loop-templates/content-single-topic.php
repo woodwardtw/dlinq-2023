@@ -1,6 +1,6 @@
 <?php
 /**
- * Single post partial template
+ * Single topic partial template
  *
  * @package Understrap
  */
@@ -13,13 +13,10 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="entry-content row">
         <div class="col-md-5">
-			<div class="bio">
-                <h2>About</h2>
-				<?php the_field('biography'); ?>
-			</div>
+			<h2>Resources</h2>
         </div>
         <div class="col-md-5 offset-md-2">
-            <h2>Projects</h2>
+            <h2>Events</h2>
         </div>
 	</div><!-- .entry-content -->
   
