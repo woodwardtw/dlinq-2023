@@ -62,11 +62,21 @@ function dlinq_topic_title($title){
 //home page details pages list
 function dlinq_topic_list($pages){
 	foreach($pages as $page){
-		$title = $page->post_title;
+		$title = dlinq_cleanup_title($page->post_title);
 		$post_id = $page->ID;
 		$url = get_permalink($post_id);
 		$slug = $page->post_name;
+		
 		echo "<li><a href='{$url}'>{$title}</a></li>";
+	}
+}
+
+function dlinq_cleanup_title($title){
+	if(str_contains($title, 'Instructor')){
+		$clean_title = str_replace('Instructor', '', $title);
+		return $clean_title;
+	} else {
+		return $title;
 	}
 }
 
@@ -93,4 +103,20 @@ function dlinq_person_details($field_name){
 			</div>
 		";
 	}
+}
+
+
+//checks title to make sure it's a category option
+add_action( 'post_updated', 'dlinq_add_category', 10, 1 ); //don't forget the last argument to allow all three arguments of the function
+
+function dlinq_add_category($post_ID){
+	$title = get_the_title($post_ID);
+	//post type is topic or post template is full width focus page
+	if(get_post_type($post_ID) ==  'topic' || get_page_template_slug($post_ID) == 'page-templates/focuspage.php'){
+		//check if category exits
+		if (!category_exists($title)){
+			wp_create_category($title);
+		}
+	}
+
 }

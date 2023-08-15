@@ -15457,6 +15457,10 @@ h1, .h1 {
   border-top: 3px solid rgb(244, 184, 36);
 }
 
+.topic-row:first-of-type {
+  border-top: none;
+}
+
 .topic-row:last-of-type {
   padding-bottom: 10rem;
 }
