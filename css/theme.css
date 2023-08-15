@@ -15475,12 +15475,8 @@ h1, .h1 {
   margin: 3rem auto;
 }
 
-#person-wrapper {
-  background-color: #bfdaf2;
-}
-
 .person {
-  margin-top: 6rem;
+  margin-top: 1rem;
 }
 
 :root {

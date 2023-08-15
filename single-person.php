@@ -13,7 +13,24 @@ $container = get_theme_mod( 'understrap_container_type' );
 ?>
 
 <div class="wrapper" id="person-wrapper">
-
+	 <div class="major-container">
+			<div class="container">
+				<div class="major-row row">						
+						<div class="col-md-6">
+							<header class="entry-header">
+								<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+							</header><!-- .entry-header -->
+							<h2>
+								<?php the_field('job_title') ;?>
+							</h2>
+							Pronouns: <?php the_field('pronouns'); ?>
+						</div>
+						<div class="col-md-4 offset-md-2">
+							    <?php echo get_the_post_thumbnail( $post->ID, 'medium' ); ?>
+						</div>
+				</div>
+			</div>
+	</div>
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
 
 		<div class="row">

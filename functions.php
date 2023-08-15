@@ -46,19 +46,20 @@ foreach ( $understrap_includes as $file ) {
 }
 
 
-//home page 
+//home page top menu
 function dlinq_top_menu_list($title){
 			$title_id = sanitize_title($title);
 			$base_url = get_site_url();//{$base_url}
 			echo "<a href='#{$title_id}'>{$title}</a>";
 }
 
+//home page details titles
 function dlinq_topic_title($title){
 	$title_id = sanitize_title($title);
 	echo "<h2 class='topic-title' id='{$title_id}' name='{$title_id}'>{$title}</h2>";
 }
 
-
+//home page details pages list
 function dlinq_topic_list($pages){
 	foreach($pages as $page){
 		$title = $page->post_title;
@@ -69,9 +70,10 @@ function dlinq_topic_list($pages){
 	}
 }
 
+//home page focus area image 
 function dlinq_focus_image($image){
-	//var_dump($image['sizes']);
 	$src = $image['sizes']['medium'];
 	$alt = $image['alt'];
 	echo "<img class='img-fluid focus' src='{$src}' alt='{$alt}'>";
 }
+
