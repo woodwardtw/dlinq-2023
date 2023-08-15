@@ -55,11 +55,8 @@ $container = get_theme_mod( 'understrap_container_type' );
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <?php echo gravity_form( 1, true, true, false, false, true, false, false ); ?>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+        <?php  gravity_form( 1, false, false, false, false, true, false, true ); ?>
+      </div>     
     </div>
   </div>
 </div>

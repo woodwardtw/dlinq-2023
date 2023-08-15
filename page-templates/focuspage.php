@@ -29,7 +29,7 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 			<div class="major-row row">
 					<div class="dlinq-description col-md-4">
 								<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
+                                <button type="button" class="btn btn-dlinq" data-bs-toggle="modal" 
                                 data-bs-target="#formModal" data-bs-whatever="@mdo">Request a consultation</button>
 					</div>
 					<div class="dlinq-description col-md-5 offset-md-3">
