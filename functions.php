@@ -105,6 +105,35 @@ function dlinq_person_details($field_name){
 	}
 }
 
+//single project page
+
+function dlinq_projects_people(){
+	if(get_field('persons')){
+		echo "<div class='container'><div class='row'>";
+		$people = get_field('persons');
+		foreach($people as $person){
+			$post_id = $person->ID;
+			$title = $person->post_title;
+			$link = get_permalink( $post_id);
+			$url_stem = get_template_directory_uri();
+			if(has_post_thumbnail($post_id)){
+				$image = get_the_post_thumbnail( $post_id, 'medium', array( 'class' => 'img-fluid aligncenter bio-pic-project') );
+			} else {
+				$image = "<img src='{$url_stem}/imgs/no-pic.svg' class='img-fluid aligncenter bio-pic-project' alt='A generic face placeholder.'>";
+			}
+			echo "
+			<div class='col-md-6'>
+				<a href='{$link}'>
+					{$image}					
+					<h3>{$title}</h3>
+				</a>
+			</div>
+			";
+		}
+		echo "</div></div>";
+	}
+	
+}
 
 //checks title to make sure it's a category option
 add_action( 'post_updated', 'dlinq_add_category', 10, 1 ); //don't forget the last argument to allow all three arguments of the function
