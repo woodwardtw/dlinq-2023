@@ -1,6 +1,6 @@
 {
     "key": "group_64d67bbc0df82",
-    "title": "People Details",
+    "title": "People",
     "fields": [
         {
             "key": "field_64d67bbcbbd72",
@@ -120,6 +120,34 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_64dcf0e8a609c",
+            "label": "Project",
+            "name": "project",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "project"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 1,
+            "allow_null": 0,
+            "bidirectional": 1,
+            "bidirectional_target": [
+                "field_64dce73cf787f"
+            ],
+            "ui": 1
         }
     ],
     "location": [
@@ -142,5 +170,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692101841
+    "modified": 1692201306
 }

@@ -44,9 +44,11 @@
             "return_format": "object",
             "multiple": 1,
             "allow_null": 0,
-            "bidirectional": 0,
-            "ui": 1,
-            "bidirectional_target": []
+            "bidirectional": 1,
+            "bidirectional_target": [
+                "field_64dcf0e8a609c"
+            ],
+            "ui": 1
         }
     ],
     "location": [
@@ -67,5 +69,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692198745
+    "modified": 1692201401
 }
