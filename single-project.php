@@ -24,7 +24,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 							</div>
 						</div>
 						<div class="col-md-4 offset-md-2">
-							    <?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-fluid aligncenter bio-pic') ); ?>
+							    <?php //echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-fluid aligncenter bio-pic') ); ?>
 						</div>
 				</div>
 			</div>
