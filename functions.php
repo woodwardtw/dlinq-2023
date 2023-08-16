@@ -109,7 +109,7 @@ function dlinq_person_details($field_name){
 
 function dlinq_projects_people(){
 	if(get_field('persons')){
-		echo "<div class='project-people'>";
+		echo "<h2>People</h2><div class='project-people'>";
 		$people = get_field('persons');
 		foreach($people as $person){
 			$post_id = $person->ID;
@@ -133,6 +133,21 @@ function dlinq_projects_people(){
 		echo "</div>";
 	}
 	
+}
+
+function dlinq_projects_cats(){
+	global $post;
+	$post_id = $post->ID;
+	$categories = get_the_category($post_id);
+	foreach($categories as $category){
+		$title = $category->name;
+		$url = get_category_link( $category->term_id );
+		echo "
+			<div class='project-cat'>
+				<a href='{$url}'>{$title}</a>
+			</div>
+		";
+	}
 }
 
 //checks title to make sure it's a category option

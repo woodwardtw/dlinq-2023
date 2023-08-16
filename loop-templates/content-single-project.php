@@ -22,8 +22,10 @@ defined( 'ABSPATH' ) || exit;
             <?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-fluid aligncenter bio-pic') ); ?>
         </div>
         <div class="col-md-5">
-            <h2>People</h2>
             <?php dlinq_projects_people();?>
+        </div>
+        <div class="col-md-5 offset-md-2">
+            <?php dlinq_projects_cats();?>
         </div>
 	</div><!-- .entry-content -->
   
