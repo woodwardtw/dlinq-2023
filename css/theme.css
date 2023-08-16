@@ -15483,6 +15483,11 @@ h1, .h1 {
   margin-top: 1rem;
 }
 
+.bio-pic-project {
+  max-width: 150px;
+  max-height: 150px;
+}
+
 :root {
   --login-bar-height: 0;
   --menu-bar-height: 50;

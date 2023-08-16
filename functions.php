@@ -109,7 +109,7 @@ function dlinq_person_details($field_name){
 
 function dlinq_projects_people(){
 	if(get_field('persons')){
-		echo "<div class='container'><div class='row'>";
+		echo "<div class='project-people'>";
 		$people = get_field('persons');
 		foreach($people as $person){
 			$post_id = $person->ID;
@@ -117,20 +117,20 @@ function dlinq_projects_people(){
 			$link = get_permalink( $post_id);
 			$url_stem = get_template_directory_uri();
 			if(has_post_thumbnail($post_id)){
-				$image = get_the_post_thumbnail( $post_id, 'medium', array( 'class' => 'img-fluid aligncenter bio-pic-project') );
+				$image = get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'img-fluid bio-pic-project') );
 			} else {
-				$image = "<img src='{$url_stem}/imgs/no-pic.svg' class='img-fluid aligncenter bio-pic-project' alt='A generic face placeholder.'>";
+				$image = "<img src='{$url_stem}/imgs/no-pic.svg' class='img-fluid bio-pic-project' alt='A generic face placeholder.'>";
 			}
 			echo "
-			<div class='col-md-6'>
-				<a href='{$link}'>
+			<div class='person'>
+				<a href='{$link}' class='stretched-link'>
 					{$image}					
-					<h3>{$title}</h3>
+					<span class='project-person-name'>{$title}</span>
 				</a>
 			</div>
 			";
 		}
-		echo "</div></div>";
+		echo "</div>";
 	}
 	
 }
