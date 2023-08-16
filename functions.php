@@ -181,13 +181,15 @@ function dlinq_topic_content(){
 			$content = get_sub_field('sub_topic_content');
 
 			echo "
-				<div class='col-md-5'>
-					<div class='sub-topic'>
-						<h2 id='{$slug}'>{$title}</h2>
-						{$content}
+				<div class='row topic-row'>
+					<div class='col-md-5'>
+						<div class='sub-topic'>
+							<h2 id='{$slug}'>{$title}</h2>
+							{$content}
+						</div>
 					</div>
-				</div>
-				<div class='col-md-5 offset-md-2'>
+					<div class='col-md-5 offset-md-2'>
+					</div>
 				</div>
 			";
 	
