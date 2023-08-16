@@ -123,7 +123,7 @@ function dlinq_projects_people(){
 			}
 			echo "
 			<div class='person'>
-				<a href='{$link}' class='stretched-link'>
+				<a href='{$link}'>
 					{$image}					
 					<span class='project-person-name'>{$title}</span>
 				</a>
@@ -150,6 +150,53 @@ function dlinq_projects_cats(){
 	}
 }
 
+//topic functions
+function dlinq_topic_menu(){
+	if ( have_rows('sub_topic_block') ) {
+		echo '<ol>';
+		 while( have_rows('sub_topic_block') ) : the_row(); 
+	
+			$title = get_sub_field('sub_topic_title');
+			$slug = sanitize_title($title);
+
+			echo "			
+					<li class='sub-topic'>
+						<a href='#{$slug}'>{$title}</a>
+					</li>
+			";
+	
+		 endwhile;
+	echo '</ol>';
+	}
+}
+
+
+function dlinq_topic_content(){
+	if ( have_rows('sub_topic_block') ) {
+	
+		 while( have_rows('sub_topic_block') ) : the_row(); 
+	
+			$title = get_sub_field('sub_topic_title');
+			$slug = sanitize_title($title);
+			$content = get_sub_field('sub_topic_content');
+
+			echo "
+				<div class='col-md-5'>
+					<div class='sub-topic'>
+						<h2 id='{$slug}'>{$title}</h2>
+						{$content}
+					</div>
+				</div>
+				<div class='col-md-5 offset-md-2'>
+				</div>
+			";
+	
+		 endwhile;
+	
+	}
+}
+
+//GENERAL FUNCTIONS
 //checks title to make sure it's a category option
 add_action( 'post_updated', 'dlinq_add_category', 10, 1 ); //don't forget the last argument to allow all three arguments of the function
 

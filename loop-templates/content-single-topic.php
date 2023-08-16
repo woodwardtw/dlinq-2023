@@ -13,11 +13,13 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="entry-content row">
         <div class="col-md-5">
-			<h2>Resources</h2>
+			<?php the_field('topic_summary'); ?>
         </div>
         <div class="col-md-5 offset-md-2">
-            <h2>Events</h2>
+            <h2>Topics</h2>
+			<?php dlinq_topic_menu(); ?>
         </div>
+		<?php dlinq_topic_content(); ?>
 	</div><!-- .entry-content -->
   
 	<footer class="entry-footer">

@@ -412,7 +412,7 @@ progress {
 }
 
 :root {
-  --bs-blue: #002444;
+  --bs-blue: #2c3b4b;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
@@ -5042,16 +5042,16 @@ progress {
 }
 .has-blue-color,
 .has-blue-color:visited {
-  color: #002444;
+  color: #2c3b4b;
 }
 
 .has-blue-background-color {
-  background-color: #002444;
-  border-color: #002444;
+  background-color: #2c3b4b;
+  border-color: #2c3b4b;
 }
 
 .wp-block-button:hover .wp-block-button__link.has-white-background-color.has-blue-color {
-  color: #002444;
+  color: #2c3b4b;
 }
 
 .has-indigo-color,
