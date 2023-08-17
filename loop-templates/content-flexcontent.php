@@ -1,5 +1,6 @@
 <?php if( have_rows('content') ): ?>
     <?php while( have_rows('content') ): the_row(); ?>
+    <!--SUB TOPIC-->
         <?php if( get_row_layout() == 'sub_topic' ): 
             $title = get_sub_field('sub_topic_title');
             $slug = sanitize_title($title);
@@ -28,7 +29,8 @@
                     ?>
                     <?php endif;?>
 				</div>
-			</div>            
+			</div>
+        <!--IMAGE LOOP-->            
         <?php elseif( get_row_layout() == 'image' ): 
             $title = get_sub_field('title');
             $slug = sanitize_title($title);
@@ -58,5 +60,20 @@
 			</div>
         </div>
         <?php endif; ?>
+        <!--full block loop-->
+         <?php if( get_row_layout() == 'full_block' ): 
+            $title = get_sub_field('title');
+            $content = get_sub_field('content');
+            $slug = sanitize_title($title);
+        ?>
+            <div class='row topic-row'>
+				<div class='col-md-8 offset-md-2'>
+                    <?php if($title):?>
+                        <h2 id="<?php echo $slug?>"><?php echo $title;?></h2>
+                    <?php endif;?>
+                    <?php echo $content;?>
+                </div>
+            </div>
+        <?php endif;?>
     <?php endwhile; ?>
 <?php endif; ?>

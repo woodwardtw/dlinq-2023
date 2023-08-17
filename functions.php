@@ -163,6 +163,10 @@ function dlinq_topic_menu(){
 				$title = get_sub_field('title');
 				$slug = sanitize_title($title);
 			}
+			if( get_row_layout() == 'full_block'){
+				$title = get_sub_field('title');
+				$slug = sanitize_title($title);
+			}
 			
 			if($title){
 				echo "			
