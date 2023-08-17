@@ -3,6 +3,7 @@
         <?php if( get_row_layout() == 'sub_topic' ): 
             $title = get_sub_field('sub_topic_title');
             $slug = sanitize_title($title);
+            $resources = get_sub_field('resources');
         ?>
             <div class='row topic-row'>
 				<div class='col-md-5'>
@@ -14,6 +15,18 @@
 					</div>
 				</div>
 				<div class='col-md-5 offset-md-2'>
+                    <?php if($resources):                    
+                        echo "<ul class='resource-links'>";
+                        foreach($resources as $resource){
+                            $title = $resource['resource_title'];
+                            $link = $resource['resource_link'];
+                            echo "<li>
+                                    <a href='{$link}'>{$title}</a>
+                                </li>";
+                        }
+                        echo "</ul>";
+                    ?>
+                    <?php endif;?>
 				</div>
 			</div>            
         <?php elseif( get_row_layout() == 'image' ): 
@@ -38,7 +51,9 @@
                 </div>
             <div class='col-md-2 order-2'></div>
             <div class='col-md-5 <?php echo $order_right;?>'>
-                <h2 id="<?php echo $slug;?>"><?php echo $title; ?></h2>
+                <?php if($title) :?>
+                    <h2 id="<?php echo $slug;?>"><?php echo $title; ?></h2>
+                <?php endif;?>
                 <?php echo $content; ?>
 			</div>
         </div>

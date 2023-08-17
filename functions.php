@@ -152,51 +152,33 @@ function dlinq_projects_cats(){
 
 //topic functions
 function dlinq_topic_menu(){
-	if ( have_rows('sub_topic_block') ) {
+	if ( have_rows('content') ) {
 		echo '<ol>';
-		 while( have_rows('sub_topic_block') ) : the_row(); 
-	
-			$title = get_sub_field('sub_topic_title');
-			$slug = sanitize_title($title);
-
-			echo "			
+		 while( have_rows('content') ) : the_row(); 
+			if( get_row_layout() == 'sub_topic'){
+				$title = get_sub_field('sub_topic_title');
+				$slug = sanitize_title($title);
+			}
+			if( get_row_layout() == 'image'){
+				$title = get_sub_field('title');
+				$slug = sanitize_title($title);
+			}
+			
+			if($title){
+				echo "			
 					<li class='sub-topic'>
 						<a href='#{$slug}'>{$title}</a>
 					</li>
 			";
+			}
+			
 	
 		 endwhile;
 	echo '</ol>';
 	}
 }
+ 
 
-
-function dlinq_topic_content(){
-	if ( have_rows('sub_topic_block') ) {
-	
-		 while( have_rows('sub_topic_block') ) : the_row(); 
-	
-			$title = get_sub_field('sub_topic_title');
-			$slug = sanitize_title($title);
-			$content = get_sub_field('sub_topic_content');
-
-			echo "
-				<div class='row topic-row'>
-					<div class='col-md-5'>
-						<div class='sub-topic'>
-							<h2 id='{$slug}'>{$title}</h2>
-							{$content}
-						</div>
-					</div>
-					<div class='col-md-5 offset-md-2'>
-					</div>
-				</div>
-			";
-	
-		 endwhile;
-	
-	}
-}
 
 //GENERAL FUNCTIONS
 //checks title to make sure it's a category option
