@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<div class="entry-content row">
+	<div class="topic-row row">
         <div class="col-md-5">
 			<?php the_field('topic_summary'); ?>
         </div>
@@ -19,8 +19,8 @@ defined( 'ABSPATH' ) || exit;
             <h2>Topics</h2>
 			<?php dlinq_topic_menu(); ?>
         </div>
-		<?php dlinq_topic_content(); ?>
 	</div><!-- .entry-content -->
+	<?php get_template_part( 'loop-templates/content', 'flexcontent' );?>
   
 	<footer class="entry-footer">
 
