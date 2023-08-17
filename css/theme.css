@@ -15430,6 +15430,11 @@ h1, .h1 {
   font-size: clamp(1.875rem, 0.5357rem + 4.2857vw, 3.75rem);
 }
 
+p {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
 #main-nav {
   background-color: #fff;
 }
@@ -15460,7 +15465,7 @@ h1, .h1 {
 .topic-row {
   margin-top: 3rem;
   padding: 5rem 2rem 2rem 2rem;
-  border-top: 3px solid rgb(244, 184, 36);
+  border-top: 1px dashed #2c3b4b;
 }
 
 .topic-row:first-of-type {
@@ -15483,6 +15488,11 @@ h1, .h1 {
   padding: 10px 20px;
   display: block;
   margin: 3rem auto;
+}
+
+.resource-links, .sub-topic-list {
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .person {

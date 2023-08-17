@@ -153,7 +153,7 @@ function dlinq_projects_cats(){
 //topic functions
 function dlinq_topic_menu(){
 	if ( have_rows('content') ) {
-		echo '<ol>';
+		echo '<ol class="sub-topic-list">';
 		 while( have_rows('content') ) : the_row(); 
 			if( get_row_layout() == 'sub_topic'){
 				$title = get_sub_field('sub_topic_title');
