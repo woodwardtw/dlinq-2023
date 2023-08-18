@@ -15448,12 +15448,14 @@ p {
 }
 
 .major-container {
+  margin-top: 50px;
   background-color: #bfdaf2;
   padding: 6rem 5rem 3.5rem 5rem;
   margin-bottom: 5rem;
-  background-image: url(../imgs/overlap.svg);
-  background-size: cover;
-  background-position: center center;
+  background-image: url(../imgs/tears.svg);
+  background-size: 48vw;
+  background-position: left center;
+  background-repeat: no-repeat;
 }
 
 .dlinq-description {

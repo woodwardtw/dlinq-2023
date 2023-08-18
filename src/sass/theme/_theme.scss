@@ -38,12 +38,14 @@ p {
 
 //home page work
 .major-container {
+    margin-top: 50px;
     background-color: $light-blue;
     padding: 6rem 5rem 3.5rem 5rem;
     margin-bottom: 5rem;
-    background-image: url(../imgs/overlap.svg);
-    background-size: cover;
-    background-position: center center;
+    background-image: url(../imgs/tears.svg);
+    background-size: 48vw;
+    background-position: left center;
+    background-repeat: no-repeat;
 }
 
 // .major-container p, .major-container h1, .major-container h2, .major-container a {
