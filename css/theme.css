@@ -15449,7 +15449,6 @@ p {
 
 .major-container {
   height: 400px;
-  margin-top: 50px;
   background-color: #bfdaf2;
   padding: 6rem 5rem 3.5rem 5rem;
   margin-bottom: 5rem;
@@ -15460,6 +15459,10 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.home .major-container {
+  margin-top: 50px;
 }
 
 .dlinq-description {
@@ -15505,14 +15508,13 @@ p {
   padding: 10px 20px;
   display: block;
   margin: 3rem auto;
-  transition: all 0.3 ease;
+  transition: all 0.4s ease;
 }
 
 .btn-dlinq:hover {
   color: #fff;
   background-color: #2c3b4b;
   transform: scale(1.02);
-  box-shadow: 3px 3px #bfdaf2;
 }
 
 .resource-links, .sub-topic-list {
