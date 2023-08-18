@@ -30,11 +30,12 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 				<?php if ( get_field('dlinq_description') ) : ?>
 					<div class="dlinq-description col-md-4">
 						<h1 class="major-title">DLINQ</h1>
+						<!-- <img src="<?php //echo get_template_directory_uri( )?>/imgs/dlinq-logo.svg" class="img-fluid logo"> -->
 						<?php the_field('dlinq_description'); ?>
 					</div>
 					<div class="dlinq-description col-md-5 offset-md-3">
 						<?php if ( have_rows('main_topics') ) : ?>
-						<h2>We can help.</h2>
+						<h1>We can help.</h1>
 							<ul id="home-top-menu">
 							<?php while( have_rows('main_topics') ) : the_row(); ?>
 									<li><?php dlinq_top_menu_list(get_sub_field('title')); ?></li>

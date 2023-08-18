@@ -41,7 +41,14 @@ p {
     background-color: $light-blue;
     padding: 6rem 5rem 3.5rem 5rem;
     margin-bottom: 5rem;
+    background-image: url(../imgs/overlap.svg);
+    background-size: cover;
+    background-position: center center;
 }
+
+// .major-container p, .major-container h1, .major-container h2, .major-container a {
+//   color: #fff;
+// }
 
 .dlinq-description {
     padding: 2rem;
