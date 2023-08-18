@@ -20,14 +20,21 @@ h1 {
 }
 
 p {
-  margin-top: 1rem;
-  font-size: 1.1rem;
+  margin-top: 1.2rem;
+  font-size: 1.3rem;
+  font-family: "pt serif",Georgia,Times,Times New Roman,serif;
 }
 
 #main-nav {
     background-color: $white;
 }
 
+.menu-block {
+  margin: 1rem auto 0 auto;
+  width: 90%;
+  padding: 2rem;
+  background-color: $light-blue;
+}
 
 //home page work
 .major-container {

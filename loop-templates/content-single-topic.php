@@ -16,7 +16,6 @@ defined( 'ABSPATH' ) || exit;
 			<?php the_field('topic_summary'); ?>
         </div>
         <div class="col-md-5 offset-md-2">
-            <h2>Topics</h2>
 			<?php dlinq_topic_menu(); ?>
         </div>
 	</div><!-- .entry-content -->

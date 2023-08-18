@@ -17,7 +17,8 @@
 				</div>
 				<div class='col-md-5 offset-md-2'>
                     <?php if($resources):                    
-                        echo "<ul class='resource-links'>";
+                        echo "<div class='menu-block'>
+                        <ul class='resource-links'>";
                         foreach($resources as $resource){
                             $title = $resource['resource_title'];
                             $link = $resource['resource_link'];
@@ -25,7 +26,7 @@
                                     <a href='{$link}'>{$title}</a>
                                 </li>";
                         }
-                        echo "</ul>";
+                        echo "</ul></div>";
                     ?>
                     <?php endif;?>
 				</div>
