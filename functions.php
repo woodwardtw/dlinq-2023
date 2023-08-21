@@ -197,6 +197,11 @@ function dlinq_add_category($post_ID){
 		//check if category exits
 		if (!category_exists($title)){
 			wp_create_category($title);
+			$args = array(
+				'taxonomy' => 'tribe_events_cat',
+				'cat_name' => $title
+			);
+			wp_insert_category($args);//add to events category as well
 		}
 	}
 
