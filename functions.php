@@ -202,10 +202,15 @@ function dlinq_topic_events($cat){
 	);
 	$number = sizeof($events);
 	if($events){
+		$plural = '';
+		if($number >1 ){
+			$plural = 's';
+		}
 		$title = get_the_title();
 		$args = array(
 			'count' => $number,
-			'cat' => $cat
+			'cat' => $cat,
+			'plural' => $plural
 		);
 		get_template_part( 'loop-templates/content', 'event-accordion', $args );
 		// foreach($events as $event){
