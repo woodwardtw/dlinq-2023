@@ -13,13 +13,13 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="entry-content row">
         <div class="col-md-5">
-			<div class="bio">
-                <h2>About</h2>
+			<div class="project">
+                <h2>Project summary</h2>
 				<?php the_field('project_summary'); ?>
 			</div>
         </div>
         <div class="col-md-5 offset-md-2">
-            <?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-fluid aligncenter bio-pic') ); ?>
+            <?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-fluid aligncenter project-pic') ); ?>
         </div>
         <div class="col-md-5">
             <?php dlinq_projects_people();?>

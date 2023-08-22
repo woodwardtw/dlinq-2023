@@ -131,6 +131,34 @@ function dlinq_person_details($field_name){
 	}
 }
 
+function dlinq_person_projects(){
+	if(get_field('project')){
+		echo "<h2>Project</h2><div class='person-projects'>";
+		$projects = get_field('project');
+		foreach($projects as $project){
+			$post_id = $project->ID;
+			$title = $project->post_title;
+			$link = get_permalink( $post_id);
+			$url_stem = get_template_directory_uri();
+			if(has_post_thumbnail($post_id)){
+				$image = get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'img-fluid') );
+			} else {
+				$image = "<img src='{$url_stem}/imgs/no-pic.svg' class='img-fluid bio-pic-project' alt='A generic project placeholder.'>";
+			}
+			echo "
+			<div class='project'>
+				<a href='{$link}'>
+					{$image}					
+					<span class='project-name'>{$title}</span>
+				</a>
+			</div>
+			";
+		}
+		echo "</div>";
+	}
+	
+}
+
 //single project page
 
 function dlinq_projects_people(){
