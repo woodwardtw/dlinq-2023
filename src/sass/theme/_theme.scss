@@ -72,6 +72,11 @@ p {
     padding-top: 0;
 }
 
+.event-row {
+  padding: 5rem 2rem 2rem 2rem;
+  background-color: $green;
+}
+
 .alert-row {
   padding: 5rem 2rem 2rem 2rem;
   background-color: $yellow;
@@ -143,8 +148,24 @@ p {
   background-color: $blue;
   color: $white;
   text-align: center;
+  text-align: center;
+   animation: pulse 3s infinite;
 }
 
+.accordion-item {
+  border-radius: 0;
+}
+
+//events calendar overrides
+#eventAccordion .tribe-common .tribe-common-c-btn-border, #eventAccordion  .tribe-common a.tribe-common-c-btn-border {  
+  border-color: $blue;
+  color: $blue;
+}
+
+#eventAccordion .tribe-events .tribe-events-c-subscribe-dropdown .tribe-events-c-subscribe-dropdown__button:hover {
+  background-color: $blue;
+  color: $white;
+}
 
 //deal with wp admin bar and fixed top menu really well
 //https://notlaura.com/a-quick-css-algorithm-for-handling-the-wp-admin-bar-with-a-fixed-menu/
@@ -186,3 +207,22 @@ p {
 
 
 
+
+
+//ANIMATION
+@keyframes pulse {
+   0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba($yellow, 0.7);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba($yellow, 0);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba($yellow, 0);
+	}
+}

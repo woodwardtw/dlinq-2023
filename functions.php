@@ -53,6 +53,32 @@ function dlinq_top_menu_list($title){
 			echo "<a href='#{$title_id}'>{$title}</a>";
 }
 
+//home page events 
+function dlinq_home_events(){
+	$events = tribe_get_events(
+			array(
+				'eventDisplay'=>'upcoming',
+				'posts_per_page'=>10,			
+		)
+	);
+	$number = sizeof($events);
+	if($events){
+		$plural = '';
+		if($number >1 ){
+			$plural = 's';
+		}
+		$title = get_the_title();
+		$args = array(
+			'count' => $number,
+			'cat' => '',
+			'plural' => $plural
+		);
+		get_template_part( 'loop-templates/content', 'event-accordion', $args );
+		
+	}
+	
+}
+
 //home page details titles
 function dlinq_topic_title($title){
 	$title_id = sanitize_title($title);
@@ -222,7 +248,6 @@ function dlinq_topic_events($cat){
 //checks title to make sure it's a category option
 
 function dlinq_add_category($post_ID, $post, $update){
-	var_dump($post);
 	$title = get_the_title($post_ID);
 	//post type is topic or post template is full width focus page
 	if(($post->post_type ==  'topic' || get_page_template_slug($post_ID) == 'page-templates/focuspage.php') && $post->post_status == 'publish'){

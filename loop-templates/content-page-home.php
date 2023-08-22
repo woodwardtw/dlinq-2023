@@ -23,6 +23,10 @@ defined( 'ABSPATH' ) || exit;
 		//the_content();
 		understrap_link_pages();
 		?>
+		<!--EVENTS-->
+		<div class="row event-row">
+			<?php dlinq_home_events();?>
+		</div>
 		<!--FOCUS-->
 		<?php if ( have_rows('focus') ) : ?>
 		<div class="focus-holder">

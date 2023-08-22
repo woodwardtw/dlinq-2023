@@ -15476,6 +15476,11 @@ p {
   padding-top: 0;
 }
 
+.event-row {
+  padding: 5rem 2rem 2rem 2rem;
+  background-color: #1A8574;
+}
+
 .alert-row {
   padding: 5rem 2rem 2rem 2rem;
   background-color: rgb(244, 184, 36);
@@ -15544,6 +15549,22 @@ p {
   background-color: #2c3b4b;
   color: #fff;
   text-align: center;
+  text-align: center;
+  animation: pulse 3s infinite;
+}
+
+.accordion-item {
+  border-radius: 0;
+}
+
+#eventAccordion .tribe-common .tribe-common-c-btn-border, #eventAccordion .tribe-common a.tribe-common-c-btn-border {
+  border-color: #2c3b4b;
+  color: #2c3b4b;
+}
+
+#eventAccordion .tribe-events .tribe-events-c-subscribe-dropdown .tribe-events-c-subscribe-dropdown__button:hover {
+  background-color: #2c3b4b;
+  color: #fff;
 }
 
 :root {
@@ -15566,6 +15587,21 @@ p {
 
 .main-content {
   padding-top: calc((var(--menu-bar-height) + var(--login-bar-height)) * 1px);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(244, 184, 36, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(244, 184, 36, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(244, 184, 36, 0);
+  }
 }
 
 /*# sourceMappingURL=theme.css.map */
