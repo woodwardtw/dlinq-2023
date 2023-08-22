@@ -152,7 +152,7 @@ p {
    animation: pulse 3s infinite;
 }
 
-.accordion-item {
+.accordion-item, .accordion-item:last-of-type, .accordion-item:first-of-type {
   border-radius: 0;
 }
 
