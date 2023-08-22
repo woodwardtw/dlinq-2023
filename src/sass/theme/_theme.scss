@@ -109,6 +109,8 @@ p {
   display: block;
   margin: 3rem auto;
   transition: all .4s ease;
+  max-width: 300px;
+  text-align: center;
 }
 
 .btn-dlinq:hover {

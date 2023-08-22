@@ -133,7 +133,7 @@ function dlinq_person_details($field_name){
 
 function dlinq_person_projects(){
 	if(get_field('project')){
-		echo "<h2>Project</h2><div class='person-projects'>";
+		echo "<h2>Projects</h2><div class='person-projects'>";
 		$projects = get_field('project');
 		foreach($projects as $project){
 			$post_id = $project->ID;
@@ -198,7 +198,7 @@ function dlinq_projects_cats(){
 		$url = get_category_link( $category->term_id );
 		echo "
 			<div class='project-cat'>
-				<a href='{$url}'>{$title}</a>
+				<a class='btn-dlinq' href='{$url}'>{$title}</a>
 			</div>
 		";
 	}
