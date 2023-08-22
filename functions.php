@@ -213,11 +213,6 @@ function dlinq_topic_events($cat){
 			'plural' => $plural
 		);
 		get_template_part( 'loop-templates/content', 'event-accordion', $args );
-		// foreach($events as $event){
-		// 	var_dump($event);
-		// 	$title = $event['post_title'];
-
-		// }
 		
 	}
 	
