@@ -184,7 +184,31 @@ function dlinq_topic_menu(){
 	}
 }
  
+//events for topics 
 
+function dlinq_topic_events($cat){
+	// $events = tribe_get_events(
+	// 		array(
+	// 			'eventDisplay'=>'upcoming',
+	// 			'posts_per_page'=>3,
+	// 			'tax_query'=> array(
+	// 			array(
+	// 			'taxonomy' => 'tribe_events_cat',
+	// 			'field' => 'slug',
+	// 			'terms' => $cat
+	// 			)
+	// 		)
+	// 	)
+	// );
+	// if($events){
+	// 	foreach($events as $event){
+	// 		echo "<h2>Upcoming events</h2>";
+	// 		var_dump($event);
+	// 	}
+
+	// }
+	echo do_shortcode( '[tribe_events view="summary" tribe-bar="false" category="'.$cat.'"]', FALSE );
+}
 
 //GENERAL FUNCTIONS
 //checks title to make sure it's a category option
@@ -204,5 +228,5 @@ function dlinq_add_category($post_ID){
 			wp_insert_category($args);//add to events category as well
 		}
 	}
-
 }
+

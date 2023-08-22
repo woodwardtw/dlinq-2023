@@ -18,6 +18,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="col-md-5 offset-md-2">
 			<?php dlinq_topic_menu(); ?>
         </div>
+		<?php dlinq_topic_events($post->post_name);?>
 	</div><!-- .entry-content -->
 	<?php get_template_part( 'loop-templates/content', 'flexcontent' );?>
   
