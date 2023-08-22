@@ -187,46 +187,53 @@ function dlinq_topic_menu(){
 //events for topics 
 
 function dlinq_topic_events($cat){
-	// $events = tribe_get_events(
-	// 		array(
-	// 			'eventDisplay'=>'upcoming',
-	// 			'posts_per_page'=>3,
-	// 			'tax_query'=> array(
-	// 			array(
-	// 			'taxonomy' => 'tribe_events_cat',
-	// 			'field' => 'slug',
-	// 			'terms' => $cat
-	// 			)
-	// 		)
-	// 	)
-	// );
-	// if($events){
-	// 	foreach($events as $event){
-	// 		echo "<h2>Upcoming events</h2>";
-	// 		var_dump($event);
-	// 	}
+	$events = tribe_get_events(
+			array(
+				'eventDisplay'=>'upcoming',
+				'posts_per_page'=>10,
+				'tax_query'=> array(
+				array(
+				'taxonomy' => 'tribe_events_cat',
+				'field' => 'slug',
+				'terms' => $cat
+				)
+			)
+		)
+	);
+	$number = sizeof($events);
+	if($events){
+		$title = get_the_title();
+		$args = array(
+			'count' => $number,
+			'cat' => $cat
+		);
+		get_template_part( 'loop-templates/content', 'event-accordion', $args );
+		// foreach($events as $event){
+		// 	var_dump($event);
+		// 	$title = $event['post_title'];
 
-	// }
-	echo do_shortcode( '[tribe_events view="summary" tribe-bar="false" category="'.$cat.'"]', FALSE );
+		// }
+		
+	}
+	
 }
 
 //GENERAL FUNCTIONS
 //checks title to make sure it's a category option
-add_action( 'post_updated', 'dlinq_add_category', 10, 1 ); //don't forget the last argument to allow all three arguments of the function
 
-function dlinq_add_category($post_ID){
+function dlinq_add_category($post_ID, $post, $update){
+	var_dump($post);
 	$title = get_the_title($post_ID);
 	//post type is topic or post template is full width focus page
-	if(get_post_type($post_ID) ==  'topic' || get_page_template_slug($post_ID) == 'page-templates/focuspage.php'){
-		//check if category exits
-		if (!category_exists($title)){
+	if(($post->post_type ==  'topic' || get_page_template_slug($post_ID) == 'page-templates/focuspage.php') && $post->post_status == 'publish'){
 			wp_create_category($title);
 			$args = array(
 				'taxonomy' => 'tribe_events_cat',
 				'cat_name' => $title
 			);
 			wp_insert_category($args);//add to events category as well
-		}
 	}
 }
+
+add_action( 'save_post', 'dlinq_add_category', 10, 3 ); //don't forget the last argument to allow all three arguments of the function
 
