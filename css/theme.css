@@ -15442,8 +15442,16 @@ p {
 
 .particles-js-canvas-el {
   position: absolute;
-  left: 0;
+  display: block;
   top: 0;
+  left: 0;
+  z-index: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 .menu-block {
@@ -15464,6 +15472,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .home .major-container {
@@ -15472,6 +15481,7 @@ p {
 
 .dlinq-description {
   padding: 2rem;
+  z-index: 100;
 }
 
 .dlinq-description h2, .dlinq-description .h2 {
