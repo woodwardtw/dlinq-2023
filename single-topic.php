@@ -14,6 +14,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 <div class="wrapper" id="single-wrapper">
 	 <div class="major-container">
+		<div id="particles-js"></div>
 			<div class="container">
 				<div class="major-row row">						
 						<div class="col-md-6">

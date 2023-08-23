@@ -15427,7 +15427,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-  font-size: clamp(1.875rem, 0.5357rem + 4.2857vw, 3.75rem);
+  font-size: clamp(1.875rem, 0.5357rem + 6vw, 4.25rem);
 }
 
 p {
@@ -15477,6 +15477,8 @@ p {
 
 .major-container h1, .major-container .h1, .major-container h2, .major-container .h2, .major-container h3, .major-container .h3, .major-container li, .major-container a {
   color: #fff;
+  z-index: 100;
+  position: relative;
 }
 
 .home .major-container {
