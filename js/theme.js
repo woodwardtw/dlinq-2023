@@ -6134,61 +6134,117 @@
     });
   }
 
-  //Arrow stuff
-  // var getQuiver = document.querySelector('.major-container');
-  // console.log(getQuiver);
-
-  // for(var i = 0; i < 100; i++){
-  //   makeArrow(1);
-  // }
-
-  // function makeArrow (id){
-  //  var newDiv = document.createElement('div');
-  //   newDiv.classList.add("arrow");
-  //  var newContent = document.createTextNode(" "); 
-  //   // add the text node to the newly created div
-  //   newDiv.appendChild(newContent);  
-  //   var quiver = document.querySelector('#quiver');
-  //   const homeWrapper = document.querySelector('#full-width-home-wrapper');
-  //   homeWrapper.insertBefore(newDiv, quiver); 
-  // }
-
-  // var body =document.querySelector('body');
-  // console.log(body);
-
-  // body.onmousemove = function(event) {cursorFinder(event)};
-
-  // function cursorFinder(e) {
-  //     var x = e.clientX;
-  //     var y = e.clientY;
-  //     var coor = "Coordinates: (" + x + "," + y + ")";
-
-  //     //document.getElementById("data").innerHTML = coor;
-  //     var theArrows = document.getElementsByClassName("arrow");
-  //   for(var i = 0; i < theArrows.length; i++){
-  //      var xShapeCenter = getPos(theArrows[i],'x');
-  //      var yShapeCenter = getPos(theArrows[i],'y');
-  //     theArrows[i].style.transform = 'rotate('+ twisterMath(x, y, xShapeCenter, yShapeCenter)+'deg)';
-  //   }
-  // }
-
-  // //from https://stackoverflow.com/questions/288699/get-the-position-of-a-div-span-tag
-  // function getPos(el, pos) {
-  //     // yay readability
-  //     for (var lx=0, ly=0;
-  //          el != null;
-  //          lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
-  //      if (pos === 'x'){
-  //        return lx
-  //      } else {
-  //        return ly
-  //      }
-  // }
-
-  // //from this crazy smart person https://codepen.io/pudinski/pen/xYoVaa/
-  // function twisterMath(x,y, xShapeCenter, yShapeCenter){
-  //   return  Math.atan2(x - xShapeCenter,-(y - yShapeCenter)) *(180 / Math.PI)
-  // }
+  //PARTICLES
+  particlesJS("particles-js", {
+    particles: {
+      number: {
+        value: 80,
+        density: {
+          enable: true,
+          value_area: 800
+        }
+      },
+      color: {
+        value: "#ffffff"
+      },
+      shape: {
+        type: "circle",
+        stroke: {
+          width: 0,
+          color: "#000000"
+        },
+        polygon: {
+          nb_sides: 5
+        },
+        image: {
+          src: "img/github.svg",
+          width: 100,
+          height: 100
+        }
+      },
+      opacity: {
+        value: 0.5,
+        random: false,
+        anim: {
+          enable: false,
+          speed: 1,
+          opacity_min: 0.1,
+          sync: false
+        }
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: {
+          enable: false,
+          speed: 40,
+          size_min: 0.1,
+          sync: false
+        }
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#ffffff",
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: .8,
+        direction: "none",
+        random: false,
+        straight: false,
+        out_mode: "out",
+        bounce: false,
+        attract: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 1200
+        }
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: {
+          enable: true,
+          mode: "repulse"
+        },
+        onclick: {
+          enable: true,
+          mode: "push"
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 400,
+          line_linked: {
+            opacity: 1
+          }
+        },
+        bubble: {
+          distance: 400,
+          size: 40,
+          duration: 2,
+          opacity: 8,
+          speed: 3
+        },
+        repulse: {
+          distance: 200,
+          duration: 0.4
+        },
+        push: {
+          particles_nb: 4
+        },
+        remove: {
+          particles_nb: 2
+        }
+      }
+    },
+    retina_detect: true
+  });
 
   exports.Alert = Alert;
   exports.Button = Button;

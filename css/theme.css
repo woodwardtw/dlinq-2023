@@ -15440,6 +15440,12 @@ p {
   background-color: #fff;
 }
 
+.particles-js-canvas-el {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 .menu-block {
   margin: 1rem auto 0 auto;
   width: 90%;
