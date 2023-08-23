@@ -31,17 +31,21 @@ defined( 'ABSPATH' ) || exit;
 		<div class="focus-holder">
 			<?php while( have_rows('focus') ) : the_row(); ?>
 				<div class="row alert-row">
-					<div class="col-md-4 offset-md-1">
+					<div class="col-md-10 offset-md-1">
 						<?php dlinq_topic_title(get_sub_field('title')); ?>
+					</div>
+					<div class="col-md-4 offset-md-1">
 						<div class="topic-descriptor">
-							<?php the_sub_field('description'); ?>
-							<a class="btn btn-dlinq" href="<?php the_sub_field('link'); ?>">
-								Learn more about <?php the_sub_field('title'); ?>
-							</a>
+							<?php the_sub_field('description'); ?>							
 						</div>
 					</div>
 					<div class="col-md-5 offset-md-2">
 						<?php dlinq_focus_image(get_sub_field('image'));?>
+					</div>
+					<div class="col-md-10 offset-md-1">
+						<a class="btn btn-dlinq" href="<?php the_sub_field('link'); ?>">
+								Learn more about <?php the_sub_field('title'); ?>
+							</a>	
 					</div>
 
 				</div>

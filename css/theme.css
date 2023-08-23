@@ -15433,6 +15433,10 @@ h1, .h1 {
   font-size: clamp(1.875rem, 0.5357rem + 6vw, 4.25rem);
 }
 
+h2, .h2 {
+  font-size: clamp(1.5rem, 0.5357rem + 3.5vw, 3rem);
+}
+
 p {
   margin-top: 1.2rem;
   font-size: 1.3rem;
@@ -15441,6 +15445,7 @@ p {
 
 #main-nav {
   background-color: #fff;
+  box-shadow: 0px 1px 1px 0px #efefef;
 }
 
 #home-top-menu a {
