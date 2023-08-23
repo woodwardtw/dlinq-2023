@@ -67,7 +67,7 @@
             $content = get_sub_field('content');
             $slug = sanitize_title($title);
         ?>
-            <div class='row topic-row'>
+            <div class='row topic-row full-width-row'>
 				<div class='col-md-8 offset-md-2'>
                     <?php if($title):?>
                         <h2 id="<?php echo $slug?>"><?php echo $title;?></h2>

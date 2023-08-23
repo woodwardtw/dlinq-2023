@@ -5,8 +5,11 @@ html {
 }
 
 body {
-    background-color: $light-gray;
-    color: $black;
+  color: $black;
+}
+
+#content {
+    background: linear-gradient(90deg, $white 50%, $light-gray 50%);
 }
 
 h1, h2, h3, h4, h5 {
@@ -27,6 +30,11 @@ p {
 
 #main-nav {
     background-color: $white;
+}
+
+#home-top-menu a {
+  text-decoration: none;
+  border-bottom: 1px dashed $white;
 }
 
 .particles-js-canvas-el{
@@ -126,6 +134,11 @@ p {
     margin-top: 3rem;
 }
 
+.topic-list a {
+  text-decoration: none;
+  border-bottom: 1px dashed $blue;
+}
+
 .btn-dlinq {
   background-color: $blue;
   color: $white;
@@ -153,6 +166,12 @@ p {
 //person work
 .person {
   margin-top: 1rem;
+}
+
+.person-details {
+  z-index: 100;
+  color: $white;
+  position: relative;
 }
 
 
@@ -193,6 +212,10 @@ p {
 #eventAccordion .tribe-events .tribe-events-c-subscribe-dropdown .tribe-events-c-subscribe-dropdown__button:hover {
   background-color: $blue;
   color: $white;
+}
+
+.full-width-row {
+  background-color: $white;
 }
 
 //deal with wp admin bar and fixed top menu really well
@@ -256,6 +279,10 @@ p {
 }
 
 @media only screen and (max-width:768px){
+  #content {
+    background: $white;
+  }
+
   .major-title {
     font-size: 4rem;
   }

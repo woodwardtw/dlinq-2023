@@ -15416,8 +15416,11 @@ html {
 }
 
 body {
-  background-color: rgba(222, 222, 222, 0.3);
   color: #000;
+}
+
+#content {
+  background: linear-gradient(90deg, #fff 50%, rgba(222, 222, 222, 0.3) 50%);
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
@@ -15438,6 +15441,11 @@ p {
 
 #main-nav {
   background-color: #fff;
+}
+
+#home-top-menu a {
+  text-decoration: none;
+  border-bottom: 1px dashed #fff;
 }
 
 .particles-js-canvas-el {
@@ -15532,6 +15540,11 @@ p {
   margin-top: 3rem;
 }
 
+.topic-list a {
+  text-decoration: none;
+  border-bottom: 1px dashed #002444;
+}
+
 .btn-dlinq {
   background-color: #002444;
   color: #fff;
@@ -15557,6 +15570,12 @@ p {
 
 .person {
   margin-top: 1rem;
+}
+
+.person-details {
+  z-index: 100;
+  color: #fff;
+  position: relative;
 }
 
 .bio-pic-project {
@@ -15596,6 +15615,10 @@ p {
   color: #fff;
 }
 
+.full-width-row {
+  background-color: #fff;
+}
+
 :root {
   --login-bar-height: 0;
   --menu-bar-height: 50;
@@ -15633,6 +15656,9 @@ p {
   }
 }
 @media only screen and (max-width: 768px) {
+  #content {
+    background: #fff;
+  }
   .major-title {
     font-size: 4rem;
   }
