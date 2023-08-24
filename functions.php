@@ -290,3 +290,12 @@ function dlinq_add_category($post_ID, $post, $update){
 
 add_action( 'save_post', 'dlinq_add_category', 10, 3 ); //don't forget the last argument to allow all three arguments of the function
 
+add_filter( 'wp_nav_menu_items', 'add_logo_nav_menu', 10, 2 );
+function add_logo_nav_menu($items, $args){
+    $newitems = '<li><button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#formModal">
+Connect</button></li>';
+    $items .= $newitems;
+
+	return $items;
+}
+

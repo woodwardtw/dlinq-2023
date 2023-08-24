@@ -15659,6 +15659,37 @@ p {
   padding-top: calc((var(--menu-bar-height) + var(--login-bar-height)) * 1px);
 }
 
+.modal-content {
+  padding: 2.5rem;
+}
+
+.ginput_container {
+  margin-bottom: 2rem;
+}
+
+.modal-dialog-slideout {
+  min-height: 100%;
+  margin: 0 0 0 auto;
+  background: #fff;
+}
+
+.modal.fade .modal-dialog.modal-dialog-slideout {
+  transform: translate(100%, 0) scale(1);
+}
+
+.modal.fade.show .modal-dialog.modal-dialog-slideout {
+  transform: translate(0, 0);
+  display: flex;
+  align-items: stretch;
+  -webkit-box-align: stretch;
+  height: 100%;
+}
+
+.modal.fade.show .modal-dialog.modal-dialog-slideout .modal-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 @keyframes pulse {
   0% {
     transform: scale(0.95);

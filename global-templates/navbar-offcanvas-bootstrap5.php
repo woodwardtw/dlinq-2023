@@ -65,11 +65,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 				)
 			);
 			?>
-			<div class="contact">
-				<button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#formModal">
-					connect
-					</button>
-			</div>
 		</div><!-- .offcanvas -->
 
 	</div><!-- .container(-fluid) -->

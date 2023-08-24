@@ -48,7 +48,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 <!--form modal-->
 <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog  modal-lg modal-dialog-slideout">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="formModalLabel">Contact DLINQ</h2>
