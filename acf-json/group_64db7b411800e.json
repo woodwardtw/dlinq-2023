@@ -312,6 +312,13 @@
                 "operator": "==",
                 "value": "topic"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
         ]
     ],
     "menu_order": 0,
@@ -325,5 +332,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692360889
+    "modified": 1692892442
 }

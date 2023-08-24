@@ -13,8 +13,6 @@ defined( 'ABSPATH' ) || exit;
 
 	<header class="entry-header">
 
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-
 		<div class="entry-meta">
 
 			<?php understrap_posted_on(); ?>
@@ -33,6 +31,7 @@ defined( 'ABSPATH' ) || exit;
 		?>
 
 	</div><!-- .entry-content -->
+	<?php get_template_part( 'loop-templates/content', 'flexcontent' );?>
 
 	<footer class="entry-footer">
 

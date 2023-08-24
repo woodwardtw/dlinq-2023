@@ -8,6 +8,10 @@ body {
   color: $black;
 }
 
+#main-nav a {
+  color: $blue;
+}
+
 #content {
     background: linear-gradient(90deg, $white 50%, $light-gray 50%);
 }
@@ -206,6 +210,11 @@ p {
 
 .accordion-item, .accordion-item:last-of-type, .accordion-item:first-of-type {
   border-radius: 0;
+}
+
+//single post
+#single-wrapper #content {
+  background: $white;
 }
 
 //events calendar overrides

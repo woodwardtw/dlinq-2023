@@ -15419,6 +15419,10 @@ body {
   color: #000;
 }
 
+#main-nav a {
+  color: #002444;
+}
+
 #content {
   background: linear-gradient(90deg, #fff 50%, rgba(222, 222, 222, 0.3) 50%);
 }
@@ -15608,6 +15612,10 @@ p {
 
 .accordion-item, .accordion-item:last-of-type, .accordion-item:first-of-type {
   border-radius: 0;
+}
+
+#single-wrapper #content {
+  background: #fff;
 }
 
 #eventAccordion .tribe-common .tribe-common-c-btn-border, #eventAccordion .tribe-common a.tribe-common-c-btn-border {
