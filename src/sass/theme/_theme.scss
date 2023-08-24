@@ -12,6 +12,11 @@ body {
   color: $blue;
 }
 
+.contact {
+  position: absolute;
+  right: 0;
+}
+
 #content {
     background: linear-gradient(90deg, $white 50%, $light-gray 50%);
 }
