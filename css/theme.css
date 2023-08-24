@@ -15467,17 +15467,18 @@ p {
 #main-menu li {
   height: 51px;
   line-height: 41px;
+  transition: all 0.3s ease;
 }
 
-.connect-li {
-  background-color: rgb(244, 184, 36);
-  padding: 0 10px;
+#main-menu li:hover {
+  box-shadow: inset 0 -3.25em 0 0 var(rgb(244, 184, 36));
 }
 
 .connect {
   border: none;
-  margin-top: 0.5rem;
-  background-color: rgb(244, 184, 36);
+  margin-top: 7px;
+  background-color: transparent;
+  color: #002444;
 }
 
 .particles-js-canvas-el {
