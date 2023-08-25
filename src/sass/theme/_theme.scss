@@ -48,9 +48,14 @@ p {
     margin: 0;
 }
 
+#home-top-menu {
+  margin-top: 1.2rem;
+}
+
 #home-top-menu a {
   text-decoration: none;
   border-bottom: 1px dashed $white;
+  background-color: $blue;
 }
 
 #main-menu li {
@@ -157,6 +162,10 @@ p {
 
 .dlinq-description h2 {
   margin-top: 1rem;
+}
+
+.focus-holder {
+  margin: 4rem 0;
 }
 
 #full-width-home-wrapper {
