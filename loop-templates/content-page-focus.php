@@ -8,17 +8,17 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 ?>
-
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
 	<div class="entry-content">
 
 		<?php
-		the_content();
+		//the_content();
 		understrap_link_pages();
 		?>
 
 	</div><!-- .entry-content -->
+	<?php get_template_part( 'loop-templates/content', 'flexcontent' );?>
 
 	<footer class="entry-footer">
 

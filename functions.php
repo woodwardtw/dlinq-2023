@@ -299,3 +299,33 @@ Connect</button></li>';
 	return $items;
 }
 
+
+//parent breadcrumbs
+function dlinq_custom_breadcrumbs(){
+    global $post;
+    if( $post->post_parent ){
+
+                // If child page, get parents
+                $anc = get_post_ancestors( $post->ID );
+
+                // Get parents in the right order
+                $anc = array_reverse($anc);
+
+                // Parent page loop
+                if ( !isset( $parents ) ) $parents = null;
+                $parents .= '<span class="item-parent"><a class="bread-parent" href="' . get_site_url() . '">Home</a> &#187; </span> ';
+                foreach ( $anc as $ancestor ) {
+                    $parents .= '<span class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . site_url() .'?menu=menu_' . $ancestor . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></span>';
+                    $parents .= '<span class="separator separator-' . $ancestor . '"> </span>';
+                }
+
+                // Display parent pages
+                echo $parents;
+
+                // Current page
+               // echo '<span class="item-current item-' . $post->ID . '"><strong title="' . get_the_title() . '"> ' . get_the_title() . '</strong></span>';
+               
+            } else {
+
+            }
+    }

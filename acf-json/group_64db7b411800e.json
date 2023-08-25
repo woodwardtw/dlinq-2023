@@ -319,6 +319,13 @@
                 "operator": "==",
                 "value": "post"
             }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/focuspage.php"
+            }
         ]
     ],
     "menu_order": 0,
@@ -332,5 +339,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692892442
+    "modified": 1692981600
 }

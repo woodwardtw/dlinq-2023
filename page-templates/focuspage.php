@@ -35,8 +35,16 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 						<?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-fluid aligncenter focus-pic') ); ?>
 					</div>
 			</div>
-		</div>
+		</div>		
     </div>
+	<div class="container">
+			<div class="row">
+				<div class="col-md-12">	
+					<?php dlinq_custom_breadcrumbs();?>
+				</div>
+			</div>
+		</div>
+
 	<div class="<?php echo esc_attr( $container ); ?>" id="content">
 
 		<div class="row">
