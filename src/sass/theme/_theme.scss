@@ -267,18 +267,34 @@ p {
 }
 
 //events calendar overrides
-#eventAccordion .tribe-common .tribe-common-c-btn-border, #eventAccordion  .tribe-common a.tribe-common-c-btn-border {  
+#eventAccordion .tribe-common .tribe-common-c-btn-border, #eventAccordion  .tribe-common a.tribe-common-c-btn-border, 
+#page .tribe-common-c-btn-border, #page .tribe-events-c-subscribe-dropdown__button {  
   border-color: $blue;
   color: $blue;
 }
 
-#eventAccordion .tribe-events .tribe-events-c-subscribe-dropdown .tribe-events-c-subscribe-dropdown__button:hover {
+#eventAccordion .tribe-events .tribe-events-c-subscribe-dropdown .tribe-events-c-subscribe-dropdown__button:hover,
+#page .tribe-common-c-btn-border:hover, #page .tribe-events-c-subscribe-dropdown__button:hover {
   background-color: $blue;
   color: $white;
 }
 
+.tribe-common-c-btn, .tribe-common--breakpoint-medium.tribe-events .tribe-common-c-btn.tribe-events-c-search__button {
+  color: $white;
+  background-color: $blue;
+}
+
+.tribe-events-event-meta a, .tribe-events-event-meta a:visited{
+  color: $blue;
+}
+
+.tribe-events-event-meta a:hover{
+  color: $black;
+}
+
 .full-width-row {
   background-color: $white;
+  border-radius: 50%;
 }
 
 //deal with wp admin bar and fixed top menu really well

@@ -24,7 +24,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 		<div id="particles-js"></div>
 		<div class="container">
 			<div class="major-row row">
-					<div class="dlinq-description col-md-6">
+					<div class="dlinq-description col-md-5">
 								<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 					</div>
 					<div class="dlinq-description col-md-5 offset-md-2">

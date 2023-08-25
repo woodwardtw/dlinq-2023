@@ -15642,18 +15642,34 @@ p {
   background: #fff;
 }
 
-#eventAccordion .tribe-common .tribe-common-c-btn-border, #eventAccordion .tribe-common a.tribe-common-c-btn-border {
+#eventAccordion .tribe-common .tribe-common-c-btn-border, #eventAccordion .tribe-common a.tribe-common-c-btn-border,
+#page .tribe-common-c-btn-border, #page .tribe-events-c-subscribe-dropdown__button {
   border-color: #002444;
   color: #002444;
 }
 
-#eventAccordion .tribe-events .tribe-events-c-subscribe-dropdown .tribe-events-c-subscribe-dropdown__button:hover {
+#eventAccordion .tribe-events .tribe-events-c-subscribe-dropdown .tribe-events-c-subscribe-dropdown__button:hover,
+#page .tribe-common-c-btn-border:hover, #page .tribe-events-c-subscribe-dropdown__button:hover {
   background-color: #002444;
   color: #fff;
 }
 
+.tribe-common-c-btn, .tribe-common--breakpoint-medium.tribe-events .tribe-common-c-btn.tribe-events-c-search__button {
+  color: #fff;
+  background-color: #002444;
+}
+
+.tribe-events-event-meta a, .tribe-events-event-meta a:visited {
+  color: #002444;
+}
+
+.tribe-events-event-meta a:hover {
+  color: #000;
+}
+
 .full-width-row {
   background-color: #fff;
+  border-radius: 50%;
 }
 
 :root {
