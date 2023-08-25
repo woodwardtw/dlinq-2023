@@ -49,6 +49,23 @@
                 "field_64dcf0e8a609c"
             ],
             "ui": 1
+        },
+        {
+            "key": "field_64e8d13a656e3",
+            "label": "Project URL",
+            "name": "project_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -69,5 +86,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692201401
+    "modified": 1692979528
 }
