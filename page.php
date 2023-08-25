@@ -20,6 +20,19 @@ $container = get_theme_mod( 'understrap_container_type' );
 ?>
 
 <div class="wrapper" id="page-wrapper">
+	 <div class="major-container">
+		<div id="particles-js"></div>
+		<div class="container">
+			<div class="major-row row">
+					<div class="dlinq-description col-md-6">
+								<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+					</div>
+					<div class="dlinq-description col-md-5 offset-md-2">
+						<?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-fluid aligncenter focus-pic') ); ?>
+					</div>
+			</div>
+		</div>
+    </div>
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
 

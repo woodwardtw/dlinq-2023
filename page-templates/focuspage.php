@@ -25,12 +25,13 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 
 <div class="wrapper" id="<?php echo $wrapper_id; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ok. ?>">
      <div class="major-container">
+		<div id="particles-js"></div>
 		<div class="container">
 			<div class="major-row row">
-					<div class="dlinq-description col-md-4">
+					<div class="dlinq-description col-md-5">
 								<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 					</div>
-					<div class="dlinq-description col-md-5 offset-md-3">
+					<div class="dlinq-description col-md-5 offset-md-2">
 						<?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-fluid aligncenter focus-pic') ); ?>
 					</div>
 			</div>
