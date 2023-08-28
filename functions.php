@@ -335,3 +335,9 @@ function dlinq_custom_breadcrumbs(){
 
             }
     }
+
+
+function understrap_default_bootstrap_version( $current_mod ) {
+    return 'bootstrap5';
+}
+add_filter( 'theme_mod_understrap_bootstrap_version', 'understrap_default_bootstrap_version', 20 );
