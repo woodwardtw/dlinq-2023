@@ -173,7 +173,7 @@ function dlinq_projects_people(){
 			
 			echo "
 			<div class='person'>
-				<a href='{$link}'>
+				<a class='stretched-link' href='{$link}'>
 					{$image}					
 					<span class='project-person-name'>{$title}</span>
 				</a>
