@@ -76,5 +76,30 @@
                 </div>
             </div>
         <?php endif;?>
+         <!--person loop-->
+         <?php if( get_row_layout() == 'people' ): 
+            $persons = get_sub_field('individuals');
+        ?>
+            <div class='row topic-row full-width-row d-flex justify-content-around'>
+				<?php
+                //var_dump($persons);
+                    foreach($persons as $person){
+                        $post_id = $person;
+                        $name = get_the_title($post_id);
+                        $title = get_field('job_title', $post_id);
+                        $img = dlinq_person_thumb_check($post_id);
+                        echo "
+                        <div class='col-md-4'>
+                            <div class='person-block'>
+                                {$img}
+                                <h2 class='small-name'>{$name}</h2>
+                                <div class='title'>{$title}</div>
+                            </div>
+                        </div>
+                        ";
+                    }
+                ?>
+            </div>
+        <?php endif;?>
     <?php endwhile; ?>
 <?php endif; ?>

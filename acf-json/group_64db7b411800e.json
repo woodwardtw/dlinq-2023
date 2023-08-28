@@ -298,6 +298,44 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_64ec9ee8b7338": {
+                    "key": "layout_64ec9ee8b7338",
+                    "name": "people",
+                    "label": "People",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64ec9ef5b733a",
+                            "label": "Individuals",
+                            "name": "individuals",
+                            "aria-label": "",
+                            "type": "post_object",
+                            "instructions": "Select and order people in the way you want them to display. A maximum of three per row.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "person"
+                            ],
+                            "post_status": [
+                                "publish"
+                            ],
+                            "taxonomy": "",
+                            "return_format": "id",
+                            "multiple": 1,
+                            "allow_null": 0,
+                            "bidirectional": 0,
+                            "ui": 1,
+                            "bidirectional_target": []
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -339,5 +377,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692981600
+    "modified": 1693230659
 }

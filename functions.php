@@ -189,6 +189,16 @@ function dlinq_projects_people(){
 	
 }
 
+function dlinq_person_thumb_check($post_id){
+	$url_stem = get_template_directory_uri();
+	if(has_post_thumbnail($post_id)){
+				$image = get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'img-fluid bio-pic-project') );
+			} else {
+				$image = "<img src='{$url_stem}/imgs/no-pic.svg' class='img-fluid bio-pic-project' alt='A generic face placeholder.'>";
+			}
+	return $image;
+}
+
 function dlinq_projects_cats(){
 	global $post;
 	$post_id = $post->ID;
