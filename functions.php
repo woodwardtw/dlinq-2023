@@ -169,12 +169,8 @@ function dlinq_projects_people(){
 			$post_id = $person->ID;
 			$title = $person->post_title;
 			$link = get_permalink( $post_id);
-			$url_stem = get_template_directory_uri();
-			if(has_post_thumbnail($post_id)){
-				$image = get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'img-fluid bio-pic-project') );
-			} else {
-				$image = "<img src='{$url_stem}/imgs/no-pic.svg' class='img-fluid bio-pic-project' alt='A generic face placeholder.'>";
-			}
+			$image = dlinq_person_thumb_check($post_id, 'thumbnail', 'img-fluid bio-pic-project');
+			
 			echo "
 			<div class='person'>
 				<a href='{$link}'>
@@ -189,12 +185,12 @@ function dlinq_projects_people(){
 	
 }
 
-function dlinq_person_thumb_check($post_id){
+function dlinq_person_thumb_check($post_id, $size, $class){
 	$url_stem = get_template_directory_uri();
 	if(has_post_thumbnail($post_id)){
-				$image = get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'img-fluid bio-pic-project') );
+				$image = get_the_post_thumbnail( $post_id, $size, array( 'class' => $class) );
 			} else {
-				$image = "<img src='{$url_stem}/imgs/no-pic.svg' class='img-fluid bio-pic-project' alt='A generic face placeholder.'>";
+				$image = "<img src='{$url_stem}/imgs/no-pic.svg' class='{$class}' alt='A generic face placeholder.'>";
 			}
 	return $image;
 }

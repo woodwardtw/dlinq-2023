@@ -15680,6 +15680,23 @@ p {
   background-color: #fff;
 }
 
+.person-block {
+  margin: 2rem;
+  text-align: center;
+}
+
+.small-name {
+  font-size: 2rem;
+}
+
+.free-bio-pic {
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  margin: 2rem;
+}
+
 :root {
   --login-bar-height: 0;
   --menu-bar-height: 50;

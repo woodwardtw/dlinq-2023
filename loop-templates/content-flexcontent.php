@@ -87,7 +87,7 @@
                         $post_id = $person;
                         $name = get_the_title($post_id);
                         $title = get_field('job_title', $post_id);
-                        $img = dlinq_person_thumb_check($post_id);
+                        $img = dlinq_person_thumb_check($post_id, 'medium', 'free-bio-pic');
                         echo "
                         <div class='col-md-4'>
                             <div class='person-block'>

@@ -305,6 +305,24 @@ p {
   background-color: $white;
 }
 
+//flex people layout
+
+.person-block {
+  margin: 2rem;
+  text-align: center;
+}
+
+.small-name {
+  font-size: 2rem;
+}
+
+.free-bio-pic {
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    margin: 2rem;
+}
+
 //deal with wp admin bar and fixed top menu really well
 //https://notlaura.com/a-quick-css-algorithm-for-handling-the-wp-admin-bar-with-a-fixed-menu/
 :root {
