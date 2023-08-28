@@ -15597,6 +15597,7 @@ p {
   transition: all 0.4s ease;
   max-width: 300px;
   text-align: center;
+  font-size: 1.3rem;
 }
 
 .btn-dlinq:hover {
@@ -15629,6 +15630,7 @@ p {
   border-bottom: 1px dashed #002444;
   padding: 2rem;
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .person-project-box .project a, .person a {

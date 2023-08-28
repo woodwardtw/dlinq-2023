@@ -43,8 +43,8 @@ defined( 'ABSPATH' ) || exit;
 						<?php dlinq_focus_image(get_sub_field('image'));?>
 					</div>
 					<div class="col-md-10 offset-md-1">
-						<a class="btn btn-dlinq" href="<?php the_sub_field('link'); ?>">
-								Learn more about <?php the_sub_field('title'); ?>
+						<a class="btn btn-dlinq" href="<?php the_sub_field('link'); ?>" aria-label="Learn more about <?php the_sub_field('title'); ?>.">
+								Learn more
 							</a>	
 					</div>
 
