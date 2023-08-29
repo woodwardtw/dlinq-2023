@@ -101,5 +101,33 @@
                 ?>
             </div>
         <?php endif;?>
+          <!--accordion loop-->
+         <?php if( get_row_layout() == 'accordion' ): 
+            $accordion_parts = get_sub_field('accordion_parts');
+            echo "<div class='accordion' id='accordionExample'>";
+            foreach($accordion_parts as $piece){
+                //var_dump($piece);
+                $title = $piece['title'];
+                $slug = sanitize_title($title);
+                $content = $piece['content'];
+                echo "
+                    <div class='accordion-item'>
+                        <h2 class='accordion-header' id='{$slug}'>
+                        <button class='accordion-button' type='button' data-bs-toggle='expand' data-bs-target='#{$slug}-content' aria-expanded='false' aria-controls='{$slug}-content'>
+                            {$title}
+                        </button>
+                        </h2>
+                        <div id='{$slug}-content' class='accordion-collapse collapse hide' aria-labelledby='{$slug}' data-bs-parent='#accordionExample'>
+                        <div class='accordion-body'>
+                         {$content}
+                        </div>
+                        </div>
+                    </div>
+                ";
+
+            }
+            echo "</div>";
+        ?>
+        <?php endif?>
     <?php endwhile; ?>
 <?php endif; ?>
