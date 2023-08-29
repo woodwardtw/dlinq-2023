@@ -344,6 +344,26 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_64ee38ab6f8b0",
+                            "label": "Accordion Title",
+                            "name": "accordion_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Optional big label for the accordion element",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
                             "key": "field_64edfa3cdca44",
                             "label": "Accordion Parts",
                             "name": "accordion_parts",
@@ -452,5 +472,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1693317823
+    "modified": 1693333729
 }

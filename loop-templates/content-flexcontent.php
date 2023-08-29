@@ -105,6 +105,11 @@
           <!--accordion loop-->
          <?php if( get_row_layout() == 'accordion' ): 
             $accordion_parts = get_sub_field('accordion_parts');
+            $accord_title = get_sub_field('accordion_title');
+            echo "<div class='row topic-row full-width-row d-flex justify-content-around'>";
+            if($accord_title){
+                echo "<h2>{$accord_title}</h2>";
+            }
             echo "<div class='accordion accordion-flush' id='accordion-{$index}'>";
             foreach($accordion_parts as $piece){
                 //var_dump($piece);
@@ -118,7 +123,7 @@
                             {$title}
                         </button>
                         </h2>
-                        <div id='{$slug}-content' class='accordion-collapse collapse hide' aria-labelledby='{$slug}'  hidden='until-found' >
+                        <div id='{$slug}-content' class='accordion-collapse collapse hide' aria-labelledby='{$slug}'>
                         <div class='accordion-body'>
                          {$content}
                         </div>
@@ -127,7 +132,7 @@
                 ";
 
             }
-            echo "</div>";
+            echo "</div></div>";
         ?>
         <?php endif?>
     <?php endwhile; ?>
