@@ -301,6 +301,19 @@ p {
   border-radius: 0;
 }
 
+.accordion-header:focus .accordion-button, .accordion-header:active  .accordion-button, .accordion-button:not(.collapsed), .accordion-button[aria-expanded="true"] {
+  border-color: $green;
+  background-color: $yellow;
+}
+
+.accordion-body{
+  transition: all .3s ease;
+}
+
+.show .accordion-body {
+  background-color: rgba($yellow,.1);
+}
+
 //single post
 #single-wrapper #content {
   background: $white;

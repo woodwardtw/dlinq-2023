@@ -15679,6 +15679,19 @@ p {
   border-radius: 0;
 }
 
+.accordion-header:focus .accordion-button, .accordion-header:active .accordion-button, .accordion-button:not(.collapsed), .accordion-button[aria-expanded=true] {
+  border-color: #1A8574;
+  background-color: rgb(244, 184, 36);
+}
+
+.accordion-body {
+  transition: all 0.3s ease;
+}
+
+.show .accordion-body {
+  background-color: rgba(244, 184, 36, 0.1);
+}
+
 #single-wrapper #content {
   background: #fff;
 }

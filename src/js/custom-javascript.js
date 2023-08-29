@@ -16,9 +16,12 @@ function dlinqScrollTo(id){
 
 //EXPAND DIV
 function dlinqAccordExpand(id){
-	const button = document.querySelector('#'+id);
-	if(button.classList.contains('accordion-header')){
-		button.classList.remove('collapsed');
+	const accordion = document.querySelector('#'+id);
+	if(accordion.classList.contains('accordion-header')){
+		const button = document.querySelector('#'+id+'-button');
+		accordion.classList.remove('collapsed');
+		accordion.focus();
+		button.setAttribute('aria-expanded', 'true');
 		const content = document.querySelector('#'+id+'-content');
 		content.classList.add('show');
 	}
