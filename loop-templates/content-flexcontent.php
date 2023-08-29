@@ -118,7 +118,7 @@
                             {$title}
                         </button>
                         </h2>
-                        <div id='{$slug}-content' class='accordion-collapse collapse hide' aria-labelledby='{$slug}' >
+                        <div id='{$slug}-content' class='accordion-collapse collapse hide' aria-labelledby='{$slug}'  hidden='until-found' >
                         <div class='accordion-body'>
                          {$content}
                         </div>
