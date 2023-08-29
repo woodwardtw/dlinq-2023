@@ -336,8 +336,26 @@ function dlinq_custom_breadcrumbs(){
             }
     }
 
-
+//maybe force bs 5 in theme customizer
 function understrap_default_bootstrap_version( $current_mod ) {
     return 'bootstrap5';
 }
 add_filter( 'theme_mod_understrap_bootstrap_version', 'understrap_default_bootstrap_version', 20 );
+
+
+//FIX TITLE ON QUOTES 
+// function dlinq_quote_titles ($post_id){
+//   $type = get_post_type($post_id);
+//   if ($type === 'quote'){
+//     remove_action( 'save_post', 'quoteTitles' );
+//     $quote = substr(get_field( "the_quote", $post_id ),0, 40) . ' . . .';
+//     $my_post = array(
+//         'ID'           => $post_id,
+//         'post_title'   => wp_strip_all_tags($quote),      
+//     );
+
+//   // Update the post into the database
+//     wp_update_post( $my_post );
+//   }
+// }
+//     add_action( 'save_post', 'dlinq_quote_titles' );
