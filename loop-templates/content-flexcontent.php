@@ -112,7 +112,7 @@
                 $slug = sanitize_title($title);
                 $content = $piece['content'];
                 echo "
-                    <div class='accordion-item'>
+                    <div class='accordion-item' id='{$slug}-item'>
                         <h2 class='accordion-header' id='{$slug}'>
                         <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#{$slug}-content' aria-expanded='false' aria-controls='{$slug}-content'>
                             {$title}

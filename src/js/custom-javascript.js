@@ -1,16 +1,28 @@
-console.log('custom')
 // Add your JS customizations here
+//SMOOTH SCROLL
 addEventListener("hashchange", (event) => {
     //alert(window.location.hash.substring(1));
     const scrollId = window.location.hash.substring(1);
-    dlinqScrollTo(scrollId);
+    dlinqAccordExpand(scrollId);
+	dlinqScrollTo(scrollId);
 });
 
+
 function dlinqScrollTo(id){
-    const destination = document.getElementById(id);
+	const destination = document.getElementById(id);
     destination.scrollIntoView({behavior: 'smooth', block: 'start'});
+	
 }
 
+//EXPAND DIV
+function dlinqAccordExpand(id){
+	const button = document.querySelector('#'+id);
+	if(button.classList.contains('accordion-header')){
+		button.classList.remove('collapsed');
+		const content = document.querySelector('#'+id+'-content');
+		content.classList.add('show');
+	}
+}
 
 //PARTICLES
 particlesJS("particles-js", {
