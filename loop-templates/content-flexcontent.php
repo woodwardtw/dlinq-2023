@@ -1,5 +1,6 @@
 <?php if( have_rows('content') ): ?>
     <?php while( have_rows('content') ): the_row(); ?>
+    <?php $index = get_row_index(); ?>
     <!--SUB TOPIC-->
         <?php if( get_row_layout() == 'sub_topic' ): 
             $title = get_sub_field('sub_topic_title');
@@ -104,7 +105,7 @@
           <!--accordion loop-->
          <?php if( get_row_layout() == 'accordion' ): 
             $accordion_parts = get_sub_field('accordion_parts');
-            echo "<div class='accordion' id='accordionExample'>";
+            echo "<div class='accordion accordion-flush' id='accordion-{$index}'>";
             foreach($accordion_parts as $piece){
                 //var_dump($piece);
                 $title = $piece['title'];
@@ -113,11 +114,11 @@
                 echo "
                     <div class='accordion-item'>
                         <h2 class='accordion-header' id='{$slug}'>
-                        <button class='accordion-button' type='button' data-bs-toggle='expand' data-bs-target='#{$slug}-content' aria-expanded='false' aria-controls='{$slug}-content'>
+                        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#{$slug}-content' aria-expanded='false' aria-controls='{$slug}-content'>
                             {$title}
                         </button>
                         </h2>
-                        <div id='{$slug}-content' class='accordion-collapse collapse hide' aria-labelledby='{$slug}' data-bs-parent='#accordionExample'>
+                        <div id='{$slug}-content' class='accordion-collapse collapse hide' aria-labelledby='{$slug}' >
                         <div class='accordion-body'>
                          {$content}
                         </div>
