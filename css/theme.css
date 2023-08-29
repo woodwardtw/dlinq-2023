@@ -15675,6 +15675,10 @@ p {
   animation: pulse 3s infinite;
 }
 
+.accordion {
+  margin-top: 1.3rem;
+}
+
 .accordion-item, .accordion-item:last-of-type, .accordion-item:first-of-type {
   border-radius: 0;
 }

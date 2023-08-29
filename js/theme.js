@@ -6120,6 +6120,13 @@
   })();
 
   // Add your JS customizations here
+  window.onload = function () {
+    // do something when the page loads
+    const scrollId = window.location.hash.substring(1);
+    dlinqAccordExpand(scrollId);
+    dlinqScrollTo(scrollId);
+  };
+
   //SMOOTH SCROLL
   addEventListener("hashchange", event => {
     //alert(window.location.hash.substring(1));

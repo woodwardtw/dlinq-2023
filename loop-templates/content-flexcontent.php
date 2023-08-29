@@ -108,7 +108,8 @@
             $accord_title = get_sub_field('accordion_title');
             echo "<div class='row topic-row full-width-row d-flex justify-content-around'>";
             if($accord_title){
-                echo "<h2>{$accord_title}</h2>";
+                $title_slug = sanitize_title($accord_title);
+                echo "<h2 id='{$title_slug}'>{$accord_title}</h2>";
             }
             echo "<div class='accordion' id='accordion-{$index}'>";
             foreach($accordion_parts as $piece){
