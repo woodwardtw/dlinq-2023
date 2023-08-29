@@ -110,7 +110,7 @@
             if($accord_title){
                 echo "<h2>{$accord_title}</h2>";
             }
-            echo "<div class='accordion accordion-flush' id='accordion-{$index}'>";
+            echo "<div class='accordion' id='accordion-{$index}'>";
             foreach($accordion_parts as $piece){
                 //var_dump($piece);
                 $title = $piece['title'];
