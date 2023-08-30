@@ -228,15 +228,26 @@ p {
 .resource-links, .sub-topic-list {
   font-size: 1.2rem;
   font-weight: 600;
-  list-style-type: decimal-leading-zero;
+  // list-style-type: decimal-leading-zero;
 }
 
-.resource-links li, .sub-topics-list li {
-  margin-top: 1rem;
+.resource-links li, .sub-topic-list li {
+  margin-top: .2rem;
   font-size: 1.2rem;
   width: 100%;
   padding: .3rem;
 }
+
+.resource-links a, .sub-topic-list a {
+  height: auto;
+  display: block;
+  transition: all .3s ease;
+}
+
+.resource-links a:hover, .sub-topic-list a:hover{
+      transform: translateX(+10px);
+}
+
 
 .resource-description {
   font-size: 1rem;
