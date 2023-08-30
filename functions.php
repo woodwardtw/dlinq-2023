@@ -219,31 +219,38 @@ function dlinq_topic_menu(){
 		 while( have_rows('content') ) : the_row(); 
 			if( get_row_layout() == 'sub_topic'){
 				$title = get_sub_field('sub_topic_title');
-				$slug = sanitize_title($title);
+				dlinq_topic_menu_title($title);
 			}
 			if( get_row_layout() == 'image'){
 				$title = get_sub_field('title');
-				$slug = sanitize_title($title);
+				dlinq_topic_menu_title($title);
 			}
 			if( get_row_layout() == 'full_block'){
 				$title = get_sub_field('title');
-				$slug = sanitize_title($title);
+				dlinq_topic_menu_title($title);
 			}
-			
-			if($title){
-				echo "			
-					<li class='sub-topic'>
-						<a href='#{$slug}'>{$title}</a>
-					</li>
-			";
+			if( get_row_layout() == 'accordion'){
+				$title = get_sub_field('accordion_title');
+				dlinq_topic_menu_title($title);
 			}
-			
 	
 		 endwhile;
 	echo "</ol></div>";
 	}
 }
  
+ function dlinq_topic_menu_title($title){
+	if($title){
+		$slug = sanitize_title($title);
+				echo "			
+					<li class='sub-topic'>
+						<a href='#{$slug}'>{$title}</a>
+					</li>
+			";
+	}
+ }
+
+
 //events for topics 
 
 function dlinq_topic_events($cat){
