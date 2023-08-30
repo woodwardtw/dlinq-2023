@@ -23,8 +23,10 @@
                         foreach($resources as $resource){
                             $title = $resource['resource_title'];
                             $link = $resource['resource_link'];
+                            $description = $resource['resource_description'];
                             echo "<li>
                                     <a href='{$link}'>{$title}</a>
+                                    <div class='resource-description'>{$description}</div>
                                 </li>";
                         }
                         echo "</ul></div>";
@@ -83,7 +85,6 @@
         ?>
             <div class='row topic-row full-width-row d-flex justify-content-around'>
 				<?php
-                //var_dump($persons);
                     foreach($persons as $person){
                         $post_id = $person;
                         $name = get_the_title($post_id);

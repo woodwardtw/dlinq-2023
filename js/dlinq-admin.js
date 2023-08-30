@@ -1,5 +1,3 @@
-
-
 acf.add_filter('wysiwyg_tinymce_settings', function( mceInit, id, field ){
 
     // do something to mceInit
