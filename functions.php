@@ -326,10 +326,15 @@ function dlinq_custom_breadcrumbs(){
 
                 // Parent page loop
                 if ( !isset( $parents ) ) $parents = null;
-                $parents .= '<span class="item-parent"><a class="bread-parent" href="' . get_site_url() . '">Home</a> &#187; </span> ';
+				$home_url = get_site_url();
+                $parents .= "<span class='item-parent'><a class='bread-parent' href='{$home_url}'>Home</a> &#187; </span> ";
                 foreach ( $anc as $ancestor ) {
-                    $parents .= '<span class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . site_url() .'?menu=menu_' . $ancestor . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></span>';
-                    $parents .= '<span class="separator separator-' . $ancestor . '"> </span>';
+					$title = get_the_title($ancestor);
+					$link = get_the_permalink($ancestor);
+                    $parents .= "<span class='item-parent item-parent-{$ancestor}'>
+									<a class='bread-parent bread-parent-{$ancestor}' href='{$link}' title='{$title}'>{$title}</a>
+								</span>";
+                    $parents .= "<span class='separator separator-{$ancestor}'> </span>";
                 }
 
                 // Display parent pages
