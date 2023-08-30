@@ -97,7 +97,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "layout": "table",
+                            "layout": "block",
                             "min": 0,
                             "max": 0,
                             "collapsed": "",
@@ -114,7 +114,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "50",
                                         "class": "",
                                         "id": ""
                                     },
@@ -135,12 +135,33 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "50",
                                         "class": "",
                                         "id": ""
                                     },
                                     "default_value": "",
                                     "placeholder": "",
+                                    "parent_repeater": "field_64de244f07c5a"
+                                },
+                                {
+                                    "key": "field_64ef34763c03c",
+                                    "label": "Resource description",
+                                    "name": "resource_description",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Keep it short and sweet.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": 220,
+                                    "rows": 3,
+                                    "placeholder": "",
+                                    "new_lines": "",
                                     "parent_repeater": "field_64de244f07c5a"
                                 }
                             ]
@@ -472,5 +493,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1693333729
+    "modified": 1693398265
 }
