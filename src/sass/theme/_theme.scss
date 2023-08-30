@@ -228,10 +228,14 @@ p {
 .resource-links, .sub-topic-list {
   font-size: 1.2rem;
   font-weight: 600;
+  list-style-type: decimal-leading-zero;
 }
 
-.resource-links li {
+.resource-links li, .sub-topics-list li {
   margin-top: 1rem;
+  font-size: 1.2rem;
+  width: 100%;
+  padding: .3rem;
 }
 
 .resource-description {
