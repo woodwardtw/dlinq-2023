@@ -142,7 +142,37 @@
             echo "<div class='row topic-row full-width-row d-flex justify-content-around'>";
          
             $cats = get_sub_field('category');
-            var_dump($cats);
+            $args = array(
+                'category__and' => $cats,
+                'post_type' => 'post',
+                'posts_per_page' => 50,
+                'paged' => get_query_var('paged')
+            );
+            $the_query = new WP_Query( $args );
+
+            // The Loop
+            if ( $the_query->have_posts() ) :
+                while ( $the_query->have_posts() ) : $the_query->the_post();
+                // Do Stuff
+                $title = get_the_title();
+                $url = get_the_permalink();
+                $excerpt = wp_trim_words(get_the_content(), 30);
+                echo "
+                    <div class='col-md-8 offset-md-2'>
+                    <h2>Learn more</h2>
+                        <div class='post-block'>
+                            <a class='post-links' href='{$url}'>
+                                <h3>{$title}</h3>
+                            </a>
+                            <p>{$excerpt}</p>
+                        </div>
+                    <div>
+                ";
+                endwhile;
+            endif;
+
+            // Reset Post Data
+            wp_reset_postdata();
             echo "</div>";
         ?>
         <?php endif;?>
