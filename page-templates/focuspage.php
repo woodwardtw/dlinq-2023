@@ -37,13 +37,14 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 			</div>
 		</div>		
     </div>
+	<!--breadcrumbs-->
 	<div class="container">
 			<div class="row">
 				<div class="col-md-12">	
 					<?php dlinq_custom_breadcrumbs();?>
 				</div>
 			</div>
-		</div>
+	</div>
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content">
 

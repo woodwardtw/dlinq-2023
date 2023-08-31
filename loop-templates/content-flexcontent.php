@@ -137,5 +137,14 @@
             echo "</div></div>";
         ?>
         <?php endif?>
+        <!--POSTS BY CATEGORY-->
+        <?php if( get_row_layout() == 'posts' ):            
+            echo "<div class='row topic-row full-width-row d-flex justify-content-around'>";
+         
+            $cats = get_sub_field('category');
+            var_dump($cats);
+            echo "</div>";
+        ?>
+        <?php endif;?>
     <?php endwhile; ?>
 <?php endif; ?>

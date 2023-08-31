@@ -452,6 +452,41 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_64f0d0fd80039": {
+                    "key": "layout_64f0d0fd80039",
+                    "name": "posts",
+                    "label": "Posts",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64f0d1088003b",
+                            "label": "Category",
+                            "name": "category",
+                            "aria-label": "",
+                            "type": "taxonomy",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "category",
+                            "add_term": 0,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "id",
+                            "field_type": "checkbox",
+                            "bidirectional": 0,
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "bidirectional_target": []
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -493,5 +528,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1693418984
+    "modified": 1693504206
 }
