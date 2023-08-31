@@ -15623,13 +15623,13 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol {
   padding: 0.3rem;
 }
 
-.resource-links a, .sub-topic-list a {
+.resource-links a, .sub-topic-list a, a.post-link {
   height: auto;
   display: block;
   transition: all 0.3s ease;
 }
 
-.resource-links a:hover, .sub-topic-list a:hover {
+.resource-links a:hover, .sub-topic-list a:hover, a.post-link:hover {
   transform: translateX(10px);
 }
 
@@ -15643,6 +15643,10 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol {
   margin: 1.5rem 0;
   padding: 1rem 0;
   border-bottom: 1px solid rgba(222, 222, 222, 0.3);
+}
+
+.post-link {
+  text-decoration: none;
 }
 
 .person {

@@ -164,10 +164,11 @@
                 echo "
                     <div class='col-md-8 offset-md-2'>
                         <div class='post-block'>
-                            <a class='post-links' href='{$url}'>
+                            <a class='post-link stretched-link' href='{$url}'>
                                 <h3>{$title}</h3>
-                            </a>
-                            <p>{$excerpt}</p>
+                           
+                                <p>{$excerpt}</p>
+                             </a>
                         </div>
                     </div>
                 ";

@@ -243,13 +243,13 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol {
   padding: .3rem;
 }
 
-.resource-links a, .sub-topic-list a {
+.resource-links a, .sub-topic-list a, a.post-link {
   height: auto;
   display: block;
   transition: all .3s ease;
 }
 
-.resource-links a:hover, .sub-topic-list a:hover{
+.resource-links a:hover, .sub-topic-list a:hover, a.post-link:hover{
       transform: translateX(+10px);
 }
 
@@ -265,6 +265,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol {
   padding: 1rem 0;
   border-bottom: 1px solid $light-gray;
 }
+
+.post-link {
+  text-decoration: none;
+}
+
 
 //person work
 .person {
