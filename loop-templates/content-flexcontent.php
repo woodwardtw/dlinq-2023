@@ -139,7 +139,11 @@
         <?php endif?>
         <!--POSTS BY CATEGORY-->
         <?php if( get_row_layout() == 'posts' ):            
-            echo "<div class='row topic-row full-width-row d-flex justify-content-around'>";
+            echo "<div class='row topic-row full-width-row d-flex justify-content-around'>
+                    <div class='col-md-8 offset-md-2'>
+                        <h2>Learn more</h2>
+                    </div>
+                        ";
          
             $cats = get_sub_field('category');
             $args = array(
@@ -159,14 +163,13 @@
                 $excerpt = wp_trim_words(get_the_content(), 30);
                 echo "
                     <div class='col-md-8 offset-md-2'>
-                    <h2>Learn more</h2>
                         <div class='post-block'>
                             <a class='post-links' href='{$url}'>
                                 <h3>{$title}</h3>
                             </a>
                             <p>{$excerpt}</p>
                         </div>
-                    <div>
+                    </div>
                 ";
                 endwhile;
             endif;
