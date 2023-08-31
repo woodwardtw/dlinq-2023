@@ -35,7 +35,12 @@ h2 {
     font-size: clamp(1.5rem, 0.5357rem + 3.5vw, 3rem);
 }
 
-p, .sub-topic ul, .sub-topic ol {
+#single-wrapper .entry-content h2 {
+  font-size: 2rem;
+  margin-top: 1.5rem;
+}
+
+p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol {
   margin-top: 1.2rem;
   font-size: 1.3rem;
   font-family: "pt serif",Georgia,Times,Times New Roman,serif;
