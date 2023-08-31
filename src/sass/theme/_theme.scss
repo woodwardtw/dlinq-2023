@@ -260,6 +260,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol {
   font-weight: 400;
 }
 
+.post-block {
+  margin: 1.5rem 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid $light-gray;
+}
 
 //person work
 .person {
