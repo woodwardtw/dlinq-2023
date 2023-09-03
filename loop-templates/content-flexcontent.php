@@ -165,8 +165,7 @@
                     <div class='col-md-8 offset-md-2'>
                         <div class='post-block'>
                             <a class='post-link stretched-link' href='{$url}'>
-                                <h3>{$title}</h3>
-                           
+                                <h3>{$title}</h3>                           
                                 <p>{$excerpt}</p>
                              </a>
                         </div>

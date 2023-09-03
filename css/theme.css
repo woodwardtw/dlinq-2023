@@ -15627,10 +15627,16 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol {
   height: auto;
   display: block;
   transition: all 0.3s ease;
+  background: linear-gradient(to right, rgb(244, 184, 36) 50%, rgba(0, 0, 0, 0) 50%);
+  background-size: 201% 100%;
+  background-position: right bottom;
+  padding: 5px;
 }
 
 .resource-links a:hover, .sub-topic-list a:hover, a.post-link:hover {
   transform: translateX(10px);
+  padding-left: 10px;
+  background-position: left bottom;
 }
 
 .resource-description {
