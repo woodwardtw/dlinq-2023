@@ -15457,8 +15457,8 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   font-family: "pt serif", Georgia, Times, Times New Roman, serif;
 }
 
-p, .sub-topic li, .entry-content li, .topic-row li {
-  margin: 15px;
+.sub-topic li, .entry-content li, .topic-row li {
+  margin: 15px 0;
 }
 
 #main-nav {
@@ -15592,7 +15592,7 @@ p, .sub-topic li, .entry-content li, .topic-row li {
   margin-top: 3rem;
 }
 
-.topic-list a {
+.topic-list a, .sub-topic a, .entry-content a, .topic-row a {
   text-decoration: none;
   border-bottom: 1px dashed #002444;
 }
@@ -15632,16 +15632,16 @@ p, .sub-topic li, .entry-content li, .topic-row li {
   height: auto;
   display: block;
   transition: all 0.3s ease;
-  background: linear-gradient(to right, rgb(244, 184, 36) 50%, rgba(0, 0, 0, 0) 50%);
-  background-size: 201% 100%;
-  background-position: right bottom;
   padding: 5px;
+  background-image: linear-gradient(rgb(244, 184, 36), rgb(244, 184, 36));
+  background-size: 0 100%;
+  background-repeat: no-repeat;
 }
 
 .resource-links a:hover, .sub-topic-list a:hover, a.post-link:hover {
   transform: translateX(10px);
   padding-left: 10px;
-  background-position: left bottom;
+  background-size: 100% 100%;
 }
 
 .resource-description {

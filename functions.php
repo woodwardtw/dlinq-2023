@@ -215,7 +215,7 @@ function dlinq_topic_menu(){
 	if ( have_rows('content') ) {
 		echo "<div class='menu-block'>
 		<h2>Topics</h2>
-		<ol class='sub-topic-list'>";
+		<ul class='sub-topic-list'>";
 		 while( have_rows('content') ) : the_row(); 
 			if( get_row_layout() == 'sub_topic'){
 				$title = get_sub_field('sub_topic_title');
@@ -239,7 +239,7 @@ function dlinq_topic_menu(){
 			}
 	
 		 endwhile;
-	echo "</ol></div>";
+	echo "</ul></div>";
 	}
 }
  
