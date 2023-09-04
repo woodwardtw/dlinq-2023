@@ -15628,7 +15628,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   padding: 0.3rem;
 }
 
-.resource-links a, .sub-topic-list a, a.post-link {
+.topic-list a, .resource-links a, .sub-topic-list a, a.post-link {
   height: auto;
   display: block;
   transition: all 0.3s ease;
@@ -15638,7 +15638,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-repeat: no-repeat;
 }
 
-.resource-links a:hover, .sub-topic-list a:hover, a.post-link:hover {
+.topic-list a:hover, .resource-links a:hover, .sub-topic-list a:hover, a.post-link:hover {
   transform: translateX(10px);
   padding-left: 10px;
   background-size: 100% 100%;
