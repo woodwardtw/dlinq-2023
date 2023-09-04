@@ -138,10 +138,15 @@
         ?>
         <?php endif?>
         <!--POSTS BY CATEGORY-->
-        <?php if( get_row_layout() == 'posts' ):            
+        <?php if( get_row_layout() == 'posts' ):
+        $title = 'Learn more';
+        if(get_sub_field('title')){
+             $title = get_sub_field('title');
+        }
+       
             echo "<div class='row topic-row full-width-row d-flex justify-content-around'>
                     <div class='col-md-8 offset-md-2'>
-                        <h2>Learn more</h2>
+                        <h2>{$title}</h2>
                     </div>
                         ";
          
@@ -150,7 +155,7 @@
             $args = array(
                 'category__and' => $cats,
                 'post_type' => $type,
-                'posts_per_page' => 50,
+                'posts_per_page' => 10,
                 'paged' => get_query_var('paged')
             );
             $the_query = new WP_Query( $args );
