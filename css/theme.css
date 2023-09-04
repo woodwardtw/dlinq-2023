@@ -15580,6 +15580,7 @@ p, .sub-topic li, .entry-content li, .topic-row li {
 
 .topic-row:first-of-type {
   border-top: none;
+  margin-top: 0;
 }
 
 .topic-row:last-of-type {
