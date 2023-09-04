@@ -15451,10 +15451,14 @@ h2, .h2 {
   margin-top: 1.5rem;
 }
 
-p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol {
+p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-row ul, .topic-row ol {
   margin-top: 1.2rem;
   font-size: 1.3rem;
   font-family: "pt serif", Georgia, Times, Times New Roman, serif;
+}
+
+p, .sub-topic li, .entry-content li, .topic-row li {
+  margin: 15px;
 }
 
 #main-nav {
