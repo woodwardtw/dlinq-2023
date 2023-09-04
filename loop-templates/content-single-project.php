@@ -20,7 +20,10 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="col-md-5 offset-md-2">
             <?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-fluid aligncenter project-pic') ); ?>
-        </div>        
+        </div>
+        <div class="col-md-4 offset-md-4">
+            <a class="btn-dlinq" href="<?php the_field('project_link');?>">See the project</a>
+        </div>
 	</div><!-- .entry-content -->
     <div class="topic-row row">
         <div class="col-md-5">
