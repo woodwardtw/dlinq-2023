@@ -15621,7 +15621,7 @@ p, .sub-topic li, .entry-content li, .topic-row li {
 }
 
 .resource-links li, .sub-topic-list li {
-  margin-top: 0.2rem;
+  margin: 0.1rem;
   font-size: 1.2rem;
   width: 100%;
   padding: 0.3rem;

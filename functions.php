@@ -233,6 +233,10 @@ function dlinq_topic_menu(){
 				$title = get_sub_field('accordion_title');
 				dlinq_topic_menu_title($title);
 			}
+			if( get_row_layout() == 'posts'){
+				$title = get_sub_field('title');
+				dlinq_topic_menu_title($title);
+			}
 	
 		 endwhile;
 	echo "</ol></div>";

@@ -114,7 +114,6 @@
             }
             echo "<div class='accordion' id='accordion-{$index}'>";
             foreach($accordion_parts as $piece){
-                //var_dump($piece);
                 $title = $piece['title'];
                 $slug = sanitize_title($title);
                 $content = $piece['content'];
@@ -137,16 +136,16 @@
             echo "</div></div>";
         ?>
         <?php endif?>
-        <!--POSTS BY CATEGORY-->
+        <!--CUSTOM POSTS BY CATEGORY-->
         <?php if( get_row_layout() == 'posts' ):
         $title = 'Learn more';
         if(get_sub_field('title')){
              $title = get_sub_field('title');
         }
-       
-            echo "<div class='row topic-row full-width-row d-flex justify-content-around'>
+        $slug = sanitize_title( $title);
+            echo "<div class='row topic-row full-width-row'>
                     <div class='col-md-8 offset-md-2'>
-                        <h2>{$title}</h2>
+                        <h2 id='{$slug}'>{$title}</h2>
                     </div>
                         ";
          
