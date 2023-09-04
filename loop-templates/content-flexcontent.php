@@ -146,9 +146,10 @@
                         ";
          
             $cats = get_sub_field('category');
+            $type = get_sub_field('post_type');
             $args = array(
                 'category__and' => $cats,
-                'post_type' => 'post',
+                'post_type' => $type,
                 'posts_per_page' => 50,
                 'paged' => get_query_var('paged')
             );
@@ -160,7 +161,13 @@
                 // Do Stuff
                 $title = get_the_title();
                 $url = get_the_permalink();
-                $excerpt = wp_trim_words(get_the_content(), 30);
+                if(get_the_content()){
+                     $excerpt = wp_trim_words(get_the_content(), 30);
+                }
+                if(get_field('project_summary')){
+                   $excerpt =  wp_trim_words(get_field('project_summary'), 30); 
+                }
+               
                 echo "
                     <div class='col-md-8 offset-md-2'>
                         <div class='post-block'>

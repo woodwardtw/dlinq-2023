@@ -469,7 +469,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -483,6 +483,32 @@
                             "multiple": 0,
                             "allow_null": 0,
                             "bidirectional_target": []
+                        },
+                        {
+                            "key": "field_64f5f8abb990d",
+                            "label": "Post type",
+                            "name": "post_type",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "post": "Posts",
+                                "project": "Projects",
+                                "quote": "Quotes"
+                            },
+                            "default_value": "post",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
                         }
                     ],
                     "min": "",
@@ -528,5 +554,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1693504206
+    "modified": 1693843101
 }
