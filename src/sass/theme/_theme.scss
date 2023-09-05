@@ -492,7 +492,16 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   overflow-x: hidden;
 }
 
+.topic-row table {
+  width: 100%;
+  font-size: 1.3rem;
+  font-family: "pt serif",Georgia,Times,Times New Roman,serif;
+}
 
+.topic-row td {
+  border: 1px solid $blue;
+  padding: .5rem;
+}
 
 //ANIMATION
 @keyframes pulse {
