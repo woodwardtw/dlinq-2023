@@ -24,12 +24,14 @@
                             $title = $resource['resource_title'];
                             $link = $resource['resource_link'];
                             $description = $resource['resource_description'];
-                            echo "<a href='{$link}'>
+                            echo "
                                     <li>
-                                        {$title}
-                                        <div class='resource-description'>{$description}</div>
+                                        <a href='{$link}'>
+                                            {$title}
+                                            <div class='resource-description'>{$description}</div>                                    
+                                        </a>
                                     </li>
-                                </a>";
+                                ";
                         }
                         echo "</ul></div>";
                     ?>
