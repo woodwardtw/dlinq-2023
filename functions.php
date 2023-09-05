@@ -321,31 +321,31 @@ Connect</button></li>';
 function dlinq_custom_breadcrumbs(){
     global $post;
     if( $post->post_parent ){
+		// If child page, get parents
+		$anc = get_post_ancestors( $post->ID );
 
-                // If child page, get parents
-                $anc = get_post_ancestors( $post->ID );
+		// Get parents in the right order
+		$anc = array_reverse($anc);
 
-                // Get parents in the right order
-                $anc = array_reverse($anc);
+		// Parent page loop
+		if ( !isset( $parents ) ) $parents = null;
+		$home_url = get_site_url();
+		$parents .= "<span class='item-parent'><a class='bread-parent' href='{$home_url}'>Home</a> &#187; </span> ";
+		$last_key = sizeof($anc);
+		foreach ( $anc as $key => $ancestor ) {
+			$title = get_the_title($ancestor);
+			$link = get_the_permalink($ancestor);
+			$parents .= "<span class='item-parent item-parent-{$ancestor}'>
+							<a class='bread-parent bread-parent-{$ancestor}' href='{$link}' title='{$title}'>{$title}</a> &#187;
+						</span>";
+			$parents .= "<span class='separator separator-{$ancestor}'> </span>";
+		}
 
-                // Parent page loop
-                if ( !isset( $parents ) ) $parents = null;
-				$home_url = get_site_url();
-                $parents .= "<span class='item-parent'><a class='bread-parent' href='{$home_url}'>Home</a> &#187; </span> ";
-                foreach ( $anc as $ancestor ) {
-					$title = get_the_title($ancestor);
-					$link = get_the_permalink($ancestor);
-                    $parents .= "<span class='item-parent item-parent-{$ancestor}'>
-									<a class='bread-parent bread-parent-{$ancestor}' href='{$link}' title='{$title}'>{$title}</a>
-								</span>";
-                    $parents .= "<span class='separator separator-{$ancestor}'> </span>";
-                }
-
-                // Display parent pages
-                echo $parents;
+		// Display parent pages
+		echo $parents;
 
                 // Current page
-               // echo '<span class="item-current item-' . $post->ID . '"><strong title="' . get_the_title() . '"> ' . get_the_title() . '</strong></span>';
+               echo '<span class="item-current item-' . $post->ID . '"><strong title="' . get_the_title() . '"> ' . get_the_title() . '</strong></span>';
                
             } else {
 
