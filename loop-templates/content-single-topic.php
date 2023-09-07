@@ -14,6 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="topic-row row">
         <div class="col-md-5">
+
 			<?php the_field('topic_summary'); ?>
         </div>
         <div class="col-md-5 offset-md-2">

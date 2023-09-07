@@ -397,25 +397,31 @@ function dlinq_acf_fields_flexible_content_layout_title( $title, $field, $layout
 }
 
 
-function dlinq_add_topics_to_dropdown( $pages ){
+add_action( 'admin_head-options-reading.php', 'wpse_18013_modify_front_pages_dropdown' );
+//add_action( 'pre_get_posts', 'wpse_18013_enable_front_page_stacks' );
+
+function wpse_18013_modify_front_pages_dropdown()
+{
+    // Filtering /wp-includes/post-templates.php#L780
+    add_filter( 'get_pages', 'wpse_18013_add_cpt_to_pages_on_front' );
+}
+
+function wpse_18013_add_cpt_to_pages_on_front( $r )
+{
     $args = array(
         'post_type' => 'topic'
     );
-    $items = get_posts($args);
-    $pages = array_merge($pages, $items);
+    $stacks = get_posts( $args );
+    $r = array_merge( $r, $stacks );
 
-    return $pages;
+    return $r;
 }
-add_filter( 'get_pages', 'dlinq_add_topics_to_dropdown' );
 
-function dlinq_enable_front_page_topics( $query ){
-    if('' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'])
+function wpse_18013_enable_front_page_stacks( $query )
+{
+    if( isset($query->query_vars['post_type']) === FALSE && 0 != $query->query_vars['page_id'] )
         $query->query_vars['post_type'] = array( 'page', 'topic' );
 }
-add_action( 'pre_get_posts', 'dlinq_enable_front_page_topics' );
-
-
-
 
 //LOGGER -- like frogger but more useful
 
