@@ -377,7 +377,7 @@ add_filter( 'theme_mod_understrap_bootstrap_version', 'understrap_default_bootst
 //     add_action( 'save_post', 'dlinq_quote_titles' );
 
 
-//change title for flexible layout in collapsed mode
+//change title for ACF flexible layout in collapsed mode
 
 add_filter('acf/fields/flexible_content/layout_title/name=content', 'dlinq_acf_fields_flexible_content_layout_title', 10, 4);
 function dlinq_acf_fields_flexible_content_layout_title( $title, $field, $layout, $i ) {
@@ -394,4 +394,35 @@ function dlinq_acf_fields_flexible_content_layout_title( $title, $field, $layout
 
 
     return $title;
+}
+
+
+//enable you to set the home page to be a custom post type via the ACF options page
+
+function dlinq_set_home(){
+	$screen = get_current_screen();
+	write_log($screen->id);
+	if ($screen->id === "toplevel_page_dlinq-basics") {
+		write_log('right page');
+		$post_id = get_field('choose_the_homepage', 'option');
+		if($post_id != get_option('page_on_front')){
+			update_option( 'page_on_front', $post_id );
+			update_option( 'show_on_front', 'page' );
+		}
+		
+	}
+}
+
+add_action('acf/save_post', 'dlinq_set_home', 20);
+
+//LOGGER -- like frogger but more useful
+
+if ( ! function_exists('write_log')) {
+   function write_log ( $log )  {
+      if ( is_array( $log ) || is_object( $log ) ) {
+         error_log( print_r( $log, true ) );
+      } else {
+         error_log( $log );
+      }
+   }
 }
