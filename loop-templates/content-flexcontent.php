@@ -24,6 +24,9 @@
                             $title = $resource['resource_title'];
                             $link = $resource['resource_link'];
                             $description = $resource['resource_description'];
+                            if(str_contains(strtolower($description), 'coming soon')){
+                                $link = "#{$slug}";       
+                            }
                             echo "
                                     <li>
                                         <a href='{$link}'>
