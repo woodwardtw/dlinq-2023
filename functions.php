@@ -397,23 +397,25 @@ function dlinq_acf_fields_flexible_content_layout_title( $title, $field, $layout
 }
 
 
-//enable you to set the home page to be a custom post type via the ACF options page
+function dlinq_add_topics_to_dropdown( $pages ){
+    $args = array(
+        'post_type' => 'topic'
+    );
+    $items = get_posts($args);
+    $pages = array_merge($pages, $items);
 
-function dlinq_set_home(){
-	$screen = get_current_screen();
-	write_log($screen->id);
-	if ($screen->id === "toplevel_page_dlinq-basics") {
-		write_log('right page');
-		$post_id = get_field('choose_the_homepage', 'option');
-		if($post_id != get_option('page_on_front')){
-			update_option( 'page_on_front', $post_id );
-			update_option( 'show_on_front', 'page' );
-		}
-		
-	}
+    return $pages;
 }
+add_filter( 'get_pages', 'dlinq_add_topics_to_dropdown' );
 
-add_action('acf/save_post', 'dlinq_set_home', 20);
+function dlinq_enable_front_page_topics( $query ){
+    if('' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'])
+        $query->query_vars['post_type'] = array( 'page', 'topic' );
+}
+add_action( 'pre_get_posts', 'dlinq_enable_front_page_topics' );
+
+
+
 
 //LOGGER -- like frogger but more useful
 
