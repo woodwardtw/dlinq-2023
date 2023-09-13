@@ -15554,6 +15554,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   color: #fff;
   z-index: 100;
   position: relative;
+  line-height: 110%;
 }
 
 .home .major-container {
@@ -15802,6 +15803,8 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .person-block {
   margin: 2rem;
   text-align: center;
+  background-color: #bfdaf2;
+  height: 100%;
 }
 
 .small-name {

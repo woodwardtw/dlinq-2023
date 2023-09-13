@@ -90,21 +90,21 @@
          <?php if( get_row_layout() == 'people' ): 
             $persons = get_sub_field('individuals');
         ?>
-            <div class='row topic-row full-width-row d-flex justify-content-around'>
+            <div class='row topic-row full-width-row d-flex justify-content-around people-row'>
 				<?php
                     foreach($persons as $person){
                         $post_id = $person;
                         $name = get_the_title($post_id);
                         $title = get_field('job_title', $post_id);
-                        $img = dlinq_person_thumb_check($post_id, 'medium', 'free-bio-pic');
+                        $img = dlinq_person_thumb_check($post_id, 'medium', 'free-bio-pic img-fluid');
                         $email_html = '';
                         if(get_field('email', $post_id)){
                             $email = get_field('email', $post_id);
-                            $email_html = "<a href='mailto:{$email}' aria-lable='Email to {$name}'>Connect</a>";
+                            $email_html = "<a href='mailto:{$email}' aria-lable='Email to {$name}'>✉️ Connect</a>";
                         }
                         $link = get_permalink( $post_id);
                         echo "
-                        <div class='col-md-4'>
+                        <div class='col-md-4 person-holder'>
                             <div class='person-block'>
                                 {$img}
                                 <a href='{$link}'><h2 class='small-name'>{$name}</h2></a>
