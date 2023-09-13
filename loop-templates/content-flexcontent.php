@@ -97,12 +97,21 @@
                         $name = get_the_title($post_id);
                         $title = get_field('job_title', $post_id);
                         $img = dlinq_person_thumb_check($post_id, 'medium', 'free-bio-pic');
+                        $email_html = '';
+                        if(get_field('email', $post_id)){
+                            $email = get_field('email', $post_id);
+                            $email_html = "<a href='mailto:{$email}' aria-lable='Email to {$name}'>Connect</a>";
+                        }
+                        $link = get_permalink( $post_id);
                         echo "
                         <div class='col-md-4'>
                             <div class='person-block'>
                                 {$img}
-                                <h2 class='small-name'>{$name}</h2>
+                                <a href='{$link}'><h2 class='small-name'>{$name}</h2></a>
                                 <div class='title'>{$title}</div>
+                                <div class='small-contact'>
+                                    {$email_html}
+                                </div>
                             </div>
                         </div>
                         ";
