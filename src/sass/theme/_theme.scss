@@ -331,6 +331,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .person-project-box .project a, .person a {
   display: block;
   text-decoration: none;
+  border-bottom: none;
 }
 
 .person-project-box .project-name, .project-person-name {
@@ -439,6 +440,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat;
+  // background-image: url(../imgs/profilebg.svg),  url(../imgs/profilebgbottom.svg);
+  // background-position: top center, bottom center;
+  // background-size: contain, contain;
+  // background-repeat: no-repeat, no-repeat;
+  position: relative;
 }
 
 .small-name {
@@ -450,6 +456,16 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
     width: 250px;
     height: 250px;
     margin: 2rem auto;
+}
+
+.small-contact {
+  padding: 1rem;
+  background-color: $blue;
+  position: absolute;
+  bottom: 0;
+  color: $white;
+  display: block;
+  width: 100%;;
 }
 
 //deal with wp admin bar and fixed top menu really well
