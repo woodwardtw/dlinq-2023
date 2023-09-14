@@ -21,7 +21,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 							<header class="entry-header">
 								<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 							</header><!-- .entry-header -->
-							<h2>
+							<h2 class="job-title">
 								<?php the_field('job_title') ;?>
 							</h2>
 							<div class="person-details">

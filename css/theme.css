@@ -15686,6 +15686,12 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   margin-top: 1rem;
 }
 
+#person-wrapper .job-title {
+  font-size: 1.75rem;
+  font-weight: 100;
+  margin-bottom: 2rem;
+}
+
 .person-details {
   z-index: 100;
   color: #fff;
@@ -15834,6 +15840,10 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   color: #fff;
   display: block;
   width: 100%;
+}
+
+.small-contact a {
+  color: #fff;
 }
 
 :root {

@@ -89,9 +89,16 @@
          <!--person loop-->
          <?php if( get_row_layout() == 'people' ): 
             $persons = get_sub_field('individuals');
+            $title = get_sub_field('title');
+            $slug = sanitize_title($title);
         ?>
             <div class='row topic-row full-width-row d-flex justify-content-around people-row'>
-				<?php
+            <?php if($title):?>
+                <div class="col-md-12">
+                    <h2 id="<?php echo $slug?>"><?php echo $title;?></h2>
+                </div>
+            <?php endif;?>
+				<?php                   
                     foreach($persons as $person){
                         $post_id = $person;
                         $name = get_the_title($post_id);
