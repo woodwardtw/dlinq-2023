@@ -432,8 +432,13 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .person-block {
   margin: 2rem;
   text-align: center;
-  background-color: $light-blue;
+  background-color: $white;
   height: 100%;
+  border: 1px solid $blue;
+  background-image: url(../imgs/profilebg.svg);
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .small-name {
@@ -444,7 +449,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
     object-fit: cover;
     width: 250px;
     height: 250px;
-    margin: 2rem;
+    margin: 2rem auto;
 }
 
 //deal with wp admin bar and fixed top menu really well
@@ -557,6 +562,10 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   .major-container {
     height: auto;
     padding: 6rem 2rem;
+  }
+  
+  .person-block {
+    margin: 2rem 0;
   }
 
 }
