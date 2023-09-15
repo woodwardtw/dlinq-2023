@@ -36,7 +36,7 @@
                                            </div>
                                            <div class='inline'>
                                                 {$title}
-                                                <div class='resource-description'>{$description}</div>
+                                                <div class='resource-description'>{$description} &nbsp;</div>
                                             </div>                                    
                                         </a>
                                     </li>

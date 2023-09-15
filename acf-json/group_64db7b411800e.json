@@ -130,7 +130,7 @@
                                     "label": "Resource type",
                                     "name": "resource_type",
                                     "aria-label": "",
-                                    "type": "radio",
+                                    "type": "select",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
@@ -145,12 +145,13 @@
                                         "video": "Video",
                                         "url": "Web page"
                                     },
-                                    "default_value": "url",
+                                    "default_value": false,
                                     "return_format": "value",
+                                    "multiple": 0,
                                     "allow_null": 0,
-                                    "other_choice": 0,
-                                    "layout": "vertical",
-                                    "save_other_choice": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
                                     "parent_repeater": "field_64de244f07c5a"
                                 },
                                 {
@@ -622,5 +623,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1694789043
+    "modified": 1694800157
 }
