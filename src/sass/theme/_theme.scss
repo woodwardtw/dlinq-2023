@@ -262,6 +262,10 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   // list-style-type: decimal-leading-zero;
 }
 
+.resource-links{
+  list-style-type: none;
+}
+
 .resource-links li, .sub-topic-list li {
   margin: .1rem;
   font-size: 1.2rem;
@@ -276,6 +280,14 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.audio {
+    background-image: url(../imgs/audio.svg);
+}
+
+.doc {
+    background-image: url(../imgs/doc.svg);
 }
 
 .url {
