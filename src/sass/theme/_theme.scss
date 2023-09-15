@@ -269,6 +269,27 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   padding: .3rem;
 }
 
+.resource-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.url {
+  background-image: url(../imgs/url.svg);
+}
+
+.video {
+  background-image: url(../imgs/video.svg);
+}
+
+.inline {
+  display: inline-block;
+}
+
 .topic-list a, .resource-links a, .sub-topic-list a, a.post-link {
   height: auto;
   display: block;
@@ -462,6 +483,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
     width: 250px;
     height: 250px;
     margin: 2rem auto;
+    border-radius: 50%;
 }
 
 .small-contact {

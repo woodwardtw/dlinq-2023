@@ -24,14 +24,20 @@
                             $title = $resource['resource_title'];
                             $link = $resource['resource_link'];
                             $description = $resource['resource_description'];
+                            $type = $resource['resource_type'];
                             if(str_contains(strtolower($description), 'coming soon')){
                                 $link = "#{$slug}";       
                             }
                             echo "
-                                    <li>
+                                    <li>                                        
                                         <a href='{$link}'>
-                                            {$title}
-                                            <div class='resource-description'>{$description}</div>                                    
+                                           <div class='inline'>
+                                                <div class='resource-icon {$type}' arial-lable='Icon for {$type}.'></div>
+                                           </div>
+                                           <div class='inline'>
+                                                {$title}
+                                                <div class='resource-description'>{$description}</div>
+                                            </div>                                    
                                         </a>
                                     </li>
                                 ";

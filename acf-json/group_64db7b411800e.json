@@ -114,7 +114,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "70",
                                         "class": "",
                                         "id": ""
                                     },
@@ -123,6 +123,34 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
+                                    "parent_repeater": "field_64de244f07c5a"
+                                },
+                                {
+                                    "key": "field_65046d5392316",
+                                    "label": "Resource type",
+                                    "name": "resource_type",
+                                    "aria-label": "",
+                                    "type": "radio",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "audio": "Audio",
+                                        "doc": "Document",
+                                        "video": "Video",
+                                        "url": "Web page"
+                                    },
+                                    "default_value": "url",
+                                    "return_format": "value",
+                                    "allow_null": 0,
+                                    "other_choice": 0,
+                                    "layout": "vertical",
+                                    "save_other_choice": 0,
                                     "parent_repeater": "field_64de244f07c5a"
                                 },
                                 {
@@ -135,7 +163,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "100",
                                         "class": "",
                                         "id": ""
                                     },
@@ -594,5 +622,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1694709011
+    "modified": 1694789043
 }
