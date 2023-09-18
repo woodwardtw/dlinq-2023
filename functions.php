@@ -427,6 +427,15 @@ function wpse_18013_enable_front_page_stacks( $query )
         $query->query_vars['post_type'] = array( 'page', 'topic' );
 }
 
+function dlinq_remove_www($string){
+	$string = strtolower($string);
+	if(str_contains($string, 'www.')){
+		$string = str_replace('www.', '', $string);
+		return $string;
+	}
+	return $string;
+}
+
 //LOGGER -- like frogger but more useful
 
 if ( ! function_exists('write_log')) {

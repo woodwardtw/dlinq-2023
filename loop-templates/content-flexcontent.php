@@ -28,7 +28,9 @@
                             if(str_contains(strtolower($description), 'coming soon')){
                                 $link = "#{$slug}";       
                             }
-                            $url_source = parse_url($link)["host"];
+
+                            $url_source = dlinq_remove_www(parse_url($link)["host"]);
+                           
                             echo "
                                     <li>                                        
                                         <a href='{$link}'>
