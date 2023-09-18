@@ -15704,6 +15704,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   font-size: 1rem;
   font-family: "pt serif", Georgia, Times, Times New Roman, serif;
   font-weight: 400;
+  margin-top: 0.5rem;
 }
 
 .post-block {
