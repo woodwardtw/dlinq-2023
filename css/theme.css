@@ -15690,6 +15690,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-image: linear-gradient(rgb(244, 184, 36), rgb(244, 184, 36));
   background-size: 0 100%;
   background-repeat: no-repeat;
+  display: flex;
 }
 
 .topic-list a:hover, .resource-links a:hover, .sub-topic-list a:hover, a.post-link:hover {
