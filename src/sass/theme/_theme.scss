@@ -20,6 +20,19 @@ blockquote p{
   font-style: italic;
 }
 
+figure {
+  background-color: $white;
+  padding: 10px;
+  border: 1px solid $light-gray;
+}
+
+.wp-caption-text {
+  margin-top: 10px;
+  font-size: .65rem;
+  font-weight: 100;
+  line-height: .8rem;
+}
+
 .topic-row blockquote a {
   font-size: 1rem;
   display: block;

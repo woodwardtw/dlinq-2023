@@ -15431,6 +15431,19 @@ blockquote p {
   font-style: italic;
 }
 
+figure {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid rgba(222, 222, 222, 0.3);
+}
+
+.wp-caption-text {
+  margin-top: 10px;
+  font-size: 0.65rem;
+  font-weight: 100;
+  line-height: 0.8rem;
+}
+
 .topic-row blockquote a {
   font-size: 1rem;
   display: block;
