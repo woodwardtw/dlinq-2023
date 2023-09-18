@@ -15700,6 +15700,12 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-size: 100% 100%;
 }
 
+.resource-source {
+  font-size: 0.8rem;
+  font-weight: 100;
+  line-height: 0.8;
+}
+
 .resource-description {
   font-size: 1rem;
   font-family: "pt serif", Georgia, Times, Times New Roman, serif;

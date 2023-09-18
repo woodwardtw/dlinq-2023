@@ -28,6 +28,7 @@
                             if(str_contains(strtolower($description), 'coming soon')){
                                 $link = "#{$slug}";       
                             }
+                            $url_source = parse_url($link)["host"];
                             echo "
                                     <li>                                        
                                         <a href='{$link}'>
@@ -36,6 +37,7 @@
                                            </div>
                                            <div class='inline'>
                                                 {$title}
+                                                <div class='resource-source'>source: {$url_source}</div>
                                                 <div class='resource-description'>{$description} &nbsp;</div>
                                             </div>                                    
                                         </a>
