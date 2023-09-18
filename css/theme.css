@@ -15432,9 +15432,9 @@ blockquote p {
 }
 
 figure {
-  background-color: #fff;
+  background-color: rgba(222, 222, 222, 0.3);
   padding: 10px;
-  border: 1px solid rgba(222, 222, 222, 0.3);
+  border: 1px solid #002444;
 }
 
 .wp-caption-text {
