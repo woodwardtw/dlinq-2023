@@ -145,7 +145,7 @@
                                         "video": "Video",
                                         "url": "Web page"
                                     },
-                                    "default_value": false,
+                                    "default_value": "url",
                                     "return_format": "value",
                                     "multiple": 0,
                                     "allow_null": 0,
@@ -623,5 +623,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1694800157
+    "modified": 1695040095
 }
