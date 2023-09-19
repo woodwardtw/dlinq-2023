@@ -5446,4 +5446,12 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
   font-weight: 500;
 }
 
+tr:nth-of-type(even) td.acf-fields {
+  background-color: red !important;
+}
+
+.acf-repeater .acf-row-handle.order + td {
+  border: 4px solid green;
+}
+
 /*# sourceMappingURL=custom-editor-style.css.map */

@@ -35,3 +35,11 @@
 	font-size: $h1-font-size;
 	font-weight: $headings-font-weight;
 }
+
+tr:nth-of-type(even) td.acf-fields {
+  background-color: red !important;
+}
+
+.acf-repeater .acf-row-handle.order + td {
+	border: 4px solid green;
+}
