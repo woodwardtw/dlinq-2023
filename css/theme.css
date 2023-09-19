@@ -15507,6 +15507,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 
 #home-top-menu {
   margin-top: 1.2rem;
+  line-height: 1.5;
 }
 
 #home-top-menu a {
