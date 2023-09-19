@@ -15437,7 +15437,7 @@ figure {
   border: 1px solid #002444;
 }
 
-.wp-caption-text {
+figcaption, .wp-caption-text {
   margin-top: 10px;
   font-size: 0.65rem;
   font-weight: 100;
