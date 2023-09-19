@@ -15605,6 +15605,10 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-color: #1A8574;
 }
 
+.event-row .accordion {
+  margin-top: 0;
+}
+
 .alert-row {
   padding: 5rem 2rem 2rem 2rem;
   background-color: rgb(244, 184, 36);
@@ -15821,6 +15825,8 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 
 .accordion-item, .accordion-item:last-of-type, .accordion-item:first-of-type {
   border-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .accordion-header:focus .accordion-button, .accordion-header:active .accordion-button, .accordion-button:not(.collapsed), .accordion-button[aria-expanded=true] {
@@ -15833,7 +15839,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 }
 
 .show .accordion-body {
-  background-color: rgba(0, 36, 68, 0.1);
+  background-color: #fff;
 }
 
 #single-wrapper #content {
