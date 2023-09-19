@@ -448,7 +448,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   margin-top: 1.3rem;
 }
 
-.accordion-item, .accordion-item:last-of-type, .accordion-item:first-of-type {
+.accordion-item, .accordion-item:last-of-type, .accordion-item:first-of-type, .accordion-item:first-of-type .accordion-button {
   border-radius: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
