@@ -15731,10 +15731,13 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 }
 
 .post-block {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   padding: 1rem 0;
-  border-bottom: 1px solid rgba(222, 222, 222, 0.3);
   position: relative;
+}
+
+.post-block a.post-link {
+  display: block;
 }
 
 .post-link {
