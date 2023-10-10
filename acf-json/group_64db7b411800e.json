@@ -582,6 +582,106 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6525a51ebf16e": {
+                    "key": "layout_6525a51ebf16e",
+                    "name": "challenge",
+                    "label": "Challenge",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6525a526bf171",
+                            "label": "Challenge Title",
+                            "name": "challenge_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6525a530bf172",
+                            "label": "Challenge Description",
+                            "name": "challenge_description",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_6525a548bf173",
+                            "label": "Form ID",
+                            "name": "form_id",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "1": "Request form"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_6525a56ebf174",
+                            "label": "Show submissions",
+                            "name": "show_submissions",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "yes": "Yes",
+                                "no": "No"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -623,5 +723,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1695040095
+    "modified": 1696966191
 }

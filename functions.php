@@ -436,6 +436,26 @@ function dlinq_remove_www($string){
 	return $string;
 }
 
+//add gravity forms to acf field
+/**
+ * Populate ACF select field options with Gravity Forms forms
+ */
+function acf_populate_gf_forms_ids( $field ) {
+	if ( class_exists( 'GFFormsModel' ) ) {
+		$choices = [''];
+
+		foreach ( \GFFormsModel::get_forms() as $form ) {
+			$choices[ $form->id ] = $form->title;
+		}
+
+		$field['choices'] = $choices;
+	}
+
+	return $field;
+}
+add_filter( 'acf/load_field/name=form_id', 'acf_populate_gf_forms_ids' );
+
+
 //LOGGER -- like frogger but more useful
 
 if ( ! function_exists('write_log')) {
