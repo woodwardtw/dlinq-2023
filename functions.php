@@ -456,6 +456,34 @@ function acf_populate_gf_forms_ids( $field ) {
 add_filter( 'acf/load_field/name=form_id', 'acf_populate_gf_forms_ids' );
 
 
+function dlinq_gf_form_entry_display($form_id){
+	$search_criteria = array(
+    'status'        => 'active',
+    'field_filters' => array(
+        'mode' => 'any',
+        array(
+            'key'   => '7',
+            'value' => 'public'
+        )
+    )
+);
+ 
+	// Getting the entries
+	$results = GFAPI::get_entries( $form_id, $search_criteria );
+	$html = '';
+	foreach ($results as $key => $result) {
+		$text = ($result['6'] != '') ? "<div class='response-text'>{$result['6']}</div>" : '';
+		$name = ($result['1.3'] != '' || $result['1.6'] != '') ? "<div class='response-name'>{$result['1.3']} {$result['1.6']}</div>" : '';
+		$grad = ($result['3'] != '') ? "<div class='response-year'>{$result['3']}</div>" : '';
+		$html .= "<div class='response'>{$text} {$name} {$grad}</div>";
+	}
+	echo "<div class='response-holder'>
+			<h2>Responses</h2>
+			{$html}
+		</div>";
+}
+
+
 //LOGGER -- like frogger but more useful
 
 if ( ! function_exists('write_log')) {

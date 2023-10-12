@@ -237,6 +237,7 @@
                     <?php echo $content;?>
                     <?php if ($form > 0) {
                         gravity_form($form);
+                        dlinq_gf_form_entry_display($form);
                         }?>
                 </div>
             </div>
