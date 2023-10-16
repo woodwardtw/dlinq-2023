@@ -506,6 +506,29 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-color: $white;
 }
 
+//form entry displays
+.response-holder {
+  border: 1px solid $blue;
+  border-radius: 3px;
+  padding: 50px;
+  margin: 50px 0;
+}
+
+.response {
+  margin: 15px 0;  
+  padding: 20px;
+}
+
+.responder {
+  display: flex;
+
+}
+
+.response:nth-of-type(even){
+  background-color: #efefef;
+  border-left: 3px solid $blue;
+}
+
 //flex people layout
 
 .person-block {

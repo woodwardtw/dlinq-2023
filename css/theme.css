@@ -15879,6 +15879,27 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-color: #fff;
 }
 
+.response-holder {
+  border: 1px solid #002444;
+  border-radius: 3px;
+  padding: 50px;
+  margin: 50px 0;
+}
+
+.response {
+  margin: 15px 0;
+  padding: 20px;
+}
+
+.responder {
+  display: flex;
+}
+
+.response:nth-of-type(even) {
+  background-color: #efefef;
+  border-left: 3px solid #002444;
+}
+
 .person-block {
   margin: 2rem;
   text-align: center;

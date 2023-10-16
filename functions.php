@@ -475,10 +475,10 @@ function dlinq_gf_form_entry_display($form_id){
 		$text = ($result['6'] != '') ? "<div class='response-text'>{$result['6']}</div>" : '';
 		$name = ($result['1.3'] != '' || $result['1.6'] != '') ? "<div class='response-name'>{$result['1.3']} {$result['1.6']}</div>" : '';
 		$grad = ($result['3'] != '') ? "<div class='response-year'>{$result['3']}</div>" : '';
-		$html .= "<div class='response'>{$text} {$name} {$grad}</div>";
+		$html .= "<div class='response'>{$text} <div class='responder'>{$name} {$grad}</div></div>";
 	}
 	echo "<div class='response-holder'>
-			<h2>Responses</h2>
+			<h2 id='responses'>Responses</h2>
 			{$html}
 		</div>";
 }
