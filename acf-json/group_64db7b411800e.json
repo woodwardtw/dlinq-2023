@@ -639,11 +639,15 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
                             "choices": {
+                                "0": "",
+                                "3": "Base Challenge Form",
+                                "2": "Challenge one",
+                                "4": "poetry submission form",
                                 "1": "Request form"
                             },
                             "default_value": false,
@@ -664,7 +668,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -723,5 +727,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1696966191
+    "modified": 1697559856
 }
