@@ -15900,6 +15900,33 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   border-left: 3px solid #002444;
 }
 
+.responder::before {
+  content: "-";
+}
+
+.response-text {
+  margin: 10px;
+  padding: 10px 0;
+}
+
+.responder {
+  padding: 5px;
+  font-weight: 200;
+  text-align: right;
+  margin: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.response-year {
+  margin-left: 7px;
+  background-color: #002444;
+  color: #fff;
+  padding: 5px 9px;
+  border-left: 2px solid #1A8574;
+}
+
 .person-block {
   margin: 2rem;
   text-align: center;

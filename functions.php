@@ -474,8 +474,11 @@ function dlinq_gf_form_entry_display($form_id){
 	foreach ($results as $key => $result) {
 		$text = ($result['6'] != '') ? "<div class='response-text'>{$result['6']}</div>" : '';
 		$name = ($result['1.3'] != '' || $result['1.6'] != '') ? "<div class='response-name'>{$result['1.3']} {$result['1.6']}</div>" : '';
-		$grad = ($result['3'] != '') ? "<div class='response-year'>{$result['3']}</div>" : '';
-		$html .= "<div class='response'>{$text} <div class='responder'>{$name} {$grad}</div></div>";
+		$year = dlinq_year_cleaner($result['3']);
+		$grad = ($result['3'] != '') ? "<div class='response-year'>'{$year}</div>" : '';
+		//var_dump(dlinq_year_cleaner($result['3']));
+		$img = ($result['8'] != '') ? "<div class='response-img'><img src='{$result['8']}' class='img-fluid' alt='An image created from the prompt.'></div>" : '';
+		$html .= "<div class='response'>{$img} {$text} <div class='responder'>{$name} {$grad}</div></div>";
 	}
 	echo "<div class='response-holder'>
 			<h2 id='responses'>Responses</h2>
@@ -483,6 +486,22 @@ function dlinq_gf_form_entry_display($form_id){
 		</div>";
 }
 
+
+function dlinq_year_cleaner($year){
+	if(strlen($year)==2){
+		return $year;
+	}
+	if(strlen($year)==4){
+		return substr($year, -2);
+	}
+	if(substr($year, -2)=='.5'){
+		return substr($year, -4);
+	}
+	else {
+		return '';
+	}
+
+}
 
 //LOGGER -- like frogger but more useful
 

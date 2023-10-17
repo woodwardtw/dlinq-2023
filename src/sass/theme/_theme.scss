@@ -529,6 +529,33 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   border-left: 3px solid $blue;
 }
 
+.responder::before{
+  content: '-';
+}
+
+.response-text {
+  margin: 10px;
+  padding: 10px 0;
+}
+
+.responder {
+    padding: 5px;
+    font-weight: 200;
+    text-align: right;
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.response-year {
+  margin-left: 7px;
+  background-color: $blue;
+  color: #fff;
+  padding: 5px 9px;
+  border-left: 2px solid $green;
+}
+
 //flex people layout
 
 .person-block {
