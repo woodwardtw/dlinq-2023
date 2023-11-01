@@ -15752,6 +15752,10 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   text-decoration: none;
 }
 
+.bio h2, .bio .h2 {
+  margin-top: 2rem;
+}
+
 .person {
   margin-top: 1rem;
 }
