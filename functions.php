@@ -293,6 +293,21 @@ function dlinq_topic_events($cat){
 	
 }
 
+//person links
+function dlinq_person_links(){
+	if(get_field('external_links')){
+		echo '<div class="external-links">';
+		$links = get_field('external_links');
+		//var_dump($links);
+		foreach ($links as $key => $link) {		
+			$link_url = $link['link_url'];
+			$title = $link['link_title'];
+			echo "<a class='btn-primary btn-dlinq' href='{$link_url}'>{$title}</a>";
+		}
+		echo '</div>';
+	}	
+}
+
 //GENERAL FUNCTIONS
 //checks title to make sure it's a category option
 
