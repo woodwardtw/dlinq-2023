@@ -124,7 +124,9 @@ $cost  = tribe_get_formatted_cost( $event_id );
 
 		</div> <!-- #post-x -->
 		<!--Event registration button-->
-			<?php dlinq_event_registration();?>
+		<?php dlinq_event_registration();?>
+		<!--Registered people display-->
+		<?php dlinq_registered_people();?>
 		<?php if ( get_post_type() == Tribe__Events__Main::POSTTYPE && tribe_get_option( 'showComments', false ) ) comments_template() ?>
 	<?php endwhile; ?>
 

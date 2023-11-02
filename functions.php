@@ -452,19 +452,18 @@ function dlinq_remove_www($string){
 }
 
 //GRAVITY RELATED
-//EVENT REGISTRATION
+//EVENT REGISTRATION button display
 function dlinq_event_registration(){
   global $post;
   $past = dlinq_tribe_is_past_event( $post->ID);
   if( $past != TRUE){
     echo "<button class='btn-dlinq btn-register-event' data-bs-toggle='modal' data-bs-target='#registrationModal'>Register</button>";
-    //data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"
   }
 }
 
-
+//hide button if event is past
 //from https://theeventscalendar.com/support/forums/topic/check-if-event-has-passed/
- // Usage tribe_is_past_event( $event_id )
+// Usage tribe_is_past_event( $event_id )
 function dlinq_tribe_is_past_event( $event = null ){
   if ( ! tribe_is_event( $event ) ){
     return false;
@@ -481,6 +480,27 @@ function dlinq_tribe_is_past_event( $event = null ){
   }
 }
 
+//show registered people if you're an admin
+function dlinq_registered_people(){
+	global $post;
+	$post_id = $post->ID;
+	$search_criteria = array(
+		    'status'        => 'active',
+		    'field_filters' => array(
+		        'mode' => 'any',
+		        array(
+		            'key'   => '6',
+		            'value' => $post_id
+		        )
+		    )
+		);
+ 
+	// Getting the entries
+	$result = GFAPI::get_entries( 5, $search_criteria );
+	var_dump($result);
+}
+
+//CHALLENGES
 
 //add gravity forms to acf field for the daily create challenge option
 /**
