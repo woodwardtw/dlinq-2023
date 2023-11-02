@@ -6125,6 +6125,7 @@
     const scrollId = window.location.hash.substring(1);
     dlinqAccordExpand(scrollId);
     dlinqScrollTo(scrollId);
+    dlinqAttendance();
   };
 
   //SMOOTH SCROLL
@@ -6266,6 +6267,14 @@
     },
     retina_detect: true
   });
+
+  //REGISTRATION
+  function dlinqAttendance() {
+    console.log('foooooooo');
+    if (document.querySelector('.attend')) {
+      console.log('exists');
+    }
+  }
 
   exports.Alert = Alert;
   exports.Button = Button;

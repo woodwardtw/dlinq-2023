@@ -4,6 +4,7 @@ window.onload = function() {
     const scrollId = window.location.hash.substring(1);
 	dlinqAccordExpand(scrollId);
 	dlinqScrollTo(scrollId);
+	dlinqAttendance();
 };
 
 //SMOOTH SCROLL
@@ -90,3 +91,12 @@ particlesJS("particles-js", {
 	},
 	retina_detect: true,
 });
+
+
+//REGISTRATION
+function dlinqAttendance(){
+	console.log('foooooooo')
+	if(document.querySelector('.attend')){
+		console.log('exists')
+	}
+}

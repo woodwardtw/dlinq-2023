@@ -482,22 +482,51 @@ function dlinq_tribe_is_past_event( $event = null ){
 
 //show registered people if you're an admin
 function dlinq_registered_people(){
-	global $post;
-	$post_id = $post->ID;
-	$search_criteria = array(
-		    'status'        => 'active',
-		    'field_filters' => array(
-		        'mode' => 'any',
-		        array(
-		            'key'   => '6',
-		            'value' => $post_id
-		        )
-		    )
-		);
- 
-	// Getting the entries
-	$result = GFAPI::get_entries( 5, $search_criteria );
-	var_dump($result);
+	if(current_user_can('edit_posts')){
+		global $post;
+		$post_id = $post->ID;
+		$search_criteria = array(
+			    'status'        => 'active',
+			    'field_filters' => array(
+			        'mode' => 'any',
+			        array(
+			            'key'   => '6',
+			            'value' => $post_id
+			        )
+			    )
+			);
+	 
+		// Getting the entries
+		$results = GFAPI::get_entries( 5, $search_criteria );
+		//var_dump($results);
+		if($results){
+			echo "<h2>Registrations</h2><ol>";
+
+			foreach ($results as $key => $result) {
+				// code...
+				//var_dump($result);
+				$entry_id = $result["id"];
+				$created = $result["date_created"];
+				$first = $result["1.3"];
+				$last = $result["1.6"];
+				$email = $result["3"];
+				$attendance = $result["8"];
+				echo "<li class='reg'>{$first} {$last} - <a href='mailto:{$email}'>{$email}</a> - {$created} - attended: <button class='attend' data-entry='{$entry_id}' data-state='{$attendance}'>{$attendance}</button></li>";
+			}
+			echo "</ol>";
+		}		
+
+	}
+	
+}
+
+function dlinq_set_attend($entry_id, $property, $value){
+	if($value == 'Yes'){
+		update_entry_property( $entry_id, $property, 'No' );
+	} else {
+		update_entry_property( $entry_id, $property, 'Yes' );
+	}
+	
 }
 
 //CHALLENGES
