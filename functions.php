@@ -451,10 +451,43 @@ function dlinq_remove_www($string){
 	return $string;
 }
 
-//add gravity forms to acf field
+//GRAVITY RELATED
+//EVENT REGISTRATION
+function dlinq_event_registration(){
+  global $post;
+  $past = dlinq_tribe_is_past_event( $post->ID);
+  if( $past != TRUE){
+    echo "<button class='btn-dlinq btn-register-event' data-bs-toggle='modal' data-bs-target='#registrationModal'>Register</button>";
+    //data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"
+  }
+}
+
+
+//from https://theeventscalendar.com/support/forums/topic/check-if-event-has-passed/
+ // Usage tribe_is_past_event( $event_id )
+function dlinq_tribe_is_past_event( $event = null ){
+  if ( ! tribe_is_event( $event ) ){
+    return false;
+  }
+  $event = tribe_events_get_event( $event );
+  $event_time_zone = get_post_meta( $event->ID, '_EventTimezone', true );
+  date_default_timezone_set($event_time_zone);
+  // Grab the event End Date as UNIX time
+  $end_date = tribe_get_end_date( $event, '', 'UTC');
+  if(time() > $end_date){
+    return TRUE;//has expired
+  } else {
+    return FALSE;//still live
+  }
+}
+
+
+//add gravity forms to acf field for the daily create challenge option
 /**
  * Populate ACF select field options with Gravity Forms forms
  */
+
+//might need something like https://wordpress.org/plugins/categories-for-gravity-forms/
 function acf_populate_gf_forms_ids( $field ) {
 	if ( class_exists( 'GFFormsModel' ) ) {
 		$choices = [''];
