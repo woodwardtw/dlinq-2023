@@ -15883,6 +15883,10 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-color: #fff;
 }
 
+.present {
+  background-color: green;
+}
+
 .response-holder {
   border: 1px solid #002444;
   border-radius: 3px;

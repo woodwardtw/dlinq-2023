@@ -510,6 +510,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-color: $white;
 }
 
+//Single tribe event stuff
+.present {
+  background-color: green;
+}
+
 //form entry displays
 .response-holder {
   border: 1px solid $blue;

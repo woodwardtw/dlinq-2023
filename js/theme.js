@@ -6285,10 +6285,14 @@
               action: 'dlinq_attendance_update',
               // add your parameters here
               entry_id: button.dataset.entry,
-              entry_state: button.dataset.state
+              entry_state: button.dataset.state,
+              nonce: dlinq_attendance_update.nonce
             },
             success: function (output) {
               console.log(output);
+              button.classList.toggle('present'); //add or remove class
+              button.innerHTML = button.innerHTML == 'No' ? 'Yes' : 'No'; //change button text
+              button.dataset.state = button.dataset.state == 'No' ? 'Yes' : 'No'; //change data attribute
             }
           });
         });

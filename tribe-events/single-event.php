@@ -165,4 +165,3 @@ $cost  = tribe_get_formatted_cost( $event_id );
     </div>
   </div>
 </div>
-<?php //dlinq_attendance_update();?>

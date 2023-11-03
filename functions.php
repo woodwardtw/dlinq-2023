@@ -452,82 +452,6 @@ function dlinq_remove_www($string){
 }
 
 //GRAVITY RELATED
-//EVENT REGISTRATION button display
-function dlinq_event_registration(){
-  global $post;
-  $past = dlinq_tribe_is_past_event( $post->ID);
-  if( $past != TRUE){
-    echo "<button class='btn-dlinq btn-register-event' data-bs-toggle='modal' data-bs-target='#registrationModal'>Register</button>";
-  }
-}
-
-//hide button if event is past
-//from https://theeventscalendar.com/support/forums/topic/check-if-event-has-passed/
-// Usage tribe_is_past_event( $event_id )
-function dlinq_tribe_is_past_event( $event = null ){
-  if ( ! tribe_is_event( $event ) ){
-    return false;
-  }
-  $event = tribe_events_get_event( $event );
-  $event_time_zone = get_post_meta( $event->ID, '_EventTimezone', true );
-  date_default_timezone_set($event_time_zone);
-  // Grab the event End Date as UNIX time
-  $end_date = tribe_get_end_date( $event, '', 'UTC');
-  if(time() > $end_date){
-    return TRUE;//has expired
-  } else {
-    return FALSE;//still live
-  }
-}
-
-//show registered people if you're an admin
-function dlinq_registered_people(){
-	if(current_user_can('edit_posts')){
-		global $post;
-		$post_id = $post->ID;
-		$search_criteria = array(
-			    'status'        => 'active',
-			    'field_filters' => array(
-			        'mode' => 'any',
-			        array(
-			            'key'   => '6',
-			            'value' => $post_id
-			        )
-			    )
-			);
-	 
-		// Getting the entries
-		$results = GFAPI::get_entries( 5, $search_criteria );
-		//var_dump($results);
-		if($results){
-			echo "<h2>Registrations</h2><ol>";
-
-			foreach ($results as $key => $result) {
-				// code...
-				//var_dump($result);
-				$entry_id = $result["id"];
-				$created = $result["date_created"];
-				$first = $result["1.3"];
-				$last = $result["1.6"];
-				$email = $result["3"];
-				$attendance = $result["8"];
-				echo "<li class='reg'>{$first} {$last} - <a href='mailto:{$email}'>{$email}</a> - {$created} - attended: <button class='attend' data-entry='{$entry_id}' data-state='{$attendance}'>{$attendance}</button></li>";
-			}
-			echo "</ol>";
-		}		
-
-	}
-	
-}
-
-function dlinq_set_attend($entry_id, $input_id, $value){
-	if($value == 'Yes'){
-		update_entry_field( $entry_id, $input_id, 'No' );
-	} else {
-		update_entry_field( $entry_id, $input_id, 'Yes' );
-	}
-	
-}
 
 //CHALLENGES
 
@@ -583,30 +507,6 @@ function dlinq_gf_form_entry_display($form_id){
 		</div>";
 }
 
-// register the ajax action for authenticated users
-add_action('wp_ajax_dlinq_attendance_update', 'dlinq_attendance_update');
-add_action( 'wp_ajax_nopriv_dlinq_attendance_update', 'dlinq_attendance_update');
-// handle the ajax request
-function dlinq_attendance_update() {
-    $entry_id = $_REQUEST['entry_id'];
-    $entry_state = $_REQUEST['entry_state'];
-    if($entry_state == 'No'){
-    	$entry_state = 'Yes';
-    } else {
-    	$entry_state = 'No';
-    }
-    //$entry_id = 6;
-    GFAPI::update_entry_field( $entry_id, '8', $entry_state, '' );
-    // add your logic here...
-
-    // in the end, returns success json data
-    // wp_send_json_success([/* some data here */]);
-
-    // // or, on error, return error json data
-    // wp_send_json_error([/* some data here */]);
-}
-
-
 function dlinq_year_cleaner($year){
 	if(strlen($year)==2){
 		return $year;
@@ -622,6 +522,115 @@ function dlinq_year_cleaner($year){
 	}
 
 }
+
+/*
+**
+** EVENT and AJAX attendance 
+**
+*/
+
+//EVENT REGISTRATION button display
+function dlinq_event_registration(){
+  global $post;
+  $past = dlinq_tribe_is_past_event( $post->ID);
+  if( $past != TRUE){
+    echo "<button class='btn-dlinq btn-register-event' data-bs-toggle='modal' data-bs-target='#registrationModal'>Register</button>";
+  }
+}
+
+//hide button if event is past
+//from https://theeventscalendar.com/support/forums/topic/check-if-event-has-passed/
+// Usage tribe_is_past_event( $event_id )
+function dlinq_tribe_is_past_event( $event = null ){
+  if ( ! tribe_is_event( $event ) ){
+    return false;
+  }
+  $event = tribe_events_get_event( $event );
+  $event_time_zone = get_post_meta( $event->ID, '_EventTimezone', true );
+  date_default_timezone_set($event_time_zone);
+  // Grab the event End Date as UNIX time
+  $end_date = tribe_get_end_date( $event, '', 'UTC');
+  if(time() > $end_date){
+    return TRUE;//has expired
+  } else {
+    return FALSE;//still live
+  }
+}
+
+//show registered people if you're an admin
+function dlinq_registered_people(){
+	if(current_user_can('edit_posts')){
+		global $post;
+		$post_id = $post->ID;
+		$search_criteria = array(
+			    'status'        => 'active',
+			    'field_filters' => array(
+			        'mode' => 'any',
+			        array(
+			            'key'   => '6',
+			            'value' => $post_id
+			        )
+			    )
+			);
+	 
+		// Getting the entries
+		$results = GFAPI::get_entries( 5, $search_criteria );
+		//var_dump($results);
+		if($results){
+			echo "<h2>Registrations</h2><ol>";
+
+			foreach ($results as $key => $result) {
+
+				$entry_id = $result["id"];
+				$created = $result["date_created"];
+				$first = $result["1.3"];
+				$last = $result["1.6"];
+				$email = $result["3"];
+				$attendance = $result["8"];
+				$attend_class = ($attendance == 'No') ? '' : 'present';
+				echo "<li class='reg'>{$first} {$last} - <a href='mailto:{$email}'>{$email}</a> - {$created} - attended: <button class='attend {$attend_class}' data-entry='{$entry_id}' data-state='{$attendance}'>{$attendance}</button></li>";
+			}
+			echo "</ol>";
+		}		
+
+	}
+	
+}
+
+function dlinq_set_attend($entry_id, $input_id, $value){
+	if($value == 'Yes'){
+		update_entry_field( $entry_id, $input_id, 'No' );
+	} else {
+		update_entry_field( $entry_id, $input_id, 'Yes' );
+	}
+	
+}
+
+
+// register the ajax action for authenticated users
+add_action('wp_ajax_dlinq_attendance_update', 'dlinq_attendance_update');
+//add_action( 'wp_ajax_nopriv_dlinq_attendance_update', 'dlinq_attendance_update');
+// handle the ajax request
+function dlinq_attendance_update() {
+    $entry_id = $_REQUEST['entry_id'];
+    $entry_state = $_REQUEST['entry_state'];
+    if($entry_state == 'No'){
+    	$entry_state = 'Yes';
+    } else {
+    	$entry_state = 'No';
+    }
+    GFAPI::update_entry_field( $entry_id, '8', $entry_state, '' );
+    // add your logic here...
+
+    // in the end, returns success json data
+    // wp_send_json_success([/* some data here */]);
+
+    // // or, on error, return error json data
+    // wp_send_json_error([/* some data here */]);
+}
+
+
+
 
 //LOGGER -- like frogger but more useful
 
