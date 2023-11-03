@@ -72,7 +72,6 @@ $title = apply_filters( 'tribe_events_single_event_title_html', the_title( $befo
 $cost  = tribe_get_formatted_cost( $event_id );
 
 ?>
-
 <div id="tribe-events-content" class="tribe-events-single">
 
 	<p class="tribe-events-back">
@@ -166,3 +165,4 @@ $cost  = tribe_get_formatted_cost( $event_id );
     </div>
   </div>
 </div>
+<?php //dlinq_attendance_update();?>

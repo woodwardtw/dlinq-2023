@@ -520,11 +520,11 @@ function dlinq_registered_people(){
 	
 }
 
-function dlinq_set_attend($entry_id, $property, $value){
+function dlinq_set_attend($entry_id, $input_id, $value){
 	if($value == 'Yes'){
-		update_entry_property( $entry_id, $property, 'No' );
+		update_entry_field( $entry_id, $input_id, 'No' );
 	} else {
-		update_entry_property( $entry_id, $property, 'Yes' );
+		update_entry_field( $entry_id, $input_id, 'Yes' );
 	}
 	
 }
@@ -555,15 +555,15 @@ add_filter( 'acf/load_field/name=form_id', 'acf_populate_gf_forms_ids' );
 
 function dlinq_gf_form_entry_display($form_id){
 	$search_criteria = array(
-    'status'        => 'active',
-    'field_filters' => array(
-        'mode' => 'any',
-        array(
-            'key'   => '7',
-            'value' => 'public'
-        )
-    )
-);
+	    'status'        => 'active',
+	    'field_filters' => array(
+	        'mode' => 'any',
+	        array(
+	            'key'   => '7',
+	            'value' => 'public'
+	        )
+	    )
+	);
  
 	// Getting the entries
 	$results = GFAPI::get_entries( $form_id, $search_criteria );
@@ -581,6 +581,29 @@ function dlinq_gf_form_entry_display($form_id){
 			<h2 id='responses'>Responses</h2>
 			{$html}
 		</div>";
+}
+
+// register the ajax action for authenticated users
+add_action('wp_ajax_dlinq_attendance_update', 'dlinq_attendance_update');
+add_action( 'wp_ajax_nopriv_dlinq_attendance_update', 'dlinq_attendance_update');
+// handle the ajax request
+function dlinq_attendance_update() {
+    $entry_id = $_REQUEST['entry_id'];
+    $entry_state = $_REQUEST['entry_state'];
+    if($entry_state == 'No'){
+    	$entry_state = 'Yes';
+    } else {
+    	$entry_state = 'No';
+    }
+    //$entry_id = 6;
+    GFAPI::update_entry_field( $entry_id, '8', $entry_state, '' );
+    // add your logic here...
+
+    // in the end, returns success json data
+    // wp_send_json_success([/* some data here */]);
+
+    // // or, on error, return error json data
+    // wp_send_json_error([/* some data here */]);
 }
 
 

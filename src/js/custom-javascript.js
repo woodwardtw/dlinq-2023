@@ -1,10 +1,12 @@
 // Add your JS customizations here
 window.onload = function() {
   // do something when the page loads
+  if(window.location.hash.substring(1)){
     const scrollId = window.location.hash.substring(1);
-	dlinqAccordExpand(scrollId);
-	dlinqScrollTo(scrollId);
-	dlinqAttendance();
+    dlinqAccordExpand(scrollId);
+		dlinqScrollTo(scrollId);
+  }	
+	dlinqAttendance();//what is the problem?
 };
 
 //SMOOTH SCROLL
@@ -18,7 +20,7 @@ addEventListener("hashchange", (event) => {
 
 function dlinqScrollTo(id){
 	const destination = document.getElementById(id);
-    destination.scrollIntoView({behavior: 'smooth', block: 'start'});
+  destination.scrollIntoView({behavior: 'smooth', block: 'start'});
 	
 }
 
@@ -95,8 +97,26 @@ particlesJS("particles-js", {
 
 //REGISTRATION
 function dlinqAttendance(){
-	console.log('foooooooo')
 	if(document.querySelector('.attend')){
-		console.log('exists')
+		const attendButtons = document.querySelectorAll('.attend');
+		attendButtons.forEach((button) => {
+		  button.addEventListener('click', () => {
+		    //alert("forEach worked");
+		   // alert(button.dataset.state);
+		    jQuery.ajax({
+	        type: "POST",
+	        url: dlinq_attendance_update.ajax_url,
+	        data: {
+	            action: 'dlinq_attendance_update',
+	            // add your parameters here
+	            entry_id: button.dataset.entry,
+	      			entry_state: button.dataset.state
+	        },
+	        success: function (output) {
+	           console.log(output);
+	        }
+        });
+		  });
+		});
 	}
 }
