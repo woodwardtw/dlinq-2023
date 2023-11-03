@@ -557,6 +557,35 @@ function dlinq_tribe_is_past_event( $event = null ){
   }
 }
 
+//hide button if over limit 
+function dlinq_registration_check(){
+		$limit = intval(get_field('attendance_limit'));
+		global $post;
+		$post_id = $post->ID;
+		$total_count = 0;
+		$sorting         = array();
+		$paging          = array( 'offset' => 0, 'page_size' => 25 );
+		$search_criteria = array(
+			    'status'        => 'active',
+			    'field_filters' => array(
+			        'mode' => 'any',
+			        array(
+			            'key'   => '6',
+			            'value' => $post_id
+			        )
+			    )
+			);
+	 
+		// Getting the entries
+		$results = GFAPI::get_entries( 5, $search_criteria, $sorting, $paging, $total_count );
+		if(sizeof($results) <= $limit || $results == ''){
+			echo dlinq_event_registration();
+		} else {
+			echo "The event is full.";
+		}
+}
+
+
 //show registered people if you're an admin
 function dlinq_registered_people(){
 	if(current_user_can('edit_posts')){
@@ -577,7 +606,7 @@ function dlinq_registered_people(){
 		$results = GFAPI::get_entries( 5, $search_criteria );
 		//var_dump($results);
 		if($results){
-			echo "<h2>Registrations</h2><ol>";
+			echo "<div class='registration-block'><h2>Registrations</h2><ol>";
 
 			foreach ($results as $key => $result) {
 
@@ -590,7 +619,7 @@ function dlinq_registered_people(){
 				$attend_class = ($attendance == 'No') ? '' : 'present';
 				echo "<li class='reg'>{$first} {$last} - <a href='mailto:{$email}'>{$email}</a> - {$created} - attended: <button class='attend {$attend_class}' data-entry='{$entry_id}' data-state='{$attendance}'>{$attendance}</button></li>";
 			}
-			echo "</ol>";
+			echo "</ol></div>";
 		}		
 
 	}

@@ -123,7 +123,7 @@ $cost  = tribe_get_formatted_cost( $event_id );
 
 		</div> <!-- #post-x -->
 		<!--Event registration button-->
-		<?php dlinq_event_registration();?>
+		<?php dlinq_registration_check();?>
 		<!--Registered people display-->
 		<?php dlinq_registered_people();?>
 		<?php if ( get_post_type() == Tribe__Events__Main::POSTTYPE && tribe_get_option( 'showComments', false ) ) comments_template() ?>
@@ -156,12 +156,13 @@ $cost  = tribe_get_formatted_cost( $event_id );
        		$values = array(
        					'event_name' => get_the_title(),
        					'event_id' => get_the_ID(),
+       					'zoom_link' => get_field('zoom_link')
        				); 
        		gravity_form( 5, false, false, false, $values, false, null, true, null, null);?>
       </div>
-      <div class="modal-footer">
+     <!--  <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

@@ -15887,6 +15887,16 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-color: green;
 }
 
+.registration-block {
+  padding: 40px;
+  background-color: #fff;
+}
+
+.reg {
+  display: flex;
+  justify-content: space-between;
+}
+
 .response-holder {
   border: 1px solid #002444;
   border-radius: 3px;
