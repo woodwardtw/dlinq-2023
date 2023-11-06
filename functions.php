@@ -707,7 +707,7 @@ add_action( 'gform_after_submission_6', 'after_submission_bulk_enroll', 10, 2 );
 function after_submission_bulk_enroll( $entry, $form ) {
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
- 	$email = rgar($entry, '2');
+ 	$email = rgar($entry, '3');
  	$events = rs_gf_get_checked_boxes( $entry, 5 );
  	//var_dump($events);
  	foreach ($events as $key => $event_id) {
@@ -722,9 +722,11 @@ function after_submission_bulk_enroll( $entry, $form ) {
  			'3' => $email,
  			'5' => $event_name,
  			'6' => $event_id,
+ 			'8' => 'No',
  			'9' => $zoom_link
  		);
  		$new_entry = GFAPI::add_entry( $entry );
+ 		send_notifications(5, $new_entry );
  	}
 }
 
@@ -760,6 +762,32 @@ function rs_gf_get_checked_boxes( $entry, $field_id ) {
 	return $items;
 }
 
+//from https://gist.github.com/keithdevon/08016bd065397c76045c
+// send notifications
+function send_notifications($form_id, $entry_id){
+
+	// Get the array info for our forms and entries
+	// that we need to send notifications for
+
+	$form = RGFormsModel::get_form_meta($form_id);
+	$entry = RGFormsModel::get_lead($entry_id);
+
+	// Loop through all the notifications for the
+	// form so we know which ones to send
+
+	$notification_ids = array();
+
+	foreach($form['notifications'] as $id => $info){
+
+		array_push($notification_ids, $id);
+
+	}
+
+	// Send the notifications
+
+	GFCommon::send_notifications($notification_ids, $form, $entry);
+
+}
 
 //LOGGER -- like frogger but more useful
 
