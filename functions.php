@@ -674,9 +674,10 @@ function dlinq_populate_events( $form ) {
             continue;
         }
  
-        // you can add additional parameters here to alter the posts that are retreieved
+        // you can add additional parameters here to alter the posts that are retrieved
         // more info: http://codex.wordpress.org/Template_Tags/get_posts
-        $posts = get_posts( 'numberposts=-1&post_status=publish&post_type=tribe_events' );
+        //CONSIDER USING THE TRIBES EVENT LOOP INSTEAD
+        $posts = get_posts( 'numberposts=-1&post_status=publish&post_type=tribe_events&order=ASC&orderby=date' );
  
         $input_id = 1;
         foreach( $posts as $post ) {
@@ -685,8 +686,8 @@ function dlinq_populate_events( $form ) {
             if ( $input_id % 10 == 0 ) {
                 $input_id++;
             }
- 
-            $choices[] = array( 'text' => $post->post_title, 'value' => $post->post_title );
+ 			$date = tribe_get_start_date($post->ID);
+            $choices[] = array( 'text' => $post->post_title . ' - ' . $date , 'value' => $post->ID );
             $inputs[] = array( 'label' => $post->post_title, 'id' => "{$field_id}.{$input_id}" );
  
             $input_id++;
