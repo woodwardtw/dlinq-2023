@@ -701,6 +701,65 @@ function dlinq_populate_events( $form ) {
     return $form;
 }
 
+//For bulk enrollment, loop FORM ID 6 and FIELD ID 5 to do an enrollment for each selection and put it in FORM ID 5
+//NOTE THAT ALL THOSE IDS MIGHT CHANGE IN MIGRATION***********
+add_action( 'gform_after_submission_6', 'after_submission_bulk_enroll', 10, 2 );
+function after_submission_bulk_enroll( $entry, $form ) {
+ 	$first = rgar($entry, '1.3');
+ 	$last = rgar($entry, '1.6');
+ 	$email = rgar($entry, '2');
+ 	$events = rs_gf_get_checked_boxes( $entry, 5 );
+ 	//var_dump($events);
+ 	foreach ($events as $key => $event_id) {
+ 		$event_id = intval($event_id);
+ 		// code...
+ 		$event_name = get_the_title($event_id);
+ 		$zoom_link = get_field('zoom_link', $event_id);
+ 		$entry = array(
+ 			'form_id' => 5,
+ 			'1.3' => $first,
+ 			'1.6' => $last,
+ 			'3' => $email,
+ 			'5' => $event_name,
+ 			'6' => $event_id,
+ 			'9' => $zoom_link
+ 		);
+ 		$new_entry = GFAPI::add_entry( $entry );
+ 	}
+}
+
+//from https://gist.github.com/RadGH/d08a7466b097dfb895ec6dede2e474f5
+/**
+ * Return an array of checkboxes that have been checked on a Gravity Form entry.
+ * Field keys are the input ID. For example "35.4", which means the 4th item of field #35.
+ *
+ * @param $entry
+ * @param $field_id
+ *
+ * @return array
+ */
+function rs_gf_get_checked_boxes( $entry, $field_id ) {
+	$items = array();
+	
+	$field_keys = array_keys( $entry );
+	
+	// Loop through every field of the entry in search of each checkbox belonging to this $field_id
+	foreach ( $field_keys as $input_id ) {
+		
+		// Individual checkbox fields such as "14.1" belongs to field int(14)
+		if ( is_numeric( $input_id ) && absint( $input_id ) == $field_id ) {
+			$value = rgar( $entry, $input_id );
+			
+			// If checked, $value will be the value from the checkbox (not the label, though sometimes they are the same)
+			// If unchecked, $value will be an empty string
+			if ( "" !== $value ) $items[ $input_id ] = $value;
+		}
+		
+	}
+	
+	return $items;
+}
+
 
 //LOGGER -- like frogger but more useful
 
