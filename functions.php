@@ -578,7 +578,7 @@ function dlinq_registration_check(){
 	 
 		// Getting the entries
 		$results = GFAPI::get_entries( 5, $search_criteria, $sorting, $paging, $total_count );
-		if(sizeof($results) <= $limit || $results == ''){
+		if(sizeof($results) <= $limit || $results == '' || $limit === 0){
 			echo dlinq_event_registration();
 		} else {
 			echo "The event is full.";
@@ -617,7 +617,12 @@ function dlinq_registered_people(){
 				$email = $result["3"];
 				$attendance = $result["8"];
 				$attend_class = ($attendance == 'No') ? '' : 'present';
-				echo "<li class='reg'>{$first} {$last} - <a href='mailto:{$email}'>{$email}</a> - {$created} - attended: <button class='attend {$attend_class}' data-entry='{$entry_id}' data-state='{$attendance}'>{$attendance}</button></li>";
+				echo "<li class='reg'>
+						<span class='reg-name'><a href='mailto:{$email}'>{$first} {$last}</a></span>						
+						<span class='reg-date'>{$created}</span>
+						<span class='reg-state'>attended: <button class='attend {$attend_class}' data-entry='{$entry_id}' data-state='{$attendance}'>{$attendance}</button></span>
+
+					</li>";
 			}
 			echo "</ol></div>";
 		}		
@@ -634,6 +639,34 @@ function dlinq_set_attend($entry_id, $input_id, $value){
 	}
 	
 }
+
+function dlinq_event_resources(){
+	if( have_rows('resources') ):
+		$html = '';
+	    // Loop through rows.
+	    while( have_rows('resources') ) : the_row();
+
+	        // Load sub field value.
+	        $title = get_sub_field('resource_title');
+	        $link = get_sub_field('resource_link');
+	        $desc = get_sub_field('resource_description');
+	        $html .= "
+	        	<li>
+	        		<a href='{$link}'>{$title}</a><br>
+	        		{$desc}
+	        	</li>
+	        ";
+	        // Do something...
+	    // End loop.
+	    endwhile;
+	    return "<ul>{$html}</ul>";
+		// No value.
+		else :
+		    // Do something...
+		endif;
+}
+
+
 
 
 // register the ajax action for authenticated users

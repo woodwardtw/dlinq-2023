@@ -156,7 +156,9 @@ $cost  = tribe_get_formatted_cost( $event_id );
        		$values = array(
        					'event_name' => get_the_title(),
        					'event_id' => get_the_ID(),
-       					'zoom_link' => get_field('zoom_link')
+       					'zoom_link' => get_field('zoom_link'),
+       					'event_date' => tribe_get_start_date(),
+       					'resources' => dlinq_event_resources()
        				); 
        		gravity_form( 5, false, false, false, $values, false, null, true, null, null);?>
       </div>
