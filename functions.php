@@ -763,6 +763,40 @@ function after_submission_bulk_enroll( $entry, $form ) {
  	}
 }
 
+//create code for deletion to put in gravity form
+add_action( 'gform_save_field_value_5_11', 'dlinq_registration_deleter', 10, 4 );
+
+function dlinq_registration_deleter( $value, $lead, $field, $form){
+	return wp_generate_password(20,false,false);
+}
+
+
+function dlinq_check_to_delete(){
+
+	if( 'tribe_events' == get_post_type()){
+		if(isset($_GET["delete"])){
+			$passcode= $_GET["delete"];
+			$search_criteria = array(
+			    'status'        => 'active',
+			    'field_filters' => array(
+			        'mode' => 'any',
+			        array(
+			            'key'   => '11',
+			            'value' => $passcode
+			        )
+			    )
+			);
+			$entry = GFAPI::get_entries(5, $search_criteria);
+			if(sizeof($entry)>0){
+				$entry_id = $entry[0]['id'];
+				GFAPI::delete_entry( $entry_id );//maybe we don't want to delete this?
+			}			
+		}
+	}
+}
+add_action('wp_head','dlinq_check_to_delete');
+
+
 //from https://gist.github.com/RadGH/d08a7466b097dfb895ec6dede2e474f5
 /**
  * Return an array of checkboxes that have been checked on a Gravity Form entry.
