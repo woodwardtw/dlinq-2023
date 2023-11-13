@@ -113,7 +113,7 @@
                         $post_id = $person;
                         $name = get_the_title($post_id);
                         $title = get_field('job_title', $post_id);
-                        $img = dlinq_person_thumb_check($post_id, 'medium', 'free-bio-pic img-fluid');
+                        $img = dlinq_person_thumb_check($post_id, 'portrait', 'free-bio-pic img-fluid');
                         $email_html = '';
                         if(get_field('email', $post_id)){
                             $email = get_field('email', $post_id);

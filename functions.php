@@ -772,7 +772,6 @@ function dlinq_registration_deleter( $value, $lead, $field, $form){
 
 
 function dlinq_check_to_delete(){
-
 	if( 'tribe_events' == get_post_type()){
 		if(isset($_GET["delete"])){
 			$passcode= $_GET["delete"];
@@ -855,6 +854,10 @@ function send_notifications($form_id, $entry_id){
 	GFCommon::send_notifications($notification_ids, $form, $entry);
 
 }
+
+//new photo size
+add_image_size('portrait', 300, 300, true);
+
 
 //LOGGER -- like frogger but more useful
 
