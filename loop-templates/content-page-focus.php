@@ -12,11 +12,13 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="entry-content">
 
-		<?php
-		//the_content();
-		understrap_link_pages();
-		?>
-
+		<div class="topic-descriptor">
+			<?php
+			//the_content();
+			the_field('topic_summary');
+			understrap_link_pages();
+			?>
+		</div>
 	</div><!-- .entry-content -->
 	<?php get_template_part( 'loop-templates/content', 'flexcontent' );?>
 

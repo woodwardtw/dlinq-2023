@@ -587,11 +587,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat;
-  // background-image: url(../imgs/profilebg.svg),  url(../imgs/profilebgbottom.svg);
-  // background-position: top center, bottom center;
-  // background-size: contain, contain;
-  // background-repeat: no-repeat, no-repeat;
   position: relative;
+}
+
+.col-md-4.person-holder {
+  margin-bottom: 30px;
 }
 
 .small-name {

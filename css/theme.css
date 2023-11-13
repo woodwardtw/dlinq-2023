@@ -15958,6 +15958,10 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   position: relative;
 }
 
+.col-md-4.person-holder {
+  margin-bottom: 30px;
+}
+
 .small-name {
   font-size: 2rem;
 }
