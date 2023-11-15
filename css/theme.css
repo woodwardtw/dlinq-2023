@@ -15850,7 +15850,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-color: #fff;
 }
 
-.topic-descriptor p {
+.entry-content .topic-descriptor {
   font-size: 1.7rem;
   background: white;
   max-width: 800px;
