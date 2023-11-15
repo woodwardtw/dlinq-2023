@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 			<?php
 			//the_content();
 			the_field('topic_summary');
-			understrap_link_pages();
+			//understrap_link_pages();
 			?>
 		</div>
 	</div><!-- .entry-content -->
