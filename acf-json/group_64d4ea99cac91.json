@@ -217,7 +217,8 @@
                         "id": ""
                     },
                     "post_type": [
-                        "page"
+                        "page",
+                        "topic"
                     ],
                     "post_status": "",
                     "taxonomy": "",
@@ -255,5 +256,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692723858
+    "modified": 1700160058
 }
