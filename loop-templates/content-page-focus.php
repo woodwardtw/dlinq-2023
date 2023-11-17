@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="entry-content">
 
-		<div class="topic-descriptor">
+		<div class="topic-descriptor col-md-8 offset-md-2">
 			<?php
 			//the_content();
 			the_field('topic_summary');
