@@ -646,9 +646,11 @@
                             "choices": {
                                 "0": "",
                                 "3": "Base Challenge Form",
+                                "6": "Bulk event registration",
                                 "2": "Challenge one",
                                 "4": "poetry submission form",
-                                "1": "Request form"
+                                "1": "Request form",
+                                "5": "Reservation form"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -714,6 +716,13 @@
                 "operator": "==",
                 "value": "page-templates\/focuspage.php"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "project"
+            }
         ]
     ],
     "menu_order": 0,
@@ -727,5 +736,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1697559856
+    "modified": 1700244821
 }
