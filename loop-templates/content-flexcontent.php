@@ -65,7 +65,7 @@
                 $order_right = ' order-first ';
             }
             ?>
-        <div class='row topic-row'>
+        <div class='row topic-row d-flex align-items-center'>
 				<div class='col-md-5<?php echo $order_left;?>'>    
                     <figure>
                         <?php echo wp_get_attachment_image( $image['ID'], 'large', array('class'=>'img-fluid') ); ?>
