@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="col-md-5">
             <?php dlinq_projects_people();?>
         </div>
-        <div class="col-md-5 offset-md-2">
+        <div class="col-md-6 offset-md-1">
             <?php dlinq_projects_cats();?>
         </div>
     </div>
