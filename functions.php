@@ -210,6 +210,15 @@ function dlinq_projects_cats(){
 	}
 }
 
+
+function dlinq_project_button(){
+	global $post;
+	if(get_field('project_url', $post->ID)){
+		$link = get_field('project_url', $post->ID);
+		echo "<a class='btn-dlinq' href='{$link}''>See the project</a>";
+	}
+}
+
 //topic functions
 function dlinq_topic_menu(){
 	if ( have_rows('content') ) {
