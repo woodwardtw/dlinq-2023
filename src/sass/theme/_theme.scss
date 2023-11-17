@@ -492,6 +492,14 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   font-size: 1.7rem;
 }
 
+#home .entry-content .topic-descriptor {
+  padding: 0;
+}
+
+#home .entry-content .topic-descriptor p{
+  font-size: 1.5rem;
+}
+
 //single post
 #single-wrapper #content {
   background: $white;
@@ -547,6 +555,8 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .alert {
   background-color: $light-blue;
   border: $blue 1px solid;
+  margin: 40px 0;
+  border-radius: 0;
 }
 
 //form entry displays

@@ -35,7 +35,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 			<?php
 			// Do the left sidebar check and open div#primary.
-			get_template_part( 'global-templates/left-sidebar-check' );
+			//get_template_part( 'global-templates/left-sidebar-check' );
 			?>
 
 			<main class="site-main" id="main">
@@ -57,7 +57,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 			<?php
 			// Do the right sidebar check and close div#primary.
-			get_template_part( 'global-templates/right-sidebar-check' );
+			//get_template_part( 'global-templates/right-sidebar-check' );
 			?>
 
 		</div><!-- .row -->

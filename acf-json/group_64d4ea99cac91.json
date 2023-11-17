@@ -223,7 +223,7 @@
                     "post_status": "",
                     "taxonomy": "",
                     "filters": [
-                        "taxonomy"
+                        "search"
                     ],
                     "return_format": "object",
                     "min": "",
@@ -256,5 +256,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1700160058
+    "modified": 1700233195
 }

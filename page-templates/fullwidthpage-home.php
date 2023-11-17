@@ -54,7 +54,7 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 
 			<div class="col-md-12 content-area" id="primary">
 
-				<main class="site-main" id="main" role="main">
+				<main class="site-main" id="home" role="main">
 
 					<?php
 					while ( have_posts() ) {
