@@ -33,7 +33,8 @@ defined( 'ABSPATH' ) || exit;
             <?php dlinq_projects_cats();?>
         </div>
     </div>
-  
+    <?php get_template_part( 'loop-templates/content', 'flexcontent' );?>
+
 	<footer class="entry-footer">
 
 		<?php understrap_entry_footer(); ?>
