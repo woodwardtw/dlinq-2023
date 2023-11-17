@@ -477,9 +477,13 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 
 //focus page 
 
+.entry-content .focus-holder .topic-descriptor{
+  background-color: $yellow;
+}
+
 .entry-content .topic-descriptor {
     font-size: 1.7rem;
-    background: white;
+    background: #fff;
     max-width: 800px;
     margin: 0 auto;
     padding: 30px;

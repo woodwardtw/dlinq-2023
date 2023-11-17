@@ -15850,9 +15850,13 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-color: #fff;
 }
 
+.entry-content .focus-holder .topic-descriptor {
+  background-color: rgb(244, 184, 36);
+}
+
 .entry-content .topic-descriptor {
   font-size: 1.7rem;
-  background: white;
+  background: #fff;
   max-width: 800px;
   margin: 0 auto;
   padding: 30px;
