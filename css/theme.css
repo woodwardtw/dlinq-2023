@@ -15909,6 +15909,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   justify-content: space-between;
 }
 
+.alert, .woocommerce-notices-wrapper .woocommerce-message, .woocommerce-info {
+  background-color: #bfdaf2;
+  border: #002444 1px solid;
+}
+
 .response-holder {
   border: 1px solid #002444;
   border-radius: 3px;

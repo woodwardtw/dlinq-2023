@@ -539,6 +539,13 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   justify-content: space-between;
 }
 
+//extras
+
+.alert {
+  background-color: $light-blue;
+  border: $blue 1px solid;
+}
+
 //form entry displays
 .response-holder {
   border: 1px solid $blue;
