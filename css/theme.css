@@ -15861,6 +15861,10 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   padding: 30px;
 }
 
+.page .entry-content .topic-descriptor p {
+  font-size: 1.7rem;
+}
+
 #single-wrapper #content {
   background: #fff;
 }
