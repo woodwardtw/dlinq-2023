@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 	<div class="entry-content row">
         <div class="col-md-5">
 			<div class="bio">
-                <h2>About</h2>
+                <!-- <h2>About</h2> -->
 				<?php the_field('biography');?>
 				<?php dlinq_person_links();?>
 			</div>

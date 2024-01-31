@@ -15461,10 +15461,6 @@ figcaption, .wp-caption-text {
   right: 0;
 }
 
-#content {
-  background: linear-gradient(90deg, #fff 50%, rgba(222, 222, 222, 0.3) 50%);
-}
-
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
   font-family: DINCondensedBold, Arial, Helvetica, Verdana, sans-serif;
   color: #002444;
@@ -15636,6 +15632,8 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .topic-list {
   font-size: 1.3rem;
   margin-top: 3rem;
+  padding: 50px;
+  background-color: rgba(222, 222, 222, 0.3);
 }
 
 .topic-list a, .sub-topic a, .entry-content a, .topic-row a {
@@ -15770,6 +15768,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   z-index: 100;
   color: #fff;
   position: relative;
+}
+
+.person-project-box {
+  padding: 50px 0;
+  background-color: #bfdaf2;
 }
 
 .person-project-box h2, .person-project-box .h2 {

@@ -50,9 +50,6 @@ figcaption, .wp-caption-text {
   right: 0;
 }
 
-#content {
-    background: linear-gradient(90deg, $white 50%, $light-gray 50%);
-}
 
 h1, h2, h3, h4, h5 {
     font-family: DINCondensedBold,Arial,Helvetica,Verdana,sans-serif;
@@ -255,6 +252,8 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .topic-list {
     font-size: 1.3rem;
     margin-top: 3rem;
+    padding: 50px;
+    background-color: $light-gray;
 }
 
 .topic-list a, .sub-topic a, .entry-content a, .topic-row a {
@@ -394,6 +393,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   z-index: 100;
   color: $white;
   position: relative;
+}
+
+.person-project-box {
+  padding: 50px 0;
+  background-color: $light-blue;
 }
 
 .person-project-box h2 {
