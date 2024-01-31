@@ -132,7 +132,8 @@ function dlinq_person_details($field_name){
 }
 
 function dlinq_person_projects(){
-	if(get_field('project')){
+	if(get_field('project') != FALSE){
+		echo "<div class='person-project-box'>";
 		echo "<h2>Projects</h2><div class='person-projects'>";
 		$projects = get_field('project');
 		foreach($projects as $project){
@@ -140,6 +141,7 @@ function dlinq_person_projects(){
 			$title = $project->post_title;
 			$link = get_permalink( $post_id);
 			$url_stem = get_template_directory_uri();
+			$project_summary = get_field('project_summary', $post_id);
 			if(has_post_thumbnail($post_id)){
 				$image = get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'img-fluid') );
 			} else {
@@ -151,10 +153,11 @@ function dlinq_person_projects(){
 					{$image}					
 					<span class='project-name'>{$title}</span>
 				</a>
+				<div class='project-summary'>{$project_summary}</div>
 			</div>
 			";
 		}
-		echo "</div>";
+		echo "</div></div>";
 	}
 	
 }

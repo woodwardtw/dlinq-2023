@@ -20,9 +20,7 @@ defined( 'ABSPATH' ) || exit;
 			</div>
         </div>
         <div class="col-md-6 offset-md-1">
-			<div class="person-project-box">
-           		<?php dlinq_person_projects();?>
-			</div>
+           		<?php dlinq_person_projects();?>			
         </div>
 	</div><!-- .entry-content -->
   
