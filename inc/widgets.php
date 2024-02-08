@@ -345,5 +345,17 @@ if ( ! function_exists( 'understrap_widgets_init' ) ) {
 			)
 		);
 
+		register_sidebar(
+			array(
+				'name'          => __( 'Footer Center', 'understrap' ),
+				'id'            => 'footercenter',
+				'description'   => __( 'Center footer widget with dynamic grid', 'understrap' ),
+				'before_widget' => '<div id="%1$s" class="footer-widget %2$s dynamic-classes">',
+				'after_widget'  => '</div><!-- .footercenter-widget -->',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
+
 	}
 } // End of function_exists( 'understrap_widgets_init' ).

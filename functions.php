@@ -340,11 +340,16 @@ add_action( 'save_post', 'dlinq_add_category', 10, 3 ); //don't forget the last 
 
 add_filter( 'wp_nav_menu_items', 'add_logo_nav_menu', 10, 2 );
 function add_logo_nav_menu($items, $args){
-    $newitems = '<li class="menu-item menu-item-type-post_type menu-item-object-tribe_events nav-item connect-li"><button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#formModal">
-Contact Us</button></li>';
-    $items .= $newitems;
+	          if( $args->theme_location == 'primary' ){
 
-	return $items;
+				    $newitems = '<li class="menu-item menu-item-type-post_type menu-item-object-tribe_events nav-item connect-li"><button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#formModal">
+				Contact Us</button></li>';
+				    $items .= $newitems;
+
+					return $items;
+				} else {
+					return $items;
+				}
 }
 
 
