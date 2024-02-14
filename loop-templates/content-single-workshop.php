@@ -1,6 +1,6 @@
 <?php
 /**
- * Single project partial template
+ * Single workshop partial template
  *
  * @package Understrap
  */
@@ -13,9 +13,9 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="entry-content row">
         <div class="col-md-5">
-			<div class="project">
-                <h2>Project summary</h2>
-				<?php the_field('project_summary'); ?>
+			<div class="workshop">
+                <h2>Workshop description</h2>
+				<?php the_field('workshop_description'); ?>
 			</div>
         </div>
         <div class="col-md-5 offset-md-2">
