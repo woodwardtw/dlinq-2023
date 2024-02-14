@@ -498,11 +498,47 @@ function dlinq_workshop_resources(){
 			else :
 			    // Do something...
 			endif;
-
-	
 	
 }
 
+
+//add workshops dropdown to workshop form
+add_filter( 'gform_pre_render_7' , 'populate_cpt_titles' );
+add_filter( 'gform_pre_validation_7', 'populate_cpt_titles' );
+add_filter( 'gform_pre_submission_filter_7', 'populate_cpt_titles' );
+add_filter( 'gform_admin_pre_render_7', 'populate_cpt_titles' );
+function populate_cpt_titles( $form ) {
+	$gf_workshop_request_id = get_field('workshop_registration_form', 'option');
+
+	$pre_render = 'gform_pre_render_' . $gf_workshop_request_id;
+
+	foreach ( $form['fields'] as &$field ) {
+		var_dump( $pre_render);
+		if ( $field->id != 7 ) {
+	    		continue;
+		}
+
+		$field->placeholder = 'Select a workshop';
+
+		$args = [
+			'posts_per_page'   => -1,
+			'order'            => 'ASC',
+			'orderby'          => 'post_title',
+			'post_type'        => 'workshop', // Change this to your Custom Post Type
+			'post_status'      => 'publish',
+		];
+		$custom_posts = get_posts( $args );
+
+		$options = [];
+		foreach( $custom_posts as $custom_post ) {
+			$options[] = ['text' => $custom_post->post_title, 'value' => $custom_post->post_title];
+		}
+
+		$field->choices = $options;
+	}
+
+	return $form;
+}
 //GRAVITY RELATED
 
 //CHALLENGES
@@ -517,8 +553,9 @@ function acf_populate_gf_forms_ids( $field ) {
 	if ( class_exists( 'GFFormsModel' ) ) {
 		$choices = [''];
 
-		foreach ( \GFFormsModel::get_forms() as $form ) {
-			$choices[ $form->id ] = $form->title;
+		foreach ( GFAPI::get_forms( true, false, 'title', 'ASC' ) as $form ) {
+			//var_dump($form['title']);
+			$choices[ $form['id'] ] = $form['title'];
 		}
 
 		$field['choices'] = $choices;
@@ -528,7 +565,7 @@ function acf_populate_gf_forms_ids( $field ) {
 }
 add_filter( 'acf/load_field/name=form_id', 'acf_populate_gf_forms_ids' );
 add_filter( 'acf/load_field/name=contact_gravity_form', 'acf_populate_gf_forms_ids' );
-
+add_filter( 'acf/load_field/name=workshop_registration_form', 'acf_populate_gf_forms_ids' );
 
 function dlinq_gf_form_entry_display($form_id){
 	$search_criteria = array(
