@@ -67,7 +67,10 @@ $container = get_theme_mod( 'understrap_container_type' );
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <?php  gravity_form( 1, false, false, false, false, true, false, true ); ?>
+
+        <?php  
+        		$gf_id = get_field('contact_gravity_form', 'option');
+        		gravity_form( $gf_id, false, false, false, false, true, false, true ); ?>
       </div>     
     </div>
   </div>

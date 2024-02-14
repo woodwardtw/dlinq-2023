@@ -1,0 +1,87 @@
+{
+    "key": "group_65cd1162d28f6",
+    "title": "Basics",
+    "fields": [
+        {
+            "key": "field_65cd11639348b",
+            "label": "Contact Gravity Form",
+            "name": "contact_gravity_form",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "This is the form that shows up by default in the Contact Us popup modal.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "0": "",
+                "3": "Base Challenge Form",
+                "6": "Bulk event registration",
+                "2": "Challenge one",
+                "4": "poetry submission form",
+                "1": "Request form",
+                "5": "Reservation form"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_65cd18fcdb773",
+            "label": "Workshop Registration Form",
+            "name": "workshop_registration_form",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "This is the form that shows up by default in the Contact Us popup modal.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "0": "",
+                "3": "Base Challenge Form",
+                "6": "Bulk event registration",
+                "2": "Challenge one",
+                "4": "poetry submission form",
+                "1": "Request form",
+                "5": "Reservation form"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "dlinq-basics"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1707940116
+}

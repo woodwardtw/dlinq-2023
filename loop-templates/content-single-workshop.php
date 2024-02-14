@@ -20,17 +20,20 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="col-md-5 offset-md-2">
             <?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-fluid aligncenter project-pic') ); ?>
-        </div>
-        <div class="col-md-4 offset-md-4">
-            <?php dlinq_project_button();;?>
-        </div>
+        </div>       
 	</div><!-- .entry-content -->
     <div class="topic-row row">
         <div class="col-md-5">
-            <?php dlinq_projects_people();?>
+            <h2>Resources</h2>
+            <?php echo dlinq_workshop_resources();?>
         </div>
         <div class="col-md-6 offset-md-1">
-            <?php dlinq_projects_cats();?>
+            <h2>Request this workshop</h2>
+            
+            <?php  
+                $gf_id = get_field('workshop_registration_form', 'option');
+                gravity_form( $gf_id, false, false, false, false, true, false, true ); 
+            ?>
         </div>
     </div>
     <?php get_template_part( 'loop-templates/content', 'flexcontent' );?>

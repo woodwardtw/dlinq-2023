@@ -1,0 +1,22 @@
+{
+    "key": "ui_options_page_65cd114c109b0",
+    "title": "DLINQ Basics",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "DLINQ Basics",
+    "menu_slug": "dlinq-basics",
+    "parent_slug": "none",
+    "advanced_configuration": 0,
+    "icon_url": "",
+    "menu_title": "",
+    "position": "",
+    "redirect": 0,
+    "description": "",
+    "update_button": "Update",
+    "updated_message": "Options Updated",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": 0,
+    "modified": 1707938137
+}

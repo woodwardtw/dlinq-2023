@@ -468,6 +468,41 @@ function dlinq_remove_www($string){
 	return $string;
 }
 
+
+//WORKSHOP
+function dlinq_workshop_resources(){
+		$html = '';
+		if( have_rows('resources') ):
+		    // Loop through rows.
+		    while( have_rows('resources') ) : the_row();
+	
+		        // Load sub field value.
+		        $title = get_sub_field('resource_title');
+		        $link = get_sub_field('resource_link');
+		        $desc = get_sub_field('resource_description');
+
+		        $html .= "<div class='workshop-resource'>
+		        <a href='{$link}'>
+		        	<h3>{$title}</h3>
+		        </a>
+		        	<p>{$desc}</p>
+
+		        </div>
+
+		        ";
+		        // Do something...
+		    // End loop.
+		    endwhile;
+		    return $html;
+			// No value.
+			else :
+			    // Do something...
+			endif;
+
+	
+	
+}
+
 //GRAVITY RELATED
 
 //CHALLENGES
@@ -492,6 +527,7 @@ function acf_populate_gf_forms_ids( $field ) {
 	return $field;
 }
 add_filter( 'acf/load_field/name=form_id', 'acf_populate_gf_forms_ids' );
+add_filter( 'acf/load_field/name=contact_gravity_form', 'acf_populate_gf_forms_ids' );
 
 
 function dlinq_gf_form_entry_display($form_id){

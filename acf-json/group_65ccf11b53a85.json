@@ -36,12 +36,12 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
+            "layout": "block",
             "pagination": 0,
             "min": 0,
             "max": 0,
-            "collapsed": "",
-            "button_label": "Add Row",
+            "collapsed": "field_65cd09fe1787f",
+            "button_label": "Add Resource",
             "rows_per_page": 20,
             "sub_fields": [
                 {
@@ -121,9 +121,14 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1707936745
+    "modified": 1707937097
 }
