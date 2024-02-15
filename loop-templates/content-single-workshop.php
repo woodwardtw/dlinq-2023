@@ -29,10 +29,10 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="col-md-6 offset-md-1">
             <h2>Request this workshop</h2>
-            
+
             <?php  
                 $gf_id = get_field('workshop_registration_form', 'option');
-                gravity_form( $gf_id, false, false, false, false, true, false, true ); 
+                gravity_form( $gf_id, false, false, false, array('workshop' => get_the_title()), true, false, true ); 
             ?>
         </div>
     </div>
