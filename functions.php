@@ -959,3 +959,62 @@ if ( ! function_exists('write_log')) {
       }
    }
 }
+
+
+add_action('wp_dashboard_setup', 'dlinq_custom_dashboard_widgets');
+  
+function dlinq_custom_dashboard_widgets() {
+  global $wp_meta_boxes;
+  wp_add_dashboard_widget('custom_dlinq_widget', '<h1>Shortcuts</h1>', 'dlinq_custom_dashboard_posts');
+  }
+ 
+function dlinq_custom_dashboard_posts() {
+    echo "
+    	<a class='dash-btn' href='post-new.php?post_type=page'>Pages</a>: for core elements. Use the focus full width template.<br>
+    	<a class='dash-btn' href='post-new.php?post_type=topic'>Topics</a>: for all the other static stuff.<br>
+    	<a class='dash-btn' href='post-new.php?post_type=project'>Projects</a>: for projects.<br>
+    	<a class='dash-btn' href='post-new.php?post_type=person'>People</a>: for people.<br>
+    ";
+   
+}
+/*
+  Disable Default Dashboard Widgets
+  @ https://digwp.com/2014/02/disable-default-dashboard-widgets/
+*/
+function disable_default_dashboard_widgets() {
+  global $wp_meta_boxes;
+  // wp..
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
+  unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_site_health']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+  unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
+ 
+  // bbpress
+  unset($wp_meta_boxes['dashboard']['normal']['core']['bbp-dashboard-right-now']);
+  // yoast seo
+  unset($wp_meta_boxes['dashboard']['normal']['core']['yoast_db_widget']);
+  // gravity forms
+  unset($wp_meta_boxes['dashboard']['normal']['core']['rg_forms_dashboard']);
+  //events calendar 
+  unset($wp_meta_boxes['dashboard']['normal']['core']['tribe_dashboard_widget']);
+}
+add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets', 999);
+ 
+ 
+//LOGGER -- like frogger but more useful
+ 
+if ( ! function_exists('write_log')) {
+   function write_log ( $log )  {
+      if ( is_array( $log ) || is_object( $log ) ) {
+         error_log( print_r( $log, true ) );
+      } else {
+         error_log( $log );
+      }
+   }
+}
