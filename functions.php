@@ -1007,6 +1007,9 @@ function disable_default_dashboard_widgets() {
   unset($wp_meta_boxes['dashboard']['normal']['core']['rg_forms_dashboard']);
   //events calendar 
   unset($wp_meta_boxes['dashboard']['normal']['core']['tribe_dashboard_widget']);
+  //limit logins llar_stats_widget 
+  unset($wp_meta_boxes['dashboard']['normal']['core']['llar_stats_widget']);
+
 }
 add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets', 999);
  
