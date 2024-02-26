@@ -650,7 +650,8 @@
                                 "2": "Challenge one",
                                 "4": "poetry submission form",
                                 "1": "Request form",
-                                "5": "Reservation form"
+                                "5": "Reservation form",
+                                "7": "Workshop request"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -723,6 +724,13 @@
                 "operator": "==",
                 "value": "project"
             }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/fullwidthpage.php"
+            }
         ]
     ],
     "menu_order": 0,
@@ -736,5 +744,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1700244821
+    "modified": 1708962434
 }
