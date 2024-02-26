@@ -365,17 +365,21 @@ function dlinq_custom_breadcrumbs(){
 
 		// Parent page loop
 		if ( !isset( $parents ) ) $parents = null;
-		$home_url = get_site_url();
-		$parents .= "<span class='item-parent'><a class='bread-parent' href='{$home_url}'>Home</a> &#187; </span> ";
-		$last_key = sizeof($anc);
-		foreach ( $anc as $key => $ancestor ) {
-			$title = get_the_title($ancestor);
-			$link = get_the_permalink($ancestor);
-			$parents .= "<span class='item-parent item-parent-{$ancestor}'>
-							<a class='bread-parent bread-parent-{$ancestor}' href='{$link}' title='{$title}'>{$title}</a> &#187;
-						</span>";
-			$parents .= "<span class='separator separator-{$ancestor}'> </span>";
-		}
+			$home_url = get_site_url();
+			$parents .= "<span class='item-parent'><a class='bread-parent' href='{$home_url}'>Home</a> &#187; </span> ";
+			$last_key = sizeof($anc);
+			foreach ( $anc as $key => $ancestor ) {
+				$title = get_the_title($ancestor);
+				if($title != 'Home'){
+						$link = get_the_permalink($ancestor);
+						$parents .= "<span class='item-parent item-parent-{$ancestor}'>
+										<a class='bread-parent bread-parent-{$ancestor}' href='{$link}' title='{$title}'>{$title}</a> &#187;
+									</span>";
+						$parents .= "<span class='separator separator-{$ancestor}'> </span>";
+
+				}
+				
+			}
 
 		// Display parent pages
 		echo $parents;
