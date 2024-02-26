@@ -978,6 +978,7 @@ function dlinq_custom_dashboard_posts() {
     	<a class='dash-btn' href='post-new.php?post_type=topic'>Topics</a>: for all the other static stuff.<br>
     	<a class='dash-btn' href='post-new.php?post_type=project'>Projects</a>: for projects.<br>
     	<a class='dash-btn' href='post-new.php?post_type=person'>People</a>: for people.<br>
+    	<a class='dash-btn' href='post-new.php?post_type=workshop'>Workshop</a>: for the catalog of workshops. Use events for workshops with dates.<br>
     ";
    
 }
