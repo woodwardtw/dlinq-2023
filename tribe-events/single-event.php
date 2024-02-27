@@ -153,6 +153,7 @@ $cost  = tribe_get_formatted_cost( $event_id );
       </div>
       <div class="modal-body">
        <?php
+          $gform_id = get_field('workshop_registration_form', 'option');
        		$values = array(
        					'event_name' => get_the_title(),
        					'event_id' => get_the_ID(),
@@ -160,7 +161,7 @@ $cost  = tribe_get_formatted_cost( $event_id );
        					'event_date' => tribe_get_start_date(),
        					'resources' => dlinq_event_resources()
        				); 
-       		gravity_form( 5, false, false, false, $values, false, null, true, null, null);?>
+       		gravity_form( $gform_id, false, false, false, $values, false, null, true, null, null);?>
       </div>
      <!--  <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

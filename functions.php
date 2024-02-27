@@ -569,6 +569,7 @@ function acf_populate_gf_forms_ids( $field ) {
 add_filter( 'acf/load_field/name=form_id', 'acf_populate_gf_forms_ids' );
 add_filter( 'acf/load_field/name=contact_gravity_form', 'acf_populate_gf_forms_ids' );
 add_filter( 'acf/load_field/name=workshop_registration_form', 'acf_populate_gf_forms_ids' );
+add_filter( 'acf/load_field/name=workshop_request_form', 'acf_populate_gf_forms_ids' );
 
 function dlinq_gf_form_entry_display($form_id){
 	$search_criteria = array(

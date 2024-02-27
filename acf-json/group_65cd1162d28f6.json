@@ -23,7 +23,8 @@
                 "2": "Challenge one",
                 "4": "poetry submission form",
                 "1": "Request form",
-                "5": "Reservation form"
+                "5": "Reservation form",
+                "7": "Workshop request"
             },
             "default_value": false,
             "return_format": "value",
@@ -54,7 +55,40 @@
                 "2": "Challenge one",
                 "4": "poetry submission form",
                 "1": "Request form",
-                "5": "Reservation form"
+                "5": "Reservation form",
+                "7": "Workshop request"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_65dde108be96b",
+            "label": "Workshop Request Form",
+            "name": "workshop_request_form",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "This is the form that shows up by default in the Contact Us popup modal.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "0": "",
+                "3": "Base Challenge Form",
+                "6": "Bulk event registration",
+                "2": "Challenge one",
+                "4": "poetry submission form",
+                "1": "Request form",
+                "5": "Reservation form",
+                "7": "Workshop request"
             },
             "default_value": false,
             "return_format": "value",
@@ -83,5 +117,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1707940116
+    "modified": 1709039906
 }
