@@ -15456,6 +15456,11 @@ figcaption, .wp-caption-text {
   color: #002444;
 }
 
+.midd-logo {
+  width: 30px;
+  height: auto;
+}
+
 .contact {
   position: absolute;
   right: 0;
@@ -16085,6 +16090,16 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .topic-row td {
   border: 1px solid #002444;
   padding: 0.5rem;
+}
+
+#wrapper-footer {
+  background-color: #002444;
+  color: #fff;
+  padding: 100px 0;
+}
+
+#wrapper-footer a {
+  color: #fff;
 }
 
 @keyframes pulse {

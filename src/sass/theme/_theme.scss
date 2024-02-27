@@ -45,6 +45,11 @@ figcaption, .wp-caption-text {
   color: $blue;
 }
 
+.midd-logo {
+  width: 30px;
+  height: auto;
+}
+
 .contact {
   position: absolute;
   right: 0;
@@ -737,6 +742,16 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .topic-row td {
   border: 1px solid $blue;
   padding: .5rem;
+}
+
+#wrapper-footer {
+  background-color: $blue;
+  color: $white;
+  padding: 100px 0;
+}
+
+#wrapper-footer a{
+  color: $white;
 }
 
 //ANIMATION
