@@ -342,8 +342,18 @@ add_filter( 'wp_nav_menu_items', 'add_logo_nav_menu', 10, 2 );
 function add_logo_nav_menu($items, $args){
 	          if( $args->theme_location == 'primary' ){
 
-				    $newitems = '<li class="menu-item menu-item-type-post_type menu-item-object-tribe_events nav-item connect-li"><button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#formModal">
-				Contact Us</button></li>';
+				    $newitems = '
+				    	<li class="menu-item menu-item-type-post_type menu-item-object-tribe_events nav-item connect-li">
+				    		<button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#formModal">
+				    		Contact Us
+				    		</button>
+				    	</li>
+				    	<li class="menu-item menu-item-type-post_type menu-item-object-tribe_events nav-item connect-li">
+				    		<button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#search">
+				    		search
+				    		</button>
+				    	</li>
+				    	';
 				    $items .= $newitems;
 
 					return $items;
@@ -1014,7 +1024,32 @@ function disable_default_dashboard_widgets() {
 
 }
 add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets', 999);
- 
+
+
+//CLEAN VIEW
+
+function dlinq_clean_sidebar(){
+  $clean_users = get_field('clean_view', 'options');
+  $current_user_id = get_current_user_id();
+  //$clean_it = true;
+  $clean_it = in_array($current_user_id,$clean_users, false);
+  if($clean_it){
+  	  remove_menu_page( 'index.php' );                  //Dashboard
+	  remove_menu_page( 'comments' );                    //Jetpack* 
+	  remove_menu_page( 'options-general.php' );        //Settings
+	  remove_menu_page( 'themes.php' );        //appearance
+	  remove_menu_page( 'users.php' );        //users
+	  remove_menu_page( 'plugins.php' );        //plugins
+	  remove_menu_page( 'tools.php' );        //tools
+	  remove_menu_page( 'upload.php' );        //media
+	  remove_menu_page( 'edit.php?post_type=acf-field-group' ); //acf
+	  remove_menu_page('limit-login-attempts'); //limit logins
+
+  }
+
+}
+
+add_action( 'admin_init', 'dlinq_clean_sidebar', 999 );
  
 //LOGGER -- like frogger but more useful
  

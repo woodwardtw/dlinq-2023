@@ -24,9 +24,9 @@ if ( ! has_custom_logo() ) { ?>
 		<a class="navbar-brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" itemprop="url">
 			<img src="<?php echo get_template_directory_uri() . "/imgs/midd-shield-blue.svg";?>" alt="Middlebury shield." class="midd-logo">
 			<?php bloginfo( 'name' ); ?>
-		</a>
-
+		</a>		
 	<?php endif; ?>
+
 
 	<?php
 } else {
