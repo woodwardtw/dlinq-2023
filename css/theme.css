@@ -15459,6 +15459,7 @@ figcaption, .wp-caption-text {
 .midd-logo {
   width: 30px;
   height: auto;
+  margin-right: 10px;
 }
 
 .contact {
@@ -15654,9 +15655,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   display: block;
   margin: 3rem auto;
   transition: all 0.4s ease;
+  min-width: 200px;
   max-width: 300px;
   text-align: center;
   font-size: 1.3rem;
+  border: none;
 }
 
 .btn-dlinq:hover {
@@ -16047,6 +16050,12 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 
 .main-content {
   padding-top: calc((var(--menu-bar-height) + var(--login-bar-height)) * 1px);
+}
+
+#content .gform_button.button {
+  background-color: #002444;
+  width: 200px;
+  border-radius: 50px;
 }
 
 .modal-content {
