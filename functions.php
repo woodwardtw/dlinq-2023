@@ -700,7 +700,7 @@ function dlinq_registered_people(){
 		$results = GFAPI::get_entries( 5, $search_criteria );
 		//var_dump($results);
 		if($results){
-			echo "<div class='registration-block'><h2>Registrations</h2><ol>";
+			echo "<div class='registration-block'><h2>Registrations</h2><ol class='reg-list'>";
 
 			foreach ($results as $key => $result) {
 
