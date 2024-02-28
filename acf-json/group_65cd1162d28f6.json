@@ -100,8 +100,8 @@
         },
         {
             "key": "field_65de115039fda",
-            "label": "Clean View",
-            "name": "clean_view",
+            "label": "Messy View",
+            "name": "messy_view",
             "aria-label": "",
             "type": "user",
             "instructions": "",
@@ -112,6 +112,7 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "role": [
                 "administrator",
                 "editor",
@@ -143,5 +144,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1709059309
+    "modified": 1709131129
 }

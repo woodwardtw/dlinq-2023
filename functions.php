@@ -1029,11 +1029,15 @@ add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets', 999);
 //CLEAN VIEW
 
 function dlinq_clean_sidebar(){
-  $clean_users = get_field('clean_view', 'options');
+  $messy_users = [];
+  $messy_users = get_field('messy_view', 'options');
+  //var_dump($messy_users);
   $current_user_id = get_current_user_id();
+  //var_dump($current_user_id);
   //$clean_it = true;
-  $clean_it = in_array($current_user_id,$clean_users, false);
-  if($clean_it){
+  $messy = in_array($current_user_id,$messy_users, false);
+ //var_dump($clean_it);
+  if($messy != true){
   	  remove_menu_page( 'index.php' );                  //Dashboard
 	  remove_menu_page( 'comments' );                    //Jetpack* 
 	  remove_menu_page( 'options-general.php' );        //Settings
