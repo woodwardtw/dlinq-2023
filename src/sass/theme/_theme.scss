@@ -774,6 +774,19 @@ li.reg span{
   color: $white;
 }
 
+//ajax search 
+.relevanssi-live-search-results {
+  width: 400px;
+}
+
+.modal-content .search-field {
+  width: 400px;
+}
+
+.modal-content .relevanssi-live-search-results {
+  box-shadow: none;
+}
+
 //ANIMATION
 @keyframes pulse {
    0% {

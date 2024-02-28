@@ -76,6 +76,24 @@ $container = get_theme_mod( 'understrap_container_type' );
   </div>
 </div>
 
+<!--search modal-->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-lg modal-dialog-slideout">
+    <div class="modal-content">
+    	 <h2 class="modal-title" id="searchModalLabel">Search</h2>
+			<form role="search" method="get" class="search-form" action="/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" name="s"
+			          data-rlvlive="true" data-rlvparentel="#rlvlive" data-rlvconfig="default">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			    <div id="rlvlive"></div>
+			</form>
+		</div>
+	</div>
+</div>
+
 </body>
 
 </html>

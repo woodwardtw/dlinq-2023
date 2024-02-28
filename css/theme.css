@@ -16120,6 +16120,18 @@ li.reg span {
   color: #fff;
 }
 
+.relevanssi-live-search-results {
+  width: 400px;
+}
+
+.modal-content .search-field {
+  width: 400px;
+}
+
+.modal-content .relevanssi-live-search-results {
+  box-shadow: none;
+}
+
 @keyframes pulse {
   0% {
     transform: scale(0.95);

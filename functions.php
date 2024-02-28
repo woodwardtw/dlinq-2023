@@ -349,7 +349,7 @@ function add_logo_nav_menu($items, $args){
 				    		</button>
 				    	</li>
 				    	<li class="menu-item menu-item-type-post_type menu-item-object-tribe_events nav-item connect-li">
-				    		<button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#search">
+				    		<button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#searchModal">
 				    		search
 				    		</button>
 				    	</li>
@@ -1055,6 +1055,10 @@ function dlinq_clean_sidebar(){
 
 add_action( 'admin_init', 'dlinq_clean_sidebar', 999 );
  
+//ajax search
+add_filter( 'relevanssi_live_search_base_styles', '__return_false' );
+
+
 //LOGGER -- like frogger but more useful
  
 if ( ! function_exists('write_log')) {
