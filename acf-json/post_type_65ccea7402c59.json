@@ -2,7 +2,7 @@
     "key": "post_type_65ccea7402c59",
     "title": "Workshops",
     "menu_order": 0,
-    "active": true,
+    "active": false,
     "post_type": "workshop",
     "advanced_configuration": true,
     "import_source": "",
@@ -89,5 +89,5 @@
     "delete_with_user": false,
     "register_meta_box_cb": "",
     "enter_title_here": "",
-    "modified": 1709138138
+    "modified": 1709228725
 }

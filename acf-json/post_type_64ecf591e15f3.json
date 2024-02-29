@@ -2,7 +2,7 @@
     "key": "post_type_64ecf591e15f3",
     "title": "Quotes",
     "menu_order": 0,
-    "active": true,
+    "active": false,
     "post_type": "quote",
     "advanced_configuration": true,
     "import_source": "",
@@ -80,5 +80,6 @@
     "can_export": true,
     "delete_with_user": false,
     "register_meta_box_cb": "",
-    "modified": 1693310277
+    "enter_title_here": "",
+    "modified": 1709229286
 }

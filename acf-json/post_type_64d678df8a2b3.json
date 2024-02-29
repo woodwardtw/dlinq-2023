@@ -2,7 +2,7 @@
     "key": "post_type_64d678df8a2b3",
     "title": "People",
     "menu_order": 0,
-    "active": true,
+    "active": false,
     "post_type": "person",
     "advanced_configuration": true,
     "import_source": "",
@@ -82,5 +82,6 @@
     "can_export": true,
     "delete_with_user": false,
     "register_meta_box_cb": "",
-    "modified": 1691777816
+    "enter_title_here": "",
+    "modified": 1709228859
 }

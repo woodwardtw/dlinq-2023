@@ -27,6 +27,7 @@ $understrap_includes = array(
 	'/editor.php',                          // Load Editor functions.
 	'/block-editor.php',                    // Load Block Editor functions.
 	'/acf.php',                    // Load ACF functions.
+	'/cpts.php',                    // Load custom post types
 	'/deprecated.php',                      // Load deprecated functions.
 );
 
