@@ -692,6 +692,19 @@ li.reg span{
   color: $white;
 }
 
+//workshp 
+
+.workshop-resource h3 {
+  font-size: 1.2rem;
+  transition: all .3s ease;
+}
+
+.workshop-resource h3:hover {
+      transform: translateX(+10px);
+      padding-left: 10px;
+      background-size: 100% 100%;
+}
+
 //deal with wp admin bar and fixed top menu really well
 //https://notlaura.com/a-quick-css-algorithm-for-handling-the-wp-admin-bar-with-a-fixed-menu/
 :root {

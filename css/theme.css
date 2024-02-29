@@ -16043,6 +16043,17 @@ li.reg span {
   color: #fff;
 }
 
+.workshop-resource h3, .workshop-resource .h3 {
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.workshop-resource h3:hover, .workshop-resource .h3:hover {
+  transform: translateX(10px);
+  padding-left: 10px;
+  background-size: 100% 100%;
+}
+
 :root {
   --login-bar-height: 0;
   --menu-bar-height: 50;
