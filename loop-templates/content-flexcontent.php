@@ -28,8 +28,11 @@
                             if(str_contains(strtolower($description), 'coming soon')){
                                 $link = "#{$slug}";       
                             }
-
-                            $url_source = dlinq_remove_www(parse_url($link)["host"]);
+                            if(array_key_exists('host', parse_url($link))){
+                                $url_source = dlinq_remove_www(parse_url($link)["host"]);
+                            } else {
+                                $url_source = $link;
+                            }
                            
                             echo "
                                     <li>                                        
