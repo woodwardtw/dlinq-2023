@@ -24,7 +24,6 @@ defined( 'ABSPATH' ) || exit;
 	</div><!-- .entry-content -->
     <div class="topic-row row">
         <div class="col-md-5">
-            <h2>Resources</h2>
             <?php echo dlinq_workshop_resources();?>
         </div>
         <div class="col-md-6 offset-md-1">

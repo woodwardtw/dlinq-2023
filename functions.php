@@ -349,8 +349,8 @@ function add_logo_nav_menu($items, $args){
 				    		</button>
 				    	</li>
 				    	<li class="menu-item menu-item-type-post_type menu-item-object-tribe_events nav-item connect-li">
-				    		<button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#searchModal">
-				    		search
+				    		<button type="button" class="connect search-icon" data-bs-toggle="modal" data-bs-target="#searchModal">
+				    		Search
 				    		</button>
 				    	</li>
 				    	';
@@ -487,6 +487,7 @@ function dlinq_remove_www($string){
 function dlinq_workshop_resources(){
 		$html = '';
 		if( have_rows('resources') ):
+		    echo  "<h2>Resources</h2>";
 		    // Loop through rows.
 		    while( have_rows('resources') ) : the_row();
 	

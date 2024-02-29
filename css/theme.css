@@ -15525,10 +15525,12 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   height: 51px;
   line-height: 41px;
   transition: all 0.3s ease;
+  padding: 0 10px;
 }
 
 #main-menu li:hover {
-  box-shadow: inset 0 -3.25em 0 0 var(rgb(244, 184, 36));
+  margin-top: -3px;
+  background-color: #bfdaf2;
 }
 
 .connect {

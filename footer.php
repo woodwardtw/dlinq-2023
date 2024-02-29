@@ -20,13 +20,16 @@ $container = get_theme_mod( 'understrap_container_type' );
 	<div class="<?php echo esc_attr( $container ); ?>">
 
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
+				  <?php the_field('footer_left','option');?>
 					<?php wp_nav_menu( array( 'theme_location' => 'footer-left', 'container_class' => 'footer-menu' ) ); ?>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
+					<?php the_field('footer_middle','option');?>
 					<?php get_sidebar('footercenter');?>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-4">
+					<?php the_field('footer_right','option');?>
 					<?php wp_nav_menu( array( 'theme_location' => 'footer-right', 'container_class' => 'footer-menu' ) ); ?>
 				</div>
 
@@ -36,7 +39,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 					<div class="site-info">
 						<div class="row">
-							
+								<?php the_field('footer_full','option');?>
 						</div>
 
 						<?php //understrap_site_info(); ?>

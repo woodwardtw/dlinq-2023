@@ -3,6 +3,25 @@
     "title": "Basics",
     "fields": [
         {
+            "key": "field_65e0853a76828",
+            "label": "Forms",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_65cd11639348b",
             "label": "Contact Gravity Form",
             "name": "contact_gravity_form",
@@ -40,7 +59,7 @@
             "name": "workshop_registration_form",
             "aria-label": "",
             "type": "select",
-            "instructions": "This is the form that shows up by default in the Contact Us popup modal.",
+            "instructions": "This is the form that shows up for single event registrations.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -48,6 +67,7 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "choices": {
                 "0": "",
                 "3": "Base Challenge Form",
@@ -72,7 +92,7 @@
             "name": "workshop_request_form",
             "aria-label": "",
             "type": "select",
-            "instructions": "This is the form that shows up by default in the Contact Us popup modal.",
+            "instructions": "This is the form that lets people request workshop to be run.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -80,6 +100,7 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "choices": {
                 "0": "",
                 "3": "Base Challenge Form",
@@ -99,12 +120,31 @@
             "placeholder": ""
         },
         {
+            "key": "field_65e084f9363d6",
+            "label": "Administrative",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_65de115039fda",
             "label": "Messy View",
             "name": "messy_view",
             "aria-label": "",
             "type": "user",
-            "instructions": "",
+            "instructions": "People put here will see all the options in the sidebar.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -124,6 +164,109 @@
             "allow_null": 0,
             "bidirectional": 0,
             "bidirectional_target": []
+        },
+        {
+            "key": "field_65e08642d155c",
+            "label": "Footer Content",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_65e085ffd1559",
+            "label": "Footer Left",
+            "name": "footer_left",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_65e0861ed155a",
+            "label": "Footer Middle",
+            "name": "footer_middle",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_65e0862ed155b",
+            "label": "Footer Right",
+            "name": "footer_right",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_65e088a062fd4",
+            "label": "Footer Full",
+            "name": "footer_full",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         }
     ],
     "location": [
@@ -144,5 +287,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1709131129
+    "modified": 1709213866
 }
