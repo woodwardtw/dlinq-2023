@@ -345,7 +345,7 @@ function add_logo_nav_menu($items, $args){
 
 				    $newitems = '
 				    	<li class="menu-item menu-item-type-post_type menu-item-object-tribe_events nav-item connect-li">
-				    		<button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#formModal">
+				    		<button type="button" class="connect" data-bs-toggle="modal" data-bs-target="#contactModal">
 				    		Contact Us
 				    		</button>
 				    	</li>

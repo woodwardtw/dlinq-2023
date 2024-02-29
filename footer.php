@@ -62,7 +62,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <?php wp_footer(); ?>
 
 <!--form modal-->
-<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-lg modal-dialog-slideout">
     <div class="modal-content">
       <div class="modal-header">
