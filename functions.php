@@ -1031,7 +1031,9 @@ add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets', 999);
 
 function dlinq_clean_sidebar(){
   $messy_users = [];
-  $messy_users = get_field('messy_view', 'options');
+  if(get_field('messy_view', 'options')){
+  	  $messy_users = get_field('messy_view', 'options');
+  }
   //var_dump($messy_users);
   $current_user_id = get_current_user_id();
   //var_dump($current_user_id);
