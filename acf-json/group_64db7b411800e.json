@@ -567,10 +567,12 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "relevanssi_exclude": 0,
                             "choices": {
                                 "post": "Posts",
                                 "project": "Projects",
-                                "quote": "Quotes"
+                                "quote": "Quotes",
+                                "workshop": "Workshops"
                             },
                             "default_value": "post",
                             "return_format": "value",
@@ -744,5 +746,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1708962434
+    "modified": 1709232154
 }

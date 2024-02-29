@@ -190,7 +190,7 @@
             $args = array(
                 'category__and' => $cats,
                 'post_type' => $type,
-                'posts_per_page' => 10,
+                'posts_per_page' => -1,
                 'paged' => get_query_var('paged')
             );
             $the_query = new WP_Query( $args );
@@ -206,6 +206,9 @@
                 }
                 if(get_field('project_summary')){
                    $excerpt =  wp_trim_words(get_field('project_summary'), 30); 
+                }
+                if(get_field('workshop_description')){
+                   $excerpt =  wp_trim_words(get_field('workshop_description'), 30); 
                 }
                
                 echo "
