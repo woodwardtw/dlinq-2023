@@ -79,7 +79,8 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
+                    "relevanssi_exclude": 0,
+                    "return_format": "url",
                     "parent_repeater": "field_64d6688ef5b50"
                 },
                 {
@@ -249,5 +250,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1700241543
+    "modified": 1709323480
 }
