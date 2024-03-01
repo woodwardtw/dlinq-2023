@@ -16176,5 +16176,16 @@ li.reg span {
     margin: 2rem 0;
   }
 }
+@media (prefers-reduced-motion) {
+  /* styles to apply if a user's device settings are set to reduced motion */
+  #particles-js {
+    display: none;
+  }
+  .topic-list a:hover, .resource-links a:hover, .sub-topic-list a:hover, a.post-link:hover {
+    transform: translateX(0px);
+    padding-left: 5px;
+    background-size: 0% 0%;
+  }
+}
 
 /*# sourceMappingURL=theme.css.map */

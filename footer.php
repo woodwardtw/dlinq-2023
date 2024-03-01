@@ -81,7 +81,10 @@ $container = get_theme_mod( 'understrap_container_type' );
 <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-lg modal-dialog-slideout">
     <div class="modal-content">
-    	 <h2 class="modal-title" id="searchModalLabel">Search</h2>
+    	<div class="modal-header">
+    		<h2 class="modal-title" id="searchModalLabel">Search</h2>
+    	 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    	</div>    	 
 			<form role="search" method="get" class="search-form" action="/">
 				<label>
 					<span class="screen-reader-text">Search for:</span>

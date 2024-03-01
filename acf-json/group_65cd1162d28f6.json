@@ -27,7 +27,7 @@
             "name": "contact_gravity_form",
             "aria-label": "",
             "type": "select",
-            "instructions": "This is the form that shows up by default in the Contact Us popup modal.",
+            "instructions": "Contact Us popup modal form",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -35,14 +35,19 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "choices": {
                 "0": "",
                 "3": "Base Challenge Form",
                 "6": "Bulk event registration",
+                "9": "Catalog Course Request",
+                "10": "Catalog Refund Request",
                 "2": "Challenge one",
+                "8": "Contact DLINQ (1)",
                 "4": "poetry submission form",
                 "1": "Request form",
                 "5": "Reservation form",
+                "12": "test modal conditional",
                 "7": "Workshop request"
             },
             "default_value": false,
@@ -59,7 +64,7 @@
             "name": "workshop_registration_form",
             "aria-label": "",
             "type": "select",
-            "instructions": "This is the form that shows up for single event registrations.",
+            "instructions": "Single event registrations form",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -72,10 +77,14 @@
                 "0": "",
                 "3": "Base Challenge Form",
                 "6": "Bulk event registration",
+                "9": "Catalog Course Request",
+                "10": "Catalog Refund Request",
                 "2": "Challenge one",
+                "8": "Contact DLINQ (1)",
                 "4": "poetry submission form",
                 "1": "Request form",
                 "5": "Reservation form",
+                "12": "test modal conditional",
                 "7": "Workshop request"
             },
             "default_value": false,
@@ -92,7 +101,7 @@
             "name": "workshop_request_form",
             "aria-label": "",
             "type": "select",
-            "instructions": "This is the form that lets people request workshop to be run.",
+            "instructions": "Request a workshop to be run form",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -105,10 +114,14 @@
                 "0": "",
                 "3": "Base Challenge Form",
                 "6": "Bulk event registration",
+                "9": "Catalog Course Request",
+                "10": "Catalog Refund Request",
                 "2": "Challenge one",
+                "8": "Contact DLINQ (1)",
                 "4": "poetry submission form",
                 "1": "Request form",
                 "5": "Reservation form",
+                "12": "test modal conditional",
                 "7": "Workshop request"
             },
             "default_value": false,
@@ -287,5 +300,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1709213866
+    "modified": 1709315638
 }
