@@ -22,6 +22,7 @@ defined( 'ABSPATH' ) || exit;
             <h2>Request this workshop</h2>
             <?php  
                 $gf_id = get_field('workshop_request_form', 'option');
+                var_dump($gf_id);
                 gravity_form( $gf_id, false, false, false, array('workshop' => get_the_title()), true, false, true ); 
             ?>
         </div>       
