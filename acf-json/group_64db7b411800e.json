@@ -649,10 +649,14 @@
                                 "0": "",
                                 "3": "Base Challenge Form",
                                 "6": "Bulk event registration",
+                                "9": "Catalog Course Request",
+                                "10": "Catalog Refund Request",
                                 "2": "Challenge one",
+                                "8": "Contact DLINQ (1)",
                                 "4": "poetry submission form",
                                 "1": "Request form",
                                 "5": "Reservation form",
+                                "12": "test modal conditional",
                                 "7": "Workshop request"
                             },
                             "default_value": false,
@@ -741,10 +745,11 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": [
-        "the_content"
+        "the_content",
+        "send-trackbacks"
     ],
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1709237645
+    "modified": 1709561895
 }

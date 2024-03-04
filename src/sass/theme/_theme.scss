@@ -283,7 +283,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 }
 
 
-.btn-dlinq, #content .gform_button.button {
+.btn-dlinq, #content .gform_button.button, #contactModal .gform_button.button {
   background-color: $blue;
   color: $white;
   border-radius: 50px;
@@ -298,7 +298,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   border: none;
 }
 
-.btn-dlinq:hover, #content .gform_button.button {
+.btn-dlinq:hover, #content .gform_button.button, #contactModal .gform_button.button {
     color: #fff;
     background-color: $blue;
     transform: scale(1.02);
@@ -809,6 +809,23 @@ li.reg span{
   box-shadow: none;
 }
 
+//footer
+#wrapper-footer h1, #wrapper-footer h2, #wrapper-footer h3, #wrapper-footer h4{
+  color: $white;
+} 
+
+#wrapper-footer p, #wrapper-footer li{
+  font-size: 1rem;
+  font-family: "pt serif",Georgia,Times,Times New Roman,serif;
+}
+
+.site-info {
+  padding: 80px 0;
+}
+
+.site-info p {
+  font-size: .9rem;
+}
 
 
 //ANIMATION

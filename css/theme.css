@@ -15650,7 +15650,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   border-bottom: 1px dashed #002444;
 }
 
-.btn-dlinq, #content .gform_button.button {
+.btn-dlinq, #content .gform_button.button, #contactModal .gform_button.button {
   background-color: #002444;
   color: #fff;
   border-radius: 50px;
@@ -15665,7 +15665,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   border: none;
 }
 
-.btn-dlinq:hover, #content .gform_button.button {
+.btn-dlinq:hover, #content .gform_button.button, #contactModal .gform_button.button {
   color: #fff;
   background-color: #002444;
   transform: scale(1.02);
@@ -16139,6 +16139,23 @@ li.reg span {
 
 .modal-content .relevanssi-live-search-results {
   box-shadow: none;
+}
+
+#wrapper-footer h1, #wrapper-footer .h1, #wrapper-footer h2, #wrapper-footer .h2, #wrapper-footer h3, #wrapper-footer .h3, #wrapper-footer h4, #wrapper-footer .h4 {
+  color: #fff;
+}
+
+#wrapper-footer p, #wrapper-footer li {
+  font-size: 1rem;
+  font-family: "pt serif", Georgia, Times, Times New Roman, serif;
+}
+
+.site-info {
+  padding: 80px 0;
+}
+
+.site-info p {
+  font-size: 0.9rem;
 }
 
 @keyframes pulse {
