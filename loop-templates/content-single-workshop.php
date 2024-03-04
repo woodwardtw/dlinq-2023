@@ -19,7 +19,11 @@ defined( 'ABSPATH' ) || exit;
 			</div>
         </div>
         <div class="col-md-5 offset-md-2">
-            <?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-fluid aligncenter project-pic') ); ?>
+            <h2>Request this workshop</h2>
+            <?php  
+                $gf_id = get_field('workshop_request_form', 'option');
+                gravity_form( $gf_id, false, false, false, array('workshop' => get_the_title()), true, false, true ); 
+            ?>
         </div>       
 	</div><!-- .entry-content -->
     <div class="topic-row row">
@@ -27,12 +31,7 @@ defined( 'ABSPATH' ) || exit;
             <?php echo dlinq_workshop_resources();?>
         </div>
         <div class="col-md-6 offset-md-1">
-            <h2>Request this workshop</h2>
-
-            <?php  
-                $gf_id = get_field('workshop_request_form', 'option');
-                gravity_form( $gf_id, false, false, false, array('workshop' => get_the_title()), true, false, true ); 
-            ?>
+           
         </div>
     </div>
     <?php get_template_part( 'loop-templates/content', 'flexcontent' );?>
