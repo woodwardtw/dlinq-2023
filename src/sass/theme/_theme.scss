@@ -827,6 +827,22 @@ li.reg span{
   font-size: .9rem;
 }
 
+.midd-footer__list {
+    list-style-type: none;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.midd-footer__list a{
+  text-decoration: none;
+}
+
+.midd-footer__item:not(:first-child){
+      margin-left: 1.5rem;
+}
+
 
 //ANIMATION
 @keyframes pulse {
