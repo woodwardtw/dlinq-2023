@@ -15650,7 +15650,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   border-bottom: 1px dashed #002444;
 }
 
-.btn-dlinq {
+.btn-dlinq, #content .gform_button.button {
   background-color: #002444;
   color: #fff;
   border-radius: 50px;
@@ -15665,7 +15665,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   border: none;
 }
 
-.btn-dlinq:hover {
+.btn-dlinq:hover, #content .gform_button.button {
   color: #fff;
   background-color: #002444;
   transform: scale(1.02);
@@ -16074,15 +16074,6 @@ li.reg span {
 
 .main-content {
   padding-top: calc((var(--menu-bar-height) + var(--login-bar-height)) * 1px);
-}
-
-#content .gform_button.button {
-  background-color: #002444;
-  width: 200px;
-  border-radius: 50px;
-  border: none;
-  padding: 5px 10px;
-  color: #fff;
 }
 
 .modal-content {

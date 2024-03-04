@@ -282,7 +282,8 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   border-bottom: 1px dashed $blue;
 }
 
-.btn-dlinq {
+
+.btn-dlinq, #content .gform_button.button {
   background-color: $blue;
   color: $white;
   border-radius: 50px;
@@ -297,7 +298,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   border: none;
 }
 
-.btn-dlinq:hover {
+.btn-dlinq:hover, #content .gform_button.button {
     color: #fff;
     background-color: $blue;
     transform: scale(1.02);
@@ -739,16 +740,6 @@ li.reg span{
 .main-content {
   // Pad the top of the content to account for both the menu and login bar height.
   padding-top: calc( ( var( --menu-bar-height ) + var( --login-bar-height ) ) * 1px );
-}
-
-//GRAVITY FORMS
-#content .gform_button.button {
-  background-color: $blue;
-  width: 200px;
-  border-radius: 50px;
-  border: none;
-  padding: 5px 10px;
-  color: $white;
 }
 
 
