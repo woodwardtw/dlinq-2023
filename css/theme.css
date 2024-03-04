@@ -16080,6 +16080,9 @@ li.reg span {
   background-color: #002444;
   width: 200px;
   border-radius: 50px;
+  border: none;
+  padding: 5px 10px;
+  color: #fff;
 }
 
 .modal-content {
