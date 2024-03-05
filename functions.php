@@ -663,7 +663,7 @@ function dlinq_tribe_is_past_event( $event = null ){
 }
 
 //hide button if over limit 
-function dlinq_registration_check(){
+function dlinq_registration_check($form_id){
 		$limit = intval(get_field('attendance_limit'));
 		global $post;
 		$post_id = $post->ID;
@@ -682,7 +682,7 @@ function dlinq_registration_check(){
 			);
 	 
 		// Getting the entries
-		$results = GFAPI::get_entries( 5, $search_criteria, $sorting, $paging, $total_count );
+		$results = GFAPI::get_entries( $form_id, $search_criteria, $sorting, $paging, $total_count );
 		if(sizeof($results) <= $limit || $results == '' || $limit === 0){
 			echo dlinq_event_registration();
 		} else {
@@ -692,7 +692,7 @@ function dlinq_registration_check(){
 
 
 //show registered people if you're an admin
-function dlinq_registered_people(){
+function dlinq_registered_people($form_id){
 	if(current_user_can('edit_posts')){
 		global $post;
 		$post_id = $post->ID;
@@ -708,7 +708,7 @@ function dlinq_registered_people(){
 			);
 	 
 		// Getting the entries
-		$results = GFAPI::get_entries( 5, $search_criteria );
+		$results = GFAPI::get_entries( $form_id, $search_criteria );
 		//var_dump($results);
 		if($results){
 			echo "<div class='registration-block'><h2>Registrations</h2><ol class='reg-list'>";
@@ -1075,32 +1075,18 @@ if ( ! function_exists('write_log')) {
 }
 
 
-add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
-function my_toolbars( $toolbars )
-{
-    // Uncomment to view format of $toolbars
-    /*
-    echo '< pre >';
-        print_r($toolbars);
-    echo '< /pre >';
-    die;
-    */
+// add new buttons
+add_filter( 'mce_buttons', 'myplugin_register_buttons' );
 
-    // Add a new toolbar called "Very Simple"
-    // - this toolbar has only 1 row of buttons
-    $toolbars['Very Simple' ] = array();
-    $toolbars['Very Simple' ][1] = array('bold' , 'italic' , 'underline' );
+function myplugin_register_buttons( $buttons ) {
+   array_push( $buttons, 'separator', 'myplugin' );
+   return $buttons;
+}
+ 
+// Load the TinyMCE plugin : editor_plugin.js (wp2.5)
+add_filter( 'mce_external_plugins', 'myplugin_register_tinymce_javascript' );
 
-    // Edit the "Full" toolbar and remove 'code'
-    // - delet from array code from http://stackoverflow.com/questions/7225070/php-array-delete-by-value-not-key
-    if( ($key = array_search('code' , $toolbars['Full' ][2])) !== false )
-    {
-        unset( $toolbars['Full' ][2][$key] );
-    }
-
-    // remove the 'Basic' toolbar completely
-    unset( $toolbars['Basic' ] );
-
-    // return $toolbars - IMPORTANT!
-    return $toolbars;
+function myplugin_register_tinymce_javascript( $plugin_array ) {
+   $plugin_array['myplugin'] = plugins_url( '/js/tinymce-plugin.js',__FILE__ );
+   return $plugin_array;
 }

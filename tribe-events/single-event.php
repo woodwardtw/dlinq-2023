@@ -123,10 +123,11 @@ $cost  = tribe_get_formatted_cost( $event_id );
 
 		</div> <!-- #post-x -->
 		<!--Event registration button-->
-		<?php dlinq_registration_check();?>
+		<?php $form_id = get_field('workshop_reservation_form', 'option');;?>
+		<?php dlinq_registration_check($form_id);?>
 		<!--Registered people display-->
-		<?php dlinq_registered_people();?>
-	
+		<?php dlinq_registered_people($form_id);?>
+		<?php if ( get_post_type() == Tribe__Events__Main::POSTTYPE && tribe_get_option( 'showComments', false ) ) comments_template() ?>
 	<?php endwhile; ?>
 
 	<!-- Event footer -->
@@ -144,8 +145,9 @@ $cost  = tribe_get_formatted_cost( $event_id );
 
 </div><!-- #tribe-events-content -->
 
+<!--EVENT REGISTRATION MODAL-->
 <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="registrationModalLabel">Register</h2>
@@ -163,9 +165,6 @@ $cost  = tribe_get_formatted_cost( $event_id );
        				); 
        		gravity_form( $gform_id, false, false, false, $values, false, null, true, null, null);?>
       </div>
-     <!--  <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div> -->
     </div>
   </div>
 </div>
