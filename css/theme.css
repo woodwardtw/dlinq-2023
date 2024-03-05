@@ -16174,6 +16174,14 @@ li.reg span {
   margin-left: 1.5rem;
 }
 
+#search-wrapper {
+  padding-top: 100px;
+}
+
+#search-wrapper h2, #search-wrapper .h2 {
+  font-size: clamp(1.5rem, 0.5357rem + 2.5vw, 2rem);
+}
+
 @keyframes pulse {
   0% {
     transform: scale(0.95);

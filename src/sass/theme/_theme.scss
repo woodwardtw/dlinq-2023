@@ -842,7 +842,15 @@ li.reg span{
 .midd-footer__item:not(:first-child){
       margin-left: 1.5rem;
 }
+//SEARCH formatting
+#search-wrapper{
+  padding-top: 100px;
+}
 
+
+#search-wrapper h2{
+  font-size:clamp(1.5rem, .5357rem + 2.5vw, 2rem);
+}
 
 //ANIMATION
 @keyframes pulse {
