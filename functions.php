@@ -519,12 +519,17 @@ function dlinq_workshop_resources(){
 
 
 //add workshops dropdown to workshop form
-$gf_workshop_request_id = get_field('workshop_request_form', 'option');
-$pre_render = 'gform_pre_render_' . $gf_workshop_request_id;
-add_filter( 'gform_pre_render_' . $gf_workshop_request_id , 'populate_cpt_titles' );
-add_filter( 'gform_pre_validation_' . $gf_workshop_request_id,'populate_cpt_titles' );
-add_filter( 'gform_pre_submission_filter_' . $gf_workshop_request_id, 'populate_cpt_titles' );
-add_filter( 'gform_admin_pre_render_' . $gf_workshop_request_id, 'populate_cpt_titles' );
+add_action( 'acf/init', 'dlinq_workshop_form_loader' );
+function dlinq_workshop_form_loader(){
+	$gf_workshop_request_id = get_field('workshop_request_form', 'option');
+	$pre_render = 'gform_pre_render_' . $gf_workshop_request_id;
+	add_filter( 'gform_pre_render_' . $gf_workshop_request_id , 'populate_cpt_titles' );
+	add_filter( 'gform_pre_validation_' . $gf_workshop_request_id,'populate_cpt_titles' );
+	add_filter( 'gform_pre_submission_filter_' . $gf_workshop_request_id, 'populate_cpt_titles' );
+	add_filter( 'gform_admin_pre_render_' . $gf_workshop_request_id, 'populate_cpt_titles' );
+
+}
+
 function populate_cpt_titles( $form ) {
 	
 	foreach ( $form['fields'] as &$field ) {

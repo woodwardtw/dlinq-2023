@@ -89,10 +89,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 	</div><!-- .container(-fluid) -->
 
 </div><!-- #wrapper-footer -->
-
-<?php // Closing div#page from header.php. ?>
-</div><!-- #page -->
-
 <!--form modal-->
 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-lg modal-dialog-slideout">
@@ -131,10 +127,11 @@ $container = get_theme_mod( 'understrap_container_type' );
 		</div>
 	</div>
 </div>
+
+<?php // Closing div#page from header.php. ?>
+</div><!-- #page -->
+
 <?php wp_footer(); ?>
-
-
-
 
 </body>
 

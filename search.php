@@ -41,7 +41,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 					<?php /* Start the Loop */ ?>
 					<?php
 					while ( have_posts() ) :
-						switch_to_blog( $post->blog_id );
+						switch_to_blog( $post->blog_id );//RELEVANISSI MULTISITE FIX
 						the_post();
 
 						/*
