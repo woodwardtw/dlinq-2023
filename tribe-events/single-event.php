@@ -126,7 +126,7 @@ $cost  = tribe_get_formatted_cost( $event_id );
 		<?php dlinq_registration_check();?>
 		<!--Registered people display-->
 		<?php dlinq_registered_people();?>
-		<?php if ( get_post_type() == Tribe__Events__Main::POSTTYPE && tribe_get_option( 'showComments', false ) ) comments_template() ?>
+	
 	<?php endwhile; ?>
 
 	<!-- Event footer -->

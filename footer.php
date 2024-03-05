@@ -62,10 +62,7 @@ $container = get_theme_mod( 'understrap_container_type' );
           </li>
           <li class="midd-footer__item">
             <a href="https://www.middlebury.edu/emergency-response" class="midd-footer__link">Emergency</a>
-          </li>
-          <li class="midd-footer__item">
-              <a href="/saml/login?destination=/node/17521" class="midd-footer__link" rel="nofollow">Site-Editor Login</a>
-          </li>
+          </li>         
         </ul>
 
       </div>
