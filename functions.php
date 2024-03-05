@@ -1076,17 +1076,17 @@ if ( ! function_exists('write_log')) {
 
 
 // add new buttons
-add_filter( 'mce_buttons', 'myplugin_register_buttons' );
+// add_filter( 'mce_buttons', 'myplugin_register_buttons' );
 
-function myplugin_register_buttons( $buttons ) {
-   array_push( $buttons, 'separator', 'myplugin' );
-   return $buttons;
-}
+// function myplugin_register_buttons( $buttons ) {
+//    array_push( $buttons, 'separator', 'myplugin' );
+//    return $buttons;
+// }
  
-// Load the TinyMCE plugin : editor_plugin.js (wp2.5)
-add_filter( 'mce_external_plugins', 'myplugin_register_tinymce_javascript' );
+// // Load the TinyMCE plugin : editor_plugin.js (wp2.5)
+// add_filter( 'mce_external_plugins', 'myplugin_register_tinymce_javascript' );
 
-function myplugin_register_tinymce_javascript( $plugin_array ) {
-   $plugin_array['myplugin'] = plugins_url( '/js/tinymce-plugin.js',__FILE__ );
-   return $plugin_array;
-}
+// function myplugin_register_tinymce_javascript( $plugin_array ) {
+//    $plugin_array['myplugin'] = plugins_url( '/js/tinymce-plugin.js',__FILE__ );
+//    return $plugin_array;
+// }
