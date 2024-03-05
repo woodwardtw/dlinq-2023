@@ -16174,12 +16174,24 @@ li.reg span {
   margin-left: 1.5rem;
 }
 
-#search-wrapper {
+#search-wrapper, #archive-wrapper {
   padding-top: 100px;
 }
 
-#search-wrapper h2, #search-wrapper .h2 {
+#search-wrapper h2 a, #search-wrapper .h2 a, #archive-wrapper h2 a, #archive-wrapper .h2 a {
+  color: #002444;
+}
+
+#search-wrapper h2, #search-wrapper .h2, #archive-wrapper h2, #archive-wrapper .h2 {
   font-size: clamp(1.5rem, 0.5357rem + 2.5vw, 2rem);
+  color: #002444;
+}
+
+.understrap-read-more-link {
+  border: none;
+  background-color: #002444;
+  border-radius: 50px;
+  color: #fff;
 }
 
 @keyframes pulse {

@@ -843,14 +843,26 @@ li.reg span{
       margin-left: 1.5rem;
 }
 //SEARCH formatting
-#search-wrapper{
+#search-wrapper, #archive-wrapper{
   padding-top: 100px;
 }
 
-
-#search-wrapper h2{
-  font-size:clamp(1.5rem, .5357rem + 2.5vw, 2rem);
+#search-wrapper h2 a, #archive-wrapper h2 a {
+  color: $blue;
 }
+
+#search-wrapper h2, #archive-wrapper h2{
+  font-size:clamp(1.5rem, .5357rem + 2.5vw, 2rem);
+  color: $blue;
+}
+
+.understrap-read-more-link {
+  border: none;
+  background-color: $blue;
+  border-radius: 50px;
+  color: $white;
+}
+
 
 //ANIMATION
 @keyframes pulse {
