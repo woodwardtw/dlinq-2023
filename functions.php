@@ -1062,6 +1062,21 @@ add_action( 'admin_init', 'dlinq_clean_sidebar', 999 );
 add_filter( 'relevanssi_live_search_base_styles', '__return_false' );
 
 
+//Add CPTS to category archive
+
+add_filter('pre_get_posts', 'query_post_type');
+function query_post_type($query) {
+  if(is_category() || is_tag()) {
+    $post_type = get_query_var('post_type');
+    if($post_type)
+        $post_type = $post_type;
+    else
+        $post_type = array('post','workshop','project');
+    $query->set('post_type',$post_type);
+    return $query;
+    }
+}
+
 //LOGGER -- like frogger but more useful
  
 if ( ! function_exists('write_log')) {
