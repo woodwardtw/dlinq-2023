@@ -26,14 +26,22 @@ $container = get_theme_mod( 'understrap_container_type' );
 					<section class="error-404 not-found">
 
 						<header class="page-header">
+							<?php
+								global $wp;
+								$current_url = home_url( $wp->request );
+								$archive_url = str_replace("https://", "https://archive.", $current_url);
+							?>
 
-							<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'understrap' ); ?></h1>
+							<h1 class="page-title"><?php esc_html_e( 'Sorry. That page can&rsquo;t be found.', 'understrap' ); ?></h1>
+
 
 						</header><!-- .page-header -->
 
 						<div class="page-content">
 
-							<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try a search?', 'understrap' ); ?></p>
+							<p><?php esc_html_e( 'It looks like nothing was found at this location. You can try the archive of our old site or search for something else.', 'understrap' ); ?></p>
+							<p>We recently switched sites. You can try this link to get to content from the previous site.</p>
+							<h2> <a href="<?php echo $archive_url;?>"><?php echo $archive_url;?></a></h2>
 
 							<?php get_search_form(); ?>
 
