@@ -28,7 +28,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 			<main class="site-main" id="main">
 
 				<?php if ( have_posts() ) : ?>
-					<?php switch_to_blog( $post->blog_id ): ?> <!--RELVANISSI ADD ON FOR MULTISITE-->
+					<?php switch_to_blog( $post->blog_id ); ?> <!--RELVANISSI ADD ON FOR MULTISITE-->
 
 					<header class="page-header">
 
