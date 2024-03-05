@@ -35,10 +35,11 @@ defined( 'ABSPATH' ) || exit;
 	<div class="entry-summary">
 
 		<?php the_excerpt(); ?>
-		<?php if(!the_excerpt()){
+		<?php if(the_excerpt()==''){
 					the_field('topic_summary', the_ID()); 
 					the_field('project_summary', the_ID()); 
 					the_field('workshop_summary', the_ID());
+					the_field('overview', the_ID());
 				}
 			?>
 
