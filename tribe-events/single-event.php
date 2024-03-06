@@ -112,6 +112,31 @@ $cost  = tribe_get_formatted_cost( $event_id );
 			<?php do_action( 'tribe_events_single_event_before_the_content' ) ?>
 			<div class="tribe-events-single-event-description tribe-events-content">
 				<?php the_content(); ?>
+				<?php 
+
+							if( have_rows('resources')):
+									echo "<h2 id='event-resources'>Resources</h2>";
+							//     // Loop through rows.
+							    while( have_rows('resources') ) : the_row();
+						
+							        // Load sub field value.
+							        $title = get_sub_field('resource_title');
+							        $link = get_sub_field('resource_link');
+							        $description = get_sub_field('resource_description');
+							        // Do something...
+							        echo "
+							        	<h3><a href='{$link}''>{$title}</a></h3>
+							        	<p>{$description}</p>
+							        ";
+							    // End loop.
+							    endwhile;
+								// No value.
+								else :
+								    // Do something...
+								endif;
+						
+						
+				?>
 			</div>
 			<!-- .tribe-events-single-event-description -->
 			<?php do_action( 'tribe_events_single_event_after_the_content' ) ?>
