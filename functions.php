@@ -983,6 +983,24 @@ function send_notifications($form_id, $entry_id){
 
 }
 
+function dlinq_event_modality(){
+	$modality = get_field('modality');
+	$stem = "This event is held ";
+	if(sizeof($modality)>1){
+		echo $stem . dlinq_zoom_lang($modality[0]) . ' and ' .  dlinq_zoom_lang($modality[1]);
+	} else {
+		echo $stem . dlinq_zoom_lang($modality[0]);
+	}
+}
+
+function dlinq_zoom_lang($modality){
+	if($modality == 'Zoom'){
+		return ' online via Zoom';
+	} else {
+		return $modality;
+	}
+}
+
 //new photo size
 add_image_size('portrait', 300, 300, true);
 

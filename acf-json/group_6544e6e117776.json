@@ -3,6 +3,33 @@
     "title": "Event Details",
     "fields": [
         {
+            "key": "field_65e8b3b93a6ce",
+            "label": "Modality",
+            "name": "modality",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "Face-to-face": "Face-to-face",
+                "Zoom": "Zoom"
+            },
+            "default_value": [],
+            "return_format": "value",
+            "allow_custom": 0,
+            "layout": "vertical",
+            "toggle": 0,
+            "save_custom": 0,
+            "custom_choice_button_text": "Add new choice"
+        },
+        {
             "key": "field_6544e6e234489",
             "label": "Zoom link",
             "name": "zoom_link",
@@ -12,10 +39,11 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "75",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "default_value": "",
             "placeholder": ""
         },
@@ -29,10 +57,11 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25",
+                "width": "20",
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "default_value": "",
             "min": "",
             "max": "",
@@ -144,5 +173,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1699015814
+    "modified": 1709749472
 }

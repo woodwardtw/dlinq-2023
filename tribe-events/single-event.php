@@ -165,6 +165,7 @@ $cost  = tribe_get_formatted_cost( $event_id );
 			<!-- Event content -->
 			<?php do_action( 'tribe_events_single_event_before_the_content' ) ?>
 			<div class="tribe-events-single-event-description tribe-events-content">
+				<?php dlinq_event_modality();?>
 				<?php the_content(); ?>
 				<?php 
 
