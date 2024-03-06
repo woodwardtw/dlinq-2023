@@ -163,7 +163,7 @@ $cost  = tribe_get_formatted_cost( $event_id );
        					'event_date' => tribe_get_start_date(),
        					'resources' => dlinq_event_resources()
        				); 
-       		gravity_form( $gform_id, false, false, false, $values, false, null, true, null, null);?>
+       		gravity_form( $gform_id, false, false, false, $values, true, null, true, null, null);?>
       </div>
     </div>
   </div>

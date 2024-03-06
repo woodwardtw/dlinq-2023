@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="col-md-5 offset-md-2">
             <h2>Request this workshop</h2>
             <?php  
-                $gf_id = get_field('workshop_request_form', 'option');
+                $gf_id = get_field('workshop_request_form', 'option');            
                 gravity_form( $gf_id, false, false, false, array('workshop' => get_the_title()), true, false, true ); 
             ?>
         </div>       
