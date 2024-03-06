@@ -35,7 +35,7 @@
             "name": "zoom_link",
             "aria-label": "",
             "type": "url",
-            "instructions": "",
+            "instructions": "This is the workshop Zoom link for cut\/paste if you want it.\r\nhttps:\/\/middlebury.zoom.us\/j\/94649605776?pwd=RHQ4TXdpM0gyV3c3UXUrempwL3N4UT09",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -173,5 +173,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1709749472
+    "modified": 1709755153
 }

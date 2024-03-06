@@ -167,6 +167,10 @@ $cost  = tribe_get_formatted_cost( $event_id );
 			<div class="tribe-events-single-event-description tribe-events-content">
 				<?php dlinq_event_modality();?>
 				<?php the_content(); ?>
+				<!--Event registration button-->
+				<?php $form_id = get_field('workshop_reservation_form', 'option');;?>
+				<?php dlinq_registration_check($form_id);?>
+				<!--acf resources content-->
 				<?php 
 
 							if( have_rows('resources')):
@@ -202,9 +206,7 @@ $cost  = tribe_get_formatted_cost( $event_id );
 			<?php do_action( 'tribe_events_single_event_after_the_meta' ) ?>
 
 		</div> <!-- #post-x -->
-		<!--Event registration button-->
-		<?php $form_id = get_field('workshop_reservation_form', 'option');;?>
-		<?php dlinq_registration_check($form_id);?>
+		
 		<!--Registered people display-->
 		<?php dlinq_registered_people($form_id);?>
 		<?php if ( get_post_type() == Tribe__Events__Main::POSTTYPE && tribe_get_option( 'showComments', false ) ) comments_template() ?>
