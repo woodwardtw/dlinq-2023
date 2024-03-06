@@ -802,7 +802,7 @@ function dlinq_attendance_update() {
 }
 
 //provide future events as a drop down in the bulk enrollment form
-
+//TODO SETUP BULK ENROLLMENT FORM
 add_filter( 'gform_pre_render_6', 'dlinq_populate_events' );
 add_filter( 'gform_pre_validation_6', 'dlinq_populate_events' );
 add_filter( 'gform_pre_submission_filter_6', 'dlinq_populate_events' );
@@ -844,14 +844,24 @@ function dlinq_populate_events( $form ) {
     return $form;
 }
 
+
+
+
 //For bulk enrollment, loop FORM ID 6 and FIELD ID 5 to do an enrollment for each selection and put it in FORM ID 5
 //NOTE THAT ALL THOSE IDS MIGHT CHANGE IN MIGRATION***********
-add_action( 'gform_after_submission_6', 'after_submission_bulk_enroll', 10, 2 );
+add_action( 'acf/init', 'dlinq_workshop_event_subscription' );
+
+//TO DO ACTIVATE BULK ENROLLMENT FORM CHOICE IN ************************
+function dlinq_workshop_event_subscription(){
+	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
+	//add_action( 'gform_after_submission_'. $gf_workshop_registration_id, 'after_submission_bulk_enroll', 10, 2 );
+}
 function after_submission_bulk_enroll( $entry, $form ) {
+	$gf_workshop_registration_id = get_field('GET BULK!!!', 'option');
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
  	$email = rgar($entry, '3');
- 	$events = rs_gf_get_checked_boxes( $entry, 5 );
+ 	$events = rs_gf_get_checked_boxes( $entry,  $gf_workshop_registration_id );
  	//var_dump($events);
  	foreach ($events as $key => $event_id) {
  		$event_id = intval($event_id);
@@ -859,7 +869,7 @@ function after_submission_bulk_enroll( $entry, $form ) {
  		$event_name = get_the_title($event_id);
  		$zoom_link = get_field('zoom_link', $event_id);
  		$entry = array(
- 			'form_id' => 5,
+ 			'form_id' =>  $gf_workshop_registration_id,
  			'1.3' => $first,
  			'1.6' => $last,
  			'3' => $email,
@@ -869,19 +879,26 @@ function after_submission_bulk_enroll( $entry, $form ) {
  			'9' => $zoom_link
  		);
  		$new_entry = GFAPI::add_entry( $entry );
- 		send_notifications(5, $new_entry );
+ 		send_notifications( $gf_workshop_registration_id, $new_entry );
  	}
 }
 
 //create code for deletion to put in gravity form
-add_action( 'gform_save_field_value_5_11', 'dlinq_registration_deleter', 10, 4 );
+add_action( 'acf/init', 'dlinq_workshop_event_deletion' );
 
-function dlinq_registration_deleter( $value, $lead, $field, $form){
+function dlinq_workshop_event_deletion(){
+	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
+	$form =  'gform_save_field_value_'. $gf_workshop_registration_id . '_11';
+	add_action($form, 'dlinq_registration_delete_code', 10, 4);
+}
+
+function dlinq_registration_delete_code( $value, $lead, $field, $form){
 	return wp_generate_password(20,false,false);
 }
 
 
 function dlinq_check_to_delete(){
+	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 	if( 'tribe_events' == get_post_type()){
 		if(isset($_GET["delete"])){
 			$passcode= $_GET["delete"];
@@ -895,10 +912,11 @@ function dlinq_check_to_delete(){
 			        )
 			    )
 			);
-			$entry = GFAPI::get_entries(5, $search_criteria);
+			$entry = GFAPI::get_entries($gf_workshop_registration_id, $search_criteria);
 			if(sizeof($entry)>0){
 				$entry_id = $entry[0]['id'];
-				GFAPI::delete_entry( $entry_id );//maybe we don't want to delete this?
+				echo('<h1>'.$entry_id.'</h1>');
+				GFAPI::delete_entry( $entry_id );//maybe we don't want to delete this? mark as deleted instead?
 			}			
 		}
 	}
@@ -1039,12 +1057,9 @@ function dlinq_clean_sidebar(){
   if(get_field('messy_view', 'options')){
   	  $messy_users = get_field('messy_view', 'options');
   }
-  //var_dump($messy_users);
   $current_user_id = get_current_user_id();
-  //var_dump($current_user_id);
-  //$clean_it = true;
+
   $messy = in_array($current_user_id,$messy_users, false);
- //var_dump($clean_it);
   if($messy != true){
   	  remove_menu_page( 'index.php' );                  //Dashboard
 	  remove_menu_page( 'comments' );                    //Jetpack* 
