@@ -565,6 +565,12 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 }
 
 //Single tribe event stuff
+.tribe-events-schedule--browser-time-zone p {
+    font-size: 16px;
+    line-height: 1.62;
+    background-color: $light-blue;
+}
+
 .present {
   background-color: green;
 }

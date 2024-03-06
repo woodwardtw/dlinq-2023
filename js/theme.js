@@ -6300,6 +6300,11 @@
     }
   }
 
+  //turn on tooltips
+  jQuery(function () {
+    jQuery('[data-toggle="tooltip"]').tooltip();
+  });
+
   exports.Alert = Alert;
   exports.Button = Button;
   exports.Carousel = Carousel;

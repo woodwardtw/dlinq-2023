@@ -19,6 +19,50 @@ $events_label_singular = tribe_get_event_label_singular();
 $events_label_plural   = tribe_get_event_label_plural();
 
 $event_id = Tribe__Events__Main::postIdHelper( get_the_ID() );
+/**
+ * Setting up the cookie if it doesn't exist yet and grabbing the browser time zone string.
+ */
+if ( ! isset( $_COOKIE['tribe_browser_time_zone'] ) ) { ?>
+    <script type="text/javascript">
+        if ( navigator.cookieEnabled ) {
+            document.cookie = "tribe_browser_time_zone=" + Intl.DateTimeFormat().resolvedOptions().timeZone + "; path=/";
+        }
+    </script>
+<?php }
+ 
+/**
+ * Calculating the event start time and time zone based on the browser time zone of the visitor.
+ */
+ 
+// Setting default values in case the cookie doesn't exist.
+$user_time_output = "<small>Your time zone couldn't be detected. Try <a href=''>reloading</a> the page.</small>";
+$browser_time_zone_string = "not detected";
+ 
+if ( isset( $_COOKIE['tribe_browser_time_zone'] ) ) {
+    // Grab the time zone string from the cookie.
+    $browser_time_zone_string = $_COOKIE['tribe_browser_time_zone'];
+ 
+    // Grab the event time zone string.
+    $event_time_zone_string = Tribe__Events__Timezones::get_event_timezone_string( $event_id );
+ 
+    // Grab the event start date in UTC time from the database.
+    $event_start_utc = tribe_get_event_meta( $event_id, '_EventStartDateUTC', true );
+ 
+    // Set up the DateTime object.
+    $event_start_date_in_utc_timezone = new DateTime( $event_start_utc, new DateTimeZone( 'UTC' ) );
+ 
+    // Convert the UTC DateTime object into the browser time zone.
+    $event_start_date_in_browser_timezone = $event_start_date_in_utc_timezone->setTimezone( new DateTimeZone( $browser_time_zone_string ) )->format( get_option( 'time_format' ) );
+ 
+    // Grab the time zone abbreviation based on the browser time zone string.
+    $browser_time_zone_abbreviation = Tribe__Timezones::abbr( 'now', $browser_time_zone_string );
+ 
+    // Compile the output string with time zone abbreviation.
+    $user_time_output = $event_start_date_in_browser_timezone . " " . $browser_time_zone_abbreviation;
+ 
+    // Compile the string of the time zone for the tooltip.
+    $browser_time_zone_string .= ' detected';
+}
 
 /**
  * Allows filtering of the event ID.
@@ -85,6 +129,16 @@ $cost  = tribe_get_formatted_cost( $event_id );
 
 	<div class="tribe-events-schedule tribe-clearfix">
 		<?php echo tribe_events_event_schedule_details( $event_id, '<h2>', '</h2>' ); ?>
+		<?php
+			/**
+			 * Adding the event start time in the visitor's time zone.
+			 */
+			if ( ! tribe_event_is_all_day( $event_id ) ) {
+			    echo "<div class='tribe-events-schedule--browser-time-zone'><p>";
+			    echo "Start time in <span data-toggle='tooltip' data-placement='top' style='text-decoration-style: dotted; text-decoration-line: underline; cursor: help;' title='This is based on your browser time zone (" . $browser_time_zone_string . ") and it might not be fully accurate.'>your time zone</span>: " . $user_time_output;
+			    echo "</p></div>";
+			}
+			?>		
 		<?php if ( ! empty( $cost ) ) : ?>
 			<span class="tribe-events-cost"><?php echo esc_html( $cost ) ?></span>
 		<?php endif; ?>
