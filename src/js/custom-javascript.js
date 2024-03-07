@@ -7,6 +7,7 @@ window.onload = function() {
 		dlinqScrollTo(scrollId);
   }	
 	dlinqAttendance();//what is the problem?
+	dlinqEmailButton();//email copy button for events
 };
 
 //SMOOTH SCROLL
@@ -114,7 +115,6 @@ function dlinqAttendance(){
 	      			nonce : dlinq_attendance_update.nonce,
 	        },
 	        success: function (output) {
-	           console.log(output);
 	           button.classList.toggle('present');//add or remove class
 	           button.innerHTML = button.innerHTML == 'No' ? 'Yes' : 'No';//change button text
 	           button.dataset.state = button.dataset.state  == 'No' ? 'Yes' : 'No';//change data attribute
@@ -131,3 +131,33 @@ function dlinqAttendance(){
 jQuery(function () {
   jQuery('[data-toggle="tooltip"]').tooltip()
 })
+
+//deletion confirmation NEED TO MAKE THIS
+
+//copy all emails
+
+function dlinqEmailButton(){
+	if(document.querySelector('#copy-emails')){
+		console.log('button exists')
+		 const copyButton = document.querySelector('#copy-emails');
+		 copyButton.addEventListener('click', () => {
+		 	console.log('click');
+		 	dlinqGatherEmails();
+		 })
+	}
+}
+
+function dlinqGatherEmails(){
+	let allEmails = [];
+	const regListItems = document.querySelectorAll('.reg-list li');
+	regListItems.forEach((reg)=>{
+		const email = reg.dataset.email;
+		allEmails.push(email);
+	})
+	const cleanEmails = allEmails.join("; ");
+	 console.log(cleanEmails);
+	 navigator.clipboard.writeText(cleanEmails);
+
+  // Alert the copied text
+  alert("You now have the emails to paste.");
+}

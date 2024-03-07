@@ -717,8 +717,10 @@ function dlinq_registered_people($form_id){
 		$results = GFAPI::get_entries( $form_id, $search_criteria );
 		//var_dump($results);
 		if($results){
-			echo "<div class='registration-block'><h2>Registrations</h2><ol class='reg-list'>";
-
+			echo "<div class='registration-block'>
+					<h2>Registrations</h2>
+					<button id='copy-emails' class='btn btn-dlinq'>Copy All Emails</button>
+					<ol class='reg-list'>";
 			foreach ($results as $key => $result) {
 
 				$entry_id = $result["id"];
