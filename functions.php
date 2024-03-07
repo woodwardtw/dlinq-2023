@@ -859,7 +859,7 @@ function dlinq_workshop_event_subscription(){
 	//add_action( 'gform_after_submission_'. $gf_workshop_registration_id, 'after_submission_bulk_enroll', 10, 2 );
 }
 function after_submission_bulk_enroll( $entry, $form ) {
-	$gf_workshop_registration_id = get_field('GET BULK!!!', 'option');
+	$gf_workshop_registration_id = get_field('GET BULK FORM ID!!!', 'option');//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
  	$email = rgar($entry, '3');
