@@ -485,6 +485,7 @@ function dlinq_remove_www($string){
 
 
 //WORKSHOP
+//SHOW RESOURCE ON WORKSHOP PAGE ****CONSIDER COMBINING with Event
 function dlinq_workshop_resources(){
 		$html = '';
 		if( have_rows('resources') ):
@@ -727,8 +728,11 @@ function dlinq_registered_people($form_id){
 				$email = $result["3"];
 				$attendance = $result["8"];
 				$attend_class = ($attendance == 'No') ? '' : 'present';
-				echo "<li class='reg'>
-						<span class='reg-name'><a href='mailto:{$email}'>{$first} {$last}</a></span>						
+				$event_title = get_the_title();
+				echo "<li class='reg' data-email='{$email}'>
+						<span class='reg-name'><a href='mailto:{$email}?subject={$event_title} workshop'>{$first} {$last} <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'>
+							  <path d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z'/>
+							</svg></a></span>						
 						<span class='reg-date'>{$created}</span>
 						<span class='reg-state'>attended: <button class='attend {$attend_class}' data-entry='{$entry_id}' data-state='{$attendance}'>{$attendance}</button></span>
 
@@ -750,6 +754,7 @@ function dlinq_set_attend($entry_id, $input_id, $value){
 	
 }
 
+//SHOW RESOURCES ON EVENT PAGE
 function dlinq_event_resources(){
 	if( have_rows('resources') ):
 		$html = '';
@@ -792,13 +797,7 @@ function dlinq_attendance_update() {
     	$entry_state = 'No';
     }
     GFAPI::update_entry_field( $entry_id, '8', $entry_state, '' );
-    // add your logic here...
-
-    // in the end, returns success json data
-    // wp_send_json_success([/* some data here */]);
-
-    // // or, on error, return error json data
-    // wp_send_json_error([/* some data here */]);
+   
 }
 
 //provide future events as a drop down in the bulk enrollment form
@@ -807,6 +806,7 @@ add_filter( 'gform_pre_render_6', 'dlinq_populate_events' );
 add_filter( 'gform_pre_validation_6', 'dlinq_populate_events' );
 add_filter( 'gform_pre_submission_filter_6', 'dlinq_populate_events' );
 add_filter( 'gform_admin_pre_render_6', 'dlinq_populate_events' );
+
 function dlinq_populate_events( $form ) {
  
     foreach( $form['fields'] as &$field )  {
@@ -882,6 +882,7 @@ function after_submission_bulk_enroll( $entry, $form ) {
  		send_notifications( $gf_workshop_registration_id, $new_entry );
  	}
 }
+
 
 //create code for deletion to put in gravity form
 add_action( 'acf/init', 'dlinq_workshop_event_deletion' );
