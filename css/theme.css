@@ -15892,7 +15892,12 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background: #fff;
 }
 
-#eventAccordion .tribe-common .tribe-common-c-btn-border, #eventAccordion .tribe-common a.tribe-common-c-btn-border,
+.single-tribe_events .major-container {
+  display: none;
+}
+
+.single-tribe_events #eventAccordion .tribe-common .tribe-common-c-btn-border,
+#eventAccordion .tribe-common a.tribe-common-c-btn-border,
 #page .tribe-common-c-btn-border, #page .tribe-events-c-subscribe-dropdown__button {
   border-color: #002444;
   color: #002444;
