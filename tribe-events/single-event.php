@@ -158,15 +158,21 @@ $cost  = tribe_get_formatted_cost( $event_id );
 	<!-- #tribe-events-header -->
 
 	<?php while ( have_posts() ) :  the_post(); ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<!-- Event featured image, but exclude link -->
-			<?php echo tribe_event_featured_image( $event_id, 'full', false ); ?>
+		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>			
 
 			<!-- Event content -->
 			<?php do_action( 'tribe_events_single_event_before_the_content' ) ?>
 			<div class="tribe-events-single-event-description tribe-events-content">
-				<?php dlinq_event_modality();?>
-				<?php the_content(); ?>
+				<div class="row">
+					<div class="col-md-8">
+						<?php dlinq_event_modality();?>
+						<?php the_content(); ?>
+					</div>
+					<div class="col-md-4">
+						<!-- Event featured image, but exclude link -->
+						<?php echo tribe_event_featured_image( $event_id, 'full', false ); ?>
+					</div>
+				</div>
 				<!--add to calendar drop down-->
 				<?php do_action( 'tribe_events_single_event_after_the_content' ) ?>
 				<!--Event registration button-->

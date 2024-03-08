@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 $container = get_theme_mod( 'understrap_container_type' );
+$post_type = get_post_type();
 
 if ( is_front_page() ) {
 	get_template_part( 'global-templates/hero' );
@@ -23,7 +24,7 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 }
 ?>
 
-<div class="wrapper" id="<?php echo $wrapper_id; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ok. ?>">
+<div class="wrapper <?php echo $post_type;?>" id="<?php echo $wrapper_id; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ok. ?>">
 	 <div class="major-container">
 		<div id="particles-js"></div>
 		<div class="container">

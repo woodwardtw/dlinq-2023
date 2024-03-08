@@ -17,7 +17,7 @@ addEventListener("hashchange", (event) => {
     dlinqAccordExpand(scrollId);
 	dlinqScrollTo(scrollId);
 });
-
+ 
 
 function dlinqScrollTo(id){
 	const destination = document.getElementById(id);
