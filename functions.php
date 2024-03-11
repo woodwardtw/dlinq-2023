@@ -1066,7 +1066,8 @@ function disable_default_dashboard_widgets() {
   unset($wp_meta_boxes['dashboard']['normal']['core']['tribe_dashboard_widget']);
   //limit logins llar_stats_widget 
   unset($wp_meta_boxes['dashboard']['normal']['high']['llar_stats_widget']);
-
+  //WP Mail SMTP  
+  unset($wp_meta_boxes['dashboard']['normal']['core']['wp_mail_smtp_reports_widget_lite']);
 }
 add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets', 999);
 
@@ -1092,10 +1093,13 @@ function dlinq_clean_sidebar(){
 	  remove_menu_page( 'upload.php' );        //media
 	  remove_menu_page( 'edit.php?post_type=acf-field-group' ); //acf
 	  remove_menu_page('limit-login-attempts'); //limit logins
-
+	  remove_menu_page('wp-mail-smtp'); //WP Mail SMTP
   }
 
 }
+// add_action( 'admin_init', function () {
+//     echo '<pre>' . print_r( $GLOBALS[ 'menu' ], true) . '</pre>';
+// } );
 
 add_action( 'admin_init', 'dlinq_clean_sidebar', 999 );
  
