@@ -919,10 +919,10 @@ function dlinq_check_to_delete(){
 			if(sizeof($entry)>0){
 				$entry_id = $entry[0]['id'];			
 				GFAPI::delete_entry( $entry_id );//maybe we don't want to delete this? mark as deleted instead?
+				echo "<div class='notification delete-alert'>You have removed your reservation. Thank you.</div>";
 			}			
 		}
 	}
-	echo "<div class='notification delete-alert'>You have removed your reservation. Thank you.</div>";
 }
 add_action('wp_head','dlinq_check_to_delete');
 
