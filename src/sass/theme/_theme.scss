@@ -602,7 +602,7 @@ li.reg span{
   width: 33%;
 }
 
-.copy-alert {
+.copy-alert, .delete-alert {
     opacity: 1;
     -webkit-animation: fadeinout 2s linear forwards;
     animation: fadeinout 2s linear forwards;
@@ -617,6 +617,12 @@ li.reg span{
     text-align: center;
 }
 
+.delete-alert{
+  top: 200px;
+  width: 500px;
+   -webkit-animation: fadeinout 6s linear forwards;
+    animation: fadeinout 6s linear forwards;
+}
 
 @-webkit-keyframes fadeinout {
   0%,100% { opacity: 0; }

@@ -15956,7 +15956,7 @@ li.reg span {
   width: 33%;
 }
 
-.copy-alert {
+.copy-alert, .delete-alert {
   opacity: 1;
   animation: fadeinout 2s linear forwards;
   width: 300px;
@@ -15968,6 +15968,12 @@ li.reg span {
   color: #fff;
   font-size: 2rem;
   text-align: center;
+}
+
+.delete-alert {
+  top: 200px;
+  width: 500px;
+  animation: fadeinout 6s linear forwards;
 }
 @keyframes fadeinout {
   0%, 100% {

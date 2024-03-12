@@ -917,12 +917,12 @@ function dlinq_check_to_delete(){
 			);
 			$entry = GFAPI::get_entries($gf_workshop_registration_id, $search_criteria);
 			if(sizeof($entry)>0){
-				$entry_id = $entry[0]['id'];
-				echo('<h1>'.$entry_id.'</h1>');
+				$entry_id = $entry[0]['id'];			
 				GFAPI::delete_entry( $entry_id );//maybe we don't want to delete this? mark as deleted instead?
 			}			
 		}
 	}
+	echo "<div class='notification delete-alert'>You have removed your reservation. Thank you.</div>";
 }
 add_action('wp_head','dlinq_check_to_delete');
 
