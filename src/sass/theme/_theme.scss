@@ -585,6 +585,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .registration-block {
   padding: 40px;
   background-color: #fff;
+  position: relative;
 }
 
 ol.reg-list li:nth-of-type(even){
@@ -603,10 +604,11 @@ li.reg span{
 
 .copy-alert {
     opacity: 1;
-    animation: fade 1s linear;
+    -webkit-animation: fadeinout 2s linear forwards;
+    animation: fadeinout 2s linear forwards;
     width: 300px;
     position: absolute;
-    top: 50%;
+    top: 20px;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: green;
@@ -616,9 +618,14 @@ li.reg span{
 }
 
 
-@keyframes fade {
-  0%,100% { opacity: 0 }
-  50% { opacity: 1 }
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
 }
 
 //extras

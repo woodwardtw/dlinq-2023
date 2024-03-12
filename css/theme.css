@@ -15939,6 +15939,7 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 .registration-block {
   padding: 40px;
   background-color: #fff;
+  position: relative;
 }
 
 ol.reg-list li:nth-of-type(even) {
@@ -15957,10 +15958,10 @@ li.reg span {
 
 .copy-alert {
   opacity: 1;
-  animation: fade 1s linear;
+  animation: fadeinout 2s linear forwards;
   width: 300px;
   position: absolute;
-  top: 50%;
+  top: 20px;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: green;
@@ -15968,8 +15969,7 @@ li.reg span {
   font-size: 2rem;
   text-align: center;
 }
-
-@keyframes fade {
+@keyframes fadeinout {
   0%, 100% {
     opacity: 0;
   }
