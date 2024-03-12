@@ -153,14 +153,8 @@ function dlinqGatherEmails(){
 		allEmails.push(email);
 	})
 	const cleanEmails = allEmails.join("; ");
-	 try {
-     navigator.clipboard.writeText(cleanEmails).then(alert('Emails copied. 😀'));
-  } catch (error) {
-    console.error(error.message);
-  }
-
-  // Alert the copied text
-  //alert("You now have the emails to paste.");
+	navigator.clipboard.writeText(cleanEmails);
+	  document.querySelector('#copy-emails').insertAdjacentHTML('afterEnd','<div class="copy-alert">copied</div>')
 }
 
 
