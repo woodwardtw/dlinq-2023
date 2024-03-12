@@ -989,11 +989,15 @@ function send_notifications($form_id, $entry_id){
 function dlinq_event_modality(){
 	$modality = get_field('modality');
 	$stem = "This event is held ";
-	if(sizeof($modality)>1){
-		echo $stem . dlinq_zoom_lang($modality[0]) . ' and ' .  dlinq_zoom_lang($modality[1]);
-	} else {
-		echo $stem . dlinq_zoom_lang($modality[0]);
+	if(isset($modality[0])){
+		if(sizeof($modality)>1){
+			echo $stem . dlinq_zoom_lang($modality[0]) . ' and ' .  dlinq_zoom_lang($modality[1]);
+		} else {
+			echo $stem . dlinq_zoom_lang($modality[0]);
+		}
+
 	}
+	
 }
 
 function dlinq_zoom_lang($modality){

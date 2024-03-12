@@ -6311,10 +6311,8 @@
 
   function dlinqEmailButton() {
     if (document.querySelector('#copy-emails')) {
-      console.log('button exists');
       const copyButton = document.querySelector('#copy-emails');
       copyButton.addEventListener('click', () => {
-        console.log('click');
         dlinqGatherEmails();
       });
     }
@@ -6327,11 +6325,14 @@
       allEmails.push(email);
     });
     const cleanEmails = allEmails.join("; ");
-    console.log(cleanEmails);
-    navigator.clipboard.writeText(cleanEmails);
+    try {
+      navigator.clipboard.writeText(cleanEmails).then(alert('Emails copied. 😀'));
+    } catch (error) {
+      console.error(error.message);
+    }
 
     // Alert the copied text
-    alert("You now have the emails to paste.");
+    //alert("You now have the emails to paste.");
   }
 
   exports.Alert = Alert;
