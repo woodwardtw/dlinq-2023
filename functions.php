@@ -926,6 +926,92 @@ function dlinq_check_to_delete(){
 }
 add_action('wp_head','dlinq_check_to_delete');
 
+//set the cron to run reminder emails function
+if ( ! wp_next_scheduled( 'dlinq_reminder_email' ) ) {
+    wp_schedule_event( strtotime('09:23:00'), 'hourly', 'dlinq_reminder_email' );
+    //wp_schedule_event( strtotime('23:00:00'), 'daily', 'dlinq_reminder_email' );
+
+}
+
+add_action( 'dlinq_reminder_email', 'dlinq_reminder_email' );
+
+
+
+function dlinq_reminder_email(){
+	//get the reservation form ID from the ACF options field
+	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
+
+	//get current date
+	$tomorrow = date("Y-m-d", time() + 86400);
+	//var_dump($tomorrow);
+	$start = $tomorrow . ' 00:01';
+	$end = $tomorrow . ' 23:59';
+
+	//get Modern Tribe events that occur on current date +24 hrs from the events calendar
+	$coming_events = tribe_get_events( [
+					   'start_date'   => $start,
+					   'end_date'   => $end,
+					] );
+	$event_ids = [];
+	if($coming_events){		
+		foreach ($coming_events as $key => $event) {		
+				array_push($event_ids, $event->ID);
+		}
+	}
+
+	//if we have event ids, lets get our dear registrants
+	if($event_ids){
+		foreach ($event_ids as $key => $event_id) {
+			//get the reservations from Gravity forms
+			$search_criteria = array(
+					    'status'        => 'active',
+					    'field_filters' => array(
+					        'mode' => 'any',
+					        array(
+					            'key'   => '6',
+					            'value' => $event_id
+					        )
+					    )
+					);
+			$event_name = get_the_title($event_id);//get title from the event
+			$event_date = tribe_get_start_date($event_id, TRUE, null, TRUE);//get start date/time from the event
+			$location = dlinq_event_email_location($event_id);
+			
+			$reservations = GFAPI::get_entries($gf_workshop_registration_id, $search_criteria);
+			//var_dump($reservations);
+			foreach ($reservations as $key => $reservation) {
+				// code...
+				$to_email = $reservation[3];
+								
+				dlinq_send_reminder_email($to_email, $event_name, $event_date, $location);
+			}
+		}		
+	}	
+
+}
+
+add_shortcode( 'test', 'dlinq_reminder_email' );
+
+
+function dlinq_send_reminder_email($to_email, $event_name, $event_date, $location){
+	$to = $to_email;
+	$subject = "Reminder: You registered for {$event_name} on {$event_date}";
+	$headers = array('Content-Type: text/html; charset=UTF-8','From: DLINQ <dlinq@middlebury.edu>');	
+	$message = 'We look forward to seeing you! ' . $location;
+	var_dump($message);
+	wp_mail( $to, $subject, $message, $headers);
+}
+
+function dlinq_event_email_location($event_id){
+	$location = '';
+	if(get_field('zoom_link',$event_id)){
+		$zoom_link = get_field('zoom_link',$event_id);
+		$location = "<br><br><p>Online at:</p><br><a href='{$zoom_link}'>{$zoom_link}</a>";
+	} if (tribe_get_full_address($event_id)) {		
+		$location .= "<br><br><p>In person at:</p><br>" . tribe_get_full_address($event_id);
+	}
+	return $location;
+}
 
 //from https://gist.github.com/RadGH/d08a7466b097dfb895ec6dede2e474f5
 /**
