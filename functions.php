@@ -722,17 +722,17 @@ function dlinq_registered_people($form_id){
 					<button id='copy-emails' class='btn btn-dlinq'>Copy All Emails</button>
 					<ol class='reg-list'>";
 			foreach ($results as $key => $result) {
-
+				$key = $key+1;//flex display hides the numbers, this seemed easier than changing that
 				$entry_id = $result["id"];
-				$created = $result["date_created"];
+				$created = substr($result["date_created"], 0, 10);//get rid of the time
 				$first = $result["1.3"];
 				$last = $result["1.6"];
 				$email = $result["3"];
 				$attendance = $result["8"];
 				$attend_class = ($attendance == 'No') ? '' : 'present';
 				$event_title = get_the_title();
-				echo "<li class='reg' data-email='{$email}'>
-						<span class='reg-name'><a href='mailto:{$email}?subject={$event_title} workshop'>{$first} {$last} <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'>
+				echo "<li class='reg' data-email='{$email}'> {$key}. 
+						<span class='reg-name'><a href='mailto:{$email}?subject={$event_title} workshop'>&nbsp;{$first} {$last} <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'>
 							  <path d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z'/>
 							</svg></a></span>						
 						<span class='reg-date'>{$created}</span>
