@@ -928,8 +928,8 @@ add_action('wp_head','dlinq_check_to_delete');
 
 //set the cron to run reminder emails function
 if ( ! wp_next_scheduled( 'dlinq_reminder_email' ) ) {
-    wp_schedule_event( strtotime('09:23:00'), 'hourly', 'dlinq_reminder_email' );
-    //wp_schedule_event( strtotime('23:00:00'), 'daily', 'dlinq_reminder_email' );
+    //wp_schedule_event( strtotime('14:58:00'), 'daily', 'dlinq_reminder_email' );
+    wp_schedule_event( strtotime('08:00:00'), 'daily', 'dlinq_reminder_email' );
 
 }
 
@@ -938,6 +938,7 @@ add_action( 'dlinq_reminder_email', 'dlinq_reminder_email' );
 
 
 function dlinq_reminder_email(){
+	//var_dump(strtotime('13:34:00'));
 	//get the reservation form ID from the ACF options field
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 
@@ -982,8 +983,11 @@ function dlinq_reminder_email(){
 			foreach ($reservations as $key => $reservation) {
 				// code...
 				$to_email = $reservation[3];
+				$delete_key = $reservation[11];
+				$delete_url = get_permalink($event_id).'?delete='.$delete_key;
+				$delete_block = "<p>Use this link to cancel your reservation <a href='{$delete_url}'>{$delete_url}</a></p>";
 								
-				dlinq_send_reminder_email($to_email, $event_name, $event_date, $location);
+				dlinq_send_reminder_email($to_email, $event_name, $event_date, $location, $delete_block);
 			}
 		}		
 	}	
@@ -993,12 +997,12 @@ function dlinq_reminder_email(){
 add_shortcode( 'test', 'dlinq_reminder_email' );
 
 
-function dlinq_send_reminder_email($to_email, $event_name, $event_date, $location){
+function dlinq_send_reminder_email($to_email, $event_name, $event_date, $location, $delete_block){
 	$to = $to_email;
 	$subject = "Reminder: You registered for {$event_name} on {$event_date}";
 	$headers = array('Content-Type: text/html; charset=UTF-8','From: DLINQ <dlinq@middlebury.edu>');	
-	$message = 'We look forward to seeing you! ' . $location;
-	var_dump($message);
+	$message = 'We look forward to seeing you! ' . $location . $delete_block;
+	//var_dump($message);
 	wp_mail( $to, $subject, $message, $headers);
 }
 
