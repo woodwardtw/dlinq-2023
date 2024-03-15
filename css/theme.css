@@ -15932,8 +15932,26 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   background-color: #bfdaf2;
 }
 
+.attend {
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 50px;
+  width: 100px;
+  transition: all 0.3s ease;
+}
+
 .present {
   background-color: green;
+  color: #fff;
+}
+
+.attend:hover {
+  background-color: lime;
+  cursor: pointer;
+}
+
+.present.attend:hover {
+  background-color: red;
 }
 
 .registration-block {
