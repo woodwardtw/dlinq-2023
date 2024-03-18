@@ -15974,6 +15974,10 @@ li.reg span {
   width: 33%;
 }
 
+.small-mail {
+  font-size: 0.9rem;
+}
+
 .copy-alert, .delete-alert {
   opacity: 1;
   animation: fadeinout 2s linear forwards;
