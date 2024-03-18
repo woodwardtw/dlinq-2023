@@ -250,8 +250,12 @@ $cost  = tribe_get_formatted_cost( $event_id );
        					'zoom_link' => get_field('zoom_link'),
        					'event_date' => tribe_get_start_date(),
        					'resources' => dlinq_event_resources()
-       				); 
-       		gravity_form( $gform_id, false, false, false, $values, true, null, true, null, null);?>
+       				);
+       		$past = dlinq_tribe_is_past_event( $post->ID);
+  			if( $past != TRUE){ 
+       			gravity_form( $gform_id, false, false, false, $values, true, null, true, null, null);
+       		}
+       		?>
       </div>
     </div>
   </div>

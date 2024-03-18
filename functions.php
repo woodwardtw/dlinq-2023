@@ -646,6 +646,8 @@ function dlinq_event_registration(){
   $past = dlinq_tribe_is_past_event( $post->ID);
   if( $past != TRUE){
     echo "<button class='btn-dlinq btn-register-event' data-bs-toggle='modal' data-bs-target='#registrationModal'>Register</button>";
+  } else {
+  	echo "<div class='closed'><p>Registration is closed.</p></div>";
   }
 }
 
@@ -942,7 +944,7 @@ function dlinq_reminder_email(){
 	//get the reservation form ID from the ACF options field
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 
-	//get current date
+	//get current date and add 86400 seconds
 	$tomorrow = date("Y-m-d", time() + 86400);
 	//var_dump($tomorrow);
 	$start = $tomorrow . ' 00:01';
