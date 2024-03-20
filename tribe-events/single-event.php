@@ -251,7 +251,7 @@ $cost  = tribe_get_formatted_cost( $event_id );
        					'event_date' => tribe_get_start_date(),
        					'resources' => dlinq_event_resources()
        				);
-       		$past = dlinq_tribe_is_past_event( $post->ID);
+       		$past = dlinq_tribe_is_past_event( get_the_ID());
   			if( $past != TRUE){ 
        			gravity_form( $gform_id, false, false, false, $values, true, null, true, null, null);
        		}
