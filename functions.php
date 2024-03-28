@@ -975,7 +975,8 @@ function dlinq_reminder_email(){
 					    )
 					);
 			$event_name = get_the_title($event_id);//get title from the event
-			$event_date = tribe_get_start_date($event_id, TRUE, null, TRUE);//get start date/time from the event
+			$event_date = tribe_events_event_schedule_details( $event_id);
+			$clean_date = preg_replace('/<[^>]*>/', '', $event_date);
 			$location = dlinq_event_email_location($event_id);
 			
 			$reservations = GFAPI::get_entries($gf_workshop_registration_id, $search_criteria);
@@ -985,9 +986,8 @@ function dlinq_reminder_email(){
 				$to_email = $reservation[3];
 				$delete_key = $reservation[11];
 				$delete_url = get_permalink($event_id).'?delete='.$delete_key;
-				$delete_block = "<p>Use this link to cancel your reservation <a href='{$delete_url}'>{$delete_url}</a></p>";
-								
-				dlinq_send_reminder_email($to_email, $event_name, $event_date, $location, $delete_block);
+				$delete_block = "<p>Use this link to cancel your reservation <a href='{$delete_url}'>{$delete_url}</a></p>";		
+				dlinq_send_reminder_email($to_email, $event_name, $clean_date, $location, $delete_block);
 			}
 		}		
 	}	
@@ -1011,8 +1011,8 @@ function dlinq_event_email_location($event_id){
 	if(get_field('zoom_link',$event_id)){
 		$zoom_link = get_field('zoom_link',$event_id);
 		$location = "<br><br><p>Online at:</p><br><a href='{$zoom_link}'>{$zoom_link}</a>";
-	} if (tribe_get_full_address($event_id)) {		
-		$location .= "<br><br><p>In person at:</p><br>" . tribe_get_full_address($event_id);
+	} if (strlen(tribe_get_full_address($event_id)) > 45 ) {		
+		$location .= "<br><br><p>In person at:</p><br>" . tribe_get_full_address($event_id);		
 	}
 	return $location;
 }
