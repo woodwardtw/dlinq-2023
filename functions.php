@@ -716,7 +716,7 @@ function dlinq_registered_people($form_id){
 			);
 	 
 		// Getting the entries
-		$results = GFAPI::get_entries( $form_id, $search_criteria );
+		$results = GFAPI::get_entries( $form_id, $search_criteria, null, $paging );
 		//var_dump($results);
 		if($results){
 			echo "<div class='registration-block'>
