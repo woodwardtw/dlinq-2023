@@ -714,7 +714,7 @@ function dlinq_registered_people($form_id){
 			        )
 			    )
 			);
-	 	$paging = array( 'offset' => 0, 'page_size' => -1 );
+	 	$paging = array( 'offset' => 0, 'page_size' => 100 );
 
 		// Getting the entries
 		$results = GFAPI::get_entries( $form_id, $search_criteria, null, $paging );
