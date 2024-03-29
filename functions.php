@@ -677,7 +677,7 @@ function dlinq_registration_check($form_id){
 		$post_id = $post->ID;
 		$total_count = 0;
 		$sorting         = array();
-		$paging          = array( 'offset' => 0, 'page_size' => 25 );
+		$paging          = array( 'offset' => 0, 'page_size' => 105 );
 		$search_criteria = array(
 			    'status'        => 'active',
 			    'field_filters' => array(
