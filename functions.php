@@ -1266,7 +1266,6 @@ function dlinq_workshop_report(){
 	
 	//get current date and add 86400 seconds
 	$current_year = date("Y");
-	var_dump($current_year);
 	$start = $current_year . '-01-01 00:01';
 	$end = $current_year . '-12-31 23:59';
 

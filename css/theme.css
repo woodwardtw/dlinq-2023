@@ -16235,6 +16235,10 @@ li.reg span {
   margin-left: 1.5rem;
 }
 
+.workshop-report {
+  margin-top: 200px;
+}
+
 #workshop-report-table {
   width: 100%;
   border: 1px solid #002444;
