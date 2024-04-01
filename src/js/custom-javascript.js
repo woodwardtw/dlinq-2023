@@ -99,6 +99,7 @@ particlesJS("particles-js", {
 //REGISTRATION
 function dlinqAttendance(){
 	if(document.querySelector('.attend')){
+		dlinqShowedUp();
 		const attendButtons = document.querySelectorAll('.attend');
 		attendButtons.forEach((button) => {
 		  button.addEventListener('click', () => {
@@ -118,11 +119,19 @@ function dlinqAttendance(){
 	           button.classList.toggle('present');//add or remove class
 	           button.innerHTML = button.innerHTML == 'No' ? 'Yes' : 'No';//change button text
 	           button.dataset.state = button.dataset.state  == 'No' ? 'Yes' : 'No';//change data attribute
-
+	           dlinqShowedUp();
 	        }
         });
 		  });
 		});
+	}
+}
+
+function dlinqShowedUp(){
+	if(document.querySelectorAll("[data-state='Yes']")){
+		const attending = document.querySelectorAll("[data-state='Yes']");
+		const displayAttend = document.querySelector("#totalCame");
+		displayAttend.innerHTML = attending.length;
 	}
 }
 

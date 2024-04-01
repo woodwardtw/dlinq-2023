@@ -718,12 +718,13 @@ function dlinq_registered_people($form_id){
 
 		// Getting the entries
 		$results = GFAPI::get_entries( $form_id, $search_criteria, null, $paging );
-		//var_dump($results);
+		$total_reg =sizeof($results);
 		if($results){
 			echo "<div class='registration-block'>
 					<h2>Registrations</h2>
+					<div class='event-details'><span id='totalCame'></span> of <span id='totalReg'>{$total_reg}</span> attended</div>
 					<button id='copy-emails' class='btn btn-dlinq'>Copy All Emails</button>
-					<ol class='reg-list'>";
+					<ol class='reg-list' id='registered'>";
 			foreach ($results as $key => $result) {
 				$key = $key+1;//flex display hides the numbers, this seemed easier than changing that
 				$entry_id = $result["id"];
