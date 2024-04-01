@@ -20,8 +20,21 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php
 		the_content();
-		understrap_link_pages();
 		?>
+
+		<table id="workshop-report-table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Date</th>
+					<th>Registered</th>
+					<th>Attended</th>
+				<tr>
+			</thead>
+			<tbody>
+				<?php dlinq_workshop_report();?>
+			</tbody>
+		</table>
 
 	</div><!-- .entry-content -->
 

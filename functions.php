@@ -1258,3 +1258,45 @@ if ( ! function_exists('write_log')) {
 //    $plugin_array['myplugin'] = plugins_url( '/js/tinymce-plugin.js',__FILE__ );
 //    return $plugin_array;
 // }
+
+
+
+//WORKSHOP REPORTS
+function dlinq_workshop_report(){
+	
+	//get current date and add 86400 seconds
+	$current_year = date("Y");
+	var_dump($current_year);
+	$start = $current_year . '-01-01 00:01';
+	$end = $current_year . '-12-31 23:59';
+
+	//get Modern Tribe events that occur on current date +24 hrs from the events calendar
+	$year_events = tribe_get_events( [
+					   'start_date'   => $start,
+					   'end_date'   => $end,
+					] );
+	if($year_events){		
+		foreach ($year_events as $key => $event) {		
+				//array_push($event_ids, $event->ID);
+				//attended_total registered_total
+				$event_title = $event->post_title;//get title from the event
+				$event_id = $event->ID;
+				$link = get_permalink($event_id);
+				$event_date = tribe_events_event_schedule_details( $event_id);
+				$clean_date = preg_replace('/<[^>]*>/', '', $event_date);
+				$registered = get_post_meta($event_id, 'registered_total', TRUE);
+				$attended = get_post_meta($event_id, 'attended_total', TRUE);
+				echo "<tr>
+						<td>{$event_title}</td>
+						<td>{$clean_date}</td>
+						<td>{$registered}</td>
+						<td>{$attended}</td>
+						</tr>";
+		}
+	}
+			
+			
+
+}
+
+add_shortcode( 'test', 'dlinq_reminder_email' );
