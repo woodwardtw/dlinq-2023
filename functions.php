@@ -719,7 +719,9 @@ function dlinq_registered_people($form_id){
 		// Getting the entries
 		$results = GFAPI::get_entries( $form_id, $search_criteria, null, $paging );
 		$total_reg =sizeof($results);
+		dlinq_set_registration_data($post_id, $total_reg, 'registered_total');//set total registered as custom field
 		if($results){
+			$attendance_count = intval(0);
 			echo "<div class='registration-block'>
 					<h2>Registrations</h2>
 					<div class='event-details'><span id='totalCame'></span> of <span id='totalReg'>{$total_reg}</span> attended</div>
@@ -733,6 +735,7 @@ function dlinq_registered_people($form_id){
 				$last = $result["1.6"];
 				$email = $result["3"];
 				$attendance = $result["8"];
+				$attendance_count = ($attendance == 'Yes') ? intval($attendance_count)+1 : $attendance_count;
 				$attend_class = ($attendance == 'No') ? '' : 'present';
 				$event_title = get_the_title();
 				echo "<li class='reg' data-email='{$email}'> {$key}. 
@@ -743,10 +746,19 @@ function dlinq_registered_people($form_id){
 					</li>";
 			}
 			echo "</ol></div>";
+			dlinq_set_registration_data($post_id, $attendance_count, 'attended_total');//set total attended as custom field
+
 		}		
 
 	}
 	
+}
+
+function dlinq_set_registration_data($post_id, $count, $field_name){
+	$field_count = '';//get custom field value
+	if($count != $field_count){
+		update_post_meta( $post_id, $field_name, sanitize_text_field( $count ) );
+	}
 }
 
 function dlinq_set_attend($entry_id, $input_id, $value){
