@@ -1277,8 +1277,7 @@ function dlinq_workshop_report(){
 					] );
 	if($year_events){		
 		foreach ($year_events as $key => $event) {		
-				//array_push($event_ids, $event->ID);
-				//attended_total registered_total
+				
 				$event_title = $event->post_title;//get title from the event
 				$event_id = $event->ID;
 				$link = get_permalink($event_id);
@@ -1286,12 +1285,13 @@ function dlinq_workshop_report(){
 				$clean_date = preg_replace('/<[^>]*>/', '', $event_date);
 				$registered = get_post_meta($event_id, 'registered_total', TRUE);
 				$attended = get_post_meta($event_id, 'attended_total', TRUE);
+				//may need to run the function that sets the reg and attended prior to display per post. .. worry about load though
 				echo "<tr>
-						<td>{$event_title}</td>
+						<td><a href='{$link}'>{$event_title}</a></td>
 						<td>{$clean_date}</td>
 						<td>{$registered}</td>
 						<td>{$attended}</td>
-						</tr>";
+					</tr>";
 		}
 	}
 			

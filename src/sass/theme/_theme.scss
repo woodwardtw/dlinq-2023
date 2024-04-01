@@ -911,6 +911,22 @@ li.reg span{
       margin-left: 1.5rem;
 }
 
+//workshop report
+#workshop-report-table {
+  width: 100%;
+  border: 1px solid $blue;
+}
+
+#workshop-report-table th {
+  background-color: $light-blue;
+  padding: 5px 10px;
+  border-bottom: 1px solid $blue;
+}
+
+#workshop-report-table td {
+  border: 1px solid $blue;
+  padding: 5px 10px;
+}
 
 //SEARCH formatting
 #search-wrapper, #archive-wrapper, #error-404-wrapper{

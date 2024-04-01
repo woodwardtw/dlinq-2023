@@ -16235,6 +16235,22 @@ li.reg span {
   margin-left: 1.5rem;
 }
 
+#workshop-report-table {
+  width: 100%;
+  border: 1px solid #002444;
+}
+
+#workshop-report-table th {
+  background-color: #bfdaf2;
+  padding: 5px 10px;
+  border-bottom: 1px solid #002444;
+}
+
+#workshop-report-table td {
+  border: 1px solid #002444;
+  padding: 5px 10px;
+}
+
 #search-wrapper, #archive-wrapper, #error-404-wrapper {
   padding-top: 100px;
 }
