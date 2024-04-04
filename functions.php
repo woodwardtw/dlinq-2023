@@ -699,6 +699,7 @@ function dlinq_registration_check($form_id){
 }
 
 
+
 //show registered people if you're an admin
 function dlinq_registered_people($form_id){
 	if(current_user_can('edit_posts')){
@@ -1242,6 +1243,37 @@ if ( ! function_exists('write_log')) {
    }
 }
 
+function dlinq_workshop_registration_updater($post_id){
+	$form_id = get_field('workshop_registration_form', 'option');
+	if(current_user_can('edit_posts')){	
+		$search_criteria = array(
+			    'status'        => 'active',
+			    'field_filters' => array(
+			        'mode' => 'any',
+			        array(
+			            'key'   => '6',
+			            'value' => $post_id
+			        )
+			    )
+			);
+	 	$paging = array( 'offset' => 0, 'page_size' => 100 );
+
+		// Getting the entries
+		$results = GFAPI::get_entries( $form_id, $search_criteria, null, $paging );
+		$total_reg =sizeof($results);
+		dlinq_set_registration_data($post_id, $total_reg, 'registered_total');//set total registered as custom field
+		if($results){
+			$attendance_count = intval(0);
+			
+			foreach ($results as $key => $result) {
+				$attendance_count = $key+1;//flex display hides the numbers, this seemed easier than changing that
+			}
+			dlinq_set_registration_data($post_id, $attendance_count, 'attended_total');//set total attended as custom field
+		}		
+
+	}
+	
+}
 
 // add new buttons
 // add_filter( 'mce_buttons', 'myplugin_register_buttons' );
@@ -1279,6 +1311,7 @@ function dlinq_workshop_report(){
 				
 				$event_title = $event->post_title;//get title from the event
 				$event_id = $event->ID;
+				dlinq_workshop_registration_updater($event_id);//update the stuff
 				$link = get_permalink($event_id);
 				$event_date = tribe_events_event_schedule_details( $event_id);
 				$clean_date = preg_replace('/<[^>]*>/', '', $event_date);
@@ -1294,8 +1327,6 @@ function dlinq_workshop_report(){
 		}
 	}
 			
-			
-
 }
 
 add_shortcode( 'test', 'dlinq_reminder_email' );
