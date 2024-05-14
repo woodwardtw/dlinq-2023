@@ -736,8 +736,8 @@ function dlinq_registered_people($form_id){
 				$last = $result["1.6"];
 				$email = $result["3"];
 				$attendance = $result["8"];
-				$attendance_count = ($attendance == 'Yes') ? intval($attendance_count)+1 : $attendance_count;
-				$attend_class = ($attendance == 'No') ? '' : 'present';
+				$attendance_count = ($attendance === 'Yes') ? intval($attendance_count)+1 : $attendance_count;
+				$attend_class = ($attendance === 'No') ? '' : 'present';
 				$event_title = get_the_title();
 				echo "<li class='reg' data-email='{$email}'> {$key}. 
 						<span class='reg-name'><a href='mailto:{$email}?subject={$event_title} workshop'>&nbsp;{$first} {$last}</a><div class='small-mail'>{$email}</div></span>						
@@ -748,7 +748,7 @@ function dlinq_registered_people($form_id){
 			}
 			echo "</ol></div>";
 			dlinq_set_registration_data($post_id, $attendance_count, 'attended_total');//set total attended as custom field
-
+            
 		}		
 
 	}
@@ -756,7 +756,7 @@ function dlinq_registered_people($form_id){
 }
 
 function dlinq_set_registration_data($post_id, $count, $field_name){
-	$field_count = '';//get custom field value
+	$field_count = get_post_custom_values($field_name, $post_id);//get custom field value
 	if($count != $field_count){
 		update_post_meta( $post_id, $field_name, sanitize_text_field( $count ) );
 	}
@@ -1262,14 +1262,18 @@ function dlinq_workshop_registration_updater($post_id){
 		$results = GFAPI::get_entries( $form_id, $search_criteria, null, $paging );
 		$total_reg =sizeof($results);
 		dlinq_set_registration_data($post_id, $total_reg, 'registered_total');//set total registered as custom field
-		if($results){
-			$attendance_count = intval(0);
+		$attendance_count = intval(0);
+		if($results){			
 			
 			foreach ($results as $key => $result) {
-				$attendance_count = $key+1;//flex display hides the numbers, this seemed easier than changing that
+				//var_dump($result[8]);
+				if($result[8]=== "Yes"){
+					$attendance_count = $attendance_count+1;//flex display hides the numbers, this seemed easier than changing that	
+				}
+				
 			}
-			dlinq_set_registration_data($post_id, $attendance_count, 'attended_total');//set total attended as custom field
 		}		
+		dlinq_set_registration_data($post_id, $attendance_count, 'attended_total');//set total attended as custom field
 
 	}
 	
