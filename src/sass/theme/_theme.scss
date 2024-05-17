@@ -620,8 +620,16 @@ li.reg span{
   width: 33%;
 }
 
-.small-mail {
+.small-mail{
   font-size: .9rem;
+}
+
+.delete a{
+  transition: all .3s ease;
+}
+
+.delete a:hover{
+  background-color: red;
 }
 
 .copy-alert, .delete-alert {

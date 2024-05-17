@@ -729,6 +729,7 @@ function dlinq_registered_people($form_id){
 					<button id='copy-emails' class='btn btn-dlinq'>Copy All Emails</button>
 					<ol class='reg-list' id='registered'>";
 			foreach ($results as $key => $result) {
+
 				$key = $key+1;//flex display hides the numbers, this seemed easier than changing that
 				$entry_id = $result["id"];
 				$created = substr($result["date_created"], 0, 10);//get rid of the time
@@ -739,11 +740,13 @@ function dlinq_registered_people($form_id){
 				$attendance_count = ($attendance === 'Yes') ? intval($attendance_count)+1 : $attendance_count;
 				$attend_class = ($attendance === 'No') ? '' : 'present';
 				$event_title = get_the_title();
+				$delete_key = $result["11"];
+				$delete_link = get_permalink($post_id).'?delete='.$delete_key;
 				echo "<li class='reg' data-email='{$email}'> {$key}. 
-						<span class='reg-name'><a href='mailto:{$email}?subject={$event_title} workshop'>&nbsp;{$first} {$last}</a><div class='small-mail'>{$email}</div></span>						
+						<span class='reg-name'><a href='mailto:{$email}?subject={$event_title} workshop'>&nbsp;{$first} {$last}</a><div class='small-mail'>{$email}</div></span>
+						<span class='delete'><a href='{$delete_link}'>💀delete💀</a></span>						
 						<span class='reg-date'>{$created}</span>
-						<span class='reg-state'>attended: <button class='attend {$attend_class}' data-entry='{$entry_id}' data-state='{$attendance}'>{$attendance}</button></span>
-
+						<span class='reg-state'>attended: <button class='attend {$attend_class}' data-entry='{$entry_id}' data-state='{$attendance}'>{$attendance}</button></span>						
 					</li>";
 			}
 			echo "</ol></div>";

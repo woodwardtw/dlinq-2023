@@ -15978,6 +15978,14 @@ li.reg span {
   font-size: 0.9rem;
 }
 
+.delete a {
+  transition: all 0.3s ease;
+}
+
+.delete a:hover {
+  background-color: red;
+}
+
 .copy-alert, .delete-alert {
   opacity: 1;
   animation: fadeinout 2s linear forwards;
