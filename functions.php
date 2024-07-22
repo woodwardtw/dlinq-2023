@@ -644,7 +644,10 @@ function dlinq_year_cleaner($year){
 function dlinq_event_registration(){
   global $post;
   $past = dlinq_tribe_is_past_event( $post->ID);
-  if( $past != TRUE && !has_term( 'private', 'tribe_events_cat', get_queried_object_id() )){
+  if(has_term( 'no-registration', 'tribe_events_cat', get_queried_object_id() )){
+  	echo "";
+  }
+  elseif( $past != TRUE && !has_term( 'private', 'tribe_events_cat', get_queried_object_id() )){
     echo "<button class='btn-dlinq btn-register-event' data-bs-toggle='modal' data-bs-target='#registrationModal'>Register</button>";
   } else {
   	echo "<div class='closed'><p>Registration is closed.</p></div>";
