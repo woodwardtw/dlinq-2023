@@ -644,16 +644,30 @@ function dlinq_year_cleaner($year){
 function dlinq_event_registration(){
   global $post;
   $past = dlinq_tribe_is_past_event( $post->ID);
-  if(has_term( 'no-registration', 'tribe_events_cat', get_queried_object_id() )){
+  //var_dump(get_the_terms($post->ID, 'tribe_events_cat' ));
+  //var_dump(get_the_terms($post->ID, 'tribe_events_cat'));
+  //var_dump(is_object_in_term( $post->ID, 'tribe_events_cat', 'no-registration' ));
+  //var_dump(has_term('no-registration', 'tribe_events_cat',get_queried_object_id()));
+  $terms = get_the_terms($post->ID, 'tribe_events_cat');
+  
+  if(dlinq_event_no_registration($terms, 'no-registration')){
   	echo "";
   }
-  elseif( $past != TRUE && !has_term( 'private', 'tribe_events_cat', get_queried_object_id() )){
+  elseif( $past != TRUE && !dlinq_event_no_registration($terms, 'private')){
     echo "<button class='btn-dlinq btn-register-event' data-bs-toggle='modal' data-bs-target='#registrationModal'>Register</button>";
   } else {
   	echo "<div class='closed'><p>Registration is closed.</p></div>";
   }
 }
 
+
+function dlinq_event_no_registration($terms, $cat_slug){
+	foreach ($terms as $key => $term) {
+		// code...
+		if($term->slug === $cat_slug)
+		return TRUE;
+	}
+}
 //hide button if event is past
 //from https://theeventscalendar.com/support/forums/topic/check-if-event-has-passed/
 // Usage tribe_is_past_event( $event_id )
