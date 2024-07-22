@@ -158,8 +158,7 @@ $cost  = tribe_get_formatted_cost( $event_id );
 	<!-- #tribe-events-header -->
 
 	<?php while ( have_posts() ) :  the_post(); ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>			
-
+		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>					
 			<!-- Event content -->
 			<?php do_action( 'tribe_events_single_event_before_the_content' ) ?>
 			<div class="tribe-events-single-event-description tribe-events-content">

@@ -644,7 +644,7 @@ function dlinq_year_cleaner($year){
 function dlinq_event_registration(){
   global $post;
   $past = dlinq_tribe_is_past_event( $post->ID);
-  if( $past != TRUE){
+  if( $past != TRUE && !has_term( 'private', 'tribe_events_cat', get_queried_object_id() )){
     echo "<button class='btn-dlinq btn-register-event' data-bs-toggle='modal' data-bs-target='#registrationModal'>Register</button>";
   } else {
   	echo "<div class='closed'><p>Registration is closed.</p></div>";
@@ -1337,3 +1337,16 @@ function dlinq_workshop_report(){
 }
 
 add_shortcode( 'test', 'dlinq_reminder_email' );
+
+//keep events in the private category from showing in calendar views
+add_filter( 'tribe_events_views_v2_view_repository_args', 'dlinq_exclude_events_category', 10, 3 );
+ 
+function dlinq_exclude_events_category( $repository_args, $context, $view ) {
+    // List of category slugs to be excluded
+    $excluded_categories = [
+        'private',
+    ];
+    $repository_args['category_not_in'] = $excluded_categories;
+ 
+    return $repository_args;
+}
