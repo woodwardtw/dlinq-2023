@@ -838,11 +838,22 @@ function dlinq_attendance_update() {
 }
 
 //provide future events as a drop down in the bulk enrollment form
-//TODO SETUP BULK ENROLLMENT FORM
-add_filter( 'gform_pre_render_6', 'dlinq_populate_events' );
-add_filter( 'gform_pre_validation_6', 'dlinq_populate_events' );
-add_filter( 'gform_pre_submission_filter_6', 'dlinq_populate_events' );
-add_filter( 'gform_admin_pre_render_6', 'dlinq_populate_events' );
+//TODO SETUP BULK ENROLLMENT FORM --- GET BULK FORM ID!!!
+
+add_action( 'acf/init', 'dlinq_bulk_workshop_form_loader' );
+function dlinq_bulk_workshop_form_loader(){
+	$gf_workshop_request_id = get_field('workshop_bulk_request_form', 'option');
+	$pre_render = 'gform_pre_render_' . $gf_workshop_request_id;
+	add_filter( 'gform_pre_render_' . $gf_workshop_request_id , 'dlinq_populate_events' );
+	add_filter( 'gform_pre_validation_' . $gf_workshop_request_id,'dlinq_populate_events' );
+	add_filter( 'gform_pre_submission_filter_' . $gf_workshop_request_id, 'dlinq_populate_events' );
+	add_filter( 'gform_admin_pre_render_' . $gf_workshop_request_id, 'dlinq_populate_events' );
+
+}
+// add_filter( 'gform_pre_render_6', 'dlinq_populate_events' );
+// add_filter( 'gform_pre_validation_6', 'dlinq_populate_events' );
+// add_filter( 'gform_pre_submission_filter_6', 'dlinq_populate_events' );
+// add_filter( 'gform_admin_pre_render_6', 'dlinq_populate_events' );
 
 function dlinq_populate_events( $form ) {
  
@@ -861,26 +872,38 @@ function dlinq_populate_events( $form ) {
  
         $input_id = 1;
         foreach( $posts as $post ) {
- 
-            //skipping index that are multiples of 10 (multiples of 10 create problems as the input IDs)
-            if ( $input_id % 10 == 0 ) {
-                $input_id++;
-            }
- 			$date = tribe_get_start_date($post->ID);
-            $choices[] = array( 'text' => $post->post_title . ' - ' . $date , 'value' => $post->ID );
-            $inputs[] = array( 'label' => $post->post_title, 'id' => "{$field_id}.{$input_id}" );
- 
-            $input_id++;
+			//var_dump($post->ID);
+			$terms = get_the_terms($post->ID, 'tribe_events_cat');
+			//var_dump($terms);
+			if (dlinq_event_bulk_registration($terms, 'bulk')){
+				  //skipping index that are multiples of 10 (multiples of 10 create problems as the input IDs)
+				if ( $input_id % 10 == 0 ) {
+					$input_id++;
+				}
+				$date = tribe_get_start_date($post->ID);
+				$choices[] = array( 'text' => $post->post_title . ' - ' . $date , 'value' => $post->ID );
+				$inputs[] = array( 'label' => $post->post_title, 'id' => "{$field_id}.{$input_id}" );
+	
+				$input_id++;
+
+			}
+          
         }
- 
-        $field->choices = $choices;
-        $field->inputs = $inputs;
+  		$field->choices = $choices;
+        $field->inputs = $inputs; 
+      
  
     }
  
     return $form;
 }
 
+function dlinq_event_bulk_registration($terms, $cat_slug){
+    foreach ($terms as $key => $term) {
+        if($term->slug === $cat_slug)//is it the slug we're looking for?
+        return TRUE;
+    }
+}
 
 
 
@@ -890,11 +913,12 @@ add_action( 'acf/init', 'dlinq_workshop_event_subscription' );
 
 //TO DO ACTIVATE BULK ENROLLMENT FORM CHOICE IN ************************
 function dlinq_workshop_event_subscription(){
-	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
-	//add_action( 'gform_after_submission_'. $gf_workshop_registration_id, 'after_submission_bulk_enroll', 10, 2 );
+	//$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
+	$gf_bulk_workshop_request_id = get_field('workshop_bulk_request_form', 'option');
+	add_action( 'gform_after_submission_'. $gf_bulk_workshop_request_id, 'after_submission_bulk_enroll', 10, 2 );
 }
 function after_submission_bulk_enroll( $entry, $form ) {
-	$gf_workshop_registration_id = get_field('GET BULK FORM ID!!!', 'option');//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
  	$email = rgar($entry, '3');
@@ -916,7 +940,8 @@ function after_submission_bulk_enroll( $entry, $form ) {
  			'9' => $zoom_link
  		);
  		$new_entry = GFAPI::add_entry( $entry );
- 		send_notifications( $gf_workshop_registration_id, $new_entry );
+ 		//send_notifications( $gf_workshop_registration_id, $new_entry );//can send per event but might be messier
+		//JUST SEND THE SINGLE MESSAGE ON THE BULK FORM
  	}
 }
 

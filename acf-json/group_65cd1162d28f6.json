@@ -133,6 +133,43 @@
             "placeholder": ""
         },
         {
+            "key": "field_66be12aff4a7f",
+            "label": "Workshop Bulk Request Form",
+            "name": "workshop_bulk_request_form",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Request a workshop to be run form",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "0": "",
+                "3": "Base Challenge Form",
+                "6": "Bulk event registration",
+                "9": "Catalog Course Request",
+                "10": "Catalog Refund Request",
+                "2": "Challenge one",
+                "8": "Contact DLINQ (1)",
+                "4": "poetry submission form",
+                "1": "Request form",
+                "5": "Reservation form",
+                "12": "test modal conditional",
+                "7": "Workshop request"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_65e084f9363d6",
             "label": "Administrative",
             "name": "",
@@ -300,5 +337,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1709315638
+    "modified": 1723732684
 }
