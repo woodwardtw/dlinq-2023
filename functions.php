@@ -850,16 +850,12 @@ function dlinq_bulk_workshop_form_loader(){
 	add_filter( 'gform_admin_pre_render_' . $gf_workshop_request_id, 'dlinq_populate_events' );
 
 }
-// add_filter( 'gform_pre_render_6', 'dlinq_populate_events' );
-// add_filter( 'gform_pre_validation_6', 'dlinq_populate_events' );
-// add_filter( 'gform_pre_submission_filter_6', 'dlinq_populate_events' );
-// add_filter( 'gform_admin_pre_render_6', 'dlinq_populate_events' );
 
 function dlinq_populate_events( $form ) {
- 
+	var_dump('events working');
     foreach( $form['fields'] as &$field )  {
  
-        //NOTE: replace 3 with your checkbox field id
+        //NOTE: replace 5 with your checkbox field id
         $field_id = 5;
         if ( $field->id != $field_id ) {
             continue;
@@ -872,7 +868,7 @@ function dlinq_populate_events( $form ) {
  
         $input_id = 1;
         foreach( $posts as $post ) {
-			//var_dump($post->ID);
+			var_dump($post->ID);
 			$terms = get_the_terms($post->ID, 'tribe_events_cat');
 			//var_dump($terms);
 			if (dlinq_event_bulk_registration($terms, 'bulk')){
