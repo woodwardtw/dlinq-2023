@@ -842,17 +842,18 @@ function dlinq_attendance_update() {
 
 add_action( 'acf/init', 'dlinq_bulk_workshop_form_loader' );
 function dlinq_bulk_workshop_form_loader(){
-	$gf_workshop_request_id = get_field('workshop_bulk_request_form', 'option');//get bulk form ID
-	$pre_render = 'gform_pre_render_' . $gf_workshop_request_id;
-	add_filter( 'gform_pre_render_' . $gf_workshop_request_id , 'dlinq_populate_events' );
-	add_filter( 'gform_pre_validation_' . $gf_workshop_request_id,'dlinq_populate_events' );
-	add_filter( 'gform_pre_submission_filter_' . $gf_workshop_request_id, 'dlinq_populate_events' );
-	add_filter( 'gform_admin_pre_render_' . $gf_workshop_request_id, 'dlinq_populate_events' );
+	$gf_bulk_workshop_request_id = get_field('workshop_bulk_request_form', 'option');//get bulk form ID
+	var_dump($gf_bulk_workshop_request_id);
+	$pre_render = 'gform_pre_render_' . $gf_bulk_workshop_request_id;
+	add_filter( 'gform_pre_render_' . $gf_bulk_workshop_request_id , 'dlinq_populate_events' );
+	add_filter( 'gform_pre_validation_' . $gf_bulk_workshop_request_id,'dlinq_populate_events' );
+	add_filter( 'gform_pre_submission_filter_' . $gf_bulk_workshop_request_id, 'dlinq_populate_events' );
+	add_filter( 'gform_admin_pre_render_' . $gf_bulk_workshop_request_id, 'dlinq_populate_events' );
 
 }
 
 function dlinq_populate_events( $form ) {
-	var_dump('events working');
+	//var_dump('events working');
     foreach( $form['fields'] as &$field )  {
  
         //NOTE: replace 5 with your checkbox field id
@@ -868,7 +869,7 @@ function dlinq_populate_events( $form ) {
  
         $input_id = 1;
         foreach( $posts as $post ) {
-			var_dump($post->ID);
+			//var_dump($post->ID);
 			$terms = get_the_terms($post->ID, 'tribe_events_cat');
 			//var_dump($terms);
 			if (dlinq_event_bulk_registration($terms, 'bulk')){
