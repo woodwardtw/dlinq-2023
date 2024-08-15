@@ -842,7 +842,7 @@ function dlinq_attendance_update() {
 
 add_action( 'acf/init', 'dlinq_bulk_workshop_form_loader' );
 function dlinq_bulk_workshop_form_loader(){
-	$gf_workshop_request_id = get_field('workshop_bulk_request_form', 'option');
+	$gf_workshop_request_id = get_field('workshop_bulk_request_form', 'option');//get bulk form ID
 	$pre_render = 'gform_pre_render_' . $gf_workshop_request_id;
 	add_filter( 'gform_pre_render_' . $gf_workshop_request_id , 'dlinq_populate_events' );
 	add_filter( 'gform_pre_validation_' . $gf_workshop_request_id,'dlinq_populate_events' );
