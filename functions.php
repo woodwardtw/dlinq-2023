@@ -574,7 +574,7 @@ function acf_populate_gf_forms_ids( $field ) {
 		$choices = [''];
 
 		foreach ( GFAPI::get_forms( true, false, 'title', 'ASC' ) as $form ) {
-			//var_dump($form['title']);
+			//var_dump($form['title']);			
 			$choices[ $form['id'] ] = $form['title'];
 		}
 
@@ -583,10 +583,13 @@ function acf_populate_gf_forms_ids( $field ) {
 
 	return $field;
 }
+
+//DONT FORGET TO ADD ONE FOR EACH FORM FILTER OPTION YOU NEED TO BE DYNAMIC
 add_filter( 'acf/load_field/name=form_id', 'acf_populate_gf_forms_ids' );
 add_filter( 'acf/load_field/name=contact_gravity_form', 'acf_populate_gf_forms_ids' );
 add_filter( 'acf/load_field/name=workshop_registration_form', 'acf_populate_gf_forms_ids' );
 add_filter( 'acf/load_field/name=workshop_request_form', 'acf_populate_gf_forms_ids' );
+add_filter( 'acf/load_field/name=workshop_bulk_request_form', 'acf_populate_gf_forms_ids' );
 
 function dlinq_gf_form_entry_display($form_id){
 	$search_criteria = array(
@@ -843,7 +846,7 @@ function dlinq_attendance_update() {
 add_action( 'acf/init', 'dlinq_bulk_workshop_form_loader' );
 function dlinq_bulk_workshop_form_loader(){
 	$gf_bulk_workshop_request_id = get_field('workshop_bulk_request_form', 'option');//get bulk form ID
-	var_dump($gf_bulk_workshop_request_id);
+	//var_dump($gf_bulk_workshop_request_id);
 	$pre_render = 'gform_pre_render_' . $gf_bulk_workshop_request_id;
 	add_filter( 'gform_pre_render_' . $gf_bulk_workshop_request_id , 'dlinq_populate_events' );
 	add_filter( 'gform_pre_validation_' . $gf_bulk_workshop_request_id,'dlinq_populate_events' );
