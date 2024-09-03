@@ -1392,3 +1392,45 @@ function dlinq_exclude_events_category( $repository_args, $context, $view ) {
  
     return $repository_args;
 }
+
+/*POLICY SPECIFIC*/
+
+function dlinq_last_edit($post_id = NULL){
+	$date = get_the_modified_date($post_id);
+	return "<div class='modified-date'>Last updated: {$date}</div>";
+}
+
+function dlinq_acf_maker($field_name){
+	if(get_field($field_name)){
+        $field_obj = get_field_object($field_name);
+        $id = $field_obj['name'];
+        $field_title =  $field_obj['label'];
+        $field_text = $field_obj['value']; 
+        //var_dump($field_obj);        
+        return "<h2 id='{$id}'>{$field_title}</h2>
+        <div class='policy-content'>{$field_text}</div>";
+    } 
+}
+
+function dlinq_acf_policies(){
+	$html = '';
+	if(get_field('related_internal_policies')){
+		$internal = get_field('related_internal_policies');
+		foreach ($internal as $key => $value) {
+			$title = $value->post_title;
+			echo $title;	
+		}
+	}
+	if(have_rows('related_external_policies')){
+		 while( have_rows('related_external_policies') ) : the_row();
+
+	        // Load sub field value.
+	        $title = get_sub_field('policy_title');
+	        $link = get_sub_field('policy_link');
+	        echo $title;
+	        // Do something...
+	    // End loop.
+	    endwhile;
+	}
+}
+

@@ -1,6 +1,6 @@
 <?php
 /**
- * Single topic partial template
+ * Single policy partial template
  *
  * @package Understrap
  */
@@ -13,13 +13,32 @@ defined( 'ABSPATH' ) || exit;
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
 	<div class="topic-row row">
-        <div class="col-md-5">
-			<?php the_field('topic_summary'); ?>
+        <div class="col-md-8 offset-md-2">
+        	<?php echo dlinq_last_edit();?>
+			<?php //the_field('topic_summary'); ?>
+			<?php echo dlinq_acf_maker('purpose'); ?>
+        </div>        
+	</div>
+	<div class="topic-row row">
+		<div class="col-md-8 offset-md-2">
+			<?php echo dlinq_acf_maker('scope'); ?>
         </div>
-        <div class="col-md-5 offset-md-2">
-			<?php dlinq_topic_menu(); ?>
+    </div>
+    <div class="topic-row row">
+		<div class="col-md-8 offset-md-2">
+			<?php echo dlinq_acf_maker('exclusions'); ?>
         </div>
-	</div><!-- .entry-content -->
+    </div>
+    <div class="topic-row row">
+		<div class="col-md-8 offset-md-2">
+			<?php echo dlinq_acf_maker('policy'); ?>
+        </div>
+    </div>
+    <div class="topic-row row">
+		<div class="col-md-8 offset-md-2">
+			<?php echo dlinq_acf_policies(); ?>
+        </div>       
+    </div>
 	<?php get_template_part( 'loop-templates/content', 'flexcontent' );?>
   
 	<footer class="entry-footer">
