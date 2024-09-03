@@ -1418,7 +1418,8 @@ function dlinq_acf_policies(){
 		$internal = get_field('related_internal_policies');
 		foreach ($internal as $key => $value) {
 			$title = $value->post_title;
-			echo $title;	
+			$url = get_permalink($value->ID);
+			$html .= "<li><a href='{$url}'>{$title}</a></li>";	
 		}
 	}
 	if(have_rows('related_external_policies')){
@@ -1426,11 +1427,14 @@ function dlinq_acf_policies(){
 
 	        // Load sub field value.
 	        $title = get_sub_field('policy_title');
-	        $link = get_sub_field('policy_link');
-	        echo $title;
+	        $url = get_sub_field('policy_link');
+	        $html .= "<li><a href='{$url}'>{$title}</a></li>";	
 	        // Do something...
 	    // End loop.
 	    endwhile;
+	}
+	if($html != ''){
+		return "<h2 id='related-policies'>Related policies</h2><ul>{$html}</ul>";
 	}
 }
 
