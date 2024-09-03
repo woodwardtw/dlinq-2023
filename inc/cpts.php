@@ -407,3 +407,70 @@ function create_resource_cpt() {
   $wp_rewrite->flush_rules();
 }
 add_action( 'init', 'create_resource_cpt', 0 );
+
+
+//policy custom post type
+
+// Register Custom Post Type policy
+// Post Type Key: policy
+
+function create_policy_cpt() {
+
+  $labels = array(
+    'name' => __( 'Policies', 'Post Type General Name', 'textdomain' ),
+    'singular_name' => __( 'Policy', 'Post Type Singular Name', 'textdomain' ),
+    'menu_name' => __( 'Policy', 'textdomain' ),
+    'name_admin_bar' => __( 'Policy', 'textdomain' ),
+    'archives' => __( 'Policy Archives', 'textdomain' ),
+    'attributes' => __( 'Policy Attributes', 'textdomain' ),
+    'parent_item_colon' => __( 'Policy:', 'textdomain' ),
+    'all_items' => __( 'All Policies', 'textdomain' ),
+    'add_new_item' => __( 'Add New Policy', 'textdomain' ),
+    'add_new' => __( 'Add New', 'textdomain' ),
+    'new_item' => __( 'New Policy', 'textdomain' ),
+    'edit_item' => __( 'Edit Policy', 'textdomain' ),
+    'update_item' => __( 'Update Policy', 'textdomain' ),
+    'view_item' => __( 'View Policy', 'textdomain' ),
+    'view_items' => __( 'View Policies', 'textdomain' ),
+    'search_items' => __( 'Search Policies', 'textdomain' ),
+    'not_found' => __( 'Not found', 'textdomain' ),
+    'not_found_in_trash' => __( 'Not found in Trash', 'textdomain' ),
+    'featured_image' => __( 'Featured Image', 'textdomain' ),
+    'set_featured_image' => __( 'Set featured image', 'textdomain' ),
+    'remove_featured_image' => __( 'Remove featured image', 'textdomain' ),
+    'use_featured_image' => __( 'Use as featured image', 'textdomain' ),
+    'insert_into_item' => __( 'Insert into policy', 'textdomain' ),
+    'uploaded_to_this_item' => __( 'Uploaded to this policy', 'textdomain' ),
+    'items_list' => __( 'Policy list', 'textdomain' ),
+    'items_list_navigation' => __( 'Policy list navigation', 'textdomain' ),
+    'filter_items_list' => __( 'Filter Policy list', 'textdomain' ),
+  );
+  $args = array(
+    'label' => __( 'policy', 'textdomain' ),
+    'description' => __( '', 'textdomain' ),
+    'labels' => $labels,
+    'menu_icon' => '',
+    'supports' => array('title', 'editor', 'revisions', 'author', 'trackbacks', 'custom-fields', 'thumbnail',),
+    'taxonomies' => array('category', 'post_tag'),
+    'public' => true,
+    'show_ui' => true,
+    'show_in_menu' => true,
+    'menu_position' => 5,
+    'show_in_admin_bar' => true,
+    'show_in_nav_menus' => true,
+    'can_export' => true,
+    'has_archive' => true,
+    'hierarchical' => true,
+    'exclude_from_search' => false,
+    'show_in_rest' => true,
+    'publicly_queryable' => true,
+    'capability_type' => 'post',
+    'menu_icon' => 'dashicons-universal-access-alt',
+  );
+  register_post_type( 'policy', $args );
+  
+  // flush rewrite rules because we changed the permalink structure
+  global $wp_rewrite;
+  $wp_rewrite->flush_rules();
+}
+add_action( 'init', 'create_policy_cpt', 0 );
