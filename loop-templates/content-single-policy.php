@@ -9,31 +9,15 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 		<?php dlinq_topic_events($post->post_name);?>
+		<?php echo dlinq_last_edit();?>
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<div class="topic-row row">
-        <div class="col-md-8 offset-md-2">
-        	<?php echo dlinq_last_edit();?>
-			<?php //the_field('topic_summary'); ?>
-			<?php echo dlinq_acf_maker('purpose'); ?>
-        </div>        
-	</div>
-	<div class="topic-row row">
-		<div class="col-md-8 offset-md-2">
-			<?php echo dlinq_acf_maker('scope'); ?>
-        </div>
-    </div>
-    <div class="topic-row row">
-		<div class="col-md-8 offset-md-2">
-			<?php echo dlinq_acf_maker('exclusions'); ?>
-        </div>
-    </div>
-    <div class="topic-row row">
-		<div class="col-md-8 offset-md-2">
-			<?php echo dlinq_acf_maker('policy'); ?>
-        </div>
-    </div>
+	<?php echo dlinq_acf_maker('purpose'); ?>
+	<?php echo dlinq_acf_maker('scope'); ?>
+	<?php echo dlinq_acf_maker('exclusions'); ?>
+	<?php echo dlinq_acf_maker('policy'); ?>
+    
     <div class="topic-row row">
 		<div class="col-md-8 offset-md-2">
 			<?php echo dlinq_acf_policies(); ?>

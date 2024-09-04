@@ -1401,14 +1401,18 @@ function dlinq_last_edit($post_id = NULL){
 }
 
 function dlinq_acf_maker($field_name){
-	if(get_field($field_name)){
+	if(get_field($field_name)){		
         $field_obj = get_field_object($field_name);
         $id = $field_obj['name'];
         $field_title =  $field_obj['label'];
         $field_text = $field_obj['value']; 
         //var_dump($field_obj);        
-        return "<h2 id='{$id}'>{$field_title}</h2>
-        <div class='policy-content'>{$field_text}</div>";
+        return "<div class='topic-row row'>
+					<div class='col-md-8 offset-md-2'>
+						<h2 id='{$id}'>{$field_title}</h2>
+        				<div class='policy-content'>{$field_text}</div>
+        			</div>
+        		</div>";
     } 
 }
 
