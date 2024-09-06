@@ -46,6 +46,8 @@ defined( 'ABSPATH' ) || exit;
 			<?php echo dlinq_acf_policies(); ?>
         </div>       
     </div>
+    <?php echo dlinq_policy_changes();?>
+    
 	<?php get_template_part( 'loop-templates/content', 'flexcontent' );?>
   
 	<footer class="entry-footer">

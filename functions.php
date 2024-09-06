@@ -1480,3 +1480,36 @@ function dlinq_policy_definitions(){
 	}
 	return $html ."</div></div>";
 }
+
+
+function dlinq_policy_changes(){
+	$html = '';
+	$canges = get_field('summary_of_changes');
+	if( have_rows('summary_of_changes') ):
+		$html = "<div class='topic-row row'>
+					<div class='col-md-5 offset-md-2'>
+						<h2 id='definitions'>Summary of changes</h2>";
+	    // Loop through rows.
+	    while( have_rows('summary_of_changes') ) : the_row();
+
+	        // Load sub field value.
+	        $date = get_sub_field('change_date');
+	        $summary = get_sub_field('change_summary');
+	        $html .= "
+	        		<div class='change-event'>
+	        			<h3>{$date}</h3>
+	        			{$summary}
+	        		</div>
+	        ";
+	        // Do something...
+	    // End loop.
+	    endwhile;
+	    return $html . "</div></div>";
+		// No value.
+		else :
+		    // Do something...
+		endif;
+		
+}
+
+
