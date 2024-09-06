@@ -17,13 +17,21 @@ defined( 'ABSPATH' ) || exit;
 			<div class="senior-admin detail">				
 				Responsible senior administrator: <?php the_field('responsible_senior_administrator');?>	
 			</div>
-			<div class="senior-admin detail">
+			<div class="policy-contact detail">
 				Policy contact: <?php the_field('policy_contact');?>	
 			</div>
 		</div>
 		<div class='col-md-4 policy-details'>
-			<h2>Relevant dates</h2>			
-			Last updated: <?php echo dlinq_last_edit();?>
+			<h2>Relevant dates</h2>
+			<div class="date detail">			
+				Effective date: <?php the_field('effective_date');?>
+			</div>	
+			<div class="date detail">			
+				Last updated: <?php echo dlinq_last_edit();?>
+			</div>
+			<div class="date detail">			
+				Next review date: <?php echo dlinq_policy_review_date();?>	
+			</div>
 		</div>
 
 	</div>

@@ -8,7 +8,7 @@
             "name": "responsible_senior_administrator",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "The senior administrator who serves as the sponsor and\/or steward of the policy.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -30,7 +30,7 @@
             "name": "policy_contact",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "The position or office that should be contacted for any questions about the policy.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -52,7 +52,7 @@
             "name": "effective_date",
             "aria-label": "",
             "type": "date_picker",
-            "instructions": "",
+            "instructions": "Date of issuance.  When revising a long-established policy, it may not be necessary to complete this field.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -69,10 +69,10 @@
         {
             "key": "field_66db060b182c8",
             "label": "Next Review Date",
-            "name": "effective_date_copy",
+            "name": "next_review_date",
             "aria-label": "",
             "type": "date_picker",
-            "instructions": "",
+            "instructions": "Date policy should be reviewed next; if applicable.  If unknown, leave blank and TBD will be printed.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -88,11 +88,11 @@
         },
         {
             "key": "field_66d6fe065c6e3",
-            "label": "Purpose",
+            "label": "Policy statement",
             "name": "purpose",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "A brief summary (3-5 sentences) that states the scope of the policy and explains what legal, regulatory, financial, operational, accreditation, technological requirements or other expectations this Policy addresses.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -401,5 +401,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1725632745
+    "modified": 1725641886
 }

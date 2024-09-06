@@ -1444,3 +1444,10 @@ function dlinq_acf_policies(){
 	}
 }
 
+function dlinq_policy_review_date(){
+	if(get_field('next_review_date')){
+		return get_field('next_review_date');
+	} else {
+		return 'TBD';
+	}
+}
