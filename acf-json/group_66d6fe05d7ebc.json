@@ -114,7 +114,7 @@
             "name": "scope",
             "aria-label": "",
             "type": "radio",
-            "instructions": "",
+            "instructions": "Indicate under what conditions this applies to individuals",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -142,7 +142,7 @@
             "name": "exclusions",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "List all exclusions (groups, position titles, funding, etc.) to the policy.  Do not leave this field blank.  If there are no exclusions then enter in “NA” and it will be assumed that the policy applies across the entire institution.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -164,7 +164,7 @@
             "name": "definitions",
             "aria-label": "",
             "type": "post_object",
-            "instructions": "",
+            "instructions": "Define the key and unique terms used within the policy to ensure that all readers of the policy interpret its meaning using the same criteria.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -401,5 +401,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1725641886
+    "modified": 1725642109
 }

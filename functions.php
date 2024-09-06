@@ -1451,3 +1451,26 @@ function dlinq_policy_review_date(){
 		return 'TBD';
 	}
 }
+
+function dlinq_policy_definitions(){
+	$html = '';
+	$definitions = get_field('definitions');
+	if($definitions != ''){
+		$html = "<div class='topic-row row'>
+					<div class='col-md-5 offset-md-2'>
+						<h2 id='definitions'>Definitions</h2>";
+		foreach ($definitions as $key => $definition) {
+			// code...
+			$post = get_post($definition); // specific post
+			$the_content = apply_filters('the_content', $post->post_content);
+			$title = $post->post_title;
+			$html .= "<div class='definition'>
+						<h3 class='term'>{$title}</h3>
+						{$the_content}
+					</div>";
+		}
+	}
+	return $html ."</div></div>";
+}
+
+

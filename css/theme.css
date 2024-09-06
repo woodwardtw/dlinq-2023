@@ -16283,6 +16283,12 @@ li.reg span {
   color: #fff;
 }
 
+.policy-details .detail {
+  font-size: 1.1rem;
+  padding: 10px 0;
+  border-bottom: 1px solid #efefef;
+}
+
 @keyframes pulse {
   0% {
     transform: scale(0.95);
