@@ -1397,7 +1397,7 @@ function dlinq_exclude_events_category( $repository_args, $context, $view ) {
 
 function dlinq_last_edit($post_id = NULL){
 	$date = get_the_modified_date($post_id);
-	return "<div class='modified-date'>Last updated: {$date}</div>";
+	return $date;
 }
 
 function dlinq_acf_maker($field_name){
@@ -1415,6 +1415,8 @@ function dlinq_acf_maker($field_name){
         		</div>";
     } 
 }
+
+
 
 function dlinq_acf_policies(){
 	$html = '';
