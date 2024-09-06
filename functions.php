@@ -1459,9 +1459,17 @@ function dlinq_policy_definitions(){
 		$html = "<div class='topic-row row'>
 					<div class='col-md-5 offset-md-2'>
 						<h2 id='definitions'>Definitions</h2>";
-		foreach ($definitions as $key => $definition) {
+	
+		$posts = get_posts(array(
+		 'post__in' => $definitions,
+		 'post_type' => 'definition',
+		 'posts_per_page' => -1,
+		 'post_status' => 'publish',
+		 'order' => 'ASC',
+		 'orderby' => 'title'		 
+		));
+		foreach ($posts as $key => $post) {
 			// code...
-			$post = get_post($definition); // specific post
 			$the_content = apply_filters('the_content', $post->post_content);
 			$title = $post->post_title;
 			$html .= "<div class='definition'>
@@ -1472,5 +1480,3 @@ function dlinq_policy_definitions(){
 	}
 	return $html ."</div></div>";
 }
-
-
