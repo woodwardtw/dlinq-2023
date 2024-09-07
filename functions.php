@@ -1440,7 +1440,7 @@ function dlinq_acf_policies(){
 	    endwhile;
 	}
 	if($html != ''){
-		return "<h2 id='related-policies'>Related policies</h2><ul>{$html}</ul>";
+		return "<h2 id='related-policies'>Related forms and information</h2><ul>{$html}</ul>";
 	}
 }
 
