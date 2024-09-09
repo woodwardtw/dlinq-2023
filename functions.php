@@ -1357,7 +1357,7 @@ function dlinq_workshop_report(){
 					   'end_date'   => $end,
 					   'post_status', array('private', 'publish'),
 					   'meta_query' => array(
-							'relation' => 'OR',
+							'relation' => 'AND',
 							array(
 								'key'     => '_EventHideFromUpcoming',
 								'compare' => '=',  // "NOT EXIST" might work, though this makes more logical sense to me
