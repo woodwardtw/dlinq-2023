@@ -1347,8 +1347,8 @@ function dlinq_workshop_report(){
 	
 	//get current date and add 86400 seconds
 	$current_year = date("Y");
-	$start = $current_year . '-08-01 00:01';
-	$end = ($current_year+1) . '-08-31 23:59';
+	$start = $current_year . '-07-01 00:01';
+	$end = ($current_year+1) . '-07-31 23:59';
 
 	//get Modern Tribe events that occur on current date +24 hrs from the events calendar
 	$year_events = tribe_get_events( [
