@@ -12,7 +12,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "30",
+                "width": "20",
                 "class": "",
                 "id": ""
             },
@@ -24,6 +24,7 @@
             "default_value": [],
             "return_format": "value",
             "allow_custom": 0,
+            "allow_in_bindings": 1,
             "layout": "vertical",
             "toggle": 0,
             "save_custom": 0,
@@ -39,12 +40,13 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "40",
                 "class": "",
                 "id": ""
             },
             "relevanssi_exclude": 0,
             "default_value": "",
+            "allow_in_bindings": 1,
             "placeholder": ""
         },
         {
@@ -53,7 +55,7 @@
             "name": "attendance_limit",
             "aria-label": "",
             "type": "number",
-            "instructions": "",
+            "instructions": "Prevent registrations beyond this number.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -65,8 +67,31 @@
             "default_value": "",
             "min": "",
             "max": "",
+            "allow_in_bindings": 1,
             "placeholder": "",
             "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_66df4331f54f9",
+            "label": "Classroom Attendance Number",
+            "name": "classroom_attendance_number",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "For when you don't take signups but want attendance numbers",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
             "prepend": "",
             "append": ""
         },
@@ -173,5 +198,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1709755153
+    "modified": 1725907878
 }

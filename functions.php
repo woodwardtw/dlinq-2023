@@ -1366,6 +1366,11 @@ function dlinq_workshop_report(){
 				$clean_date = preg_replace('/<[^>]*>/', '', $event_date);
 				$registered = get_post_meta($event_id, 'registered_total', TRUE);
 				$attended = get_post_meta($event_id, 'attended_total', TRUE);
+				if(get_field('classroom_attendance_number',$event_id)){
+					$attendance = get_field('classroom_attendance_number',$event_id);
+					$registered = 'N/A';
+					$attended = $attendance;
+				}
 				//may need to run the function that sets the reg and attended prior to display per post. .. worry about load though
 				echo "<tr>
 						<td><a href='{$link}'>{$event_title}</a></td>
