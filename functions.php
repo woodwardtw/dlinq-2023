@@ -1352,10 +1352,22 @@ function dlinq_workshop_report(){
 
 	//get Modern Tribe events that occur on current date +24 hrs from the events calendar
 	$year_events = tribe_get_events( [
-					   'posts_per_page' => 500,
+					   'posts_per_page' => -1,
 					   'start_date'   => $start,
 					   'end_date'   => $end,
-					   'post_status', array('private', 'publish')
+					   'post_status', array('private', 'publish'),
+					   'meta_query' => array(
+							'relation' => 'OR',
+							array(
+								'key'     => '_EventHideFromUpcoming',
+								'compare' => '=',  // "NOT EXIST" might work, though this makes more logical sense to me
+								'value' => 'yes',
+							),
+							array(
+								'key'     => '_EventHideFromUpcoming',
+								'compare' => 'NOT EXIST',
+							),
+						),
 					] );
 	if($year_events){		
 		foreach ($year_events as $key => $event) {		
