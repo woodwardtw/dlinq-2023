@@ -1352,6 +1352,7 @@ function dlinq_workshop_report(){
 
 	//get Modern Tribe events that occur on current date +24 hrs from the events calendar
 	$year_events = tribe_get_events( [
+					   'posts_per_page' => 500,
 					   'start_date'   => $start,
 					   'end_date'   => $end,
 					] );
