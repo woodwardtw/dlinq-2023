@@ -868,14 +868,25 @@ function dlinq_populate_events( $form ) {
         // you can add additional parameters here to alter the posts that are retrieved
         // more info: http://codex.wordpress.org/Template_Tags/get_posts
         //CONSIDER USING THE TRIBES EVENT LOOP INSTEAD
-        $posts = get_posts( 'numberposts=-1&post_status=publish&post_type=tribe_events&order=ASC&orderby=date' );
- 
+        // $posts = get_posts( 'numberposts=22&post_status=publish&post_type=tribe_events&order=ASC&orderby=date' );
+ 		$posts = tribe_get_events( [
+			   'posts_per_page' => 10,
+			   'tax_query' => array( // (array) - use taxonomy parameters (available with Version 3.1).
+				    'relation' => 'AND', // (string) - The logical relationship between each inner taxonomy array when there is more than one. Possible values are 'AND', 'OR'. Do not use with a single inner taxonomy array. Default value is 'AND'.
+				    array(
+				      'taxonomy' => 'tribe_events_cat', // (string) - Taxonomy.
+				      'field' => 'slug', // (string) - Select taxonomy term by Possible values are 'term_id', 'name', 'slug' or 'term_taxonomy_id'. Default value is 'term_id'.
+				      'terms' => array( 'bulk' ), // (int/string/array) - Taxonomy term(s).
+				      'operator' => 'IN' // (string) - Operator to test. Possible values are 'IN', 'NOT IN', 'AND', 'EXISTS' and 'NOT EXISTS'. Default value is 'IN'.
+				    ),	
+				)		   
+			] );
+
         $input_id = 1;
         foreach( $posts as $post ) {
 			//var_dump($post->ID);
 			$terms = get_the_terms($post->ID, 'tribe_events_cat');
 			//var_dump($terms);
-			if (dlinq_event_bulk_registration($terms, 'bulk')){
 				  //skipping index that are multiples of 10 (multiples of 10 create problems as the input IDs)
 				if ( $input_id % 10 == 0 ) {
 					$input_id++;
@@ -888,7 +899,7 @@ function dlinq_populate_events( $form ) {
 
 			}
           
-        }
+        
   		$field->choices = $choices;
         $field->inputs = $inputs; 
       
@@ -898,11 +909,13 @@ function dlinq_populate_events( $form ) {
     return $form;
 }
 
-function dlinq_event_bulk_registration($terms, $cat_slug){
-    foreach ($terms as $key => $term) {
-        if($term->slug === $cat_slug)//is it the slug we're looking for?
-        return TRUE;
-    }
+function dlinq_event_bulk_registration($post_id){
+	if(has_term('bulk','tribe_events_cat', $post_id)){
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+    
 }
 
 
