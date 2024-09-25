@@ -665,11 +665,16 @@ function dlinq_event_registration(){
 
 
 function dlinq_event_no_registration($terms, $cat_slug){
-	foreach ($terms as $key => $term) {
-		// code...
-		if($term->slug === $cat_slug)
-		return TRUE;
+	if($terms){
+		foreach ($terms as $key => $term) {
+			// code...
+			if($term->slug === $cat_slug)
+			return TRUE;
+		}
+	} else {
+		return FALSE;
 	}
+	
 }
 //hide button if event is past
 //from https://theeventscalendar.com/support/forums/topic/check-if-event-has-passed/
@@ -1392,7 +1397,11 @@ function dlinq_workshop_report(){
 				$event_date = tribe_events_event_schedule_details( $event_id);
 				$clean_date = preg_replace('/<[^>]*>/', '', $event_date);
 				$registered = get_post_meta($event_id, 'registered_total', TRUE);
-				$attended = get_post_meta($event_id, 'attended_total', TRUE);
+				if(get_post_meta($event_id, 'attended_total', TRUE) !==''){
+					$attended = get_post_meta($event_id, 'attended_total', TRUE);
+				} else {
+					$attended = 0;
+				}
 				if(get_field('classroom_attendance_number',$event_id)){
 					$attendance = get_field('classroom_attendance_number',$event_id);
 					$registered = 'N/A';
