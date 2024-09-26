@@ -668,8 +668,9 @@ function dlinq_event_no_registration($terms, $cat_slug){
 	if($terms){
 		foreach ($terms as $key => $term) {
 			// code...
-			if($term->slug === $cat_slug)
-			return TRUE;
+			if($term->slug === $cat_slug){
+				return TRUE;
+			}
 		}
 	} else {
 		return FALSE;
@@ -890,7 +891,7 @@ function dlinq_populate_events( $form ) {
         $input_id = 1;
         foreach( $posts as $post ) {
 			//var_dump($post->ID);
-			$terms = get_the_terms($post->ID, 'tribe_events_cat');
+			//$terms = get_the_terms($post->ID, 'tribe_events_cat');
 			//var_dump($terms);
 				  //skipping index that are multiples of 10 (multiples of 10 create problems as the input IDs)
 				if ( $input_id % 10 == 0 ) {
@@ -914,14 +915,16 @@ function dlinq_populate_events( $form ) {
     return $form;
 }
 
-function dlinq_event_bulk_registration($post_id){
-	if(has_term('bulk','tribe_events_cat', $post_id)){
-		return TRUE;
-	} else {
-		return FALSE;
-	}
+
+//DOESN'T WORK AND I DON'T KNOW WHY
+// function dlinq_event_bulk_registration($post_id){
+// 	if(has_term('bulk','tribe_events_cat', $post_id)){
+// 		return TRUE;
+// 	} else {
+// 		return FALSE;
+// 	}
     
-}
+// }
 
 
 

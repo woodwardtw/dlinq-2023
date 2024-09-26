@@ -242,7 +242,15 @@ $cost  = tribe_get_formatted_cost( $event_id );
       </div>
       <div class="modal-body">
        <?php
-          $gform_id = get_field('workshop_registration_form', 'option');
+       		 global $post;       		
+       		 //$bulk = dlinq_event_bulk_registration($post->ID);
+       		 $terms = get_the_terms($post->ID,'tribe_events_cat');
+       		 $bulk = dlinq_event_no_registration($terms,'bulk');
+       		if($bulk === TRUE){
+       			$gform_id = get_field('workshop_bulk_request_form', 'option');//show bulk enrollment form
+       		} else {
+	       		$gform_id = get_field('workshop_registration_form', 'option');//show regular form       			
+       		}
        		$values = array(
        					'event_name' => get_the_title(),
        					'event_id' => get_the_ID(),
