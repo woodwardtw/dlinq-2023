@@ -928,14 +928,13 @@ function dlinq_populate_events( $form ) {
 
 
 
-//For bulk enrollment, loop FORM ID 6 and FIELD ID 5 to do an enrollment for each selection and put it in FORM ID 5
-//NOTE THAT ALL THOSE IDS MIGHT CHANGE IN MIGRATION***********
 add_action( 'acf/init', 'dlinq_workshop_event_subscription' );
 
 //TO DO ACTIVATE BULK ENROLLMENT FORM CHOICE IN ************************
 function dlinq_workshop_event_subscription(){
 	//$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 	$gf_bulk_workshop_request_id = get_field('workshop_bulk_request_form', 'option');
+	write_log($gf_bulk_workshop_request_id);
 	add_action( 'gform_after_submission_'. $gf_bulk_workshop_request_id, 'after_submission_bulk_enroll', 10, 2 );
 }
 function after_submission_bulk_enroll( $entry, $form ) {
