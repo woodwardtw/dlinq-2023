@@ -943,7 +943,7 @@ function after_submission_bulk_enroll( $entry, $form ) {
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
  	$email = rgar($entry, '3');
- 	$events = rs_gf_get_checked_boxes( $entry,  $gf_workshop_registration_id );
+ 	$events = rs_gf_get_checked_boxes( $entry,  5 );
  	write_log($events);
  	foreach ($events as $key => $event_id) {
  		$event_id = intval($event_id);
