@@ -939,14 +939,16 @@ function dlinq_workshop_event_subscription(){
 	add_action( 'gform_after_submission_'. $gf_bulk_workshop_request_id, 'after_submission_bulk_enroll', 10, 2 );
 }
 function after_submission_bulk_enroll( $entry, $form ) {
+	write_log('bulk after submission ran');
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
  	$email = rgar($entry, '3');
  	$events = rs_gf_get_checked_boxes( $entry,  $gf_workshop_registration_id );
- 	//var_dump($events);
+ 	write_log($events);
  	foreach ($events as $key => $event_id) {
  		$event_id = intval($event_id);
+ 		write_log($event_id);
  		// code...
  		$event_name = get_the_title($event_id);
  		$zoom_link = get_field('zoom_link', $event_id);
