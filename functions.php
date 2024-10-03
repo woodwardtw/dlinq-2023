@@ -1000,8 +1000,10 @@ function dlinq_check_to_delete(){
 			);
 			$entry = GFAPI::get_entries($gf_workshop_registration_id, $search_criteria);
 			if(sizeof($entry)>0){
-				$entry_id = $entry[0]['id'];			
-				GFAPI::delete_entry( $entry_id );//maybe we don't want to delete this? mark as deleted instead?
+				$entry_id = $entry[0]['id'];
+				GFAPI::update_entry_field($entry_id, 8,'Canceled');			
+				//GFAPI::delete_entry( $entry_id );//maybe we don't want to delete this? mark as deleted instead?
+
 				echo "<div class='notification delete-alert'>You have removed your reservation. Thank you.</div>";
 			}			
 		}
