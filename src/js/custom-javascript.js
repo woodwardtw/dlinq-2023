@@ -8,6 +8,7 @@ window.onload = function() {
   }	
 	dlinqAttendance();//what is the problem?
 	dlinqEmailButton();//email copy button for events
+	deleteByHumanHand();
 };
 
 //SMOOTH SCROLL
@@ -96,7 +97,7 @@ particlesJS("particles-js", {
 });
 
 
-//REGISTRATION
+//REGISTRATION ****
 function dlinqAttendance(){
 	if(document.querySelector('.attend')){
 		dlinqShowedUp();
@@ -105,23 +106,24 @@ function dlinqAttendance(){
 		  button.addEventListener('click', () => {
 		    //alert("forEach worked");
 		   // alert(button.dataset.state);
-		    jQuery.ajax({
-	        type: "POST",
-	        url: dlinq_attendance_update.ajax_url,
-	        data: {
-	            action: 'dlinq_attendance_update',
-	            // add your parameters here
-	            entry_id: button.dataset.entry,
-	      			entry_state: button.dataset.state,
-	      			nonce : dlinq_attendance_update.nonce,
-	        },
-	        success: function (output) {
-	           button.classList.toggle('present');//add or remove class
-	           button.innerHTML = button.innerHTML == 'No' ? 'Yes' : 'No';//change button text
-	           button.dataset.state = button.dataset.state  == 'No' ? 'Yes' : 'No';//change data attribute
-	           dlinqShowedUp();
-	        }
-        });
+		  			jQuery.ajax({
+			        type: "POST",
+			        url: dlinq_attendance_update.ajax_url,
+			        data: {
+			            action: 'dlinq_attendance_update',
+			            // add your parameters here
+			            entry_id: button.dataset.entry,
+			      			entry_state: button.dataset.state,
+			      			nonce : dlinq_attendance_update.nonce,
+			        },
+			        success: function (output) {
+			           button.classList.toggle('present');//add or remove class
+			           button.innerHTML = button.innerHTML == 'No' ? 'Yes' : 'No';//change button text
+			           button.dataset.state = button.dataset.state  == 'No' ? 'Yes' : 'No';//change data attribute
+			           dlinqShowedUp();
+			        }
+		        });
+		    
 		  });
 		});
 	}
@@ -167,3 +169,15 @@ function dlinqGatherEmails(){
 }
 
 
+function deleteByHumanHand(){
+	if (window.location) {
+		let newUrl = new URL(window.location.href);
+		let params = new URLSearchParams(newUrl.search);
+		// newUrl = params.set("ok", "yes");
+		// window.location.replace(newUrl);		
+
+		if(window.confirm('Delete   ?')){
+			alert('foo')
+		}
+	}
+}

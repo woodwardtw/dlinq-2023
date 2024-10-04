@@ -6129,6 +6129,7 @@
     }
     dlinqAttendance(); //what is the problem?
     dlinqEmailButton(); //email copy button for events
+    deleteByHumanHand();
   };
 
   //SMOOTH SCROLL
@@ -6271,7 +6272,7 @@
     retina_detect: true
   });
 
-  //REGISTRATION
+  //REGISTRATION ****
   function dlinqAttendance() {
     if (document.querySelector('.attend')) {
       dlinqShowedUp();
@@ -6336,6 +6337,18 @@
     const cleanEmails = allEmails.join("; ");
     navigator.clipboard.writeText(cleanEmails);
     document.querySelector('#copy-emails').insertAdjacentHTML('afterEnd', '<div class="copy-alert">copied</div>');
+  }
+  function deleteByHumanHand() {
+    if (window.location) {
+      let newUrl = new URL(window.location.href);
+      new URLSearchParams(newUrl.search);
+      // newUrl = params.set("ok", "yes");
+      // window.location.replace(newUrl);		
+
+      if (window.confirm('Delete   ?')) {
+        alert('foo');
+      }
+    }
   }
 
   exports.Alert = Alert;
