@@ -171,13 +171,15 @@ function dlinqGatherEmails(){
 
 function deleteByHumanHand(){
 	if (window.location) {
-		let newUrl = new URL(window.location.href);
+		var newUrl = new URL(window.location.href);
 		let params = new URLSearchParams(newUrl.search);
-		// newUrl = params.set("ok", "yes");
+		//add check for ok that prevents running repeat check
 		// window.location.replace(newUrl);		
 
-		if(window.confirm('Delete   ?')){
-			alert('foo')
+		if(window.confirm('Delete?')){
+			//alert('foo');
+			//newUrl = params.set("ok", "yes");
+		  window.location.replace(newUrl+'&ok=yes');
 		}
 	}
 }
