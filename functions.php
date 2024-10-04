@@ -987,7 +987,8 @@ function dlinq_check_to_delete(){
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 	if( 'tribe_events' == get_post_type()){
 		if(isset($_GET["delete"])){
-			$passcode= $_GET["delete"];
+			$passcode = $_GET["delete"];
+			$humanOk = $_GET['ok'];
 			$search_criteria = array(
 			    'status'        => 'active',
 			    'field_filters' => array(
@@ -999,7 +1000,8 @@ function dlinq_check_to_delete(){
 			    )
 			);
 			$entry = GFAPI::get_entries($gf_workshop_registration_id, $search_criteria);
-			if(sizeof($entry)>0){
+			//var_dump($humanOk);
+			if(sizeof($entry)>0 && $humanOk != NULL){
 				$entry_id = $entry[0]['id'];
 				GFAPI::update_entry_field($entry_id, 8,'Canceled');			
 				//GFAPI::delete_entry( $entry_id );//maybe we don't want to delete this? mark as deleted instead?
