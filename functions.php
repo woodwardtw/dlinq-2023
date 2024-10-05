@@ -1004,7 +1004,7 @@ function dlinq_check_to_delete(){
 			if(sizeof($entry)>0 && $humanOk != NULL){
 				$entry_id = $entry[0]['id'];
 				GFAPI::update_entry_field($entry_id, 8,'Canceled');			
-				//GFAPI::delete_entry( $entry_id );//maybe we don't want to delete this? mark as deleted instead?
+				//GFAPI::delete_entry( $entry_id );//turns out we don't want to delete this. mark as canceled instead
 
 				echo "<div class='notification delete-alert'>You have removed your reservation. Thank you.</div>";
 			}			
