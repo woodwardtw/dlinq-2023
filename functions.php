@@ -8,6 +8,7 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+
 // UnderStrap's includes directory.
 $understrap_inc_dir = 'inc';
 
@@ -1023,7 +1024,6 @@ if ( ! wp_next_scheduled( 'dlinq_reminder_email' ) ) {
 add_action( 'dlinq_reminder_email', 'dlinq_reminder_email' );
 
 
-
 function dlinq_reminder_email(){
 	//var_dump(strtotime('13:34:00'));
 	//get the reservation form ID from the ACF options field
@@ -1081,8 +1081,6 @@ function dlinq_reminder_email(){
 
 }
 
-add_shortcode( 'test', 'dlinq_reminder_email' );
-
 
 function dlinq_send_reminder_email($to_email, $event_name, $event_date, $location, $delete_block){
 	$to = $to_email;
@@ -1103,6 +1101,89 @@ function dlinq_event_email_location($event_id){
 	}
 	return $location;
 }
+
+//
+//event feedback email 
+//
+
+function dlinq_send_feedback_email($to_email, $event_name){
+	$clean_title = urlencode_deep($event_name);
+	$url ="https://dlinq.middcreate.net/workshop-feedback/?Workshop={$clean_title}";
+	$to = $to_email;
+	$subject = "{$event_name} Feedback Request";
+	$headers = array('Content-Type: text/html; charset=UTF-8','From: DLINQ <dlinq@middlebury.edu>');	
+	$message = "<p>Thank you for attending {$event_name}.</p>
+		<p>We would greatly appreciate it if <a href='{$url}'>you'd fill out this brief survey</a> to give us feedback on your experience so we can continue to improve our offerings.</p>
+	";
+	wp_mail( $to, $subject, $message, $headers);
+}
+
+//set the cron to run reminder emails function
+if ( ! wp_next_scheduled( 'dlinq_feedback_email' ) ) {
+    wp_schedule_event( strtotime('08:00:00'), 'daily', 'dlinq_feedback_email' );
+}
+
+//add_action( 'send_dlinq_feedback_email', 'dlinq_feedback_email' );
+
+function dlinq_feedback_email(){
+	write_log('dlinq feedback function running');
+	//get the reservation form ID from the ACF options field
+	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
+
+	//get current date and add remove 86400 seconds to get yesterday
+	$yesterday = date("Y-m-d", time() - 86400);
+	$start = $yesterday . ' 00:01';
+	$end = $yesterday . ' 23:59';
+	//get Modern Tribe events that occur on current date +24 hrs from the events calendar
+	$coming_events = tribe_get_events( [
+					   'start_date'   => $start,
+					   'end_date'   => $end,
+					] );
+	$event_ids = [];
+	write_log($event_ids);
+	if($coming_events){		
+		foreach ($coming_events as $key => $event) {		
+				array_push($event_ids, $event->ID);
+		}
+	}
+
+	//if we have event ids, lets get our dear registrants
+	if($event_ids){
+		foreach ($event_ids as $key => $event_id) {
+			//get the reservations from Gravity forms
+			$search_criteria = array(
+					    'status'        => 'active',
+					    'field_filters' => array(
+					        'mode' => 'any',
+					        array(
+					            'key'   => '6',
+					            'value' => $event_id
+					        )
+					    )
+					);
+			$event_name = get_the_title($event_id);//get title from the event
+			$event_date = tribe_events_event_schedule_details( $event_id);
+			$clean_date = preg_replace('/<[^>]*>/', '', $event_date);
+			//$location = dlinq_event_email_location($event_id);
+			
+			$reservations = GFAPI::get_entries($gf_workshop_registration_id, $search_criteria);
+			//var_dump($reservations);
+			foreach ($reservations as $key => $reservation) {
+				// code...
+				$to_email = $reservation[3];
+				// $delete_key = $reservation[11];
+				// $delete_url = get_permalink($event_id).'?delete='.$delete_key;
+				// $delete_block = "<p>Use this link to cancel your reservation <a href='{$delete_url}'>{$delete_url}</a></p>";		
+				dlinq_send_feedback_email($to_email, $event_name);
+			}
+		}		
+	}	
+return 'done';
+}
+
+add_shortcode( 'feedback', 'dlinq_feedback_email' );
+
+
 
 //from https://gist.github.com/RadGH/d08a7466b097dfb895ec6dede2e474f5
 /**
@@ -1188,18 +1269,6 @@ function dlinq_zoom_lang($modality){
 //new photo size
 add_image_size('portrait', 300, 300, true);
 
-
-//LOGGER -- like frogger but more useful
-
-if ( ! function_exists('write_log')) {
-   function write_log ( $log )  {
-      if ( is_array( $log ) || is_object( $log ) ) {
-         error_log( print_r( $log, true ) );
-      } else {
-         error_log( $log );
-      }
-   }
-}
 
 
 add_action('wp_dashboard_setup', 'dlinq_custom_dashboard_widgets');

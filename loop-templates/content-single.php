@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<header class="entry-header">
 
-		<div class="entry-meta">
+		<div class="entry-meta">ffffff
 
 			<?php understrap_posted_on(); ?>
 
