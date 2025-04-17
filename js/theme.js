@@ -1,6 +1,6 @@
 /*!
  * Understrap v1.2.2 (https://understrap.com)
- * Copyright 2013-2024 The UnderStrap Authors (https://github.com/understrap/understrap/graphs/contributors)
+ * Copyright 2013-2025 The UnderStrap Authors (https://github.com/understrap/understrap/graphs/contributors)
  * Licensed under GPL-3.0 (https://www.gnu.org/licenses/gpl-3.0.html)
  */
 (function (global, factory) {
@@ -6340,16 +6340,18 @@
   }
   function deleteByHumanHand() {
     if (window.location) {
-      var newUrl = new URL(window.location.href);
-      new URLSearchParams(newUrl.search);
-      //add check for ok that prevents running repeat check
-      // window.location.replace(newUrl);		
-
-      //if(window.confirm('Delete?')){
-      //alert('foo');
-      //newUrl = params.set("ok", "yes");
-      //window.location.replace(newUrl+'&ok=yes');
-      //}
+      const newUrl = new URL(window.location.href);
+      const params = new URLSearchParams(newUrl.search);
+      let confirmed = false;
+      if (params.has('delete') && !params.has('confirmed')) {
+        confirmed = confirm("Are you sure you want to delete your reservation?");
+      }
+      if (confirmed) {
+        params.set("confirmed", "yes");
+        newUrl.search = params.toString();
+        window.location.replace(newUrl);
+        alert('Thank you for confirming the deletion.');
+      }
     }
   }
 

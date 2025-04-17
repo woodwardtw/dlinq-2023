@@ -987,9 +987,10 @@ function dlinq_registration_delete_code( $value, $lead, $field, $form){
 function dlinq_check_to_delete(){
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 	if( 'tribe_events' == get_post_type()){
-		if(isset($_GET["delete"])){
+		if(isset($_GET["delete"]) && isset($_GET["confirmed"])){
 			$passcode = $_GET["delete"];
-			$humanOk = $_GET['ok'];
+			$humanOk = $_GET['confirmed'];
+			var_dump($humanOk);
 			$search_criteria = array(
 			    'status'        => 'active',
 			    'field_filters' => array(
@@ -1025,13 +1026,11 @@ add_action( 'dlinq_reminder_email', 'dlinq_reminder_email' );
 
 
 function dlinq_reminder_email(){
-	//var_dump(strtotime('13:34:00'));
 	//get the reservation form ID from the ACF options field
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 
 	//get current date and add 86400 seconds
 	$tomorrow = date("Y-m-d", time() + 86400);
-	//var_dump($tomorrow);
 	$start = $tomorrow . ' 00:01';
 	$end = $tomorrow . ' 23:59';
 
@@ -1119,14 +1118,13 @@ function dlinq_send_feedback_email($to_email, $event_name){
 }
 
 //set the cron to run reminder emails function
-if ( ! wp_next_scheduled( 'dlinq_feedback_email' ) ) {
-    wp_schedule_event( strtotime('08:00:00'), 'daily', 'dlinq_feedback_email' );
+if ( ! wp_next_scheduled( 'send_dlinq_feedback_email' ) ) {
+    wp_schedule_event( strtotime('08:00:00'), 'daily', 'send_dlinq_feedback_email' );
 }
 
-//add_action( 'send_dlinq_feedback_email', 'dlinq_feedback_email' );
+add_action( 'send_dlinq_feedback_email', 'dlinq_feedback_email' );
 
 function dlinq_feedback_email(){
-	write_log('dlinq feedback function running');
 	//get the reservation form ID from the ACF options field
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 
@@ -1170,10 +1168,7 @@ function dlinq_feedback_email(){
 			//var_dump($reservations);
 			foreach ($reservations as $key => $reservation) {
 				// code...
-				$to_email = $reservation[3];
-				// $delete_key = $reservation[11];
-				// $delete_url = get_permalink($event_id).'?delete='.$delete_key;
-				// $delete_block = "<p>Use this link to cancel your reservation <a href='{$delete_url}'>{$delete_url}</a></p>";		
+					
 				dlinq_send_feedback_email($to_email, $event_name);
 			}
 		}		
