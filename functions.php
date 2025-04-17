@@ -765,7 +765,14 @@ function dlinq_registered_people($form_id){
 				$email = $result["3"];
 				$attendance = $result["8"];
 				$attendance_count = ($attendance === 'Yes') ? intval($attendance_count)+1 : $attendance_count;
-				$attend_class = ($attendance === 'No') ? '' : 'present';
+				$attendance_options = [
+										"No" => "",
+										"Yes" => "present",
+										"Canceled" => "canceled"
+
+										];
+				//$attend_class = ($attendance === 'No') ? '' : 'present';
+				$attend_class = strtolower($attendance_options[$attendance]);
 				$event_title = get_the_title();
 				$delete_key = $result["11"];
 				$delete_link = get_permalink($post_id).'?delete='.$delete_key;
@@ -1002,7 +1009,6 @@ function dlinq_check_to_delete(){
 			    )
 			);
 			$entry = GFAPI::get_entries($gf_workshop_registration_id, $search_criteria);
-			//var_dump($humanOk);
 			if(sizeof($entry)>0 && $humanOk != NULL){
 				$entry_id = $entry[0]['id'];
 				GFAPI::update_entry_field($entry_id, 8,'Canceled');			

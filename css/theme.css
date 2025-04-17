@@ -15945,6 +15945,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
   color: #fff;
 }
 
+.canceled {
+  background-color: yellow;
+  color: black;
+}
+
 .attend:hover {
   background-color: lime;
   cursor: pointer;
