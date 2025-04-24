@@ -997,7 +997,6 @@ function dlinq_check_to_delete(){
 		if(isset($_GET["delete"]) && isset($_GET["confirmed"])){
 			$passcode = $_GET["delete"];
 			$humanOk = $_GET['confirmed'];
-			var_dump($humanOk);
 			$search_criteria = array(
 			    'status'        => 'active',
 			    'field_filters' => array(
