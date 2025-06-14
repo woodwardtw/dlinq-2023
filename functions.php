@@ -1292,7 +1292,7 @@ function dlinq_custom_dashboard_posts() {
   Disable Default Dashboard Widgets
   @ https://digwp.com/2014/02/disable-default-dashboard-widgets/
 */
-function disable_default_dashboard_widgets() {
+function dlinq_disable_default_dashboard_widgets() {
   global $wp_meta_boxes;
   // wp..
   unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
@@ -1319,7 +1319,7 @@ function disable_default_dashboard_widgets() {
   //WP Mail SMTP  
   unset($wp_meta_boxes['dashboard']['normal']['core']['wp_mail_smtp_reports_widget_lite']);
 }
-add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets', 999);
+add_action('wp_dashboard_setup', 'dlinq_disable_default_dashboard_widgets', 999);
 
 
 //CLEAN VIEW
