@@ -1173,8 +1173,9 @@ function dlinq_feedback_email(){
 			//var_dump($reservations);
 			foreach ($reservations as $key => $reservation) {
 				// code...
-					
+				$to_email = $reservation[3];
 				dlinq_send_feedback_email($to_email, $event_name);
+				usleep(250000);
 			}
 		}		
 	}	
