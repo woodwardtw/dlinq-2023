@@ -898,9 +898,9 @@ function dlinq_populate_events( $form ) {
 
         $input_id = 1;
         foreach( $posts as $post ) {
-			write_log($post->ID);
+			//write_log($post->ID);
 			//$terms = get_the_terms($post->ID, 'tribe_events_cat');
-			write_log($terms);
+			//write_log($terms);
 				  //skipping index that are multiples of 10 (multiples of 10 create problems as the input IDs)
 				if ( $input_id % 10 == 0 ) {
 					$input_id++;
@@ -994,27 +994,90 @@ add_action( 'acf/init', 'dlinq_workshop_event_subscription' );
 
 //TO DO ACTIVATE BULK ENROLLMENT FORM CHOICE IN ************************
 function dlinq_workshop_event_subscription(){
-	//$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 	$gf_bulk_workshop_request_id = get_field('workshop_bulk_request_form', 'option');
-	write_log('bulk request id = '.$gf_bulk_workshop_request_id);
-	add_action( 'gform_after_submission_'. $gf_bulk_workshop_request_id, 'after_submission_bulk_enroll', 10, 2 );
+	//write_log('ACF bulk request form ID = ' . $gf_bulk_workshop_request_id);
+	
+	if ( $gf_bulk_workshop_request_id && is_numeric( $gf_bulk_workshop_request_id ) ) {
+		$hook_name = 'gform_after_submission_' . $gf_bulk_workshop_request_id;
+		//write_log('Adding action hook: ' . $hook_name);
+		add_action( $hook_name, 'after_submission_bulk_enroll', 10, 2 );
+	} else {
+		//write_log('ERROR: Invalid bulk workshop request form ID');
+	}
+}
+
+// Alternative registration method - registers for ALL forms and checks form ID inside
+// DISABLED - Using specific form hook instead to avoid double processing
+// add_action( 'gform_after_submission', 'dlinq_check_bulk_enrollment_submission', 10, 2 );
+function dlinq_check_bulk_enrollment_submission( $entry, $form ) {
+	$gf_bulk_workshop_request_id = get_field('workshop_bulk_request_form', 'option');
+	
+	//write_log('Form submitted - Form ID: ' . $form['id'] . ', Expected bulk form ID: ' . $gf_bulk_workshop_request_id);
+	
+	// Check if this is the bulk enrollment form
+	if ( $form['id'] == $gf_bulk_workshop_request_id ) {
+		//write_log('This is the bulk enrollment form - calling after_submission_bulk_enroll');
+		after_submission_bulk_enroll( $entry, $form );
+	}
 }
 function after_submission_bulk_enroll( $entry, $form ) {
-	write_log('bulk after submission ran');
+	//write_log('bulk after submission ran');
+	//write_log($entry);
+	// Debug: Log all form fields and their types
+	//write_log('=== FORM FIELDS DEBUG ===');
+	foreach ( $form['fields'] as $field ) {
+		//write_log('Field ID: ' . $field->id . ', Type: ' . $field->type . ', CSS Class: ' . $field->cssClass);
+	}
+	
+	// Debug: Log all entry data
+	//write_log('=== ENTRY DATA DEBUG ===');
+	//write_log($entry);
+	
+	// Debug: Log $_POST data to see what was actually submitted
+	//write_log('=== POST DATA DEBUG ===');
+	//write_log($_POST);
+	
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
  	$email = rgar($entry, '3');
  	
  	// Get all event IDs from all event category fields in the form
+ 	//write_log('About to call dlinq_get_all_event_ids_from_form');
  	$all_event_ids = dlinq_get_all_event_ids_from_form( $entry, $form );
  	
- 	write_log('All selected events: ');
- 	write_log($all_event_ids);
+ 	//write_log('Returned from dlinq_get_all_event_ids_from_form - All selected events: ');
+ 	//write_log($all_event_ids);
+ 	
+ 	// If no events found, try the old method as fallback
+ 	if ( empty( $all_event_ids ) ) {
+ 		//write_log('No events found with new method, trying old method...');
+ 		
+ 		// Try to get events from field ID 5 (the old hard-coded field)
+ 		$old_events = rs_gf_get_checked_boxes( $entry, 5 );
+ 		//write_log('Old method events from field 5:');
+ 		//write_log($old_events);
+ 		
+ 		// Try to find any checkbox fields and get their values
+ 		foreach ( $form['fields'] as $field ) {
+ 			if ( $field->type === 'checkbox' ) {
+ 				$checkbox_events = rs_gf_get_checked_boxes( $entry, $field->id );
+ 				//write_log('Checkbox field ' . $field->id . ' events:');
+ 				//write_log($checkbox_events);
+ 				
+ 				if ( !empty( $checkbox_events ) ) {
+ 					$all_event_ids = array_merge( $all_event_ids, array_values( $checkbox_events ) );
+ 				}
+ 			}
+ 		}
+ 	}
+ 	
+ 	//write_log('Final event IDs to process:');
+ 	//write_log($all_event_ids);
  	
  	foreach ($all_event_ids as $event_id) {
  		$event_id = intval($event_id);
- 		write_log('Processing event ID: ' . $event_id);
+ 		//write_log('Processing event ID: ' . $event_id);
  		
  		$event_name = get_the_title($event_id);
  		$zoom_link = get_field('zoom_link', $event_id);
@@ -1044,8 +1107,11 @@ function after_submission_bulk_enroll( $entry, $form ) {
 function dlinq_get_all_event_ids_from_form( $entry, $form ) {
     $all_event_ids = array();
     
+    //write_log('=== GETTING ALL EVENT IDS FROM FORM ===');
+    
     // Loop through all form fields
     foreach ( $form['fields'] as $field ) {
+        //write_log('Processing field ID: ' . $field->id . ', Type: ' . $field->type);
         
         // Check if this is an event categories field (our custom field type)
         if ( $field->type === 'event_categories' ) {
@@ -1053,6 +1119,8 @@ function dlinq_get_all_event_ids_from_form( $entry, $form ) {
             
             // Get selected values for this field
             $selected_events = dlinq_get_event_ids_from_field( $entry, $field_id );
+            
+            //write_log('Field ' . $field_id . ' (event_categories) returned events: ' . implode(', ', $selected_events));
             
             // Merge with all event IDs
             $all_event_ids = array_merge( $all_event_ids, $selected_events );
@@ -1065,13 +1133,21 @@ function dlinq_get_all_event_ids_from_form( $entry, $form ) {
             // Get selected values for this field using the existing function
             $selected_events = rs_gf_get_checked_boxes( $entry, $field_id );
             
+            //write_log('Field ' . $field_id . ' (checkbox with events-category CSS) returned events: ' . implode(', ', array_values($selected_events)));
+            
             // Add the values (event IDs) to our array
             $all_event_ids = array_merge( $all_event_ids, array_values( $selected_events ) );
         }
     }
     
+    //write_log('All collected event IDs before deduplication: ' . implode(', ', $all_event_ids));
+    
     // Remove duplicates and return
-    return array_unique( array_filter( $all_event_ids ) );
+    $final_event_ids = array_unique( array_filter( $all_event_ids ) );
+    
+    //write_log('Final deduplicated event IDs: ' . implode(', ', $final_event_ids));
+    
+    return $final_event_ids;
 }
 
 /**
@@ -1084,22 +1160,35 @@ function dlinq_get_all_event_ids_from_form( $entry, $form ) {
 function dlinq_get_event_ids_from_field( $entry, $field_id ) {
     $event_ids = array();
     
-    // Check if entry has values for this field
-    $input_id = 1;
+    //write_log("Getting event IDs from field $field_id");
+    //write_log("Available entry keys for field $field_id: " . implode(', ', array_filter(array_keys($entry), function($key) use ($field_id) { return strpos($key, $field_id . '.') === 0; })));
     
-    // Loop through potential input IDs (checkboxes use field_id.input_id format)
-    while ( $input_id <= 100 ) { // Reasonable limit to prevent infinite loop
-        $input_key = $field_id . '.' . $input_id;
+    // First check if there's a direct value (custom field might store as single value)
+    if ( isset( $entry[ $field_id ] ) && !empty( $entry[ $field_id ] ) ) {
+        //write_log("Found direct value for field $field_id: " . $entry[ $field_id ]);
         
-        if ( isset( $entry[ $input_key ] ) && !empty( $entry[ $input_key ] ) ) {
-            // This input has a value (is checked), add the event ID
-            $event_ids[] = $entry[ $input_key ];
-            $input_id++;
+        // If it's a comma-separated string, split it
+        if ( strpos( $entry[ $field_id ], ',' ) !== false ) {
+            $event_ids = explode( ',', $entry[ $field_id ] );
         } else {
-            // No more inputs for this field
-            break;
+            $event_ids[] = $entry[ $field_id ];
+        }
+    } else {
+        // Check for checkbox-style inputs (field_id.input_id format)
+        foreach ( $entry as $key => $value ) {
+            // Look for keys that start with field_id. and have a value
+            if ( strpos( $key, $field_id . '.' ) === 0 && !empty( $value ) ) {
+                //write_log("Found checkbox input $key: " . $value);
+                $event_ids[] = $value;
+            }
         }
     }
+    
+    // Clean up the array
+    $event_ids = array_filter( array_map( 'trim', $event_ids ) );
+    
+    //write_log("Final event IDs from field $field_id:");
+    //write_log($event_ids);
     
     return $event_ids;
 }
@@ -1271,7 +1360,7 @@ function dlinq_feedback_email(){
 					   'end_date'   => $end,
 					] );
 	$event_ids = [];
-	write_log($event_ids);
+	//write_log($event_ids);
 	if($coming_events){		
 		foreach ($coming_events as $key => $event) {		
 				array_push($event_ids, $event->ID);
@@ -1503,12 +1592,12 @@ function query_post_type($query) {
 
 //LOGGER -- like frogger but more useful
  
-if ( ! function_exists('write_log')) {
-   function write_log ( $log )  {
+if ( ! function_exists('//write_log')) {
+   function //write_log ( $log )  {
       if ( is_array( $log ) || is_object( $log ) ) {
-         error_log( print_r( $log, true ) );
+         //error_log( print_r( $log, true ) );
       } else {
-         error_log( $log );
+         //error_log( $log );
       }
    }
 }
@@ -1842,6 +1931,10 @@ if ( class_exists( 'GF_Field' ) ) {
             // Get events from selected categories
             $events = $this->get_events_by_categories();
             
+            // Debug logging
+            //error_log('Event Categories Field ID ' . $id . ' - Found ' . count($events) . ' events');
+            //error_log('Selected categories: ' . print_r($this->selectedCategories, true));
+            
             if ( empty( $events ) ) {
                 return '<div class="ginput_container"><div>No events found in the selected categories.</div></div>';
             }
@@ -2058,17 +2151,23 @@ if ( class_exists( 'GF_Field' ) ) {
                 return '';
             }
             
-            $event_ids = is_array( $value ) ? $value : explode( ',', $value );
-            $event_titles = array();
-            
-            foreach ( $event_ids as $event_id ) {
-                $event_title = get_the_title( $event_id );
-                if ( $event_title ) {
-                    $event_titles[] = esc_html( $event_title );
+            // Handle both array format and individual input values
+            if ( is_array( $value ) ) {
+                $event_titles = array();
+                foreach ( $value as $key => $val ) {
+                    if ( !empty( $val ) ) {
+                        $event_title = get_the_title( $val );
+                        if ( $event_title ) {
+                            $event_titles[] = esc_html( $event_title );
+                        }
+                    }
                 }
+                return implode( ', ', $event_titles );
+            } else {
+                // Single value
+                $event_title = get_the_title( $value );
+                return $event_title ? esc_html( $event_title ) : '';
             }
-            
-            return implode( ', ', $event_titles );
         }
         
         /**
@@ -2076,6 +2175,13 @@ if ( class_exists( 'GF_Field' ) ) {
          */
         public function get_value_entry_list( $value, $entry, $field_id, $columns, $form ) {
             return $this->get_value_entry_display( $value );
+        }
+        
+        /**
+         * Handle array values for entry detail display (fixes PHP warnings)
+         */
+        public function get_value_entry_detail( $value, $currency = '', $use_text = false, $format = 'html', $media = 'screen' ) {
+            return $this->get_value_entry_display( $value, $currency, $use_text, $format, $media );
         }
         
         /**
@@ -2092,6 +2198,41 @@ if ( class_exists( 'GF_Field' ) ) {
         }
         
         /**
+         * Override the default behavior to handle checkbox inputs properly
+         */
+        public function get_input_type() {
+            return 'checkbox';
+        }
+        
+        /**
+         * Return inputs for this field (like standard checkbox field)
+         */
+        public function get_entry_inputs() {
+            $inputs = array();
+            $events = $this->get_events_by_categories();
+            
+            if ( !empty( $events ) ) {
+                $input_id = 1;
+                foreach ( $events as $event ) {
+                    $inputs[] = array(
+                        'id' => $this->id . '.' . $input_id,
+                        'label' => get_the_title( $event->ID )
+                    );
+                    $input_id++;
+                }
+            }
+            
+            return $inputs;
+        }
+        
+        /**
+         * This tells Gravity Forms this field has multiple inputs (like checkbox)
+         */
+        public function is_value_submission_array() {
+            return true;
+        }
+
+        /**
          * Sanitize the submitted value
          */
         public function sanitize_value( $value ) {
@@ -2105,25 +2246,53 @@ if ( class_exists( 'GF_Field' ) ) {
          * Validate the field
          */
         public function validate( $value, $form ) {
+            //error_log( 'Validating event_categories field - Value received:' );
+            //error_log( print_r( $value, true ) );
+            
+            // Check if any checkbox inputs have values
+            $has_values = false;
+            $event_ids_to_validate = array();
+            
+            if ( is_array( $value ) ) {
+                foreach ( $value as $input_key => $input_value ) {
+                    if ( !empty( $input_value ) ) {
+                        $has_values = true;
+                        $event_ids_to_validate[] = $input_value;
+                    }
+                }
+            }
+            
+            //error_log( 'Event IDs to validate: ' . implode( ', ', $event_ids_to_validate ) );
+            
             // If field is required and no values are selected
-            if ( $this->isRequired && ( empty( $value ) || ( is_array( $value ) && count( $value ) === 0 ) ) ) {
+            if ( $this->isRequired && !$has_values ) {
                 $this->failed_validation  = true;
                 $this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'This field is required.', 'gravityforms' ) : $this->errorMessage;
                 return;
             }
             
-            // Validate selected event IDs exist
-            if ( !empty( $value ) ) {
-                $event_ids = is_array( $value ) ? $value : array( $value );
-                foreach ( $event_ids as $event_id ) {
-                    $event = get_post( $event_id );
+            // Validate selected event IDs exist and are events
+            if ( !empty( $event_ids_to_validate ) ) {
+                foreach ( $event_ids_to_validate as $event_id ) {
+                    // Make sure it's numeric
+                    if ( !is_numeric( $event_id ) ) {
+                        //error_log( 'Non-numeric event ID: ' . $event_id );
+                        continue;
+                    }
+                    
+                    $event = get_post( intval( $event_id ) );
+                    //error_log( 'Validating event ID ' . $event_id . ' - Post found: ' . ( $event ? 'yes' : 'no' ) . ' - Post type: ' . ( $event ? $event->post_type : 'N/A' ) );
+                    
                     if ( !$event || $event->post_type !== Tribe__Events__Main::POSTTYPE ) {
                         $this->failed_validation  = true;
                         $this->validation_message = esc_html__( 'Please select valid events.', 'gravityforms' );
+                        //error_log( 'Event validation failed for ID: ' . $event_id );
                         break;
                     }
                 }
             }
+            
+            //error_log( 'Validation result - Failed: ' . ( $this->failed_validation ? 'true' : 'false' ) );
         }
         
         /**
