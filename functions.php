@@ -2003,9 +2003,9 @@ if ( class_exists( 'GF_Field' ) ) {
                 if ( $event_date ) {
                     $label_text .= ' - ' . $event_date;
                 }
-                if ( !empty( $event_categories ) ) {
-                    $label_text .= ' (' . implode( ', ', $event_categories ) . ')';
-                }
+                // if ( !empty( $event_categories ) ) {
+                //     $label_text .= ' (' . implode( ', ', $event_categories ) . ')';
+                // }
                 
                 $output .= '<div class="gchoice gchoice_' . $field_id . '">';
                 $output .= '<input class="gfield-choice-input" name="input_' . $id . '.' . $input_id . '" type="checkbox" value="' . $event_id . '" id="choice_' . $field_id . '" ' . $is_checked . ' />';
