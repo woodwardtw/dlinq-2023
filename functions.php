@@ -2069,14 +2069,52 @@ if ( class_exists( 'GF_Field' ) ) {
         }
         
         /**
-         * Get event date for display
+         * Get event date for display with Eastern and Pacific times
          */
         private function get_event_date( $event_id ) {
             if ( !function_exists( 'tribe_get_start_date' ) ) {
                 return '';
             }
             
-            return tribe_get_start_date( $event_id, false, 'M j, Y' );
+            // Get the event start date/time
+            $start_date = tribe_get_start_date( $event_id, false, 'M j, Y' );
+            $start_time_utc = tribe_get_start_date( $event_id, false, 'Y-m-d H:i:s' );
+            
+            if ( empty( $start_time_utc ) ) {
+                return $start_date;
+            }
+            
+            try {
+                // Create DateTime object from the event time
+                $event_datetime = new DateTime( $start_time_utc );
+                
+                // Get event timezone (if set) or default to UTC
+                $event_timezone = get_post_meta( $event_id, '_EventTimezone', true );
+                if ( !empty( $event_timezone ) ) {
+                    $event_datetime->setTimezone( new DateTimeZone( $event_timezone ) );
+                }
+                
+                // Convert to Eastern Time
+                $eastern_tz = new DateTimeZone( 'America/New_York' );
+                $eastern_time = clone $event_datetime;
+                $eastern_time->setTimezone( $eastern_tz );
+                
+                // Convert to Pacific Time
+                $pacific_tz = new DateTimeZone( 'America/Los_Angeles' );
+                $pacific_time = clone $event_datetime;
+                $pacific_time->setTimezone( $pacific_tz );
+                
+                // Format the times
+                $eastern_formatted = $eastern_time->format( 'g:i A T' );
+                $pacific_formatted = $pacific_time->format( 'g:i A T' );
+                
+                // Return formatted string with date and both times
+                return $start_date . ' at ' . $eastern_formatted . ' / ' . $pacific_formatted;
+                
+            } catch ( Exception $e ) {
+                // Fallback if timezone conversion fails
+                return $start_date;
+            }
         }
         
         /**
