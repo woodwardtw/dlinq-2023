@@ -862,10 +862,10 @@ function dlinq_bulk_workshop_form_loader(){
 	$gf_bulk_workshop_request_id = get_field('workshop_bulk_request_form', 'option');//get bulk form ID
 	//var_dump($gf_bulk_workshop_request_id);
 	$pre_render = 'gform_pre_render_' . $gf_bulk_workshop_request_id;
-	add_filter( 'gform_pre_render_' . $gf_bulk_workshop_request_id , 'dlinq_populate_events' );
-	add_filter( 'gform_pre_validation_' . $gf_bulk_workshop_request_id,'dlinq_populate_events' );
-	add_filter( 'gform_pre_submission_filter_' . $gf_bulk_workshop_request_id, 'dlinq_populate_events' );
-	add_filter( 'gform_admin_pre_render_' . $gf_bulk_workshop_request_id, 'dlinq_populate_events' );
+	add_filter( 'gform_pre_render_' . $gf_bulk_workshop_request_id , 'dlinq_populate_events_by_category' );
+	add_filter( 'gform_pre_validation_' . $gf_bulk_workshop_request_id,'dlinq_populate_events_by_category' );
+	add_filter( 'gform_pre_submission_filter_' . $gf_bulk_workshop_request_id, 'dlinq_populate_events_by_category' );
+	add_filter( 'gform_admin_pre_render_' . $gf_bulk_workshop_request_id, 'dlinq_populate_events_by_category' );
 
 }
 
@@ -898,9 +898,9 @@ function dlinq_populate_events( $form ) {
 
         $input_id = 1;
         foreach( $posts as $post ) {
-			//var_dump($post->ID);
+			write_log($post->ID);
 			//$terms = get_the_terms($post->ID, 'tribe_events_cat');
-			//var_dump($terms);
+			write_log($terms);
 				  //skipping index that are multiples of 10 (multiples of 10 create problems as the input IDs)
 				if ( $input_id % 10 == 0 ) {
 					$input_id++;
@@ -923,16 +923,70 @@ function dlinq_populate_events( $form ) {
     return $form;
 }
 
+// Enhanced function to populate events by category using CSS classes
+function dlinq_populate_events_by_category( $form ) {
+    foreach( $form['fields'] as &$field )  {
+        
+        // Skip if not a checkbox field or if no CSS class set
+        if ( $field->type !== 'checkbox' || empty($field->cssClass) ) {
+            continue;
+        }
+        
+        // Parse CSS class for category configuration
+        // Expected format: "events-category-bulk" or "events-category-workshop,training"
+        if ( !preg_match('/events-category-(.+)/', $field->cssClass, $matches) ) {
+            continue;
+        }
+        
+        $categories = explode(',', $matches[1]);
+        $categories = array_map('trim', $categories);
+        
+        // Get events for the specified categories
+        $posts = tribe_get_events( [
+            'posts_per_page' => -1,
+            'eventDisplay' => 'upcoming',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'tribe_events_cat',
+                    'field' => 'slug',
+                    'terms' => $categories,
+                    'operator' => 'IN'
+                ),
+            )
+        ] );
 
-//DOESN'T WORK AND I DON'T KNOW WHY
-// function dlinq_event_bulk_registration($post_id){
-// 	if(has_term('bulk','tribe_events_cat', $post_id)){
-// 		return TRUE;
-// 	} else {
-// 		return FALSE;
-// 	}
-    
-// }
+        $choices = [];
+        $inputs = [];
+        $input_id = 1;
+        
+        foreach( $posts as $post ) {
+            // Skip index that are multiples of 10 (multiples of 10 create problems as the input IDs)
+            if ( $input_id % 10 == 0 ) {
+                $input_id++;
+            }
+            
+            $date = tribe_get_start_date($post->ID);
+            $categories_list = wp_get_post_terms($post->ID, 'tribe_events_cat', array('fields' => 'names'));
+            $categories_str = !empty($categories_list) ? ' (' . implode(', ', $categories_list) . ')' : '';
+            
+            $choices[] = array( 
+                'text' => $post->post_title . ' - ' . $date . $categories_str, 
+                'value' => $post->ID 
+            );
+            $inputs[] = array( 
+                'label' => $post->post_title, 
+                'id' => "{$field->id}.{$input_id}" 
+            );
+
+            $input_id++;
+        }
+        
+        $field->choices = $choices;
+        $field->inputs = $inputs;
+    }
+ 
+    return $form;
+}
 
 
 
@@ -942,7 +996,7 @@ add_action( 'acf/init', 'dlinq_workshop_event_subscription' );
 function dlinq_workshop_event_subscription(){
 	//$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 	$gf_bulk_workshop_request_id = get_field('workshop_bulk_request_form', 'option');
-	write_log($gf_bulk_workshop_request_id);
+	write_log('bulk request id = '.$gf_bulk_workshop_request_id);
 	add_action( 'gform_after_submission_'. $gf_bulk_workshop_request_id, 'after_submission_bulk_enroll', 10, 2 );
 }
 function after_submission_bulk_enroll( $entry, $form ) {
@@ -951,16 +1005,20 @@ function after_submission_bulk_enroll( $entry, $form ) {
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
  	$email = rgar($entry, '3');
- 	$events = rs_gf_get_checked_boxes( $entry,  '5' );
- 	write_log('events coming up');
- 	write_log($events);
- 	foreach ($events as $key => $event_id) {
+ 	
+ 	// Get all event IDs from all event category fields in the form
+ 	$all_event_ids = dlinq_get_all_event_ids_from_form( $entry, $form );
+ 	
+ 	write_log('All selected events: ');
+ 	write_log($all_event_ids);
+ 	
+ 	foreach ($all_event_ids as $event_id) {
  		$event_id = intval($event_id);
- 		write_log($event_id);
- 		// code...
+ 		write_log('Processing event ID: ' . $event_id);
+ 		
  		$event_name = get_the_title($event_id);
  		$zoom_link = get_field('zoom_link', $event_id);
- 		$entry = array(
+ 		$entry_data = array(
  			'form_id' =>  $gf_workshop_registration_id,
  			'1.3' => $first,
  			'1.6' => $last,
@@ -970,10 +1028,80 @@ function after_submission_bulk_enroll( $entry, $form ) {
  			'8' => 'No',
  			'9' => $zoom_link
  		);
- 		$new_entry = GFAPI::add_entry( $entry );
+ 		$new_entry = GFAPI::add_entry( $entry_data );
  		//send_notifications( $gf_workshop_registration_id, $new_entry );//can send per event but might be messier
 		//JUST SEND THE SINGLE MESSAGE ON THE BULK FORM
  	}
+}
+
+/**
+ * Get all event IDs from all event category fields in a form submission
+ * 
+ * @param array $entry The Gravity Forms entry
+ * @param array $form The Gravity Forms form object
+ * @return array Array of unique event IDs
+ */
+function dlinq_get_all_event_ids_from_form( $entry, $form ) {
+    $all_event_ids = array();
+    
+    // Loop through all form fields
+    foreach ( $form['fields'] as $field ) {
+        
+        // Check if this is an event categories field (our custom field type)
+        if ( $field->type === 'event_categories' ) {
+            $field_id = $field->id;
+            
+            // Get selected values for this field
+            $selected_events = dlinq_get_event_ids_from_field( $entry, $field_id );
+            
+            // Merge with all event IDs
+            $all_event_ids = array_merge( $all_event_ids, $selected_events );
+        }
+        
+        // Also check for regular checkbox fields with events-category CSS class (backward compatibility)
+        elseif ( $field->type === 'checkbox' && !empty( $field->cssClass ) && strpos( $field->cssClass, 'events-category-' ) !== false ) {
+            $field_id = $field->id;
+            
+            // Get selected values for this field using the existing function
+            $selected_events = rs_gf_get_checked_boxes( $entry, $field_id );
+            
+            // Add the values (event IDs) to our array
+            $all_event_ids = array_merge( $all_event_ids, array_values( $selected_events ) );
+        }
+    }
+    
+    // Remove duplicates and return
+    return array_unique( array_filter( $all_event_ids ) );
+}
+
+/**
+ * Get event IDs from a single event categories field
+ * 
+ * @param array $entry The Gravity Forms entry
+ * @param int $field_id The field ID
+ * @return array Array of event IDs from this field
+ */
+function dlinq_get_event_ids_from_field( $entry, $field_id ) {
+    $event_ids = array();
+    
+    // Check if entry has values for this field
+    $input_id = 1;
+    
+    // Loop through potential input IDs (checkboxes use field_id.input_id format)
+    while ( $input_id <= 100 ) { // Reasonable limit to prevent infinite loop
+        $input_key = $field_id . '.' . $input_id;
+        
+        if ( isset( $entry[ $input_key ] ) && !empty( $entry[ $input_key ] ) ) {
+            // This input has a value (is checked), add the event ID
+            $event_ids[] = $entry[ $input_key ];
+            $input_id++;
+        } else {
+            // No more inputs for this field
+            break;
+        }
+    }
+    
+    return $event_ids;
 }
 
 
@@ -1633,3 +1761,490 @@ function dlinq_policy_changes(){
 }
 
 
+
+/**
+ * Custom Gravity Forms Field for Event Calendar Pro Events by Category
+ * 
+ * Form builders select event categories in the field settings.
+ * Form users see events from those categories as checkboxes.
+ */
+if ( class_exists( 'GF_Field' ) ) {
+
+    class GF_Field_Event_Categories extends GF_Field {
+        
+        public $type = 'event_categories';
+        
+        /**
+         * Return the field title for the form editor
+         */
+        public function get_form_editor_field_title() {
+            return esc_attr__( 'Events by Category', 'gravityforms' );
+        }
+        
+        /**
+         * Define which group this field belongs to in the form editor
+         */
+        public function get_form_editor_button() {
+            return array(
+                'group' => 'advanced_fields',
+                'text'  => $this->get_form_editor_field_title(),
+            );
+        }
+        
+        /**
+         * Define which settings are available for this field
+         */
+        public function get_form_editor_field_settings() {
+            return array(
+                'conditional_logic_field_setting',
+                'prepopulate_field_setting',
+                'error_message_setting',
+                'label_setting',
+                'admin_label_setting',
+                'rules_setting',
+                'visibility_setting',
+                'duplicate_setting',
+                'description_setting',
+                'css_class_setting',
+                'required_setting',
+                'event_categories_setting' // Custom setting for category selection
+            );
+        }
+        
+        /**
+         * Define if this field supports conditional logic
+         */
+        public function is_conditional_logic_supported() {
+            return true;
+        }
+        
+        /**
+         * Render the field input on the frontend
+         */
+        public function get_field_input( $form, $value = '', $entry = null ) {
+            $form_id         = absint( $form['id'] );
+            $is_entry_detail = $this->is_entry_detail();
+            $is_form_editor  = $this->is_form_editor();
+            
+            $id = $this->id;
+            
+            // In form editor, show placeholder
+            if ( $is_form_editor ) {
+                $selected_categories = !empty( $this->selectedCategories ) ? $this->selectedCategories : array();
+                if ( empty( $selected_categories ) ) {
+                    return '<div class="ginput_container"><div style="padding: 10px; border: 1px dashed #ccc; background: #f9f9f9;">Select event categories in field settings to display events here.</div></div>';
+                } else {
+                    $category_names = $this->get_category_names( $selected_categories );
+                    return '<div class="ginput_container"><div style="padding: 10px; border: 1px dashed #ccc; background: #f9f9f9;">Events from categories: ' . implode( ', ', $category_names ) . ' will appear here.</div></div>';
+                }
+            }
+            
+            // Get events from selected categories
+            $events = $this->get_events_by_categories();
+            
+            if ( empty( $events ) ) {
+                return '<div class="ginput_container"><div>No events found in the selected categories.</div></div>';
+            }
+            
+            // Prepare values array
+            $selected_values = array();
+            if ( !empty( $value ) ) {
+                $selected_values = is_array( $value ) ? $value : explode( ',', $value );
+            }
+            
+            // Build CSS classes for fieldset
+            $field_classes = array(
+                'gfield',
+                'gfield--type-checkbox',
+                'gfield--type-choice',
+                'gfield--input-type-checkbox',
+                'gfield--width-full',
+                'field_sublabel_below',
+                'gfield--no-description',
+                'field_description_below',
+                'field_validation_below',
+                'gfield_visibility_visible'
+            );
+            
+            // Add custom CSS class if specified
+            if ( !empty( $this->cssClass ) ) {
+                $field_classes[] = esc_attr( $this->cssClass );
+            }
+            
+            // Add error class if validation failed
+            if ( $this->failed_validation ) {
+                $field_classes[] = 'gfield_error';
+            }
+            
+            // Add required class if field is required
+            if ( $this->isRequired ) {
+                $field_classes[] = 'gfield_contains_required';
+            }
+            
+            $fieldset_classes = implode( ' ', $field_classes );
+            
+            // Start fieldset
+            $output = '<fieldset id="field_' . $form_id . '_' . $id . '" class="' . $fieldset_classes . '">';
+            
+            // Add legend (field label)
+            $field_label = !empty( $this->label ) ? esc_html( $this->label ) : 'Events';
+            $required_indicator = $this->isRequired ? '<span class="gfield_required"><span class="gfield_required_asterisk">*</span></span>' : '';
+            $output .= '<legend class="gfield_label gform-field-label gfield_label_before_complex">' . $field_label . $required_indicator . '</legend>';
+            
+            // Build checkboxes
+            $output .= '<div class="ginput_container ginput_container_checkbox">';
+            $output .= '<div class="gfield_checkbox" id="input_' . $form_id . '_' . $id . '">';
+            
+            $input_id = 1;
+            foreach ( $events as $event ) {
+                $event_id = $event->ID;
+                $event_title = esc_html( get_the_title( $event_id ) );
+                $event_date = $this->get_event_date( $event_id );
+                $event_categories = $this->get_event_category_names( $event_id );
+                
+                $field_id = $form_id . '_' . $id . '_' . $input_id;
+                $is_checked = in_array( $event_id, $selected_values ) ? 'checked="checked"' : '';
+                
+                // Build label text with event title, date, and categories
+                $label_text = $event_title;
+                if ( $event_date ) {
+                    $label_text .= ' - ' . $event_date;
+                }
+                if ( !empty( $event_categories ) ) {
+                    $label_text .= ' (' . implode( ', ', $event_categories ) . ')';
+                }
+                
+                $output .= '<div class="gchoice gchoice_' . $field_id . '">';
+                $output .= '<input class="gfield-choice-input" name="input_' . $id . '.' . $input_id . '" type="checkbox" value="' . $event_id . '" id="choice_' . $field_id . '" ' . $is_checked . ' />';
+                $output .= '<label for="choice_' . $field_id . '" id="label_' . $field_id . '" class="gform-field-label gform-field-label--type-inline">' . $label_text . '</label>';
+                $output .= '</div>';
+                
+                $input_id++;
+            }
+            
+            $output .= '</div></div>';
+            
+            // Close fieldset
+            $output .= '</fieldset>';
+            
+            return $output;
+        }
+        
+        /**
+         * Get events from selected categories
+         */
+        private function get_events_by_categories() {
+            // Check if The Events Calendar is active
+            if ( !class_exists( 'Tribe__Events__Main' ) ) {
+                return array();
+            }
+            
+            $selected_categories = !empty( $this->selectedCategories ) ? $this->selectedCategories : array();
+            
+            if ( empty( $selected_categories ) ) {
+                return array();
+            }
+            
+            // Query events from selected categories
+            $args = array(
+                'post_type'      => Tribe__Events__Main::POSTTYPE,
+                'post_status'    => 'publish',
+                'posts_per_page' => -1,
+                'meta_key'       => '_EventStartDate',
+                'orderby'        => 'meta_value',
+                'order'          => 'ASC',
+                'tax_query'      => array(
+                    array(
+                        'taxonomy' => Tribe__Events__Main::TAXONOMY,
+                        'field'    => 'term_id',
+                        'terms'    => $selected_categories,
+                        'operator' => 'IN'
+                    )
+                ),
+                'meta_query'     => array(
+                    array(
+                        'key'     => '_EventStartDate',
+                        'value'   => date( 'Y-m-d H:i:s' ),
+                        'compare' => '>='
+                    )
+                )
+            );
+            
+            $events = get_posts( $args );
+            
+            return $events;
+        }
+        
+        /**
+         * Get event date for display
+         */
+        private function get_event_date( $event_id ) {
+            if ( !function_exists( 'tribe_get_start_date' ) ) {
+                return '';
+            }
+            
+            return tribe_get_start_date( $event_id, false, 'M j, Y' );
+        }
+        
+        /**
+         * Get category names for display
+         */
+        private function get_category_names( $category_ids ) {
+            if ( !class_exists( 'Tribe__Events__Main' ) ) {
+                return array();
+            }
+            
+            $names = array();
+            foreach ( $category_ids as $cat_id ) {
+                $term = get_term( $cat_id, Tribe__Events__Main::TAXONOMY );
+                if ( !is_wp_error( $term ) && !empty( $term ) ) {
+                    $names[] = $term->name;
+                }
+            }
+            
+            return $names;
+        }
+        
+        /**
+         * Get event category names for a specific event
+         */
+        private function get_event_category_names( $event_id ) {
+            if ( !class_exists( 'Tribe__Events__Main' ) ) {
+                return array();
+            }
+            
+            $terms = get_the_terms( $event_id, Tribe__Events__Main::TAXONOMY );
+            
+            if ( is_wp_error( $terms ) || empty( $terms ) ) {
+                return array();
+            }
+            
+            $names = array();
+            foreach ( $terms as $term ) {
+                $names[] = $term->name;
+            }
+            
+            return $names;
+        }
+        
+        /**
+         * Get all available event categories for the settings
+         */
+        private function get_event_categories() {
+            // Check if The Events Calendar is active
+            if ( !class_exists( 'Tribe__Events__Main' ) ) {
+                return array();
+            }
+            
+            $categories = get_terms( array(
+                'taxonomy'   => Tribe__Events__Main::TAXONOMY,
+                'hide_empty' => false,
+                'orderby'    => 'name',
+                'order'      => 'ASC'
+            ) );
+            
+            if ( is_wp_error( $categories ) ) {
+                return array();
+            }
+            
+            return $categories;
+        }
+        
+        /**
+         * Format the value for entry display
+         */
+        public function get_value_entry_display( $value, $currency = '', $use_text = false, $format = 'html', $media = 'screen' ) {
+            if ( empty( $value ) ) {
+                return '';
+            }
+            
+            $event_ids = is_array( $value ) ? $value : explode( ',', $value );
+            $event_titles = array();
+            
+            foreach ( $event_ids as $event_id ) {
+                $event_title = get_the_title( $event_id );
+                if ( $event_title ) {
+                    $event_titles[] = esc_html( $event_title );
+                }
+            }
+            
+            return implode( ', ', $event_titles );
+        }
+        
+        /**
+         * Format the value for entry list display
+         */
+        public function get_value_entry_list( $value, $entry, $field_id, $columns, $form ) {
+            return $this->get_value_entry_display( $value );
+        }
+        
+        /**
+         * Format the value for merge tags
+         */
+        public function get_value_merge_tag( $value, $input_id, $entry, $form, $modifier, $raw_value, $url_encode, $esc_html, $format, $nl2br ) {
+            if ( empty( $value ) ) {
+                return '';
+            }
+            
+            $display_value = $this->get_value_entry_display( $value );
+            
+            return $esc_html ? esc_html( $display_value ) : $display_value;
+        }
+        
+        /**
+         * Sanitize the submitted value
+         */
+        public function sanitize_value( $value ) {
+            if ( is_array( $value ) ) {
+                return array_map( 'sanitize_text_field', $value );
+            }
+            return sanitize_text_field( $value );
+        }
+        
+        /**
+         * Validate the field
+         */
+        public function validate( $value, $form ) {
+            // If field is required and no values are selected
+            if ( $this->isRequired && ( empty( $value ) || ( is_array( $value ) && count( $value ) === 0 ) ) ) {
+                $this->failed_validation  = true;
+                $this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'This field is required.', 'gravityforms' ) : $this->errorMessage;
+                return;
+            }
+            
+            // Validate selected event IDs exist
+            if ( !empty( $value ) ) {
+                $event_ids = is_array( $value ) ? $value : array( $value );
+                foreach ( $event_ids as $event_id ) {
+                    $event = get_post( $event_id );
+                    if ( !$event || $event->post_type !== Tribe__Events__Main::POSTTYPE ) {
+                        $this->failed_validation  = true;
+                        $this->validation_message = esc_html__( 'Please select valid events.', 'gravityforms' );
+                        break;
+                    }
+                }
+            }
+        }
+        
+        /**
+         * Define default field values for the form editor
+         */
+        public function get_form_editor_inline_script_on_page_render() {
+            $script = sprintf( 
+                "function SetDefaultValues_%s(field) {
+                    field.label = '%s';
+                    field.selectedCategories = [];
+                }", 
+                $this->type, 
+                $this->get_form_editor_field_title() 
+            );
+            
+            return $script;
+        }
+    }
+    
+    // Register the field
+    GF_Fields::register( new GF_Field_Event_Categories() );
+}
+
+
+/**
+ * Add custom setting for event category selection in form editor
+ */
+add_action( 'gform_field_standard_settings', 'add_event_categories_setting', 10, 2 );
+function add_event_categories_setting( $position, $form_id ) {
+    if ( $position == 25 ) {
+        ?>
+        <li class="event_categories_setting field_setting">
+            <label for="field_event_categories" class="section_label">
+                <?php esc_html_e( 'Event Categories', 'gravityforms' ); ?>
+                <?php gform_tooltip( 'event_categories_value' ) ?>
+            </label>
+            
+            <div id="event_categories_container">
+                <?php
+                // Get all event categories
+                if ( class_exists( 'Tribe__Events__Main' ) ) {
+                    $categories = get_terms( array(
+                        'taxonomy'   => Tribe__Events__Main::TAXONOMY,
+                        'hide_empty' => false,
+                        'orderby'    => 'name',
+                        'order'      => 'ASC'
+                    ) );
+                    
+                    if ( !is_wp_error( $categories ) && !empty( $categories ) ) {
+                        foreach ( $categories as $category ) {
+                            ?>
+                            <div>
+                                <input type="checkbox" 
+                                       id="event_category_<?php echo $category->term_id; ?>" 
+                                       value="<?php echo $category->term_id; ?>" 
+                                       onclick="SetEventCategories();" />
+                                <label for="event_category_<?php echo $category->term_id; ?>">
+                                    <?php echo esc_html( $category->name ); ?>
+                                </label>
+                            </div>
+                            <?php
+                        }
+                    } else {
+                        echo '<p>No event categories found. Make sure The Events Calendar Pro is installed and has categories.</p>';
+                    }
+                } else {
+                    echo '<p>The Events Calendar Pro plugin is required for this field to work.</p>';
+                }
+                ?>
+            </div>
+        </li>
+        <?php
+    }
+}
+
+
+/**
+ * Add tooltip for the event categories setting
+ */
+add_filter( 'gform_tooltips', 'add_event_categories_tooltip' );
+function add_event_categories_tooltip( $tooltips ) {
+    $tooltips['event_categories_value'] = '<h6>Event Categories</h6>Select which event categories should be used to populate this field. Events from the selected categories will appear as checkboxes for form users.';
+    return $tooltips;
+}
+
+/**
+ * Add JavaScript for form editor functionality
+ */
+add_action( 'gform_editor_js', 'add_event_categories_field_editor_js' );
+function add_event_categories_field_editor_js() {
+    ?>
+    <script type='text/javascript'>
+        // Bind to the load field settings event to populate the categories
+        jQuery(document).bind('gform_load_field_settings', function(event, field, form) {
+            if (field.type == 'event_categories') {
+                // Clear all checkboxes first
+                jQuery('#event_categories_container input[type="checkbox"]').prop('checked', false);
+                
+                // Check the previously selected categories
+                if (field.selectedCategories && field.selectedCategories.length > 0) {
+                    jQuery.each(field.selectedCategories, function(index, categoryId) {
+                        jQuery('#event_category_' + categoryId).prop('checked', true);
+                    });
+                }
+            }
+        });
+        
+        // Function to update the field's selectedCategories property
+        function SetEventCategories() {
+            const selectedCategories = [];
+            jQuery('#event_categories_container input[type="checkbox"]:checked').each(function() {
+                selectedCategories.push(parseInt(jQuery(this).val()));
+            });
+            
+            SetFieldProperty('selectedCategories', selectedCategories);
+        }
+        
+        // Add field to Advanced Fields group
+        gform.addFilter('gform_form_editor_can_field_be_added', function (canFieldBeAdded, type) {
+            return canFieldBeAdded;
+        });
+    </script>
+    <?php
+}
