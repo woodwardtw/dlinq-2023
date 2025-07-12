@@ -2269,6 +2269,21 @@ if ( class_exists( 'GF_Field' ) ) {
         public function is_value_submission_array() {
             return true;
         }
+        
+        /**
+         * Override to prevent duplicate labels - return empty string for label placement
+         */
+        public function get_field_label_class() {
+            return 'gfield_label_hidden';
+        }
+        
+        /**
+         * Override label output to prevent automatic label rendering
+         */
+        public function get_field_label( $force_frontend_label, $value ) {
+            // Return empty to suppress the automatic label since we're using fieldset/legend
+            return '';
+        }
 
         /**
          * Sanitize the submitted value
