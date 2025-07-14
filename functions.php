@@ -1979,10 +1979,7 @@ if ( class_exists( 'GF_Field' ) ) {
             // Start fieldset
             $output = '<fieldset id="field_' . $form_id . '_' . $id . '" class="' . $fieldset_classes . '">';
             
-            // Add legend (field label)
-            $field_label = !empty( $this->label ) ? esc_html( $this->label ) : 'Events';
-            $required_indicator = $this->isRequired ? '<span class="gfield_required"><span class="gfield_required_asterisk">*</span></span>' : '';
-            $output .= '<legend class="gfield_label gform-field-label gfield_label_before_complex">' . $field_label . $required_indicator . '</legend>';
+            // No legend - let Gravity Forms handle the label and description placement
             
             // Build checkboxes
             $output .= '<div class="ginput_container ginput_container_checkbox">';
@@ -2270,20 +2267,6 @@ if ( class_exists( 'GF_Field' ) ) {
             return true;
         }
         
-        /**
-         * Override to prevent duplicate labels - return empty string for label placement
-         */
-        public function get_field_label_class() {
-            return 'gfield_label_hidden';
-        }
-        
-        /**
-         * Override label output to prevent automatic label rendering
-         */
-        public function get_field_label( $force_frontend_label, $value ) {
-            // Return empty to suppress the automatic label since we're using fieldset/legend
-            return '';
-        }
 
         /**
          * Sanitize the submitted value
