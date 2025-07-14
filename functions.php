@@ -2220,16 +2220,99 @@ if ( class_exists( 'GF_Field' ) ) {
         }
         
         /**
-         * Format the value for merge tags
+         * Format the value for merge tags - shows event names with dates and times
          */
         public function get_value_merge_tag( $value, $input_id, $entry, $form, $modifier, $raw_value, $url_encode, $esc_html, $format, $nl2br ) {
-            if ( empty( $value ) ) {
+            // Debug logging
+            error_log('Merge tag called for field ' . $this->id . ' with value: ' . print_r($value, true));
+            error_log('Input ID: ' . $input_id . ', Raw value: ' . print_r($raw_value, true));
+            
+            // Use raw_value if value is empty - this contains the actual submitted data
+            if ( empty( $value ) && !empty( $raw_value ) ) {
+                $value = $raw_value;
+                error_log('Using raw_value as main value: ' . print_r($value, true));
+            }
+            
+            // Extract event IDs from the array format
+            $event_ids = array();
+            if ( is_array( $value ) ) {
+                foreach ( $value as $key => $val ) {
+                    if ( !empty( $val ) && is_numeric( $val ) ) {
+                        $event_ids[] = $val;
+                    }
+                }
+            } else if ( !empty( $value ) && is_numeric( $value ) ) {
+                $event_ids[] = $value;
+            }
+            
+            error_log('Extracted event IDs: ' . print_r($event_ids, true));
+            
+            if ( empty( $event_ids ) ) {
+                error_log('No event IDs found for merge tag');
+                return 'No events selected';
+            }
+            
+            $event_details = array();
+            
+            // Process each event ID
+            foreach ( $event_ids as $event_id ) {
+                $event_detail = $this->get_event_merge_tag_display( $event_id );
+                if ( $event_detail ) {
+                    $event_details[] = $event_detail;
+                }
+            }
+            
+            if ( empty( $event_details ) ) {
+                error_log('No event details generated');
+                return 'No valid events found';
+            }
+            
+            // Join with line breaks for email formatting
+            $separator = ( $format === 'html' ) ? '<br>' : "\n";
+            $display_value = implode( $separator, $event_details );
+            
+            error_log('Final merge tag output: ' . $display_value);
+            return $esc_html ? esc_html( $display_value ) : $display_value;
+        }
+        
+        /**
+         * Get detailed event information for merge tags
+         */
+        private function get_event_merge_tag_display( $event_id ) {
+            $event_title = get_the_title( $event_id );
+            if ( !$event_title ) {
                 return '';
             }
             
-            $display_value = $this->get_value_entry_display( $value );
+            // Get the full date and time display
+            $event_datetime = $this->get_event_date( $event_id );
             
-            return $esc_html ? esc_html( $display_value ) : $display_value;
+            // Get event location if available
+            $location = '';
+            if ( function_exists( 'tribe_get_venue' ) ) {
+                $venue = tribe_get_venue( $event_id );
+                if ( !empty( $venue ) ) {
+                    $location = ' at ' . $venue;
+                }
+            }
+            
+            // Get zoom link if it's a virtual event
+            $zoom_info = '';
+            if ( function_exists( 'get_field' ) ) {
+                $zoom_link = get_field( 'zoom_link', $event_id );
+                if ( !empty( $zoom_link ) ) {
+                    $zoom_info = ' (Virtual Event)';
+                }
+            }
+            
+            // Build the display string
+            $display = $event_title;
+            if ( !empty( $event_datetime ) ) {
+                $display .= ' - ' . $event_datetime;
+            }
+            $display .= $location . $zoom_info;
+            
+            return $display;
         }
         
         /**
