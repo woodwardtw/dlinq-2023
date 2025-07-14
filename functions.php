@@ -2075,20 +2075,52 @@ if ( class_exists( 'GF_Field' ) ) {
             
             // Get the event start date/time
             $start_date = tribe_get_start_date( $event_id, false, 'M j, Y' );
-            $start_time_utc = tribe_get_start_date( $event_id, false, 'Y-m-d H:i:s' );
             
-            if ( empty( $start_time_utc ) ) {
+            // Debug logging
+            error_log("Event ID $event_id - Start date: $start_date");
+            
+            // Try different methods to get the time
+            $start_time_utc = tribe_get_start_date( $event_id, false, 'Y-m-d H:i:s' );
+            $start_time_local = tribe_get_start_date( $event_id, true, 'Y-m-d H:i:s' );
+            $event_timezone = get_post_meta( $event_id, '_EventTimezone', true );
+            
+            error_log("Event ID $event_id - UTC time: $start_time_utc, Local time: $start_time_local, Timezone: $event_timezone");
+            
+            // Check if this is an all-day event
+            $all_day = tribe_event_is_all_day( $event_id );
+            if ( $all_day ) {
+                error_log("Event ID $event_id is all-day event");
+                return $start_date . ' (All Day)';
+            }
+            
+            if ( empty( $start_time_utc ) && empty( $start_time_local ) ) {
+                error_log("Event ID $event_id - No time data found");
                 return $start_date;
             }
             
             try {
-                // Create DateTime object from the event time
-                $event_datetime = new DateTime( $start_time_utc );
+                // Use local time if available, otherwise UTC
+                $time_to_use = !empty( $start_time_local ) ? $start_time_local : $start_time_utc;
+                $use_local = !empty( $start_time_local );
                 
-                // Get event timezone (if set) or default to UTC
-                $event_timezone = get_post_meta( $event_id, '_EventTimezone', true );
-                if ( !empty( $event_timezone ) ) {
-                    $event_datetime->setTimezone( new DateTimeZone( $event_timezone ) );
+                error_log("Event ID $event_id - Using time: $time_to_use (local: " . ($use_local ? 'yes' : 'no') . ")");
+                
+                // Create DateTime object from the event time
+                if ( $use_local && !empty( $event_timezone ) ) {
+                    // Local time is already in the event's timezone - create DateTime with that timezone
+                    $event_datetime = new DateTime( $time_to_use, new DateTimeZone( $event_timezone ) );
+                    error_log("Event ID $event_id - Created DateTime with timezone: $event_timezone");
+                } else if ( !$use_local ) {
+                    // UTC time - create with UTC then convert if needed
+                    $event_datetime = new DateTime( $time_to_use, new DateTimeZone( 'UTC' ) );
+                    if ( !empty( $event_timezone ) ) {
+                        $event_datetime->setTimezone( new DateTimeZone( $event_timezone ) );
+                        error_log("Event ID $event_id - Converted UTC to: $event_timezone");
+                    }
+                } else {
+                    // No timezone info - assume local server time
+                    $event_datetime = new DateTime( $time_to_use );
+                    error_log("Event ID $event_id - Created DateTime with server timezone");
                 }
                 
                 // Convert to Eastern Time
@@ -2105,11 +2137,14 @@ if ( class_exists( 'GF_Field' ) ) {
                 $eastern_formatted = $eastern_time->format( 'g:i A T' );
                 $pacific_formatted = $pacific_time->format( 'g:i A T' );
                 
-                // Return formatted string with date and both times
-                return $start_date . ' at ' . $eastern_formatted . ' / ' . $pacific_formatted;
+                $result = $start_date . ' at ' . $eastern_formatted . ' / ' . $pacific_formatted;
+                error_log("Event ID $event_id - Final result: $result");
+                
+                return $result;
                 
             } catch ( Exception $e ) {
                 // Fallback if timezone conversion fails
+                error_log("Event ID $event_id - Exception: " . $e->getMessage());
                 return $start_date;
             }
         }
