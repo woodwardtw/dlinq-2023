@@ -1025,9 +1025,6 @@ function after_submission_bulk_enroll( $entry, $form ) {
 	//write_log($entry);
 	// Debug: Log all form fields and their types
 	//write_log('=== FORM FIELDS DEBUG ===');
-	foreach ( $form['fields'] as $field ) {
-		//write_log('Field ID: ' . $field->id . ', Type: ' . $field->type . ', CSS Class: ' . $field->cssClass);
-	}
 	
 	// Debug: Log all entry data
 	//write_log('=== ENTRY DATA DEBUG ===');
@@ -1040,7 +1037,7 @@ function after_submission_bulk_enroll( $entry, $form ) {
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
- 	$email = rgar($entry, '3');
+ 	$email = rgar($entry, '2');
  	
  	// Get all event IDs from all event category fields in the form
  	//write_log('About to call dlinq_get_all_event_ids_from_form');
@@ -1085,7 +1082,7 @@ function after_submission_bulk_enroll( $entry, $form ) {
  			'form_id' =>  $gf_workshop_registration_id,
  			'1.3' => $first,
  			'1.6' => $last,
- 			'2' => $email,//change to match with 2025 summer form shift!!!!!
+ 			'3' => $email,//change to match with 2025 summer form shift!!!!!
  			'5' => $event_name,
  			'6' => $event_id,
  			'8' => 'No',
