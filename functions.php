@@ -2571,6 +2571,37 @@ function add_event_categories_field_editor_js() {
 
 
 function emailFixer(){
+	$check = [
+    ['first' => 'Claudio', 'last' => 'Medeiros', 'email' => 'cmedeiro@middlebury.edu'],
+    ['first' => 'Damascus', 'last' => 'Kafumbe', 'email' => 'dkafumbe@middlebury.edu'],
+    ['first' => 'Amitava', 'last' => 'Biswas', 'email' => 'amitavab@middlebury.edu'],
+    ['first' => 'Rebekah', 'last' => 'Irwin', 'email' => 'rirwin@middlebury.edu'],
+    ['first' => 'Lauren', 'last' => 'Kordonowy', 'email' => 'lkordonowy@middlbury.edu'],
+    ['first' => 'Fulya', 'last' => 'Pinar', 'email' => 'fpinar@middlebury.edu'],
+    ['first' => 'Lisa', 'last' => 'Leopold', 'email' => 'lisaleopold@hotmail.com'],
+    ['first' => 'Scott', 'last' => 'Pulizzi', 'email' => 'spulizzi@middlebury.edu'],
+    ['first' => 'Mark', 'last' => 'Spritzer', 'email' => 'mspritze@middlebury.edu'],
+    ['first' => 'Hiroko', 'last' => 'Imai', 'email' => 'hirokokoyama@hotmail.com'],
+    ['first' => 'Natalie', 'last' => 'Webb', 'email' => 'nwebb@middlebury.edu'],
+    ['first' => 'Avner', 'last' => 'Cohen', 'email' => 'avnerc@middlebury.edu'],
+    ['first' => 'Junko', 'last' => 'Matsuda', 'email' => 'jmatsuda@middleblebury.edu'],
+    ['first' => 'Liz', 'last' => 'Ross', 'email' => 'ebross@middlebury.edu'],
+    ['first' => 'R Keating', 'last' => 'Godfrey', 'email' => 'rkeatinggodfrey@middlebury.edu'],
+    ['first' => 'Sayaka', 'last' => 'Abe', 'email' => 'sabe@middlebury.edu'],
+    ['first' => 'Yumna', 'last' => 'Siddiqi', 'email' => 'ysiddiqi@middlebury.edu'],
+    ['first' => 'John', 'last' => 'Spackman', 'email' => 'jspackma@middlebury.edu'],
+    ['first' => 'Alessandra', 'last' => 'Capossela', 'email' => 'acapossela@middlebury.edu'],
+    ['first' => 'Maarguerite', 'last' => 'Lenius', 'email' => 'mlenius@middlebury.edu'],
+    ['first' => 'Carolyn', 'last' => 'Meyer', 'email' => 'cmtaylor@middlebury.edu'],
+    ['first' => 'Maha', 'last' => 'Baimyrzaeva', 'email' => 'mbaimyrz@middlebury.edu'],
+    ['first' => 'Deborah', 'last' => 'Greebhut', 'email' => 'deborah.greenhut@gmail.com'],
+    ['first' => 'Joseph', 'last' => 'McVicker', 'email' => 'joseph@mcvickernet.com'],
+    ['first' => 'Kyle', 'last' => 'Whittinghill', 'email' => 'kawhitti@uvm.edu'],
+    ['first' => 'David', 'last' => 'Torres', 'email' => 'dtorres@middlebury.edu'],
+    ['first' => 'David', 'last' => 'Adkins', 'email' => 'dadkins@middlebury.edu'],
+    ['first' => 'Jen', 'last' => 'Peck', 'email' => 'jpeck@middlebury.edu'],
+    ['first' => 'Tom', 'last' => 'Testing', 'email' => 'twoodward@middlebury.edu'],
+	];
     $regularEntryFormID = 26;
 	$search_criteria = array();
     //$search_criteria['field_filters'][] = array( 'key' => '3', 'value' => 'Middlebury ' );
@@ -2581,15 +2612,26 @@ function emailFixer(){
         foreach ( $results as $entry ) {
             // Do something with each entry id 1.3, 1.6 
             if ($entry["3"] == "Middlebury College" || $entry["3"] == "Middlebury Institute (MIIS)"){
-				echo ($entry['id']);
-				echo ($entry['1.3']);
-				echo ($entry['1.6']);
-				echo ($entry['3']);
+				$entry_id = intval($entry['id']);
+				$first = $entry['1.3'];
+				$last = $entry['1.6'];
+				foreach ($check as $c) {
+					$check_first = $c['first'];
+					$check_last = $c['last'];
+					$check_email = $c['email'];
+					if ($first == $check_first && $last == $check_last){
+						// update entry email to $check_email
+						echo $check_email . $last . $check_last;
+						//GFAPI::update_entry_field( $entry_id, 3, $check_email );
+					}
 			}
         }
-    } else{
+    } 
+}
+else{
         echo 'No entries found.';
     }
+	
 }
 
 add_shortcode('emailfix', 'emailFixer');
