@@ -1660,9 +1660,9 @@ function dlinq_workshop_registration_updater($post_id){
 function dlinq_workshop_report(){
 	
 	//get current date and add 86400 seconds
-	$current_year = 2024;
+	$current_year = 2025;
 	$start = $current_year . '-06-31 00:01';
-	$end = ($current_year+2) . '-06-31 23:59';
+	$end = ($current_year+1) . '-06-31 23:59';
 
 	//get Modern Tribe events that occur on current date +24 hrs from the events calendar
 	$year_events = tribe_get_events( [
