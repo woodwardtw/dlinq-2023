@@ -2621,7 +2621,7 @@ function emailFixer(){
 					$check_email = $c['email'];
 					if ($first == $check_first && $last == $check_last){
 						// update entry email to $check_email
-						echo $check_email . $last . $check_last;
+						echo $check_email . $last . $check_last . "<br>";
 						//GFAPI::update_entry_field( $entry_id, 3, $check_email );
 					}
 			}
