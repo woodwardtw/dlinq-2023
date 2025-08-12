@@ -2579,9 +2579,12 @@ function emailFixer(){
     $results = GFAPI::get_entries($regularEntryFormID, $search_criteria, $sorting, $paging);
     if($results) {
         foreach ( $results as $entry ) {
-            // Do something with each entry 1.3, 1.6
+            // Do something with each entry id 1.3, 1.6 
             if ($entry["3"] == "Middlebury College" || $entry["3"] == "Middlebury Institute (MIIS)"){
-				var_dump($entry);
+				echo ($entry['id']);
+				echo ($entry['1.3']);
+				echo ($entry['1.6']);
+				echo ($entry['3']);
 			}
         }
     } else{
