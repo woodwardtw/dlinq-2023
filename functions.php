@@ -2580,7 +2580,9 @@ function emailFixer(){
     if($results) {
         foreach ( $results as $entry ) {
             // Do something with each entry 1.3, 1.6
-            var_dump($entry["3"]);
+            if ($entry["3"] == "Middlebury College" || $entry["3"] == "Middlebury Institute (MIIS)"){
+				var_dump($entry);
+			}
         }
     } else{
         echo 'No entries found.';
