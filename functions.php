@@ -762,7 +762,7 @@ function dlinq_registered_people($form_id){
 				$created = substr($result["date_created"], 0, 10);//get rid of the time
 				$first = $result["1.3"];
 				$last = $result["1.6"];
-				$email = $result["3"];
+				$email = $result["4"];
 				$attendance = $result["8"];
 				$attendance_count = ($attendance === 'Yes') ? intval($attendance_count)+1 : $attendance_count;
 				$attendance_options = [
