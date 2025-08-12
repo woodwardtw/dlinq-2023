@@ -1085,7 +1085,7 @@ function after_submission_bulk_enroll( $entry, $form ) {
  			'form_id' =>  $gf_workshop_registration_id,
  			'1.3' => $first,
  			'1.6' => $last,
- 			'3' => $email,
+ 			'2' => $email,//change to match with 2025 summer form shift!!!!!
  			'5' => $event_name,
  			'6' => $event_id,
  			'8' => 'No',
@@ -1666,7 +1666,7 @@ function dlinq_workshop_report(){
 
 	//get Modern Tribe events that occur on current date +24 hrs from the events calendar
 	$year_events = tribe_get_events( [
-					   'posts_per_page' => -1,
+					   'posts_per_page' => 100,
 					   'start_date'   => $start,
 					   'end_date'   => $end,
 					   'post_status', array('private', 'publish'),
