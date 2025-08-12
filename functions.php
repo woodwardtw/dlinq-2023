@@ -763,7 +763,6 @@ function dlinq_registered_people($form_id){
 				$first = $result["1.3"];
 				$last = $result["1.6"];
 				$email = $result["3"];
-				var_dump($result);
 				$attendance = $result["8"];
 				$attendance_count = ($attendance === 'Yes') ? intval($attendance_count)+1 : $attendance_count;
 				$attendance_options = [
