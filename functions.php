@@ -1037,7 +1037,7 @@ function after_submission_bulk_enroll( $entry, $form ) {
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
- 	$email = rgar($entry, '2');
+ 	$email = rgar($entry, '2');//change to match with 2025 summer form shift!!!!!
  	
  	// Get all event IDs from all event category fields in the form
  	//write_log('About to call dlinq_get_all_event_ids_from_form');
@@ -1082,7 +1082,7 @@ function after_submission_bulk_enroll( $entry, $form ) {
  			'form_id' =>  $gf_workshop_registration_id,
  			'1.3' => $first,
  			'1.6' => $last,
- 			'3' => $email,//change to match with 2025 summer form shift!!!!!
+ 			'3' => $email,
  			'5' => $event_name,
  			'6' => $event_id,
  			'8' => 'No',
@@ -2568,3 +2568,22 @@ function add_event_categories_field_editor_js() {
     </script>
     <?php
 }
+
+
+function emailFixer(){
+    $regularEntryFormID = 26;
+    $search_criteria['field_filters'][] = array( 'key' => '3', 'value' => 'Middlebury ' );
+    $sorting         = array();
+    $paging          = array( 'offset' => 0, 'page_size' => 250 );
+    $results = GFAPI::get_entries($regularEntryFormID, $search_criteria, $sorting, $paging);
+    if($results) {
+        foreach ( $results as $entry ) {
+            // Do something with each entry
+            var_dump($entry);
+        }
+    } else{
+        echo 'No entries found.';
+    }
+}
+
+add_shortcode('emailfix', 'emailFixer');
