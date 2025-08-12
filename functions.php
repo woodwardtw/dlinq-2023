@@ -2579,8 +2579,8 @@ function emailFixer(){
     $results = GFAPI::get_entries($regularEntryFormID, $search_criteria, $sorting, $paging);
     if($results) {
         foreach ( $results as $entry ) {
-            // Do something with each entry
-            var_dump($entry);
+            // Do something with each entry 1.3, 1.6
+            var_dump($entry["3"]);
         }
     } else{
         echo 'No entries found.';
