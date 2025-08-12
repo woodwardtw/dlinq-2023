@@ -2572,7 +2572,8 @@ function add_event_categories_field_editor_js() {
 
 function emailFixer(){
     $regularEntryFormID = 26;
-    $search_criteria['field_filters'][] = array( 'key' => '3', 'value' => 'Middlebury ' );
+	$search_criteria = array();
+    //$search_criteria['field_filters'][] = array( 'key' => '3', 'value' => 'Middlebury ' );
     $sorting         = array();
     $paging          = array( 'offset' => 0, 'page_size' => 250 );
     $results = GFAPI::get_entries($regularEntryFormID, $search_criteria, $sorting, $paging);
