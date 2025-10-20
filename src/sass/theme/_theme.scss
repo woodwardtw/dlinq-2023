@@ -965,6 +965,10 @@ li.reg span{
   color: $white;
 }
 
+#feedback-message {
+  height: 0;
+  overflow: hidden;
+}
 
 //POLICY 
 

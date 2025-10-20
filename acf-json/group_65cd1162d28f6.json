@@ -38,17 +38,13 @@
             "relevanssi_exclude": 0,
             "choices": {
                 "0": "",
-                "3": "Base Challenge Form",
-                "6": "Bulk event registration",
-                "9": "Catalog Course Request",
-                "10": "Catalog Refund Request",
-                "2": "Challenge one",
-                "8": "Contact DLINQ (1)",
-                "4": "poetry submission form",
-                "1": "Request form",
-                "5": "Reservation form",
-                "12": "test modal conditional",
-                "7": "Workshop request"
+                "4": "Bulk event registration",
+                "2": "Contact DLINQ (1)",
+                "7": "DLINQ Intern Consultation Form",
+                "3": "Reservation form",
+                "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                "1": "workshop feedback form",
+                "5": "Workshop request"
             },
             "default_value": false,
             "return_format": "value",
@@ -56,7 +52,9 @@
             "allow_null": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_65cd18fcdb773",
@@ -75,17 +73,13 @@
             "relevanssi_exclude": 0,
             "choices": {
                 "0": "",
-                "3": "Base Challenge Form",
-                "6": "Bulk event registration",
-                "9": "Catalog Course Request",
-                "10": "Catalog Refund Request",
-                "2": "Challenge one",
-                "8": "Contact DLINQ (1)",
-                "4": "poetry submission form",
-                "1": "Request form",
-                "5": "Reservation form",
-                "12": "test modal conditional",
-                "7": "Workshop request"
+                "4": "Bulk event registration",
+                "2": "Contact DLINQ (1)",
+                "7": "DLINQ Intern Consultation Form",
+                "3": "Reservation form",
+                "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                "1": "workshop feedback form",
+                "5": "Workshop request"
             },
             "default_value": false,
             "return_format": "value",
@@ -93,7 +87,9 @@
             "allow_null": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_65dde108be96b",
@@ -112,17 +108,13 @@
             "relevanssi_exclude": 0,
             "choices": {
                 "0": "",
-                "3": "Base Challenge Form",
-                "6": "Bulk event registration",
-                "9": "Catalog Course Request",
-                "10": "Catalog Refund Request",
-                "2": "Challenge one",
-                "8": "Contact DLINQ (1)",
-                "4": "poetry submission form",
-                "1": "Request form",
-                "5": "Reservation form",
-                "12": "test modal conditional",
-                "7": "Workshop request"
+                "4": "Bulk event registration",
+                "2": "Contact DLINQ (1)",
+                "7": "DLINQ Intern Consultation Form",
+                "3": "Reservation form",
+                "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                "1": "workshop feedback form",
+                "5": "Workshop request"
             },
             "default_value": false,
             "return_format": "value",
@@ -130,7 +122,9 @@
             "allow_null": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_66be12aff4a7f",
@@ -149,17 +143,13 @@
             "relevanssi_exclude": 0,
             "choices": {
                 "0": "",
-                "3": "Base Challenge Form",
-                "6": "Bulk event registration",
-                "9": "Catalog Course Request",
-                "10": "Catalog Refund Request",
-                "2": "Challenge one",
-                "8": "Contact DLINQ (1)",
-                "4": "poetry submission form",
-                "1": "Request form",
-                "5": "Reservation form",
-                "12": "test modal conditional",
-                "7": "Workshop request"
+                "4": "Bulk event registration",
+                "2": "Contact DLINQ (1)",
+                "7": "DLINQ Intern Consultation Form",
+                "3": "Reservation form",
+                "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                "1": "workshop feedback form",
+                "5": "Workshop request"
             },
             "default_value": false,
             "return_format": "value",
@@ -167,7 +157,9 @@
             "allow_null": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_65e084f9363d6",
@@ -317,6 +309,27 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 0
+        },
+        {
+            "key": "field_68c1ae88b7e15",
+            "label": "Workshop Feedback Template",
+            "name": "workshop_feedback_template",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         }
     ],
     "location": [
@@ -337,5 +350,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1723732684
+    "modified": 1757523609
 }

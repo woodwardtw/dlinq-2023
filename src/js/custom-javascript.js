@@ -8,6 +8,7 @@ window.onload = function() {
   }	
 	dlinqAttendance();//what is the problem?
 	dlinqEmailButton();//email copy button for events
+	dlinqFeedbackButton();//email feedback button for events
 	deleteByHumanHand();
 };
 
@@ -154,6 +155,44 @@ function dlinqEmailButton(){
 		 	dlinqGatherEmails();
 		 })
 	}
+}
+
+function dlinqFeedbackButton() {
+	
+    const feedbackButton = document.querySelector('#feedback-email');
+    if (feedbackButton) {
+        //alert('feedback email button found');
+        feedbackButton.addEventListener('click', async () => {
+            //alert('feedback email button clicked');
+            await copyRichText();
+        });
+    }
+}
+
+async function copyRichText() {
+    const feedbackElement = document.querySelector('#feedback-message');
+    if (!feedbackElement) {
+        console.error('Feedback message element not found');
+        return;
+    }
+
+    const htmlBody = feedbackElement.innerHTML;
+    const textBody = feedbackElement.textContent || feedbackElement.innerText;
+
+    try {
+        const htmlBlob = new Blob([htmlBody], { type: 'text/html' });
+        const textBlob = new Blob([textBody], { type: 'text/plain' });
+
+        const clipboardItem = new ClipboardItem({
+            'text/html': htmlBlob,
+            'text/plain': textBlob
+        });
+
+        await navigator.clipboard.write([clipboardItem]);
+        alert('HTML content copied to clipboard!');
+    } catch (err) {
+        console.error('Failed to copy content:', err);
+    }
 }
 
 function dlinqGatherEmails(){

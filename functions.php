@@ -747,13 +747,19 @@ function dlinq_registered_people($form_id){
 		// Getting the entries
 		$results = GFAPI::get_entries( $form_id, $search_criteria, null, $paging );
 		$total_reg =sizeof($results);
+		$workshop_title = get_the_title($post_id);
 		dlinq_set_registration_data($post_id, $total_reg, 'registered_total');//set total registered as custom field
+		$workshop_feedback_template = get_field('workshop_feedback_template', 'option');
 		if($results){
 			$attendance_count = intval(0);
 			echo "<div class='registration-block'>
 					<h2>Registrations</h2>
 					<div class='event-details'><span id='totalCame'></span> of <span id='totalReg'>{$total_reg}</span> attended</div>
 					<button id='copy-emails' class='btn btn-dlinq'>Copy All Emails</button>
+					<button id='feedback-email' class='btn btn-dlinq'>Copy Feedback Email</button>
+					<div id='feedback-message' class='small-text'>
+						{$workshop_feedback_template}				
+					</div>
 					<ol class='reg-list' id='registered'>";
 			foreach ($results as $key => $result) {
 
@@ -766,7 +772,7 @@ function dlinq_registered_people($form_id){
 				$attendance = $result["8"];
 				$attendance_count = ($attendance === 'Yes') ? intval($attendance_count)+1 : $attendance_count;
 				$attendance_options = [
-										"No" => "",
+										"No" => "no",
 										"Yes" => "present",
 										"Canceled" => "canceled"
 
@@ -775,6 +781,7 @@ function dlinq_registered_people($form_id){
 				$attend_class = strtolower($attendance_options[$attendance]);
 				$event_title = get_the_title();
 				$delete_key = $result["11"];
+				//$nonce = wp_create_nonce('delete_reservation_' . $entry_id);
 				$delete_link = get_permalink($post_id).'?delete='.$delete_key;
 				echo "<li class='reg' data-email='{$email}'> {$key}. 
 						<span class='reg-name'><a href='mailto:{$email}?subject={$event_title} workshop'>&nbsp;{$first} {$last}</a><div class='small-mail'>{$email}</div></span>
@@ -1208,9 +1215,10 @@ function dlinq_registration_delete_code( $value, $lead, $field, $form){
 function dlinq_check_to_delete(){
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 	if( 'tribe_events' == get_post_type()){
-		if(isset($_GET["delete"]) && isset($_GET["confirmed"])){
+		if(isset($_GET["delete"]) && isset($_GET["confirmed"]) ){
 			$passcode = $_GET["delete"];
 			$humanOk = $_GET['confirmed'];
+			
 			$search_criteria = array(
 			    'status'        => 'active',
 			    'field_filters' => array(
@@ -1224,11 +1232,16 @@ function dlinq_check_to_delete(){
 			$entry = GFAPI::get_entries($gf_workshop_registration_id, $search_criteria);
 			if(sizeof($entry)>0 && $humanOk != NULL){
 				$entry_id = $entry[0]['id'];
-				GFAPI::update_entry_field($entry_id, 8,'Canceled');			
-				//GFAPI::delete_entry( $entry_id );//turns out we don't want to delete this. mark as canceled instead
+				
+				// Verify nonce before processing deletion
+					GFAPI::update_entry_field($entry_id, 8,'Canceled');			
+					//GFAPI::delete_entry( $entry_id );//turns out we don't want to delete this. mark as canceled instead
 
-				echo "<div class='notification delete-alert'>You have removed your reservation. Thank you.</div>";
-			}			
+					echo "<div class='notification delete-alert'>You have removed your reservation. Thank you.</div>";
+				} else {
+					echo "<div class='notification error-alert'>Invalid security token. Please try again.</div>";
+				}
+						
 		}
 	}
 }
@@ -1243,8 +1256,8 @@ if ( ! wp_next_scheduled( 'dlinq_reminder_email' ) ) {
 
 add_action( 'dlinq_reminder_email', 'dlinq_reminder_email' );
 
-
 function dlinq_reminder_email(){
+	write_log(__LINE__);
 	//get the reservation form ID from the ACF options field
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
 
@@ -1258,6 +1271,7 @@ function dlinq_reminder_email(){
 					   'start_date'   => $start,
 					   'end_date'   => $end,
 					] );
+	write_log($coming_events);
 	$event_ids = [];
 	if($coming_events){		
 		foreach ($coming_events as $key => $event) {		
@@ -1290,6 +1304,8 @@ function dlinq_reminder_email(){
 				// code...
 				$to_email = $reservation[3];
 				$delete_key = $reservation[11];
+				$entry_id = $reservation['id'];
+				//$nonce = wp_create_nonce('delete_reservation_' . $entry_id);
 				$delete_url = get_permalink($event_id).'?delete='.$delete_key;
 				$delete_block = "<p>Use this link to cancel your reservation <a href='{$delete_url}'>{$delete_url}</a></p>";		
 				dlinq_send_reminder_email($to_email, $event_name, $clean_date, $location, $delete_block);
