@@ -1,0 +1,232 @@
+{
+    "key": "group_690103d1436ab",
+    "title": "AI prompts",
+    "fields": [
+        {
+            "key": "field_690104d0cc44c",
+            "label": "Prompt",
+            "name": "prompt",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_6901052bcc44d",
+            "label": "Additional directions",
+            "name": "additional_directions",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_690103d15c6db",
+            "label": "AI service link",
+            "name": "ai_service_link",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "These links will automatically fill in the chat in the respective service. Choose which services you'd like to create links to. Some service don't support this option.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Gemini": "Gemini",
+                "ChatGPT": "ChatGPT"
+            },
+            "default_value": [],
+            "return_format": "value",
+            "allow_custom": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "toggle": 0,
+            "save_custom": 0,
+            "custom_choice_button_text": "Add new choice"
+        },
+        {
+            "key": "field_69010575cc44e",
+            "label": "Gemini choices",
+            "name": "gemini_choices",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_690103d15c6db",
+                        "operator": "==",
+                        "value": "Gemini"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Gemini": "Gemini",
+                "Custom Gem": "Custom Gem",
+                "Specific Tool": "Specific Tool"
+            },
+            "default_value": "Gemini",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_690106e72e7de",
+            "label": "Gemini Prompt Action",
+            "name": "gemini_prompt_action",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_690103d15c6db",
+                        "operator": "==",
+                        "value": "Gemini"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Pre-fill (user can edit)": "Pre-fill (user can edit)",
+                "Auto-submit": "Auto-submit"
+            },
+            "default_value": "Pre-fill (user can edit)",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_69010619382a0",
+            "label": "Custom Gem ID",
+            "name": "custom_gem",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Find the Gem ID in the URL of your custom Gem.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69010575cc44e",
+                        "operator": "==",
+                        "value": "Custom Gem"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69010664382a1",
+            "label": "Gemini Specific Tool",
+            "name": "gemini_specific_tool",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69010575cc44e",
+                        "operator": "==",
+                        "value": "Specific Tool"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Canvas": "Canvas",
+                "Deep Research": "Deep Research",
+                "Image Creation": "Image Creation",
+                "Video Creation": "Video Creation"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "prompt"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1761675051
+}

@@ -152,7 +152,9 @@
                                     "ui": 0,
                                     "ajax": 0,
                                     "placeholder": "",
-                                    "parent_repeater": "field_64de244f07c5a"
+                                    "parent_repeater": "field_64de244f07c5a",
+                                    "create_options": 0,
+                                    "save_options": 0
                                 },
                                 {
                                     "key": "field_64de247507c5c",
@@ -647,17 +649,13 @@
                             },
                             "choices": {
                                 "0": "",
-                                "3": "Base Challenge Form",
-                                "6": "Bulk event registration",
-                                "9": "Catalog Course Request",
-                                "10": "Catalog Refund Request",
-                                "2": "Challenge one",
-                                "8": "Contact DLINQ (1)",
-                                "4": "poetry submission form",
-                                "1": "Request form",
-                                "5": "Reservation form",
-                                "12": "test modal conditional",
-                                "7": "Workshop request"
+                                "4": "Bulk event registration",
+                                "2": "Contact DLINQ (1)",
+                                "7": "DLINQ Intern Consultation Form",
+                                "3": "Reservation form",
+                                "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                                "1": "workshop feedback form",
+                                "5": "Workshop request"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -665,7 +663,9 @@
                             "allow_null": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_6525a56ebf174",
@@ -691,6 +691,108 @@
                             "other_choice": 0,
                             "layout": "vertical",
                             "save_other_choice": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6900f6b0a03fe": {
+                    "key": "layout_6900f6b0a03fe",
+                    "name": "side_nav",
+                    "label": "Side Nav",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6900f6c7a0400",
+                            "label": "Big Group",
+                            "name": "big_group",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Row",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_6900f6efa0401",
+                                    "label": "Sub Group",
+                                    "name": "sub_group",
+                                    "aria-label": "",
+                                    "type": "repeater",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "layout": "table",
+                                    "pagination": 0,
+                                    "min": 0,
+                                    "max": 0,
+                                    "collapsed": "",
+                                    "button_label": "Add Row",
+                                    "rows_per_page": 20,
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_6900f709a0402",
+                                            "label": "Sub-Group Title",
+                                            "name": "sub-group_title",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "allow_in_bindings": 0,
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_6900f6efa0401"
+                                        }
+                                    ],
+                                    "parent_repeater": "field_6900f6c7a0400"
+                                },
+                                {
+                                    "key": "field_6900f752a0403",
+                                    "label": "Big Group Title",
+                                    "name": "big_group_title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_6900f6c7a0400"
+                                }
+                            ]
                         }
                     ],
                     "min": "",
@@ -751,5 +853,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1709561895
+    "display_title": "",
+    "modified": 1761671004
 }
