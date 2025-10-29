@@ -2584,3 +2584,87 @@ function add_event_categories_field_editor_js() {
     </script>
     <?php
 }
+
+
+//prompt data display
+function dlinq_prompt_display(){
+	$html = '';
+	$prompt = get_field('prompt');
+	$directions_html = '';
+	if(get_field('additional_directions')){
+			$directions = get_field('additional_directions');
+			$directions_html = "<div class='directions-text'>
+					<h2>Additional Directions</h2>
+					<p>{$directions}</p>
+					</div>";	
+	}
+	if($prompt){
+		$html .= "<div class='dlinq-prompt-display'>
+				{$directions_html}
+				<div class='prompt-text'>
+					<h2>The Prompt</h2>
+					<textarea readonly rows='10' cols='80'>{$prompt}</textarea>
+					</div>
+				</div>";
+	}
+	echo $html;
+}
+
+//prompt link builder 
+function dlinq_prompt_links(){
+	$html = '';
+	$related_prompts = get_field('ai_service_links');
+	if($related_prompts){
+		if(in_array('gemini', $related_prompts)){
+			$gemini_link = dlinq_gemini_link_builder();
+			$html .= "<p><a href='{$gemini_link}' target='_blank' rel='noopener'>Use this prompt in Gemini</a></p>";
+		}
+		if(in_array('chatgpt', $related_prompts)){
+			$chatgpt_link = dlinq_chatgpt_link_builder();
+			$html .= "<p><a href='{$chatgpt_link}' target='_blank' rel='noopener'>Use this prompt in ChatGPT</a></p>";
+		}
+		if(in_array('claude', $related_prompts)){
+			$claude_link = dlinq_claude_link_builder();
+			$html .= "<p><a href='{$claude_link}' target='_blank' rel='noopener'>Use this prompt in Claude</a></p>";
+		}
+	}
+	
+	echo $html;
+}
+
+
+function dlinq_gemini_link_builder(){
+	$choice = get_field('gemini_choices');
+	$prompt = urlencode(get_field('prompt'));
+
+	$stem = 'https://gemini.google.com/';	
+	if ($choice == 'Custom Gem'){
+		$gem_id = get_field('custom_gem_id');
+		$stem = $stem . 'gem/' . $gem_id . '/';
+	}
+	if ($choice == 'Specific Tool'){
+		$tool = get_field('gemini_specific_tool');
+		$stem = $stem . $tool ;
+	}
+	$prompt_action = '&prompt_action=prefill';
+	return $stem . '?prompt_text=' . $prompt . $prompt_action;
+}
+
+function dlinq_chatgpt_link_builder(){
+	$stem = "https://chat.openai.com/?q=";
+	$prompt = urlencode(get_field('prompt'));
+	return $stem . $prompt;
+}
+
+function dlinq_claude_link_builder(){
+	$stem = "https://claude.ai/new?q=";
+	$prompt = urlencode(get_field('prompt'));
+	return $stem . $prompt;
+}
+
+function dlinq_copilot_link_builder(){
+	$stem = "https://www.bing.com/chat?q=";
+	$prompt = urlencode(get_field('prompt'));
+	var_dump($stem . $prompt . "&sendquery=1");
+	return $stem . $prompt . "&sendquery=1";
+}

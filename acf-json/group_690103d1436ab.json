@@ -7,8 +7,8 @@
             "label": "Prompt",
             "name": "prompt",
             "aria-label": "",
-            "type": "wysiwyg",
-            "instructions": "",
+            "type": "textarea",
+            "instructions": "This field supports plain text. Make sure you include URLs rather than using text links if you're cutting\/pasting.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -17,11 +17,11 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
             "allow_in_bindings": 0,
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_6901052bcc44d",
@@ -46,11 +46,11 @@
         },
         {
             "key": "field_690103d15c6db",
-            "label": "AI service link",
-            "name": "ai_service_link",
+            "label": "AI service links",
+            "name": "ai_service_links",
             "aria-label": "",
             "type": "checkbox",
-            "instructions": "These links will automatically fill in the chat in the respective service. Choose which services you'd like to create links to. Some service don't support this option.",
+            "instructions": "This connects your prompt to the services with as much automation as the service supports. Gemini has the most options. Most other services just support the prompt.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -59,8 +59,9 @@
                 "id": ""
             },
             "choices": {
-                "Gemini": "Gemini",
-                "ChatGPT": "ChatGPT"
+                "gemini": "Gemini",
+                "chatgpt": "ChatGPT",
+                "claude": "Claude"
             },
             "default_value": [],
             "return_format": "value",
@@ -143,7 +144,7 @@
         {
             "key": "field_69010619382a0",
             "label": "Custom Gem ID",
-            "name": "custom_gem",
+            "name": "custom_gem_id",
             "aria-label": "",
             "type": "text",
             "instructions": "Find the Gem ID in the URL of your custom Gem.",
@@ -192,10 +193,10 @@
                 "id": ""
             },
             "choices": {
-                "Canvas": "Canvas",
-                "Deep Research": "Deep Research",
-                "Image Creation": "Image Creation",
-                "Video Creation": "Video Creation"
+                "canvas": "Canvas",
+                "deepresearch": "Deep Research",
+                "image-gen": "Image Creation",
+                "veo": "Video Creation"
             },
             "default_value": false,
             "return_format": "value",
@@ -228,5 +229,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761675051
+    "modified": 1761755149
 }
