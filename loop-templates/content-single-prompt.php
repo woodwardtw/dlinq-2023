@@ -21,7 +21,6 @@ defined( 'ABSPATH' ) || exit;
 		<?php
 		the_content();
         dlinq_prompt_display();
-        dlinq_prompt_links();
 		understrap_link_pages();
 		?>
 

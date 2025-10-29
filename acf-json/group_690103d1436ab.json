@@ -85,7 +85,7 @@
                     {
                         "field": "field_690103d15c6db",
                         "operator": "==",
-                        "value": "Gemini"
+                        "value": "gemini"
                     }
                 ]
             ],
@@ -229,5 +229,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761755149
+    "modified": 1761756220
 }

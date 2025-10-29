@@ -2591,6 +2591,7 @@ function dlinq_prompt_display(){
 	$html = '';
 	$prompt = get_field('prompt');
 	$directions_html = '';
+	$links = dlinq_prompt_links();
 	if(get_field('additional_directions')){
 			$directions = get_field('additional_directions');
 			$directions_html = "<div class='directions-text'>
@@ -2603,8 +2604,9 @@ function dlinq_prompt_display(){
 				{$directions_html}
 				<div class='prompt-text'>
 					<h2>The Prompt</h2>
-					<textarea readonly rows='10' cols='80'>{$prompt}</textarea>
+					<div class='prompt' id='the-prompt'>{$prompt}</div>
 					</div>
+					$links
 				</div>";
 	}
 	echo $html;
@@ -2617,19 +2619,19 @@ function dlinq_prompt_links(){
 	if($related_prompts){
 		if(in_array('gemini', $related_prompts)){
 			$gemini_link = dlinq_gemini_link_builder();
-			$html .= "<p><a href='{$gemini_link}' target='_blank' rel='noopener'>Use this prompt in Gemini</a></p>";
+			$html .= "<a class='btn btn-primary btn-dlinq' href='{$gemini_link}' target='_blank' rel='noopener'>Open in Gemini</a>";
 		}
 		if(in_array('chatgpt', $related_prompts)){
 			$chatgpt_link = dlinq_chatgpt_link_builder();
-			$html .= "<p><a href='{$chatgpt_link}' target='_blank' rel='noopener'>Use this prompt in ChatGPT</a></p>";
+			$html .= "<a class='btn btn-primary btn-dlinq' href='{$chatgpt_link}' target='_blank' rel='noopener'>Open in ChatGPT</a>";
 		}
 		if(in_array('claude', $related_prompts)){
 			$claude_link = dlinq_claude_link_builder();
-			$html .= "<p><a href='{$claude_link}' target='_blank' rel='noopener'>Use this prompt in Claude</a></p>";
+			$html .= "<a class='btn btn-primary btn-dlinq' href='{$claude_link}' target='_blank' rel='noopener'>Open in Claude</a>";
 		}
 	}
 	
-	echo $html;
+	return $html;
 }
 
 
@@ -2662,9 +2664,9 @@ function dlinq_claude_link_builder(){
 	return $stem . $prompt;
 }
 
-function dlinq_copilot_link_builder(){
-	$stem = "https://www.bing.com/chat?q=";
-	$prompt = urlencode(get_field('prompt'));
-	var_dump($stem . $prompt . "&sendquery=1");
-	return $stem . $prompt . "&sendquery=1";
-}
+// function dlinq_copilot_link_builder(){
+// 	$stem = "https://www.bing.com/chat?q=";
+// 	$prompt = urlencode(get_field('prompt'));
+// 	var_dump($stem . $prompt . "&sendquery=1");
+// 	return $stem . $prompt . "&sendquery=1";
+// }
