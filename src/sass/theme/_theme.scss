@@ -993,6 +993,25 @@ li.reg span{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
+.copy-alert {
+    opacity: 1;
+    -webkit-animation: fadeinout 2s linear forwards;
+    animation: fadeinout 2s linear forwards;
+    width: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: green;
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.copy-button {
+  width: 100%;
+}
+
 //ANIMATION
 @keyframes pulse {
    0% {

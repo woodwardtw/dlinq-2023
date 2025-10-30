@@ -569,17 +569,18 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "relevanssi_exclude": 0,
                             "choices": {
                                 "post": "Posts",
                                 "project": "Projects",
                                 "quote": "Quotes",
-                                "workshop": "Workshops"
+                                "workshop": "Workshops",
+                                "prompt": "Prompts"
                             },
                             "default_value": "post",
                             "return_format": "value",
                             "allow_null": 0,
                             "other_choice": 0,
+                            "allow_in_bindings": 1,
                             "layout": "vertical",
                             "save_other_choice": 0
                         }
@@ -854,5 +855,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761671004
+    "modified": 1761833246
 }

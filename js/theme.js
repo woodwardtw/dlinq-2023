@@ -6748,7 +6748,7 @@
                 button.insertAdjacentElement('afterend', alertEl);
                 setTimeout(function () {
                   return alertEl.remove();
-                }, 2000);
+                }, 4000);
                 _context2.next = 18;
                 break;
               case 15:

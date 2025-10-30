@@ -252,7 +252,7 @@ function copyAIPrompt() {
 				alertEl.className = 'copy-alert';
 				alertEl.textContent = 'copied';
 				button.insertAdjacentElement('afterend', alertEl);
-				setTimeout(() => alertEl.remove(), 2000);
+				setTimeout(() => alertEl.remove(), 4000);
 			} catch (err) {
 				console.error('copyAIPrompt: failed to copy to clipboard', err);
 			}
