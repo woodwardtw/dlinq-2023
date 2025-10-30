@@ -279,6 +279,7 @@
                 foreach($items as $item){
                     $sg_title = $item["sub-group_title"];
                     $sg_content = $item["sub-group_content"];
+                    dlinq_side_nav_sg_builder($sg_title);
                 }               
             }            
         ?>

@@ -2685,3 +2685,11 @@ add_action( 'pre_get_posts', 'include_prompts_in_category' );
 // 	var_dump($stem . $prompt . "&sendquery=1");
 // 	return $stem . $prompt . "&sendquery=1";
 // }
+
+//side nav 
+function dlinq_side_nav_sg_builder($sg_title){
+	$html = '';
+	$slug = sanitize_title($sg_title);
+	$html .= "<li class='side-nav-sub-group-item'><a href='#{$slug}'>{$sg_title}</a></li>";
+	echo $html;
+}
