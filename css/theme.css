@@ -16252,6 +16252,7 @@ li.reg span {
   /* Visual styling */
   border: 1px solid #e0e0e4; /* Subtle light border */
   border-radius: 12px; /* Rounded corners */
+  background-color: #fff; /* Clean white background */
   /* Shadow for a lifted effect */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
@@ -16282,6 +16283,19 @@ li.reg span {
 
 .btn-ai.btn-dlinq:hover {
   background-color: #bfdaf2;
+}
+
+.dlinq-prompt-display {
+  margin: 30px;
+  padding: 30px;
+}
+
+.dlinq-prompt-display:nth-of-type(even) {
+  background-color: rgba(222, 222, 222, 0.3);
+}
+
+.prompt-links .btn-dlinq {
+  margin: 1rem;
 }
 
 @keyframes pulse {
