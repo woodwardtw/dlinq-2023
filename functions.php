@@ -2694,10 +2694,16 @@ function dlinq_side_nav_gather($title){
 }
 function dlinq_side_nav_sg_builder($big_title, $sg_titles){	
 	$big_title_slug = sanitize_title($big_title);
-	$html = "<h2 id='{$big_title_slug}'>{$big_title}</h2><nav class='nav flex-column'>";
+	$html = "
+			<section id='{$big_title_slug}'>
+				<div class='container'>
+					<div class='row'>
+						<div class='col-md-3 dlinq-side-nav sidebar'>
+							<h2 id='{$big_title_slug}'>{$big_title}</h2>
+								<nav class='nav flex-column'>";
 	foreach($sg_titles as $sg_title){
 		$slug = sanitize_title($sg_title);
 		$html .= "<a class='nav-link' href='#{$big_title_slug}-{$slug}'>{$sg_title}</a>";
 	}
-	echo $html . '</nav>';
+	echo $html . '</nav></div></div></div></section>';
 }
