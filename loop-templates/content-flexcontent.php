@@ -201,28 +201,45 @@
                 // Do Stuff
                 $title = get_the_title();
                 $url = get_the_permalink();
+                $html = "";
                 if(get_the_content()){
                      $excerpt = wp_trim_words(get_the_content(), 30);
-                }
-                if(get_field('project_summary')){
-                   $excerpt =  wp_trim_words(get_field('project_summary'), 30); 
-                }
-                if(get_field('workshop_description')){
-                   $excerpt =  wp_trim_words(get_field('workshop_description'), 30); 
-                }
-                if(get_field('prompt')){
-                   $excerpt =  wp_trim_words(get_field('prompt'), 30); 
-                }
-                echo "
-                    <div class='col-md-8 offset-md-2'>
+                     $html = "<div class='col-md-8 offset-md-2'>
                         <div class='post-block'>
                             <a class='post-link stretched-link' href='{$url}'>
                                 <h3>{$title}</h3>                           
                                 <p>{$excerpt}</p>
                              </a>
                         </div>
-                    </div>
-                ";
+                    </div>";
+                }
+                if(get_field('project_summary')){
+                   $excerpt =  wp_trim_words(get_field('project_summary'), 30); 
+                    $html = "<div class='col-md-8 offset-md-2'>
+                        <div class='post-block'>
+                            <a class='post-link stretched-link' href='{$url}'>
+                                <h3>{$title}</h3>                           
+                                <p>{$excerpt}</p>
+                             </a>
+                        </div>
+                    </div>";
+                }
+                if(get_field('workshop_description')){
+                   $excerpt =  wp_trim_words(get_field('workshop_description'), 30); 
+                    $html = "<div class='col-md-8 offset-md-2'>
+                        <div class='post-block'>
+                            <a class='post-link stretched-link' href='{$url}'>
+                                <h3>{$title}</h3>                           
+                                <p>{$excerpt}</p>
+                             </a>
+                        </div>
+                    </div>";
+                }
+                if(get_field('prompt')){
+                   //$excerpt =  wp_trim_words(get_field('prompt'), 30); 
+                   $html = get_template_part( 'loop-templates/content', 'prompt' );
+                }
+                echo $html;
                 endwhile;
             endif;            
             // Reset Post Data
