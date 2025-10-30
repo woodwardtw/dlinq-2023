@@ -210,7 +210,9 @@
                 if(get_field('workshop_description')){
                    $excerpt =  wp_trim_words(get_field('workshop_description'), 30); 
                 }
-               
+                if(get_field('prompt')){
+                   $excerpt =  wp_trim_words(get_field('prompt'), 30); 
+                }
                 echo "
                     <div class='col-md-8 offset-md-2'>
                         <div class='post-block'>
