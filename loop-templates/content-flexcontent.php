@@ -267,5 +267,26 @@
                 </div>
             </div>
         <?php endif;?>
+          <!--challenge loop-->
+         <?php if( get_row_layout() == 'side_nav' ): 
+            $big_group = get_sub_field('big_group');
+            //GET BIG GROUP TITLE AND SUB GROUPS
+            foreach($big_group as $group){
+                $title = $group['big_group_title'];
+                $slug = sanitize_title($title);
+                $items = $group['sub_group'];
+                //get sub group title and content
+                foreach($items as $item){
+                    $sg_title = $item["sub-group_title"];
+                    $sg_content = $item["sub-group_content"];
+                }               
+            }            
+        ?>
+            <div class='row topic-row full-width-row'>
+				<div class='col-md-8 offset-md-2'>
+                   sidenav
+                </div>
+            </div>
+        <?php endif;?>
     <?php endwhile; ?>
 <?php endif; ?>

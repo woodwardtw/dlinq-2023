@@ -717,13 +717,35 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "layout": "table",
+                            "layout": "row",
                             "min": 0,
                             "max": 0,
                             "collapsed": "",
                             "button_label": "Add Row",
                             "rows_per_page": 20,
                             "sub_fields": [
+                                {
+                                    "key": "field_6900f752a0403",
+                                    "label": "Big Group Title",
+                                    "name": "big_group_title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_6900f6c7a0400"
+                                },
                                 {
                                     "key": "field_6900f6efa0401",
                                     "label": "Sub Group",
@@ -767,30 +789,30 @@
                                             "prepend": "",
                                             "append": "",
                                             "parent_repeater": "field_6900f6efa0401"
+                                        },
+                                        {
+                                            "key": "field_6903a3c9d9ff5",
+                                            "label": "Sub-Group Content",
+                                            "name": "sub-group_content",
+                                            "aria-label": "",
+                                            "type": "wysiwyg",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "allow_in_bindings": 0,
+                                            "tabs": "all",
+                                            "toolbar": "full",
+                                            "media_upload": 1,
+                                            "delay": 0,
+                                            "parent_repeater": "field_6900f6efa0401"
                                         }
                                     ],
-                                    "parent_repeater": "field_6900f6c7a0400"
-                                },
-                                {
-                                    "key": "field_6900f752a0403",
-                                    "label": "Big Group Title",
-                                    "name": "big_group_title",
-                                    "aria-label": "",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "maxlength": "",
-                                    "allow_in_bindings": 0,
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
                                     "parent_repeater": "field_6900f6c7a0400"
                                 }
                             ]
@@ -855,5 +877,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761833246
+    "modified": 1761846814
 }
