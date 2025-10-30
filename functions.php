@@ -2692,7 +2692,7 @@ function dlinq_side_nav_gather($title){
 	array_push($array, $title);
 	return $array;
 }
-function dlinq_side_nav_sg_builder($big_title, $sg_titles){	
+function dlinq_side_nav_sg_builder($big_title, $sg_titles, $sg_contents){	
 	$big_title_slug = sanitize_title($big_title);
 	$html = "
 			<section id='{$big_title_slug}'>
@@ -2704,6 +2704,14 @@ function dlinq_side_nav_sg_builder($big_title, $sg_titles){
 	foreach($sg_titles as $sg_title){
 		$slug = sanitize_title($sg_title);
 		$html .= "<a class='nav-link' href='#{$big_title_slug}-{$slug}'>{$sg_title}</a>";
+	}	
+	$html .= "</nav></div><div class='col-md-9'>";
+	foreach($sg_contents as $key => $sg_content){
+		$slug = sanitize_title($sg_title);
+		$html .= "<div id='$slug'>
+					<h3>{$sg_titles[$key]}</h3>
+					{$sg_content}
+					</div>";
 	}
-	echo $html . '</nav></div></div></div></section>';
+	echo $html . '</div></div></div></section>';
 }

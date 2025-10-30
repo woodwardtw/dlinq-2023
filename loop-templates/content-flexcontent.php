@@ -273,6 +273,7 @@
             //GET BIG GROUP TITLE AND SUB GROUPS
             $big_titles = array();
             $sg_titles = array();
+            $sg_contents = array();
             foreach($big_group as $group){
                 $title = $group['big_group_title'];
                 $slug = sanitize_title($title);
@@ -284,18 +285,14 @@
                     $sg_content = $item["sub-group_content"];
                     //dlinq_side_nav_sg_builder($sg_title);
                     array_push($sg_titles, $sg_title);
+                    array_push($sg_contents, $sg_content);
                 }  
-                var_dump($title);
-                var_dump($sg_titles); 
-                dlinq_side_nav_sg_builder($title, $sg_titles);
+              
+                dlinq_side_nav_sg_builder($title, $sg_titles, $sg_contents);
+               
             }
             
-        ?>
-            <div class='row topic-row full-width-row'>
-				<div class='col-md-8 offset-md-2'>
-                   sidenav
-                </div>
-            </div>
+        ?>           
         <?php endif;?>
     <?php endwhile; ?>
 <?php endif; ?>
