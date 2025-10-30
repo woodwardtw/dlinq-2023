@@ -558,6 +558,7 @@ function create_prompt_cpt() {
       'description' => __( '', 'textdomain' ),
       'labels' => $labels,
       'public' => true,
+      'taxonomies' => array('category', 'post_tag'),
       'show_ui' => true,
       'show_in_menu' => true,
       'menu_position' => 5,

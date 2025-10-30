@@ -2671,6 +2671,14 @@ function dlinq_claude_link_builder(){
 	return $stem . $prompt;
 }
 
+//add prompts to category archives
+function include_prompts_in_category( $query ) {
+    if ( !is_admin() && $query->is_main_query() && $query->is_category() ) {
+        $query->set( 'post_type', array( 'post', 'prompt' ) );
+    }
+}
+add_action( 'pre_get_posts', 'include_prompts_in_category' );
+
 // function dlinq_copilot_link_builder(){
 // 	$stem = "https://www.bing.com/chat?q=";
 // 	$prompt = urlencode(get_field('prompt'));
