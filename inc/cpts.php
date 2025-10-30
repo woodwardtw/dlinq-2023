@@ -548,7 +548,7 @@ function create_prompt_cpt() {
     $labels = array(
       'name' => __( 'Prompts', 'Post Type General Name', 'textdomain' ),
       'singular_name' => __( 'Prompt', 'Post Type Singular Name', 'textdomain' ),
-       'add_new_item' => __( 'Add New Definition', 'textdomain' ),
+       'add_new_item' => __( 'Add New Prompt', 'textdomain' ),
       'add_new' => __( 'Add New', 'textdomain' ),
       'new_item' => __( 'New Prompt', 'textdomain' ),
       'edit_item' => __( 'Edit Prompt', 'textdomain' ),

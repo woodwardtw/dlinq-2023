@@ -10,6 +10,7 @@ window.onload = function() {
 	dlinqEmailButton();//email copy button for events
 	dlinqFeedbackButton();//email feedback button for events
 	deleteByHumanHand();
+	copyAIPrompt();
 };
 
 //SMOOTH SCROLL
@@ -225,4 +226,36 @@ function deleteByHumanHand() {
       alert('Thank you for confirming the deletion.');
     }
   }
+}
+
+
+function copyAIPrompt() {
+	// Find all copy buttons. Use querySelectorAll (returns NodeList with forEach)
+	const copyButtons = document.querySelectorAll('.copy-button');
+	//alert('copyAIPrompt function loaded');
+	if (!copyButtons || copyButtons.length === 0) return;
+
+	copyButtons.forEach(button => {
+		button.addEventListener('click', async () => {
+			//alert('copy button clicked');
+			const promptId = button.dataset.id;
+			const promptElement = document.getElementById(`prompt-box-${promptId}`);
+			if (!promptElement) {
+				return;
+			}
+
+			const promptText = promptElement.innerText || promptElement.textContent || '';
+			try {
+				await navigator.clipboard.writeText(promptText);
+				// Insert a temporary copied indicator and remove it after 2s
+				const alertEl = document.createElement('div');
+				alertEl.className = 'copy-alert';
+				alertEl.textContent = 'copied';
+				button.insertAdjacentElement('afterend', alertEl);
+				setTimeout(() => alertEl.remove(), 2000);
+			} catch (err) {
+				console.error('copyAIPrompt: failed to copy to clipboard', err);
+			}
+		});
+	});
 }

@@ -2588,6 +2588,7 @@ function add_event_categories_field_editor_js() {
 
 //prompt data display
 function dlinq_prompt_display(){
+	$post_id = get_the_ID();
 	$html = '';
 	$prompt = get_field('prompt');
 	$directions_html = '';
@@ -2600,13 +2601,17 @@ function dlinq_prompt_display(){
 					</div>";	
 	}
 	if($prompt){
-		$html .= "<div class='dlinq-prompt-display'>
-				{$directions_html}
-				<div class='prompt-text'>
-					<h2>The Prompt</h2>
-					<div class='prompt' id='the-prompt'>{$prompt}</div>
+		$html .= "<div class='dlinq-prompt-display row'>
+				<div class='col-md-6'>
+					<div class='prompt-text'>
+						<h2>The Prompt</h2>
+						<div contenteditable='true' class='prompt-box' id='prompt-box-{$post_id}'>{$prompt}</div>
 					</div>
-					$links
+					{$directions_html}
+				</div>
+				<div class='col-md-4 offset-md-1 prompt-links'>
+						$links
+					</div>
 				</div>";
 	}
 	echo $html;
@@ -2614,7 +2619,9 @@ function dlinq_prompt_display(){
 
 //prompt link builder 
 function dlinq_prompt_links(){
+	$post_id = get_the_ID();
 	$html = '';
+	$html .= "<button class='btn btn-primary btn-dlinq copy-button' id='copy-btn-{$post_id}' data-id='{$post_id}'>Copy Prompt</button>";
 	$related_prompts = get_field('ai_service_links');
 	if($related_prompts){
 		if(in_array('gemini', $related_prompts)){
@@ -2642,7 +2649,7 @@ function dlinq_gemini_link_builder(){
 	$stem = 'https://gemini.google.com/';	
 	if ($choice == 'Custom Gem'){
 		$gem_id = get_field('custom_gem_id');
-		$stem = $stem . 'gem/' . $gem_id . '/';
+		$stem = $stem . 'gem/' . $gem_id ;
 	}
 	if ($choice == 'Specific Tool'){
 		$tool = get_field('gemini_specific_tool');

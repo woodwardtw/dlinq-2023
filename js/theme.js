@@ -6420,6 +6420,7 @@
     dlinqEmailButton(); //email copy button for events
     dlinqFeedbackButton(); //email feedback button for events
     deleteByHumanHand();
+    copyAIPrompt();
   };
 
   //SMOOTH SCROLL
@@ -6641,23 +6642,23 @@
     return _copyRichText.apply(this, arguments);
   }
   function _copyRichText() {
-    _copyRichText = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+    _copyRichText = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
       var feedbackElement, htmlBody, textBody, htmlBlob, textBlob, clipboardItem;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
               feedbackElement = document.querySelector('#feedback-message');
               if (feedbackElement) {
-                _context2.next = 4;
+                _context3.next = 4;
                 break;
               }
               console.error('Feedback message element not found');
-              return _context2.abrupt("return");
+              return _context3.abrupt("return");
             case 4:
               htmlBody = feedbackElement.innerHTML;
               textBody = feedbackElement.textContent || feedbackElement.innerText;
-              _context2.prev = 6;
+              _context3.prev = 6;
               htmlBlob = new Blob([htmlBody], {
                 type: 'text/html'
               });
@@ -6668,22 +6669,22 @@
                 'text/html': htmlBlob,
                 'text/plain': textBlob
               });
-              _context2.next = 12;
+              _context3.next = 12;
               return navigator.clipboard.write([clipboardItem]);
             case 12:
               alert('HTML content copied to clipboard!');
-              _context2.next = 18;
+              _context3.next = 18;
               break;
             case 15:
-              _context2.prev = 15;
-              _context2.t0 = _context2["catch"](6);
-              console.error('Failed to copy content:', _context2.t0);
+              _context3.prev = 15;
+              _context3.t0 = _context3["catch"](6);
+              console.error('Failed to copy content:', _context3.t0);
             case 18:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2, null, [[6, 15]]);
+      }, _callee3, null, [[6, 15]]);
     }));
     return _copyRichText.apply(this, arguments);
   }
@@ -6713,6 +6714,55 @@
         alert('Thank you for confirming the deletion.');
       }
     }
+  }
+  function copyAIPrompt() {
+    // Find all copy buttons. Use querySelectorAll (returns NodeList with forEach)
+    var copyButtons = document.querySelectorAll('.copy-button');
+    //alert('copyAIPrompt function loaded');
+    if (!copyButtons || copyButtons.length === 0) return;
+    copyButtons.forEach(function (button) {
+      button.addEventListener('click', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var promptId, promptElement, promptText, alertEl;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                //alert('copy button clicked');
+                promptId = button.dataset.id;
+                promptElement = document.getElementById("prompt-box-" + promptId);
+                if (promptElement) {
+                  _context2.next = 4;
+                  break;
+                }
+                return _context2.abrupt("return");
+              case 4:
+                promptText = promptElement.innerText || promptElement.textContent || '';
+                _context2.prev = 5;
+                _context2.next = 8;
+                return navigator.clipboard.writeText(promptText);
+              case 8:
+                // Insert a temporary copied indicator and remove it after 2s
+                alertEl = document.createElement('div');
+                alertEl.className = 'copy-alert';
+                alertEl.textContent = 'copied';
+                button.insertAdjacentElement('afterend', alertEl);
+                setTimeout(function () {
+                  return alertEl.remove();
+                }, 2000);
+                _context2.next = 18;
+                break;
+              case 15:
+                _context2.prev = 15;
+                _context2.t0 = _context2["catch"](5);
+                console.error('copyAIPrompt: failed to copy to clipboard', _context2.t0);
+              case 18:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[5, 15]]);
+      })));
+    });
   }
 
   exports.Alert = Alert;

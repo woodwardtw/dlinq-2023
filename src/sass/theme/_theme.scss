@@ -978,6 +978,21 @@ li.reg span{
   border-bottom: 1px solid #efefef;
 }
 
+//prompt stuff
+.prompt-box {
+  /* Box model for spacing and size */
+  max-width: 600px; /* Adjust as needed */
+  margin: 20px auto; /* Center the box */
+  padding: 16px; 
+
+  /* Visual styling */
+  border: 1px solid #e0e0e4; /* Subtle light border */
+  border-radius: 12px; /* Rounded corners */
+  
+  /* Shadow for a lifted effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
 //ANIMATION
 @keyframes pulse {
    0% {
