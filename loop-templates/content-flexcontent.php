@@ -271,17 +271,25 @@
          <?php if( get_row_layout() == 'side_nav' ): 
             $big_group = get_sub_field('big_group');
             //GET BIG GROUP TITLE AND SUB GROUPS
+            $big_titles = array();
+            $sg_titles = array();
             foreach($big_group as $group){
                 $title = $group['big_group_title'];
                 $slug = sanitize_title($title);
                 $items = $group['sub_group'];
                 //get sub group title and content
+                array_push($big_titles, $title);//top nav
                 foreach($items as $item){
                     $sg_title = $item["sub-group_title"];
                     $sg_content = $item["sub-group_content"];
-                    dlinq_side_nav_sg_builder($sg_title);
-                }               
-            }            
+                    //dlinq_side_nav_sg_builder($sg_title);
+                    array_push($sg_titles, $sg_title);
+                }  
+                var_dump($title);
+                var_dump($sg_titles); 
+                dlinq_side_nav_sg_builder($title, $sg_titles);
+            }
+            
         ?>
             <div class='row topic-row full-width-row'>
 				<div class='col-md-8 offset-md-2'>

@@ -2687,9 +2687,17 @@ add_action( 'pre_get_posts', 'include_prompts_in_category' );
 // }
 
 //side nav 
-function dlinq_side_nav_sg_builder($sg_title){
-	$html = '';
-	$slug = sanitize_title($sg_title);
-	$html .= "<li class='side-nav-sub-group-item'><a href='#{$slug}'>{$sg_title}</a></li>";
-	echo $html;
+function dlinq_side_nav_gather($title){
+	$array = array();
+	array_push($array, $title);
+	return $array;
+}
+function dlinq_side_nav_sg_builder($big_title, $sg_titles){	
+	$big_title_slug = sanitize_title($big_title);
+	$html = "<h2 id='{$big_title_slug}'>{$big_title}</h2><nav class='nav flex-column'>";
+	foreach($sg_titles as $sg_title){
+		$slug = sanitize_title($sg_title);
+		$html .= "<a class='nav-link' href='#{$big_title_slug}-{$slug}'>{$sg_title}</a>";
+	}
+	echo $html . '</nav>';
 }
