@@ -2626,15 +2626,15 @@ function dlinq_prompt_links(){
 	if($related_prompts){
 		if(in_array('gemini', $related_prompts)){
 			$gemini_link = dlinq_gemini_link_builder();
-			$html .= "<a class='btn btn-primary btn-dlinq' href='{$gemini_link}' target='_blank' rel='noopener'>Open in Gemini</a>";
+			$html .= "<a class='btn btn-primary btn-dlinq btn-ai' href='{$gemini_link}' target='_blank' rel='noopener'>Open in Gemini</a>";
 		}
 		if(in_array('chatgpt', $related_prompts)){
 			$chatgpt_link = dlinq_chatgpt_link_builder();
-			$html .= "<a class='btn btn-primary btn-dlinq' href='{$chatgpt_link}' target='_blank' rel='noopener'>Open in ChatGPT</a>";
+			$html .= "<a class='btn btn-primary btn-dlinq btn-ai' href='{$chatgpt_link}' target='_blank' rel='noopener'>Open in ChatGPT</a>";
 		}
 		if(in_array('claude', $related_prompts)){
 			$claude_link = dlinq_claude_link_builder();
-			$html .= "<a class='btn btn-primary btn-dlinq' href='{$claude_link}' target='_blank' rel='noopener'>Open in Claude</a>";
+			$html .= "<a class='btn btn-primary btn-dlinq btn-ai' href='{$claude_link}' target='_blank' rel='noopener'>Open in Claude</a>";
 		}
 	}
 	

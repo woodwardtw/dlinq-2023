@@ -1012,6 +1012,16 @@ li.reg span{
   width: 100%;
 }
 
+.btn-ai.btn-dlinq{
+  background-color: $white;
+  color: $blue;
+  border: 2px solid $blue;
+}
+
+.btn-ai.btn-dlinq:hover {
+    background-color: $light-blue;
+}}
+
 //ANIMATION
 @keyframes pulse {
    0% {
