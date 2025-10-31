@@ -2912,32 +2912,37 @@ function dlinq_render_accordion_block($block){
 	$accordion_parts = $block['accordion_parts'];
 	$accord_title = $block['accordion_title'];
 	$index = rand(1000, 9999); // Generate random index for unique IDs
+	$accordion_id = "accordion-{$index}";
+
 	echo "<div class='row topic-row full-width-row d-flex justify-content-around'>";
 	if($accord_title){
 		$title_slug = sanitize_title($accord_title);
 		echo "<h4 id='{$title_slug}'>{$accord_title}</h4>";
 	}
-	echo "<div class='accordion' id='accordion-{$index}'>";
+	echo "<div class='accordion' id='{$accordion_id}'>";
+
 	foreach($accordion_parts as $piece){
 		$title = $piece['title'];
 		$slug = sanitize_title($title);
 		$content = $piece['content'];
+		$item_id = "{$slug}-{$index}"; // Make unique across multiple accordions
+
 		echo "
-			<div class='accordion-item' id='{$slug}-item'>
-				<h5 class='accordion-header' id='{$slug}'>
-				<button class='accordion-button collapsed' id='{$slug}-button' type='button' data-bs-toggle='collapse' data-bs-target='#{$slug}-content' aria-expanded='false' aria-controls='{$slug}-content'>
-					{$title}
-				</button>
-				</h5>
-				<div id='{$slug}-content' class='accordion-collapse collapse hide' aria-labelledby='{$slug}'>
-				<div class='accordion-body'>
-				 {$content}
-				</div>
+			<div class='accordion-item'>
+				<h2 class='accordion-header' id='heading-{$item_id}'>
+					<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-{$item_id}' aria-expanded='false' aria-controls='collapse-{$item_id}'>
+						{$title}
+					</button>
+				</h2>
+				<div id='collapse-{$item_id}' class='accordion-collapse collapse' aria-labelledby='heading-{$item_id}' data-bs-parent='#{$accordion_id}'>
+					<div class='accordion-body'>
+						{$content}
+					</div>
 				</div>
 			</div>
 		";
-
 	}
+
 	echo "</div></div>";
 }
 
