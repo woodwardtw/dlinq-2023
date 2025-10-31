@@ -393,7 +393,7 @@
                     "key": "layout_64edf50638ce1",
                     "name": "accordion",
                     "label": "Accordion",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_64ee38ab6f8b0",
@@ -405,12 +405,13 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "100",
                                 "class": "",
                                 "id": ""
                             },
                             "default_value": "",
                             "maxlength": "",
+                            "allow_in_bindings": 1,
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
@@ -425,7 +426,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "100",
                                 "class": "",
                                 "id": ""
                             },
@@ -681,7 +682,7 @@
                     "key": "layout_6900f6b0a03fe",
                     "name": "side_nav",
                     "label": "Side Nav",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6900f6c7a0400",
@@ -697,7 +698,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "layout": "row",
+                            "layout": "block",
                             "min": 0,
                             "max": 0,
                             "collapsed": "",
@@ -740,7 +741,7 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "layout": "row",
+                                    "layout": "block",
                                     "min": 0,
                                     "max": 0,
                                     "collapsed": "",
@@ -757,8 +758,8 @@
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "",
-                                                "class": "",
+                                                "width": "100",
+                                                "class": "full-block",
                                                 "id": ""
                                             },
                                             "default_value": "",
@@ -779,19 +780,19 @@
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "",
-                                                "class": "",
+                                                "width": "100",
+                                                "class": "full-block",
                                                 "id": ""
                                             },
                                             "layouts": {
-                                                "layout_64de1f257ade9": {
-                                                    "key": "layout_64de1f257ade9",
+                                                "layout_snde1f257ade9": {
+                                                    "key": "layout_snde1f257ade9",
                                                     "name": "sub_topic",
                                                     "label": "Sub-Topic",
                                                     "display": "block",
                                                     "sub_fields": [
                                                         {
-                                                            "key": "field_64de240d07c58",
+                                                            "key": "field_snde240d07c58",
                                                             "label": "Sub-Topic Title",
                                                             "name": "sub_topic_title",
                                                             "aria-label": "",
@@ -811,7 +812,7 @@
                                                             "append": ""
                                                         },
                                                         {
-                                                            "key": "field_64de242607c59",
+                                                            "key": "field_snde242607c59",
                                                             "label": "Sub-Topic Content",
                                                             "name": "sub_topic_content",
                                                             "aria-label": "",
@@ -831,7 +832,7 @@
                                                             "delay": 0
                                                         },
                                                         {
-                                                            "key": "field_64de244f07c5a",
+                                                            "key": "field_snde244f07c5a",
                                                             "label": "Resources",
                                                             "name": "resources",
                                                             "aria-label": "",
@@ -852,7 +853,7 @@
                                                             "rows_per_page": 20,
                                                             "sub_fields": [
                                                                 {
-                                                                    "key": "field_64de246107c5b",
+                                                                    "key": "field_snde246107c5b",
                                                                     "label": "Resource Title",
                                                                     "name": "resource_title",
                                                                     "aria-label": "",
@@ -870,10 +871,10 @@
                                                                     "placeholder": "",
                                                                     "prepend": "",
                                                                     "append": "",
-                                                                    "parent_repeater": "field_64de244f07c5a"
+                                                                    "parent_repeater": "field_snde244f07c5a"
                                                                 },
                                                                 {
-                                                                    "key": "field_65046d5392316",
+                                                                    "key": "field_sn046d5392316",
                                                                     "label": "Resource type",
                                                                     "name": "resource_type",
                                                                     "aria-label": "",
@@ -899,12 +900,12 @@
                                                                     "ui": 0,
                                                                     "ajax": 0,
                                                                     "placeholder": "",
-                                                                    "parent_repeater": "field_64de244f07c5a",
+                                                                    "parent_repeater": "field_snde244f07c5a",
                                                                     "create_options": 0,
                                                                     "save_options": 0
                                                                 },
                                                                 {
-                                                                    "key": "field_64de247507c5c",
+                                                                    "key": "field_snde247507c5c",
                                                                     "label": "Resource Link",
                                                                     "name": "resource_link",
                                                                     "aria-label": "",
@@ -919,10 +920,10 @@
                                                                     },
                                                                     "default_value": "",
                                                                     "placeholder": "",
-                                                                    "parent_repeater": "field_64de244f07c5a"
+                                                                    "parent_repeater": "field_snde244f07c5a"
                                                                 },
                                                                 {
-                                                                    "key": "field_64ef34763c03c",
+                                                                    "key": "field_snef34763c03c",
                                                                     "label": "Resource description",
                                                                     "name": "resource_description",
                                                                     "aria-label": "",
@@ -940,7 +941,7 @@
                                                                     "rows": 3,
                                                                     "placeholder": "",
                                                                     "new_lines": "",
-                                                                    "parent_repeater": "field_64de244f07c5a"
+                                                                    "parent_repeater": "field_snde244f07c5a"
                                                                 }
                                                             ]
                                                         }
@@ -948,14 +949,14 @@
                                                     "min": "",
                                                     "max": ""
                                                 },
-                                                "layout_64de249b59ebb": {
-                                                    "key": "layout_64de249b59ebb",
+                                                "layout_snde249b59ebb": {
+                                                    "key": "layout_snde249b59ebb",
                                                     "name": "image",
                                                     "label": "Text with Image",
                                                     "display": "block",
                                                     "sub_fields": [
                                                         {
-                                                            "key": "field_64de24e159ebd",
+                                                            "key": "field_snde24e159ebd",
                                                             "label": "Title",
                                                             "name": "title",
                                                             "aria-label": "",
@@ -975,7 +976,7 @@
                                                             "append": ""
                                                         },
                                                         {
-                                                            "key": "field_64de24ec59ebe",
+                                                            "key": "field_snde24ec59ebe",
                                                             "label": "Content",
                                                             "name": "content",
                                                             "aria-label": "",
@@ -995,7 +996,7 @@
                                                             "delay": 0
                                                         },
                                                         {
-                                                            "key": "field_64de24fd59ebf",
+                                                            "key": "field_snde24fd59ebf",
                                                             "label": "Image",
                                                             "name": "image",
                                                             "aria-label": "",
@@ -1020,7 +1021,7 @@
                                                             "preview_size": "medium"
                                                         },
                                                         {
-                                                            "key": "field_64de250759ec0",
+                                                            "key": "field_snde250759ec0",
                                                             "label": "Image Align",
                                                             "name": "image_align",
                                                             "aria-label": "",
@@ -1048,14 +1049,14 @@
                                                     "min": "",
                                                     "max": ""
                                                 },
-                                                "layout_64de45dae88b9": {
-                                                    "key": "layout_64de45dae88b9",
+                                                "layout_snde45dae88b9": {
+                                                    "key": "layout_snde45dae88b9",
                                                     "name": "full_block",
                                                     "label": "Full Block",
                                                     "display": "block",
                                                     "sub_fields": [
                                                         {
-                                                            "key": "field_64de45e4e88bb",
+                                                            "key": "field_snde45e4e88bb",
                                                             "label": "Title",
                                                             "name": "title",
                                                             "aria-label": "",
@@ -1075,7 +1076,7 @@
                                                             "append": ""
                                                         },
                                                         {
-                                                            "key": "field_64de45efe88bc",
+                                                            "key": "field_snde45efe88bc",
                                                             "label": "Content",
                                                             "name": "content",
                                                             "aria-label": "",
@@ -1098,14 +1099,14 @@
                                                     "min": "",
                                                     "max": ""
                                                 },
-                                                "layout_64ec9ee8b7338": {
-                                                    "key": "layout_64ec9ee8b7338",
+                                                "layout_snec9ee8b7338": {
+                                                    "key": "layout_snec9ee8b7338",
                                                     "name": "people",
                                                     "label": "People",
                                                     "display": "block",
                                                     "sub_fields": [
                                                         {
-                                                            "key": "field_650334fc75259",
+                                                            "key": "field_sn0334fc75259",
                                                             "label": "TItle",
                                                             "name": "title",
                                                             "aria-label": "",
@@ -1125,7 +1126,7 @@
                                                             "append": ""
                                                         },
                                                         {
-                                                            "key": "field_64ec9ef5b733a",
+                                                            "key": "field_snec9ef5b733a",
                                                             "label": "Individuals",
                                                             "name": "individuals",
                                                             "aria-label": "",
@@ -1156,14 +1157,14 @@
                                                     "min": "",
                                                     "max": ""
                                                 },
-                                                "layout_64edf50638ce1": {
-                                                    "key": "layout_64edf50638ce1",
+                                                "layout_snedf50638ce1": {
+                                                    "key": "layout_snedf50638ce1",
                                                     "name": "accordion",
                                                     "label": "Accordion",
-                                                    "display": "block",
+                                                    "display": "row",
                                                     "sub_fields": [
                                                         {
-                                                            "key": "field_64ee38ab6f8b0",
+                                                            "key": "field_snee38ab6f8b0",
                                                             "label": "Accordion Title",
                                                             "name": "accordion_title",
                                                             "aria-label": "",
@@ -1183,7 +1184,7 @@
                                                             "append": ""
                                                         },
                                                         {
-                                                            "key": "field_64edfa3cdca44",
+                                                            "key": "field_snedfa3cdca44",
                                                             "label": "Accordion Parts",
                                                             "name": "accordion_parts",
                                                             "aria-label": "",
@@ -1204,7 +1205,7 @@
                                                             "rows_per_page": 20,
                                                             "sub_fields": [
                                                                 {
-                                                                    "key": "field_64edfa66dca45",
+                                                                    "key": "field_snedfa66dca45",
                                                                     "label": "Title",
                                                                     "name": "title",
                                                                     "aria-label": "",
@@ -1222,10 +1223,10 @@
                                                                     "placeholder": "",
                                                                     "prepend": "",
                                                                     "append": "",
-                                                                    "parent_repeater": "field_64edfa3cdca44"
+                                                                    "parent_repeater": "field_snedfa3cdca44"
                                                                 },
                                                                 {
-                                                                    "key": "field_64edfa74dca46",
+                                                                    "key": "field_snedfa74dca46",
                                                                     "label": "Content",
                                                                     "name": "content",
                                                                     "aria-label": "",
@@ -1243,7 +1244,7 @@
                                                                     "toolbar": "full",
                                                                     "media_upload": 1,
                                                                     "delay": 0,
-                                                                    "parent_repeater": "field_64edfa3cdca44"
+                                                                    "parent_repeater": "field_snedfa3cdca44"
                                                                 }
                                                             ]
                                                         }
@@ -1251,14 +1252,14 @@
                                                     "min": "",
                                                     "max": ""
                                                 },
-                                                "layout_64f0d0fd80039": {
-                                                    "key": "layout_64f0d0fd80039",
+                                                "layout_snf0d0fd80039": {
+                                                    "key": "layout_snf0d0fd80039",
                                                     "name": "posts",
                                                     "label": "Posts",
                                                     "display": "block",
                                                     "sub_fields": [
                                                         {
-                                                            "key": "field_64f60056b5b18",
+                                                            "key": "field_snf60056b5b18",
                                                             "label": "Title",
                                                             "name": "title",
                                                             "aria-label": "",
@@ -1278,7 +1279,7 @@
                                                             "append": ""
                                                         },
                                                         {
-                                                            "key": "field_64f0d1088003b",
+                                                            "key": "field_snf0d1088003b",
                                                             "label": "Category",
                                                             "name": "category",
                                                             "aria-label": "",
@@ -1303,7 +1304,7 @@
                                                             "bidirectional_target": []
                                                         },
                                                         {
-                                                            "key": "field_64f5f8abb990d",
+                                                            "key": "field_snf5f8abb990d",
                                                             "label": "Post type",
                                                             "name": "post_type",
                                                             "aria-label": "",
@@ -1335,14 +1336,14 @@
                                                     "min": "",
                                                     "max": ""
                                                 },
-                                                "layout_6525a51ebf16e": {
-                                                    "key": "layout_6525a51ebf16e",
+                                                "layout_sn25a51ebf16e": {
+                                                    "key": "layout_sn25a51ebf16e",
                                                     "name": "challenge",
                                                     "label": "Challenge",
                                                     "display": "block",
                                                     "sub_fields": [
                                                         {
-                                                            "key": "field_6525a526bf171",
+                                                            "key": "field_sn25a526bf171",
                                                             "label": "Challenge Title",
                                                             "name": "challenge_title",
                                                             "aria-label": "",
@@ -1362,7 +1363,7 @@
                                                             "append": ""
                                                         },
                                                         {
-                                                            "key": "field_6525a530bf172",
+                                                            "key": "field_sn25a530bf172",
                                                             "label": "Challenge Description",
                                                             "name": "challenge_description",
                                                             "aria-label": "",
@@ -1382,7 +1383,7 @@
                                                             "delay": 0
                                                         },
                                                         {
-                                                            "key": "field_6525a548bf173",
+                                                            "key": "field_sn25a548bf173",
                                                             "label": "Form ID",
                                                             "name": "form_id",
                                                             "aria-label": "",
@@ -1416,7 +1417,7 @@
                                                             "save_options": 0
                                                         },
                                                         {
-                                                            "key": "field_6525a56ebf174",
+                                                            "key": "field_sn25a56ebf174",
                                                             "label": "Show submissions",
                                                             "name": "show_submissions",
                                                             "aria-label": "",
@@ -1470,7 +1471,7 @@
             {
                 "param": "page_template",
                 "operator": "==",
-                "value": "page-templates/side-nav.php"
+                "value": "page-templates\/side-nav.php"
             }
         ]
     ],
@@ -1484,5 +1485,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761934174
+    "modified": 1761937896
 }
