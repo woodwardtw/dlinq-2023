@@ -15355,6 +15355,117 @@ figure.woocommerce-product-gallery__wrapper {
   clip: auto;
 }
 
+.dlinq-side-nav-wrapper {
+  display: flex;
+}
+.dlinq-side-nav-wrapper .sidebar {
+  position: sticky;
+  top: 56px;
+  align-self: flex-start;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+}
+.dlinq-side-nav-wrapper .dlinq-side-nav h2, .dlinq-side-nav-wrapper .dlinq-side-nav .h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #333;
+}
+.dlinq-side-nav-wrapper .dlinq-side-nav .nav {
+  flex-direction: column;
+}
+.dlinq-side-nav-wrapper .dlinq-side-nav .nav-link {
+  color: #495057;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid transparent;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.dlinq-side-nav-wrapper .dlinq-side-nav .nav-link:hover {
+  background-color: #e9ecef;
+  color: #212529;
+}
+.dlinq-side-nav-wrapper .dlinq-side-nav .nav-link.active {
+  color: #0d6efd;
+  background-color: #e7f1ff;
+  border-left-color: #0d6efd;
+  font-weight: 500;
+}
+.dlinq-side-nav-wrapper .content-area {
+  flex: 1;
+  padding: 2rem;
+}
+
+section.dlinq-side-nav-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+section.dlinq-side-nav-section h3, section.dlinq-side-nav-section .h3 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+.dlinq-side-nav-content {
+  display: none;
+}
+.dlinq-side-nav-content.active {
+  display: block;
+}
+.dlinq-side-nav-content h4, .dlinq-side-nav-content .h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+.dlinq-side-nav-content h5, .dlinq-side-nav-content .h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .dlinq-side-nav-wrapper {
+    flex-direction: column;
+  }
+  .dlinq-side-nav-wrapper .sidebar {
+    position: relative;
+    top: 0;
+    max-height: none;
+    margin-bottom: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+  .dlinq-side-nav-wrapper .dlinq-side-nav .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .dlinq-side-nav-wrapper .dlinq-side-nav .nav-link {
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+  .dlinq-side-nav-wrapper .dlinq-side-nav .nav-link:hover {
+    border-bottom-color: #e9ecef;
+  }
+  .dlinq-side-nav-wrapper .dlinq-side-nav .nav-link.active {
+    border-left: none;
+    border-bottom-color: #0d6efd;
+  }
+  .dlinq-side-nav-wrapper .content-area {
+    padding: 1rem;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;

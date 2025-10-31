@@ -2692,26 +2692,346 @@ function dlinq_side_nav_gather($title){
 	array_push($array, $title);
 	return $array;
 }
-function dlinq_side_nav_sg_builder($big_title, $sg_titles, $sg_contents){	
+function dlinq_side_nav_sg_builder($big_title, $sub_groups){
 	$big_title_slug = sanitize_title($big_title);
-	$html = "
-			<section id='{$big_title_slug}'>
-				<div class='container'>
-					<div class='row'>
-						<div class='col-md-3 dlinq-side-nav sidebar'>
-							<h2 id='{$big_title_slug}'>{$big_title}</h2>
-								<nav class='nav flex-column'>";
-	foreach($sg_titles as $sg_title){
-		$slug = sanitize_title($sg_title);
-		$html .= "<a class='nav-link' href='#{$big_title_slug}-{$slug}'>{$sg_title}</a>";
-	}	
-	$html .= "</nav></div><div class='col-md-9'>";
-	foreach($sg_contents as $key => $sg_content){
-		$slug = sanitize_title($sg_title);
-		$html .= "<div id='$slug'>
-					<h3>{$sg_titles[$key]}</h3>
-					{$sg_content}
-					</div>";
+	?>
+	<section id='<?php echo $big_title_slug; ?>'>
+		<div class='container'>
+			<div class='dlinq-side-nav-wrapper'>
+				<div class='col-md-3 sidebar'>
+					<div class='dlinq-side-nav'>
+						<h2><?php echo $big_title; ?></h2>
+						<nav class='nav flex-column'>
+							<?php foreach($sub_groups as $item):
+								$sg_title = $item['sub-group_title'];
+								$slug = sanitize_title($sg_title);
+								$content_id = $big_title_slug . '-' . $slug;
+							?>
+								<a class='nav-link' href='#' data-content='<?php echo $content_id; ?>'><?php echo $sg_title; ?></a>
+							<?php endforeach; ?>
+						</nav>
+					</div>
+				</div>
+				<div class='col-md-9 content-area'>
+					<?php foreach($sub_groups as $item):
+						$sg_title = $item['sub-group_title'];
+						$slug = sanitize_title($sg_title);
+						$content_id = $big_title_slug . '-' . $slug;
+						$sg_content = $item['sub-group_content'];
+					?>
+						<div id='<?php echo $content_id; ?>' class='dlinq-side-nav-content'>
+							<h3><?php echo $sg_title; ?></h3>
+							<?php
+							// Render flexible content
+							if($sg_content && is_array($sg_content)):
+								foreach($sg_content as $content_block):
+									$layout = $content_block['acf_fc_layout'];
+									dlinq_render_flex_content_block($content_block, $layout);
+								endforeach;
+							endif;
+							?>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php
+}
+
+function dlinq_render_flex_content_block($block, $layout){
+	switch($layout){
+		case 'sub_topic':
+			dlinq_render_sub_topic($block);
+			break;
+		case 'image':
+			dlinq_render_image_block($block);
+			break;
+		case 'full_block':
+			dlinq_render_full_block($block);
+			break;
+		case 'people':
+			dlinq_render_people_block($block);
+			break;
+		case 'accordion':
+			dlinq_render_accordion_block($block);
+			break;
+		case 'posts':
+			dlinq_render_posts_block($block);
+			break;
+		case 'challenge':
+			dlinq_render_challenge_block($block);
+			break;
 	}
-	echo $html . '</div></div></div></section>';
+}
+
+function dlinq_render_sub_topic($block){
+	$title = $block['sub_topic_title'];
+	$slug = sanitize_title($title);
+	$resources = $block['resources'];
+	?>
+	<div class='row topic-row'>
+		<div class='col-md-5'>
+			<div class='sub-topic'>
+				<?php if ($title): ?>
+				<h4 id='<?php echo $slug;?>'><?php echo $title; ?></h4>
+				<?php endif;?>
+				<?php echo $block['sub_topic_content']; ?>
+			</div>
+		</div>
+		<div class='col-md-5 offset-md-2'>
+			<?php if($resources):
+				echo "<div class='menu-block'>
+				<ul class='resource-links'>";
+				foreach($resources as $resource){
+					$title = $resource['resource_title'];
+					$link = $resource['resource_link'];
+					$description = $resource['resource_description'];
+					$type = $resource['resource_type'];
+					if(str_contains(strtolower($description), 'coming soon')){
+						$link = "#{$slug}";
+					}
+					if(array_key_exists('host', parse_url($link))){
+						$url_source = dlinq_remove_www(parse_url($link)["host"]);
+					} else {
+						$url_source = $link;
+					}
+
+					echo "
+							<li>
+								<a href='{$link}'>
+								   <div class='inline'>
+										<div class='resource-icon {$type}' arial-lable='Icon for {$type}.'></div>
+								   </div>
+								   <div class='inline'>
+										{$title}
+										<div class='resource-source'>source: {$url_source}</div>
+										<div class='resource-description'>{$description} &nbsp;</div>
+									</div>
+								</a>
+							</li>
+						";
+				}
+				echo "</ul></div>";
+			?>
+			<?php endif;?>
+		</div>
+	</div>
+	<?php
+}
+
+function dlinq_render_image_block($block){
+	$title = $block['title'];
+	$slug = sanitize_title($title);
+	$content = $block['content'];
+	$image = $block['image'];
+	$direction = $block['image_align'];
+	$order_left = ' order-first ';
+	$order_right = ' order-last ';
+	if($direction == 'right'){
+		$order_left = ' order-last ';
+		$order_right = ' order-first ';
+	}
+	?>
+	<div class='row topic-row d-flex align-items-center'>
+		<div class='col-md-5<?php echo $order_left;?>'>
+			<figure>
+				<?php echo wp_get_attachment_image( $image['ID'], 'large', array('class'=>'img-fluid') ); ?>
+				<figcaption><?php echo $image['caption']; ?></figcaption>
+			</figure>
+		</div>
+		<div class='col-md-2 order-2'></div>
+		<div class='col-md-5 <?php echo $order_right;?>'>
+			<?php if($title) :?>
+				<h4 id="<?php echo $slug;?>"><?php echo $title; ?></h4>
+			<?php endif;?>
+			<?php echo $content; ?>
+		</div>
+	</div>
+	<?php
+}
+
+function dlinq_render_full_block($block){
+	$title = $block['title'];
+	$content = $block['content'];
+	$slug = sanitize_title($title);
+	?>
+	<div class='row topic-row full-width-row'>
+		<div class='col-md-12'>
+			<?php if($title):?>
+				<h4 id="<?php echo $slug?>"><?php echo $title;?></h4>
+			<?php endif;?>
+			<?php echo $content;?>
+		</div>
+	</div>
+	<?php
+}
+
+function dlinq_render_people_block($block){
+	$persons = $block['individuals'];
+	$title = $block['title'];
+	$slug = sanitize_title($title);
+	?>
+	<div class='row topic-row full-width-row d-flex justify-content-around people-row'>
+	<?php if($title):?>
+		<div class="col-md-12">
+			<h4 id="<?php echo $slug?>"><?php echo $title;?></h4>
+		</div>
+	<?php endif;?>
+		<?php
+			foreach($persons as $person){
+				$post_id = $person;
+				$name = get_the_title($post_id);
+				$title = get_field('job_title', $post_id);
+				$img = dlinq_person_thumb_check($post_id, 'portrait', 'free-bio-pic img-fluid');
+				$email_html = '';
+				if(get_field('email', $post_id)){
+					$email = get_field('email', $post_id);
+					$email_html = "<a href='mailto:{$email}' aria-lable='Email to {$name}'>✉️ Connect</a>";
+				}
+				$link = get_permalink( $post_id);
+				echo "
+				<div class='col-md-4 person-holder'>
+					<div class='person-block'>
+						{$img}
+						<a href='{$link}'><h4 class='small-name'>{$name}</h4></a>
+						<div class='title'>{$title}</div>
+						<div class='small-contact'>
+							{$email_html}
+						</div>
+					</div>
+				</div>
+				";
+			}
+		?>
+	</div>
+	<?php
+}
+
+function dlinq_render_accordion_block($block){
+	$accordion_parts = $block['accordion_parts'];
+	$accord_title = $block['accordion_title'];
+	$index = rand(1000, 9999); // Generate random index for unique IDs
+	echo "<div class='row topic-row full-width-row d-flex justify-content-around'>";
+	if($accord_title){
+		$title_slug = sanitize_title($accord_title);
+		echo "<h4 id='{$title_slug}'>{$accord_title}</h4>";
+	}
+	echo "<div class='accordion' id='accordion-{$index}'>";
+	foreach($accordion_parts as $piece){
+		$title = $piece['title'];
+		$slug = sanitize_title($title);
+		$content = $piece['content'];
+		echo "
+			<div class='accordion-item' id='{$slug}-item'>
+				<h5 class='accordion-header' id='{$slug}'>
+				<button class='accordion-button collapsed' id='{$slug}-button' type='button' data-bs-toggle='collapse' data-bs-target='#{$slug}-content' aria-expanded='false' aria-controls='{$slug}-content'>
+					{$title}
+				</button>
+				</h5>
+				<div id='{$slug}-content' class='accordion-collapse collapse hide' aria-labelledby='{$slug}'>
+				<div class='accordion-body'>
+				 {$content}
+				</div>
+				</div>
+			</div>
+		";
+
+	}
+	echo "</div></div>";
+}
+
+function dlinq_render_posts_block($block){
+	$title = 'Learn more';
+	if($block['title']){
+		 $title = $block['title'];
+	}
+	$slug = sanitize_title( $title);
+	echo "<div class='row topic-row full-width-row'>
+			<div class='col-md-12'>
+				<h4 id='{$slug}'>{$title}</h4>
+			</div>
+				";
+
+	$cats = $block['category'];
+	$type = $block['post_type'];
+	$args = array(
+		'category__and' => $cats,
+		'post_type' => $type,
+		'posts_per_page' => -1,
+		'paged' => get_query_var('paged')
+	);
+	$the_query = new WP_Query( $args );
+
+	// The Loop
+	if ( $the_query->have_posts() ) :
+		while ( $the_query->have_posts() ) : $the_query->the_post();
+		// Do Stuff
+		$title = get_the_title();
+		$url = get_the_permalink();
+		$html = "";
+		if(get_the_content()){
+			 $excerpt = wp_trim_words(get_the_content(), 30);
+			 $html = "<div class='col-md-12'>
+				<div class='post-block'>
+					<a class='post-link stretched-link' href='{$url}'>
+						<h5>{$title}</h5>
+						<p>{$excerpt}</p>
+					 </a>
+				</div>
+			</div>";
+		}
+		if(get_field('project_summary')){
+		   $excerpt =  wp_trim_words(get_field('project_summary'), 30);
+			$html = "<div class='col-md-12'>
+				<div class='post-block'>
+					<a class='post-link stretched-link' href='{$url}'>
+						<h5>{$title}</h5>
+						<p>{$excerpt}</p>
+					 </a>
+				</div>
+			</div>";
+		}
+		if(get_field('workshop_description')){
+		   $excerpt =  wp_trim_words(get_field('workshop_description'), 30);
+			$html = "<div class='col-md-12'>
+				<div class='post-block'>
+					<a class='post-link stretched-link' href='{$url}'>
+						<h5>{$title}</h5>
+						<p>{$excerpt}</p>
+					 </a>
+				</div>
+			</div>";
+		}
+		if(get_field('prompt')){
+		   //$excerpt =  wp_trim_words(get_field('prompt'), 30);
+		   $html = get_template_part( 'loop-templates/content', 'prompt' );
+		}
+		echo $html;
+		endwhile;
+	endif;
+	// Reset Post Data
+	wp_reset_postdata();
+	echo "</div>";
+}
+
+function dlinq_render_challenge_block($block){
+	$title = $block['challenge_title'];
+	$content = $block['challenge_description'];
+	$form = $block['form_id'];
+	$slug = sanitize_title($title);
+	?>
+	<div class='row topic-row full-width-row'>
+		<div class='col-md-12'>
+			<?php if($title):?>
+				<h4 id="<?php echo $slug;?>"><?php echo $title;?></h4>
+			<?php endif;?>
+			<?php echo $content;?>
+			<?php if ($form > 0) {
+				gravity_form($form);//show form
+				dlinq_gf_form_entry_display($form);//show form entries
+				}?>
+		</div>
+	</div>
+	<?php
 }

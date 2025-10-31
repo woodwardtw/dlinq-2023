@@ -1,0 +1,1488 @@
+{
+    "key": "group_672427a1f8c2e",
+    "title": "Side Nav Page",
+    "fields": [
+        {
+            "key": "field_64de1f1d07c57",
+            "label": "Content",
+            "name": "content",
+            "aria-label": "",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_64de1f257ade9": {
+                    "key": "layout_64de1f257ade9",
+                    "name": "sub_topic",
+                    "label": "Sub-Topic",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64de240d07c58",
+                            "label": "Sub-Topic Title",
+                            "name": "sub_topic_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64de242607c59",
+                            "label": "Sub-Topic Content",
+                            "name": "sub_topic_content",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_64de244f07c5a",
+                            "label": "Resources",
+                            "name": "resources",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Resource",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_64de246107c5b",
+                                    "label": "Resource Title",
+                                    "name": "resource_title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "70",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_64de244f07c5a"
+                                },
+                                {
+                                    "key": "field_65046d5392316",
+                                    "label": "Resource type",
+                                    "name": "resource_type",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "audio": "Audio",
+                                        "doc": "Document",
+                                        "video": "Video",
+                                        "url": "Web page"
+                                    },
+                                    "default_value": "url",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "parent_repeater": "field_64de244f07c5a",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_64de247507c5c",
+                                    "label": "Resource Link",
+                                    "name": "resource_link",
+                                    "aria-label": "",
+                                    "type": "url",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "100",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "parent_repeater": "field_64de244f07c5a"
+                                },
+                                {
+                                    "key": "field_64ef34763c03c",
+                                    "label": "Resource description",
+                                    "name": "resource_description",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Keep it short and sweet.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": 220,
+                                    "rows": 3,
+                                    "placeholder": "",
+                                    "new_lines": "",
+                                    "parent_repeater": "field_64de244f07c5a"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_64de249b59ebb": {
+                    "key": "layout_64de249b59ebb",
+                    "name": "image",
+                    "label": "Text with Image",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64de24e159ebd",
+                            "label": "Title",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64de24ec59ebe",
+                            "label": "Content",
+                            "name": "content",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_64de24fd59ebf",
+                            "label": "Image",
+                            "name": "image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_64de250759ec0",
+                            "label": "Image Align",
+                            "name": "image_align",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "10",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "left": "Left",
+                                "right": "Right"
+                            },
+                            "default_value": "right",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_64de45dae88b9": {
+                    "key": "layout_64de45dae88b9",
+                    "name": "full_block",
+                    "label": "Full Block",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64de45e4e88bb",
+                            "label": "Title",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64de45efe88bc",
+                            "label": "Content",
+                            "name": "content",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_64ec9ee8b7338": {
+                    "key": "layout_64ec9ee8b7338",
+                    "name": "people",
+                    "label": "People",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_650334fc75259",
+                            "label": "TItle",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64ec9ef5b733a",
+                            "label": "Individuals",
+                            "name": "individuals",
+                            "aria-label": "",
+                            "type": "post_object",
+                            "instructions": "Select and order people in the way you want them to display. A maximum of three per row.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "person"
+                            ],
+                            "post_status": [
+                                "publish"
+                            ],
+                            "taxonomy": "",
+                            "return_format": "id",
+                            "multiple": 1,
+                            "allow_null": 0,
+                            "bidirectional": 0,
+                            "ui": 1,
+                            "bidirectional_target": []
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_64edf50638ce1": {
+                    "key": "layout_64edf50638ce1",
+                    "name": "accordion",
+                    "label": "Accordion",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64ee38ab6f8b0",
+                            "label": "Accordion Title",
+                            "name": "accordion_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Optional big label for the accordion element",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64edfa3cdca44",
+                            "label": "Accordion Parts",
+                            "name": "accordion_parts",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Row",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_64edfa66dca45",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_64edfa3cdca44"
+                                },
+                                {
+                                    "key": "field_64edfa74dca46",
+                                    "label": "Content",
+                                    "name": "content",
+                                    "aria-label": "",
+                                    "type": "wysiwyg",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "tabs": "all",
+                                    "toolbar": "full",
+                                    "media_upload": 1,
+                                    "delay": 0,
+                                    "parent_repeater": "field_64edfa3cdca44"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_64f0d0fd80039": {
+                    "key": "layout_64f0d0fd80039",
+                    "name": "posts",
+                    "label": "Posts",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64f60056b5b18",
+                            "label": "Title",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64f0d1088003b",
+                            "label": "Category",
+                            "name": "category",
+                            "aria-label": "",
+                            "type": "taxonomy",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "category",
+                            "add_term": 0,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "id",
+                            "field_type": "checkbox",
+                            "bidirectional": 0,
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "bidirectional_target": []
+                        },
+                        {
+                            "key": "field_64f5f8abb990d",
+                            "label": "Post type",
+                            "name": "post_type",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "post": "Posts",
+                                "project": "Projects",
+                                "quote": "Quotes",
+                                "workshop": "Workshops",
+                                "prompt": "Prompts"
+                            },
+                            "default_value": "post",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "allow_in_bindings": 1,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6525a51ebf16e": {
+                    "key": "layout_6525a51ebf16e",
+                    "name": "challenge",
+                    "label": "Challenge",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6525a526bf171",
+                            "label": "Challenge Title",
+                            "name": "challenge_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6525a530bf172",
+                            "label": "Challenge Description",
+                            "name": "challenge_description",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_6525a548bf173",
+                            "label": "Form ID",
+                            "name": "form_id",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "0": "",
+                                "4": "Bulk event registration",
+                                "2": "Contact DLINQ (1)",
+                                "7": "DLINQ Intern Consultation Form",
+                                "3": "Reservation form",
+                                "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                                "1": "workshop feedback form",
+                                "5": "Workshop request"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_6525a56ebf174",
+                            "label": "Show submissions",
+                            "name": "show_submissions",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "yes": "Yes",
+                                "no": "No"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6900f6b0a03fe": {
+                    "key": "layout_6900f6b0a03fe",
+                    "name": "side_nav",
+                    "label": "Side Nav",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6900f6c7a0400",
+                            "label": "Big Group",
+                            "name": "big_group",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Row",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_6900f752a0403",
+                                    "label": "Big Group Title",
+                                    "name": "big_group_title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_6900f6c7a0400"
+                                },
+                                {
+                                    "key": "field_6900f6efa0401",
+                                    "label": "Sub Group",
+                                    "name": "sub_group",
+                                    "aria-label": "",
+                                    "type": "repeater",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "layout": "row",
+                                    "min": 0,
+                                    "max": 0,
+                                    "collapsed": "",
+                                    "button_label": "Add Row",
+                                    "rows_per_page": 20,
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_6900f709a0402",
+                                            "label": "Sub-Group Title",
+                                            "name": "sub-group_title",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "allow_in_bindings": 0,
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_6900f6efa0401"
+                                        },
+                                        {
+                                            "key": "field_6903a3c9d9ff5",
+                                            "label": "Sub-Group Content",
+                                            "name": "sub-group_content",
+                                            "aria-label": "",
+                                            "type": "flexible_content",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "layouts": {
+                                                "layout_64de1f257ade9": {
+                                                    "key": "layout_64de1f257ade9",
+                                                    "name": "sub_topic",
+                                                    "label": "Sub-Topic",
+                                                    "display": "block",
+                                                    "sub_fields": [
+                                                        {
+                                                            "key": "field_64de240d07c58",
+                                                            "label": "Sub-Topic Title",
+                                                            "name": "sub_topic_title",
+                                                            "aria-label": "",
+                                                            "type": "text",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "maxlength": "",
+                                                            "placeholder": "",
+                                                            "prepend": "",
+                                                            "append": ""
+                                                        },
+                                                        {
+                                                            "key": "field_64de242607c59",
+                                                            "label": "Sub-Topic Content",
+                                                            "name": "sub_topic_content",
+                                                            "aria-label": "",
+                                                            "type": "wysiwyg",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "50",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "tabs": "all",
+                                                            "toolbar": "full",
+                                                            "media_upload": 0,
+                                                            "delay": 0
+                                                        },
+                                                        {
+                                                            "key": "field_64de244f07c5a",
+                                                            "label": "Resources",
+                                                            "name": "resources",
+                                                            "aria-label": "",
+                                                            "type": "repeater",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "50",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "layout": "block",
+                                                            "min": 0,
+                                                            "max": 0,
+                                                            "collapsed": "",
+                                                            "button_label": "Add Resource",
+                                                            "rows_per_page": 20,
+                                                            "sub_fields": [
+                                                                {
+                                                                    "key": "field_64de246107c5b",
+                                                                    "label": "Resource Title",
+                                                                    "name": "resource_title",
+                                                                    "aria-label": "",
+                                                                    "type": "text",
+                                                                    "instructions": "",
+                                                                    "required": 0,
+                                                                    "conditional_logic": 0,
+                                                                    "wrapper": {
+                                                                        "width": "70",
+                                                                        "class": "",
+                                                                        "id": ""
+                                                                    },
+                                                                    "default_value": "",
+                                                                    "maxlength": "",
+                                                                    "placeholder": "",
+                                                                    "prepend": "",
+                                                                    "append": "",
+                                                                    "parent_repeater": "field_64de244f07c5a"
+                                                                },
+                                                                {
+                                                                    "key": "field_65046d5392316",
+                                                                    "label": "Resource type",
+                                                                    "name": "resource_type",
+                                                                    "aria-label": "",
+                                                                    "type": "select",
+                                                                    "instructions": "",
+                                                                    "required": 0,
+                                                                    "conditional_logic": 0,
+                                                                    "wrapper": {
+                                                                        "width": "30",
+                                                                        "class": "",
+                                                                        "id": ""
+                                                                    },
+                                                                    "choices": {
+                                                                        "audio": "Audio",
+                                                                        "doc": "Document",
+                                                                        "video": "Video",
+                                                                        "url": "Web page"
+                                                                    },
+                                                                    "default_value": "url",
+                                                                    "return_format": "value",
+                                                                    "multiple": 0,
+                                                                    "allow_null": 0,
+                                                                    "ui": 0,
+                                                                    "ajax": 0,
+                                                                    "placeholder": "",
+                                                                    "parent_repeater": "field_64de244f07c5a",
+                                                                    "create_options": 0,
+                                                                    "save_options": 0
+                                                                },
+                                                                {
+                                                                    "key": "field_64de247507c5c",
+                                                                    "label": "Resource Link",
+                                                                    "name": "resource_link",
+                                                                    "aria-label": "",
+                                                                    "type": "url",
+                                                                    "instructions": "",
+                                                                    "required": 0,
+                                                                    "conditional_logic": 0,
+                                                                    "wrapper": {
+                                                                        "width": "100",
+                                                                        "class": "",
+                                                                        "id": ""
+                                                                    },
+                                                                    "default_value": "",
+                                                                    "placeholder": "",
+                                                                    "parent_repeater": "field_64de244f07c5a"
+                                                                },
+                                                                {
+                                                                    "key": "field_64ef34763c03c",
+                                                                    "label": "Resource description",
+                                                                    "name": "resource_description",
+                                                                    "aria-label": "",
+                                                                    "type": "textarea",
+                                                                    "instructions": "Keep it short and sweet.",
+                                                                    "required": 0,
+                                                                    "conditional_logic": 0,
+                                                                    "wrapper": {
+                                                                        "width": "",
+                                                                        "class": "",
+                                                                        "id": ""
+                                                                    },
+                                                                    "default_value": "",
+                                                                    "maxlength": 220,
+                                                                    "rows": 3,
+                                                                    "placeholder": "",
+                                                                    "new_lines": "",
+                                                                    "parent_repeater": "field_64de244f07c5a"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "min": "",
+                                                    "max": ""
+                                                },
+                                                "layout_64de249b59ebb": {
+                                                    "key": "layout_64de249b59ebb",
+                                                    "name": "image",
+                                                    "label": "Text with Image",
+                                                    "display": "block",
+                                                    "sub_fields": [
+                                                        {
+                                                            "key": "field_64de24e159ebd",
+                                                            "label": "Title",
+                                                            "name": "title",
+                                                            "aria-label": "",
+                                                            "type": "text",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "maxlength": "",
+                                                            "placeholder": "",
+                                                            "prepend": "",
+                                                            "append": ""
+                                                        },
+                                                        {
+                                                            "key": "field_64de24ec59ebe",
+                                                            "label": "Content",
+                                                            "name": "content",
+                                                            "aria-label": "",
+                                                            "type": "wysiwyg",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "50",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "tabs": "all",
+                                                            "toolbar": "full",
+                                                            "media_upload": 1,
+                                                            "delay": 0
+                                                        },
+                                                        {
+                                                            "key": "field_64de24fd59ebf",
+                                                            "label": "Image",
+                                                            "name": "image",
+                                                            "aria-label": "",
+                                                            "type": "image",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "40",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "return_format": "array",
+                                                            "library": "all",
+                                                            "min_width": "",
+                                                            "min_height": "",
+                                                            "min_size": "",
+                                                            "max_width": "",
+                                                            "max_height": "",
+                                                            "max_size": "",
+                                                            "mime_types": "",
+                                                            "preview_size": "medium"
+                                                        },
+                                                        {
+                                                            "key": "field_64de250759ec0",
+                                                            "label": "Image Align",
+                                                            "name": "image_align",
+                                                            "aria-label": "",
+                                                            "type": "radio",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "10",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "choices": {
+                                                                "left": "Left",
+                                                                "right": "Right"
+                                                            },
+                                                            "default_value": "right",
+                                                            "return_format": "value",
+                                                            "allow_null": 0,
+                                                            "other_choice": 0,
+                                                            "layout": "vertical",
+                                                            "save_other_choice": 0
+                                                        }
+                                                    ],
+                                                    "min": "",
+                                                    "max": ""
+                                                },
+                                                "layout_64de45dae88b9": {
+                                                    "key": "layout_64de45dae88b9",
+                                                    "name": "full_block",
+                                                    "label": "Full Block",
+                                                    "display": "block",
+                                                    "sub_fields": [
+                                                        {
+                                                            "key": "field_64de45e4e88bb",
+                                                            "label": "Title",
+                                                            "name": "title",
+                                                            "aria-label": "",
+                                                            "type": "text",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "maxlength": "",
+                                                            "placeholder": "",
+                                                            "prepend": "",
+                                                            "append": ""
+                                                        },
+                                                        {
+                                                            "key": "field_64de45efe88bc",
+                                                            "label": "Content",
+                                                            "name": "content",
+                                                            "aria-label": "",
+                                                            "type": "wysiwyg",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "tabs": "all",
+                                                            "toolbar": "full",
+                                                            "media_upload": 1,
+                                                            "delay": 0
+                                                        }
+                                                    ],
+                                                    "min": "",
+                                                    "max": ""
+                                                },
+                                                "layout_64ec9ee8b7338": {
+                                                    "key": "layout_64ec9ee8b7338",
+                                                    "name": "people",
+                                                    "label": "People",
+                                                    "display": "block",
+                                                    "sub_fields": [
+                                                        {
+                                                            "key": "field_650334fc75259",
+                                                            "label": "TItle",
+                                                            "name": "title",
+                                                            "aria-label": "",
+                                                            "type": "text",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "maxlength": "",
+                                                            "placeholder": "",
+                                                            "prepend": "",
+                                                            "append": ""
+                                                        },
+                                                        {
+                                                            "key": "field_64ec9ef5b733a",
+                                                            "label": "Individuals",
+                                                            "name": "individuals",
+                                                            "aria-label": "",
+                                                            "type": "post_object",
+                                                            "instructions": "Select and order people in the way you want them to display. A maximum of three per row.",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "post_type": [
+                                                                "person"
+                                                            ],
+                                                            "post_status": [
+                                                                "publish"
+                                                            ],
+                                                            "taxonomy": "",
+                                                            "return_format": "id",
+                                                            "multiple": 1,
+                                                            "allow_null": 0,
+                                                            "bidirectional": 0,
+                                                            "ui": 1,
+                                                            "bidirectional_target": []
+                                                        }
+                                                    ],
+                                                    "min": "",
+                                                    "max": ""
+                                                },
+                                                "layout_64edf50638ce1": {
+                                                    "key": "layout_64edf50638ce1",
+                                                    "name": "accordion",
+                                                    "label": "Accordion",
+                                                    "display": "block",
+                                                    "sub_fields": [
+                                                        {
+                                                            "key": "field_64ee38ab6f8b0",
+                                                            "label": "Accordion Title",
+                                                            "name": "accordion_title",
+                                                            "aria-label": "",
+                                                            "type": "text",
+                                                            "instructions": "Optional big label for the accordion element",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "maxlength": "",
+                                                            "placeholder": "",
+                                                            "prepend": "",
+                                                            "append": ""
+                                                        },
+                                                        {
+                                                            "key": "field_64edfa3cdca44",
+                                                            "label": "Accordion Parts",
+                                                            "name": "accordion_parts",
+                                                            "aria-label": "",
+                                                            "type": "repeater",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "layout": "table",
+                                                            "min": 0,
+                                                            "max": 0,
+                                                            "collapsed": "",
+                                                            "button_label": "Add Row",
+                                                            "rows_per_page": 20,
+                                                            "sub_fields": [
+                                                                {
+                                                                    "key": "field_64edfa66dca45",
+                                                                    "label": "Title",
+                                                                    "name": "title",
+                                                                    "aria-label": "",
+                                                                    "type": "text",
+                                                                    "instructions": "",
+                                                                    "required": 0,
+                                                                    "conditional_logic": 0,
+                                                                    "wrapper": {
+                                                                        "width": "",
+                                                                        "class": "",
+                                                                        "id": ""
+                                                                    },
+                                                                    "default_value": "",
+                                                                    "maxlength": "",
+                                                                    "placeholder": "",
+                                                                    "prepend": "",
+                                                                    "append": "",
+                                                                    "parent_repeater": "field_64edfa3cdca44"
+                                                                },
+                                                                {
+                                                                    "key": "field_64edfa74dca46",
+                                                                    "label": "Content",
+                                                                    "name": "content",
+                                                                    "aria-label": "",
+                                                                    "type": "wysiwyg",
+                                                                    "instructions": "",
+                                                                    "required": 0,
+                                                                    "conditional_logic": 0,
+                                                                    "wrapper": {
+                                                                        "width": "",
+                                                                        "class": "",
+                                                                        "id": ""
+                                                                    },
+                                                                    "default_value": "",
+                                                                    "tabs": "all",
+                                                                    "toolbar": "full",
+                                                                    "media_upload": 1,
+                                                                    "delay": 0,
+                                                                    "parent_repeater": "field_64edfa3cdca44"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "min": "",
+                                                    "max": ""
+                                                },
+                                                "layout_64f0d0fd80039": {
+                                                    "key": "layout_64f0d0fd80039",
+                                                    "name": "posts",
+                                                    "label": "Posts",
+                                                    "display": "block",
+                                                    "sub_fields": [
+                                                        {
+                                                            "key": "field_64f60056b5b18",
+                                                            "label": "Title",
+                                                            "name": "title",
+                                                            "aria-label": "",
+                                                            "type": "text",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "maxlength": "",
+                                                            "placeholder": "",
+                                                            "prepend": "",
+                                                            "append": ""
+                                                        },
+                                                        {
+                                                            "key": "field_64f0d1088003b",
+                                                            "label": "Category",
+                                                            "name": "category",
+                                                            "aria-label": "",
+                                                            "type": "taxonomy",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "50",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "taxonomy": "category",
+                                                            "add_term": 0,
+                                                            "save_terms": 0,
+                                                            "load_terms": 0,
+                                                            "return_format": "id",
+                                                            "field_type": "checkbox",
+                                                            "bidirectional": 0,
+                                                            "multiple": 0,
+                                                            "allow_null": 0,
+                                                            "bidirectional_target": []
+                                                        },
+                                                        {
+                                                            "key": "field_64f5f8abb990d",
+                                                            "label": "Post type",
+                                                            "name": "post_type",
+                                                            "aria-label": "",
+                                                            "type": "radio",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "50",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "choices": {
+                                                                "post": "Posts",
+                                                                "project": "Projects",
+                                                                "quote": "Quotes",
+                                                                "workshop": "Workshops",
+                                                                "prompt": "Prompts"
+                                                            },
+                                                            "default_value": "post",
+                                                            "return_format": "value",
+                                                            "allow_null": 0,
+                                                            "other_choice": 0,
+                                                            "allow_in_bindings": 1,
+                                                            "layout": "vertical",
+                                                            "save_other_choice": 0
+                                                        }
+                                                    ],
+                                                    "min": "",
+                                                    "max": ""
+                                                },
+                                                "layout_6525a51ebf16e": {
+                                                    "key": "layout_6525a51ebf16e",
+                                                    "name": "challenge",
+                                                    "label": "Challenge",
+                                                    "display": "block",
+                                                    "sub_fields": [
+                                                        {
+                                                            "key": "field_6525a526bf171",
+                                                            "label": "Challenge Title",
+                                                            "name": "challenge_title",
+                                                            "aria-label": "",
+                                                            "type": "text",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "maxlength": "",
+                                                            "placeholder": "",
+                                                            "prepend": "",
+                                                            "append": ""
+                                                        },
+                                                        {
+                                                            "key": "field_6525a530bf172",
+                                                            "label": "Challenge Description",
+                                                            "name": "challenge_description",
+                                                            "aria-label": "",
+                                                            "type": "wysiwyg",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "default_value": "",
+                                                            "tabs": "all",
+                                                            "toolbar": "full",
+                                                            "media_upload": 1,
+                                                            "delay": 0
+                                                        },
+                                                        {
+                                                            "key": "field_6525a548bf173",
+                                                            "label": "Form ID",
+                                                            "name": "form_id",
+                                                            "aria-label": "",
+                                                            "type": "select",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "50",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "choices": {
+                                                                "0": "",
+                                                                "4": "Bulk event registration",
+                                                                "2": "Contact DLINQ (1)",
+                                                                "7": "DLINQ Intern Consultation Form",
+                                                                "3": "Reservation form",
+                                                                "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                                                                "1": "workshop feedback form",
+                                                                "5": "Workshop request"
+                                                            },
+                                                            "default_value": false,
+                                                            "return_format": "value",
+                                                            "multiple": 0,
+                                                            "allow_null": 0,
+                                                            "ui": 0,
+                                                            "ajax": 0,
+                                                            "placeholder": "",
+                                                            "create_options": 0,
+                                                            "save_options": 0
+                                                        },
+                                                        {
+                                                            "key": "field_6525a56ebf174",
+                                                            "label": "Show submissions",
+                                                            "name": "show_submissions",
+                                                            "aria-label": "",
+                                                            "type": "radio",
+                                                            "instructions": "",
+                                                            "required": 0,
+                                                            "conditional_logic": 0,
+                                                            "wrapper": {
+                                                                "width": "50",
+                                                                "class": "",
+                                                                "id": ""
+                                                            },
+                                                            "choices": {
+                                                                "yes": "Yes",
+                                                                "no": "No"
+                                                            },
+                                                            "default_value": "",
+                                                            "return_format": "value",
+                                                            "allow_null": 0,
+                                                            "other_choice": 0,
+                                                            "layout": "vertical",
+                                                            "save_other_choice": 0
+                                                        }
+                                                    ],
+                                                    "min": "",
+                                                    "max": ""
+                                                }
+                                            },
+                                            "min": "",
+                                            "max": "",
+                                            "button_label": "Add content block",
+                                            "parent_repeater": "field_6900f6efa0401"
+                                        }
+                                    ],
+                                    "parent_repeater": "field_6900f6c7a0400"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "min": "",
+            "max": "",
+            "button_label": "Add content block"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/side-nav.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1761934174
+}
