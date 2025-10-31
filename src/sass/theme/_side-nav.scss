@@ -138,3 +138,16 @@ section.dlinq-side-nav-section {
 html {
   scroll-behavior: smooth;
 }
+
+// Accordion hidden=until-found support
+// Override Bootstrap's display:none so content remains searchable
+.accordion-collapse[hidden="until-found"] {
+  display: block !important; // Override Bootstrap's display: none
+  // The hidden=until-found attribute handles visibility via content-visibility: hidden
+  // This keeps content searchable while visually hidden
+}
+
+// When accordion is actually shown, ensure it's visible
+.accordion-collapse.show:not([hidden]) {
+  display: block;
+}

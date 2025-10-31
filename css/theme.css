@@ -15466,6 +15466,14 @@ html {
   scroll-behavior: smooth;
 }
 
+.accordion-collapse[hidden=until-found] {
+  display: block !important;
+}
+
+.accordion-collapse.show:not([hidden]) {
+  display: block;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;

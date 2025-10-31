@@ -2934,7 +2934,7 @@ function dlinq_render_accordion_block($block){
 						{$title}
 					</button>
 				</h2>
-				<div id='collapse-{$item_id}' class='accordion-collapse collapse' aria-labelledby='heading-{$item_id}' data-bs-parent='#{$accordion_id}'>
+				<div id='collapse-{$item_id}' class='accordion-collapse collapse' aria-labelledby='heading-{$item_id}' data-bs-parent='#{$accordion_id}' hidden='until-found'>
 					<div class='accordion-body'>
 						{$content}
 					</div>

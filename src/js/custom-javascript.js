@@ -5,12 +5,13 @@ window.onload = function() {
     const scrollId = window.location.hash.substring(1);
     dlinqAccordExpand(scrollId);
 		dlinqScrollTo(scrollId);
-  }	
+  }
 	dlinqAttendance();//what is the problem?
 	dlinqEmailButton();//email copy button for events
 	dlinqFeedbackButton();//email feedback button for events
 	deleteByHumanHand();
 	copyAIPrompt();
+	dlinqAccordionSearchable();//enable find-in-page for hidden accordions
 };
 
 //SMOOTH SCROLL
@@ -256,6 +257,41 @@ function copyAIPrompt() {
 			} catch (err) {
 				console.error('copyAIPrompt: failed to copy to clipboard', err);
 			}
+		});
+	});
+}
+
+// Enable find-in-page (Ctrl+F) for hidden accordion content
+function dlinqAccordionSearchable() {
+	// Find all accordion collapse elements
+	document.querySelectorAll('.accordion-collapse').forEach(collapseElement => {
+
+		// Listen for beforematch event (browser find-in-page)
+		collapseElement.addEventListener('beforematch', (event) => {
+			// Remove hidden attribute to reveal content
+			collapseElement.removeAttribute('hidden');
+
+			// Add Bootstrap's show class to display it properly
+			collapseElement.classList.add('show');
+
+			// Update the button to reflect open state
+			const button = document.querySelector(`[data-bs-target="#${collapseElement.id}"]`);
+			if (button) {
+				button.classList.remove('collapsed');
+				button.setAttribute('aria-expanded', 'true');
+			}
+		});
+
+		// Listen to Bootstrap's show.bs.collapse event (user clicks to open)
+		collapseElement.addEventListener('show.bs.collapse', () => {
+			// Remove hidden attribute when opening
+			collapseElement.removeAttribute('hidden');
+		});
+
+		// Listen to Bootstrap's hidden.bs.collapse event (user clicks to close)
+		collapseElement.addEventListener('hidden.bs.collapse', () => {
+			// Add hidden=until-found back when closed
+			collapseElement.setAttribute('hidden', 'until-found');
 		});
 	});
 }

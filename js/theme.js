@@ -6486,6 +6486,7 @@
     dlinqFeedbackButton(); //email feedback button for events
     deleteByHumanHand();
     copyAIPrompt();
+    dlinqAccordionSearchable(); //enable find-in-page for hidden accordions
   };
 
   //SMOOTH SCROLL
@@ -6827,6 +6828,40 @@
           }
         }, _callee2, null, [[5, 15]]);
       })));
+    });
+  }
+
+  // Enable find-in-page (Ctrl+F) for hidden accordion content
+  function dlinqAccordionSearchable() {
+    // Find all accordion collapse elements
+    document.querySelectorAll('.accordion-collapse').forEach(function (collapseElement) {
+      // Listen for beforematch event (browser find-in-page)
+      collapseElement.addEventListener('beforematch', function (event) {
+        // Remove hidden attribute to reveal content
+        collapseElement.removeAttribute('hidden');
+
+        // Add Bootstrap's show class to display it properly
+        collapseElement.classList.add('show');
+
+        // Update the button to reflect open state
+        var button = document.querySelector("[data-bs-target=\"#" + collapseElement.id + "\"]");
+        if (button) {
+          button.classList.remove('collapsed');
+          button.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      // Listen to Bootstrap's show.bs.collapse event (user clicks to open)
+      collapseElement.addEventListener('show.bs.collapse', function () {
+        // Remove hidden attribute when opening
+        collapseElement.removeAttribute('hidden');
+      });
+
+      // Listen to Bootstrap's hidden.bs.collapse event (user clicks to close)
+      collapseElement.addEventListener('hidden.bs.collapse', function () {
+        // Add hidden=until-found back when closed
+        collapseElement.setAttribute('hidden', 'until-found');
+      });
     });
   }
 
