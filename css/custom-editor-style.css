@@ -5432,6 +5432,10 @@ tr:nth-of-type(even) td.acf-fields {
   background-color: red !important;
 }
 
+.acf-repeater .acf-row-handle {
+  width: 6px !important;
+}
+
 .acf-repeater .acf-row-handle.order + td {
   border: 4px solid green;
 }

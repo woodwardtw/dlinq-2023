@@ -15448,6 +15448,7 @@ section.dlinq-side-nav-section h3, section.dlinq-side-nav-section .h3 {
     width: 100%;
     max-width: 100%;
     flex: 0 0 100%;
+    padding: 1rem;
   }
   .dlinq-side-nav-wrapper .dlinq-side-nav .nav {
     flex-direction: column;
@@ -15463,9 +15464,6 @@ section.dlinq-side-nav-section h3, section.dlinq-side-nav-section .h3 {
   .dlinq-side-nav-wrapper .dlinq-side-nav .nav-link.active {
     border-left: none;
     border-bottom-color: #0d6efd;
-  }
-  .dlinq-side-nav-wrapper .content-area {
-    padding: 1rem;
   }
 }
 html {

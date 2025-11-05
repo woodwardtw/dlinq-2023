@@ -9,4 +9,11 @@
 #tinymce {
    padding: 1rem;
 }
+
+.acf-repeater .acf-row-handle {
+   width: 6px !important;
+   padding: 1px !important;
+}
+
+
 /*# sourceMappingURL=dlinq-admin.css.map */
