@@ -15355,6 +15355,10 @@ figure.woocommerce-product-gallery__wrapper {
   clip: auto;
 }
 
+.page-template-side-nav {
+  margin-top: 200px;
+}
+
 .dlinq-side-nav-wrapper {
   display: flex;
 }
@@ -15436,12 +15440,20 @@ section.dlinq-side-nav-section h3, section.dlinq-side-nav-section .h3 {
     margin-bottom: 1.5rem;
     border-right: none;
     border-bottom: 1px solid #dee2e6;
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  .dlinq-side-nav-wrapper .content-area {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
   }
   .dlinq-side-nav-wrapper .dlinq-side-nav .nav {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
   .dlinq-side-nav-wrapper .dlinq-side-nav .nav-link {
+    width: 100%;
     border-left: none;
     border-bottom: 3px solid transparent;
   }

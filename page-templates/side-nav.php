@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 $container = get_theme_mod( 'understrap_container_type' );
+//$template_slug = sanitize_title(array_keys(wp_get_theme()->get_page_templates())[0]);
 ?>
 
 <div class="wrapper" id="page-wrapper">
