@@ -15410,12 +15410,6 @@ section.dlinq-side-nav-section h3, section.dlinq-side-nav-section .h3 {
   color: #222;
 }
 
-.dlinq-side-nav-content {
-  display: none;
-}
-.dlinq-side-nav-content.active {
-  display: block;
-}
 .dlinq-side-nav-content h4, .dlinq-side-nav-content .h4 {
   font-size: 1.25rem;
   font-weight: 600;

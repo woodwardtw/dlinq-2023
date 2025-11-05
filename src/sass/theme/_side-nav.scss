@@ -68,14 +68,8 @@ section.dlinq-side-nav-section {
   }
 }
 
-// Content switching mechanism
+// Content blocks - always visible, navigation scrolls to them
 .dlinq-side-nav-content {
-  display: none;
-
-  &.active {
-    display: block;
-  }
-
   h4 {
     font-size: 1.25rem;
     font-weight: 600;

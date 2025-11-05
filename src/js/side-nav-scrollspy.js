@@ -16,15 +16,13 @@ function dlinqSideNavContentSwitcher() {
 
       const contentId = link.getAttribute('data-content');
 
-      // Hide all content blocks in this section
-      contentArea.querySelectorAll('.dlinq-side-nav-content').forEach(content => {
-        content.classList.remove('active');
-      });
-
-      // Show selected content
+      // Scroll to selected content
       const targetContent = contentArea.querySelector(`#${contentId}`);
       if (targetContent) {
-        targetContent.classList.add('active');
+        targetContent.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
       }
 
       // Update active state on sidebar links within this section
@@ -35,11 +33,11 @@ function dlinqSideNavContentSwitcher() {
     });
   });
 
-  // Activate first item in each section by default
+  // Set first item in each section as active by default
   document.querySelectorAll('section').forEach(section => {
     const firstLink = section.querySelector('.dlinq-side-nav .nav-link[data-content]');
     if (firstLink) {
-      firstLink.click();
+      firstLink.classList.add('active');
     }
   });
 
