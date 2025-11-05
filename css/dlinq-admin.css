@@ -15,5 +15,11 @@
    padding: 1px !important;
 }
 
+.acf-fields.-left>.acf-field>.acf-label, .acf-fields.-left>.acf-field:before {
+   width: 15% !important;
+}
 
+.acf-fields.-left>.acf-field>.acf-input {
+   width: 85% !important;
+}
 /*# sourceMappingURL=dlinq-admin.css.map */
