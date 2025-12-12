@@ -6,6 +6,7 @@ window.onload = function() {
     dlinqAccordExpand(scrollId);
 		dlinqScrollTo(scrollId);
   }
+	dlinqSideNav();
 	dlinqAttendance();//what is the problem?
 	dlinqEmailButton();//email copy button for events
 	dlinqFeedbackButton();//email feedback button for events
@@ -293,5 +294,123 @@ function dlinqAccordionSearchable() {
 			// Add hidden=until-found back when closed
 			collapseElement.setAttribute('hidden', 'until-found');
 		});
+	});
+}
+
+// Side nav: mark corresponding link active when its section scrolls into view
+function dlinqSideNav() {
+	// Handle ALL side-nav menus on the page, not just the first one
+	const sideNavs = document.querySelectorAll('.dlinq-side-nav');
+	if (sideNavs.length === 0) return;
+
+	sideNavs.forEach(sideNav => {
+		const links = Array.from(sideNav.querySelectorAll('a[href^="#"], a[data-content]'));
+		if (links.length === 0) return;
+
+		const idToLink = new Map();
+		const targets = [];
+
+		links.forEach(link => {
+			// support href="#id" or data-content="id"
+			const dataId = link.dataset && link.dataset.content ? link.dataset.content : null;
+			const href = link.getAttribute('href');
+			const hrefId = href && href.startsWith('#') ? decodeURIComponent(href.slice(1)) : null;
+			const id = dataId || hrefId;
+			if (!id) return;
+
+			const el = document.getElementById(id);
+			if (el) {
+				idToLink.set(id, link);
+				targets.push(el);
+			}
+
+			// clicking a link should set it active immediately and smooth-scroll to target
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				links.forEach(l => l.classList.toggle('active', l === link));
+				const targetEl = document.getElementById(id);
+				if (targetEl) {
+					// use existing smooth scroll helper if available
+					try {
+						dlinqScrollTo(id);
+					} catch (err) {
+						targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}
+				}
+			});
+		});
+
+		function setActiveById(id) {
+			const link = idToLink.get(id);
+			if (!link) return;
+			// Remove active from ALL side-nav links on the page
+			document.querySelectorAll('.dlinq-side-nav .nav-link').forEach(l => l.classList.remove('active'));
+			// Then add to the target link
+			link.classList.add('active');
+		}
+
+		// Use a robust scroll-based checker (works consistently across browsers)
+		const throttle = (fn, wait) => {
+			let last = 0;
+			let timeout = null;
+			return function(...args) {
+				const now = Date.now();
+				const run = () => { last = Date.now(); timeout = null; fn.apply(this, args); };
+				if (now - last > wait) {
+					run();
+				} else if (!timeout) {
+					timeout = setTimeout(run, wait - (now - last));
+				}
+			};
+		};
+
+		const getActiveCandidate = () => {
+			// Reference point: 20% down from top of viewport
+			const ref = window.innerHeight * 0.2;
+			let best = null;
+			let bestDistance = Infinity;
+
+			targets.forEach(t => {
+				const rect = t.getBoundingClientRect();
+				// consider elements that are not fully below the fold
+				const distance = Math.abs(rect.top - ref);
+				if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+					if (distance < bestDistance) {
+						bestDistance = distance;
+						best = t;
+					}
+				}
+			});
+
+			return best;
+		};
+
+		const updateActiveFromScroll = () => {
+			const candidate = getActiveCandidate();
+			if (candidate) setActiveById(candidate.id);
+		};
+
+		// IntersectionObserver can be a lightweight helper to catch fast jumps
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver((entries) => {
+				// when a section intersects, pick the candidate using the same heuristic
+				const candidate = getActiveCandidate();
+				if (candidate) setActiveById(candidate.id);
+			}, { root: null, rootMargin: '0px 0px -60% 0px', threshold: 0 });
+
+			targets.forEach(t => observer.observe(t));
+		}
+
+		// Always attach a throttled scroll handler for reliable updates
+		window.addEventListener('scroll', throttle(updateActiveFromScroll, 120));
+		window.addEventListener('resize', throttle(updateActiveFromScroll, 200));
+		// run once to set initial state
+		updateActiveFromScroll();
+
+		// If a hash is present on load, mark that link active
+		if (window.location.hash) {
+			const id = decodeURIComponent(window.location.hash.slice(1));
+			setActiveById(id);
+		}
 	});
 }

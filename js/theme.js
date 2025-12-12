@@ -6142,42 +6142,37 @@
   // Based on CodePen example - switches content within sections
 
   function dlinqSideNavContentSwitcher() {
-    // Handle sidebar navigation clicks
-    document.querySelectorAll('.dlinq-side-nav .nav-link[data-content]').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
+    // Use event delegation on document so it works for all menus, even dynamic ones
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('.dlinq-side-nav .nav-link[data-content]');
+      if (!link) return;
+      e.preventDefault();
 
-        // Get the section containing this sidebar
-        var section = link.closest('section');
-        if (!section) return;
-        var contentArea = section.querySelector('.content-area');
-        if (!contentArea) return;
-        var contentId = link.getAttribute('data-content');
+      // Get the section containing this sidebar
+      var section = link.closest('section');
+      if (!section) return;
+      var nav = section.querySelector('.dlinq-side-nav');
+      var contentArea = section.querySelector('.content-area');
+      if (!contentArea) return;
+      var contentId = link.getAttribute('data-content');
 
-        // Scroll to selected content
-        var targetContent = contentArea.querySelector("#" + contentId);
-        if (targetContent) {
-          targetContent.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+      // Scroll to selected content
+      var targetContent = contentArea.querySelector("#" + contentId);
+      if (targetContent) {
+        targetContent.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
 
-        // Update active state on sidebar links within this section
-        section.querySelectorAll('.dlinq-side-nav .nav-link').forEach(function (l) {
+      // Update active state on sidebar links within THIS SECTION'S NAV ONLY
+      if (nav) {
+        nav.querySelectorAll('.nav-link').forEach(function (l) {
           l.classList.remove('active');
         });
-        link.classList.add('active');
-      });
-    });
-
-    // Set first item in each section as active by default
-    document.querySelectorAll('section').forEach(function (section) {
-      var firstLink = section.querySelector('.dlinq-side-nav .nav-link[data-content]');
-      if (firstLink) {
-        firstLink.classList.add('active');
       }
-    });
+      link.classList.add('active');
+    }, true); // Use capture phase for better delegation
 
     // Handle hash navigation for direct links to sections
     if (window.location.hash) {
@@ -6479,6 +6474,7 @@
       dlinqAccordExpand(scrollId);
       dlinqScrollTo(scrollId);
     }
+    dlinqSideNav();
     dlinqAttendance(); //what is the problem?
     dlinqEmailButton(); //email copy button for events
     dlinqFeedbackButton(); //email feedback button for events
@@ -6860,6 +6856,135 @@
         // Add hidden=until-found back when closed
         collapseElement.setAttribute('hidden', 'until-found');
       });
+    });
+  }
+
+  // Side nav: mark corresponding link active when its section scrolls into view
+  function dlinqSideNav() {
+    // Handle ALL side-nav menus on the page, not just the first one
+    var sideNavs = document.querySelectorAll('.dlinq-side-nav');
+    if (sideNavs.length === 0) return;
+    sideNavs.forEach(function (sideNav) {
+      var links = Array.from(sideNav.querySelectorAll('a[href^="#"], a[data-content]'));
+      if (links.length === 0) return;
+      var idToLink = new Map();
+      var targets = [];
+      links.forEach(function (link) {
+        // support href="#id" or data-content="id"
+        var dataId = link.dataset && link.dataset.content ? link.dataset.content : null;
+        var href = link.getAttribute('href');
+        var hrefId = href && href.startsWith('#') ? decodeURIComponent(href.slice(1)) : null;
+        var id = dataId || hrefId;
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el) {
+          idToLink.set(id, link);
+          targets.push(el);
+        }
+
+        // clicking a link should set it active immediately and smooth-scroll to target
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          links.forEach(function (l) {
+            return l.classList.toggle('active', l === link);
+          });
+          var targetEl = document.getElementById(id);
+          if (targetEl) {
+            // use existing smooth scroll helper if available
+            try {
+              dlinqScrollTo(id);
+            } catch (err) {
+              targetEl.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }
+        });
+      });
+      function setActiveById(id) {
+        var link = idToLink.get(id);
+        if (!link) return;
+        // Remove active from ALL side-nav links on the page
+        document.querySelectorAll('.dlinq-side-nav .nav-link').forEach(function (l) {
+          return l.classList.remove('active');
+        });
+        // Then add to the target link
+        link.classList.add('active');
+      }
+
+      // Use a robust scroll-based checker (works consistently across browsers)
+      var throttle = function throttle(fn, wait) {
+        var last = 0;
+        var timeout = null;
+        return function () {
+          var _this = this;
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+          var now = Date.now();
+          var run = function run() {
+            last = Date.now();
+            timeout = null;
+            fn.apply(_this, args);
+          };
+          if (now - last > wait) {
+            run();
+          } else if (!timeout) {
+            timeout = setTimeout(run, wait - (now - last));
+          }
+        };
+      };
+      var getActiveCandidate = function getActiveCandidate() {
+        // Reference point: 20% down from top of viewport
+        var ref = window.innerHeight * 0.2;
+        var best = null;
+        var bestDistance = Infinity;
+        targets.forEach(function (t) {
+          var rect = t.getBoundingClientRect();
+          // consider elements that are not fully below the fold
+          var distance = Math.abs(rect.top - ref);
+          if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+            if (distance < bestDistance) {
+              bestDistance = distance;
+              best = t;
+            }
+          }
+        });
+        return best;
+      };
+      var updateActiveFromScroll = function updateActiveFromScroll() {
+        var candidate = getActiveCandidate();
+        if (candidate) setActiveById(candidate.id);
+      };
+
+      // IntersectionObserver can be a lightweight helper to catch fast jumps
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          // when a section intersects, pick the candidate using the same heuristic
+          var candidate = getActiveCandidate();
+          if (candidate) setActiveById(candidate.id);
+        }, {
+          root: null,
+          rootMargin: '0px 0px -60% 0px',
+          threshold: 0
+        });
+        targets.forEach(function (t) {
+          return observer.observe(t);
+        });
+      }
+
+      // Always attach a throttled scroll handler for reliable updates
+      window.addEventListener('scroll', throttle(updateActiveFromScroll, 120));
+      window.addEventListener('resize', throttle(updateActiveFromScroll, 200));
+      // run once to set initial state
+      updateActiveFromScroll();
+
+      // If a hash is present on load, mark that link active
+      if (window.location.hash) {
+        var id = decodeURIComponent(window.location.hash.slice(1));
+        setActiveById(id);
+      }
     });
   }
 
