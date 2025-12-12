@@ -270,15 +270,16 @@
           <!--challenge loop-->
          <?php if( get_row_layout() == 'side_nav' ):
             $big_group = get_sub_field('big_group');
+            $big_titles_array = array();
             //GET BIG GROUP TITLE AND SUB GROUPS
             foreach($big_group as $group){
                 $title = $group['big_group_title'];
+                $id = sanitize_title($title);
                 $items = $group['sub_group'];
-
-                dlinq_side_nav_sg_builder($title, $items);
+                array_push($big_titles_array, $title);
+                dlinq_side_nav_sg_builder($title, $id, $items, $big_titles_array);
 
             }
-            
         ?>           
         <?php endif;?>
     <?php endwhile; ?>

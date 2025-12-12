@@ -2692,15 +2692,24 @@ function dlinq_side_nav_gather($title){
 	array_push($array, $title);
 	return $array;
 }
-function dlinq_side_nav_sg_builder($big_title, $sub_groups){
-	$big_title_slug = sanitize_title($big_title);
+
+function dlinq_side_top_nav_builder($big_titles){
+	foreach($big_titles as $big_title){
+		$big_title_slug = sanitize_title($big_title);
+		?>
+		<a class='nav-link' href='#' data-content='<?php echo $big_title_slug; ?>'><?php echo $big_title; ?></a>
+		<?php
+	}
+}
+function dlinq_side_nav_sg_builder($big_title, $id, $sub_groups){
+	//$big_title_slug = sanitize_title($big_title);
 	?>
 	<section id='<?php echo $big_title_slug; ?>'>
 		<div class='container'>
 			<div class='dlinq-side-nav-wrapper'>
 				<div class='col-md-3 sidebar'>
 					<div class='dlinq-side-nav'>
-						<h2><?php echo $big_title; ?></h2>
+						<h2 id='<?php echo $id; ?>'><?php echo $big_title; ?></h2>
 						<nav class='nav flex-column'>
 							<?php foreach($sub_groups as $item):
 								$sg_title = $item['sub-group_title'];
