@@ -15409,15 +15409,35 @@ figure.woocommerce-product-gallery__wrapper {
 
 #side-layout-big-menu {
   left: 0;
-  top: 80px;
+  top: 83px;
   background-color: #bfdaf2;
   border-bottom: 1px solid #000911;
   border-top: 1px solid #000911;
+  padding: 3px;
 }
 
 #side-layout-big-menu a {
   color: #002444;
   font-size: 1.1rem;
+  transition: all ease 0.2s;
+}
+
+#side-layout-big-menu a:hover {
+  background-color: #fff;
+  color: #000911;
+}
+
+#side-layout-big-menu li {
+  border-right: 1px dashed #002444;
+}
+
+#side-layout-big-menu li:last-child {
+  border-right: none;
+}
+
+.dlinq-side-nav-wrapper h3, .dlinq-side-nav-wrapper .h3 {
+  padding-top: 90px;
+  margin-top: -90px;
 }
 
 section.dlinq-side-nav-section {

@@ -6156,12 +6156,15 @@
       if (!contentArea) return;
       var contentId = link.getAttribute('data-content');
 
-      // Scroll to selected content
+      // Scroll to selected content with 80px top padding
       var targetContent = contentArea.querySelector("#" + contentId);
       if (targetContent) {
-        targetContent.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+        var targetRect = targetContent.getBoundingClientRect();
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var targetTop = scrollTop + targetRect.top - 80; // 80px padding from top
+        window.scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
         });
       }
 
@@ -6174,15 +6177,18 @@
       link.classList.add('active');
     }, true); // Use capture phase for better delegation
 
-    // Handle hash navigation for direct links to sections
+    // Handle hash navigation for direct links to sections with 80px top padding
     if (window.location.hash) {
       setTimeout(function () {
         var sectionId = window.location.hash.substring(1);
         var section = document.getElementById(sectionId);
         if (section) {
-          section.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+          var sectionRect = section.getBoundingClientRect();
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          var sectionTop = scrollTop + sectionRect.top - 80; // 80px padding from top
+          window.scrollTo({
+            top: sectionTop,
+            behavior: 'smooth'
           });
         }
       }, 100);
@@ -6890,15 +6896,14 @@
           });
           var targetEl = document.getElementById(id);
           if (targetEl) {
-            // use existing smooth scroll helper if available
-            try {
-              dlinqScrollTo(id);
-            } catch (err) {
-              targetEl.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
+            // Scroll with 80px top padding
+            var targetRect = targetEl.getBoundingClientRect();
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            var targetTop = scrollTop + targetRect.top - 80;
+            window.scrollTo({
+              top: targetTop,
+              behavior: 'smooth'
+            });
           }
         });
       });

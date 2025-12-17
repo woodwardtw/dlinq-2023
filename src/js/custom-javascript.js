@@ -330,12 +330,14 @@ function dlinqSideNav() {
 				links.forEach(l => l.classList.toggle('active', l === link));
 				const targetEl = document.getElementById(id);
 				if (targetEl) {
-					// use existing smooth scroll helper if available
-					try {
-						dlinqScrollTo(id);
-					} catch (err) {
-						targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-					}
+					// Scroll with 80px top padding
+					const targetRect = targetEl.getBoundingClientRect();
+					const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+					const targetTop = scrollTop + targetRect.top - 80;
+					window.scrollTo({
+						top: targetTop,
+						behavior: 'smooth'
+					});
 				}
 			});
 		});

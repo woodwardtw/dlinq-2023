@@ -19,12 +19,15 @@ function dlinqSideNavContentSwitcher() {
 
     const contentId = link.getAttribute('data-content');
 
-    // Scroll to selected content
+    // Scroll to selected content with 80px top padding
     const targetContent = contentArea.querySelector(`#${contentId}`);
     if (targetContent) {
-      targetContent.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      const targetRect = targetContent.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const targetTop = scrollTop + targetRect.top - 80; // 80px padding from top
+      window.scrollTo({
+        top: targetTop,
+        behavior: 'smooth'
       });
     }
 
@@ -37,15 +40,18 @@ function dlinqSideNavContentSwitcher() {
     link.classList.add('active');
   }, true); // Use capture phase for better delegation
 
-  // Handle hash navigation for direct links to sections
+  // Handle hash navigation for direct links to sections with 80px top padding
   if (window.location.hash) {
     setTimeout(() => {
       const sectionId = window.location.hash.substring(1);
       const section = document.getElementById(sectionId);
       if (section) {
-        section.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+        const sectionRect = section.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const sectionTop = scrollTop + sectionRect.top - 80; // 80px padding from top
+        window.scrollTo({
+          top: sectionTop,
+          behavior: 'smooth'
         });
       }
     }, 100);

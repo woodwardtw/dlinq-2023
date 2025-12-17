@@ -65,15 +65,34 @@
 
 #side-layout-big-menu{
   left: 0;
-  top: 80px;
+  top: 83px;
   background-color: $light-blue;
   border-bottom: 1px solid darken($blue, 10%);
   border-top: 1px solid darken($blue, 10%);
+  padding: 3px;
 }
 
 #side-layout-big-menu a {
   color: $blue;
   font-size: 1.1rem;
+  transition: all ease 0.2s;
+}
+
+#side-layout-big-menu a:hover {
+  background-color: $white;
+  color: darken($blue, 10%);
+}
+
+#side-layout-big-menu li{
+  border-right: 1px dashed $blue;
+}
+#side-layout-big-menu li:last-child{
+  border-right: none;
+}
+
+.dlinq-side-nav-wrapper h3 {
+  padding-top: 90px; 
+  margin-top: -90px;// Offset for sticky header
 }
 
 // Side nav sections
