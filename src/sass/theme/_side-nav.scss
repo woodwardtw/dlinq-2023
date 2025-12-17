@@ -63,6 +63,19 @@
   }
 }
 
+#side-layout-big-menu{
+  left: 0;
+  top: 80px;
+  background-color: $light-blue;
+  border-bottom: 1px solid darken($blue, 10%);
+  border-top: 1px solid darken($blue, 10%);
+}
+
+#side-layout-big-menu a {
+  color: $blue;
+  font-size: 1.1rem;
+}
+
 // Side nav sections
 section.dlinq-side-nav-section {
   padding-top: 2rem;

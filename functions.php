@@ -2694,12 +2694,20 @@ function dlinq_side_nav_gather($title){
 }
 
 function dlinq_side_top_nav_builder($big_titles){
+	$html = '';
+	if(sizeof($big_titles) <= 1){
+		return;
+	}
 	foreach($big_titles as $big_title){
 		$big_title_slug = sanitize_title($big_title);
-		?>
-		<a class='nav-link' href='#' data-content='<?php echo $big_title_slug; ?>'><?php echo $big_title; ?></a>
-		<?php
+		$html .= "<li class='menu-item menu-item-type-custom nav-item'>
+			<a class='nav-link' href='#{$big_title_slug}'>{$big_title}</a>
+		</li>";
+
 	}
+	echo "<nav class='navbar navbar-light navbar-nav navbar-expand' id='side-layout-big-menu'>
+			<ul class='navbar-nav justify-content-center flex-grow-1 pe-3'>{$html}</ul>
+		</nav>";
 }
 function dlinq_side_nav_sg_builder($big_title, $id, $sub_groups){
 	//$big_title_slug = sanitize_title($big_title);

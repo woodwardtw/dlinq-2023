@@ -15407,6 +15407,19 @@ figure.woocommerce-product-gallery__wrapper {
   padding: 2rem;
 }
 
+#side-layout-big-menu {
+  left: 0;
+  top: 80px;
+  background-color: #bfdaf2;
+  border-bottom: 1px solid #000911;
+  border-top: 1px solid #000911;
+}
+
+#side-layout-big-menu a {
+  color: #002444;
+  font-size: 1.1rem;
+}
+
 section.dlinq-side-nav-section {
   padding-top: 2rem;
   padding-bottom: 2rem;
