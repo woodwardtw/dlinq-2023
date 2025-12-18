@@ -2701,7 +2701,7 @@ function dlinq_side_top_nav_builder($big_titles){
 	foreach($big_titles as $big_title){
 		$big_title_slug = sanitize_title($big_title);
 		$html .= "<li class='menu-item menu-item-type-custom nav-item'>
-			<a class='nav-link' href='#{$big_title_slug}'>{$big_title}</a>
+			<a class='nav-link' href='#{$big_title_slug}-content'>{$big_title}</a>
 		</li>";
 
 	}
@@ -2710,7 +2710,7 @@ function dlinq_side_top_nav_builder($big_titles){
 		</nav>";
 }
 function dlinq_side_nav_sg_builder($big_title, $id, $sub_groups){
-	//$big_title_slug = sanitize_title($big_title);
+	$big_title_slug = sanitize_title($big_title);
 	?>
 	<section id='<?php echo $big_title_slug; ?>'>
 		<div class='container'>
@@ -2729,7 +2729,7 @@ function dlinq_side_nav_sg_builder($big_title, $id, $sub_groups){
 						</nav>
 					</div>
 				</div>
-				<div class='col-md-9 content-area'>
+				<div class='col-md-9 content-area' id='<?php echo $big_title_slug; ?>-content'>
 					<?php foreach($sub_groups as $item):
 						$sg_title = $item['sub-group_title'];
 						$slug = sanitize_title($sg_title);
