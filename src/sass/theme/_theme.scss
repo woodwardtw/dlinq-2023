@@ -8,14 +8,14 @@ body {
   color: $black;
 }
 
-blockquote {
+blockquote, .callout-box {
   border: 1px solid $blue;
   padding: 1.5rem 2rem;
   margin: 2rem 0;
   box-shadow: 3px 3px $green;
 }
 
-blockquote p{
+blockquote p, .callout-box p {
   font-size: 1.7rem;
   font-style: italic;
 }

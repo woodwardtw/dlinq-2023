@@ -3057,3 +3057,47 @@ function dlinq_render_challenge_block($block){
 	</div>
 	<?php
 }
+
+//editor addition
+function dlinq_add_style_select_buttons( $buttons ) {
+	if ( ! in_array( 'styleselect', $buttons, true ) ) {
+		array_unshift( $buttons, 'styleselect' );
+	}
+	return $buttons;
+}
+// Register our callback to the appropriate filter (run late so other theme/plugin additions run first)
+add_filter( 'mce_buttons_2', 'dlinq_add_style_select_buttons', 999 );
+//add custom styles to the WordPress editor
+function dlinq_custom_styles( $init_array ) {  
+
+    $style_formats = array(  
+        // These are the custom styles
+        array(  
+            'title' => 'Callout Box',  
+            'block' => 'div',  
+            'classes' => 'callout-box',
+            'wrapper' => true,
+        )
+    );  
+    // Insert the array, JSON ENCODED, into 'style_formats'
+    $init_array['style_formats'] = json_encode( $style_formats );  
+
+    return $init_array;  
+
+} 
+// Attach callback to 'tiny_mce_before_init' 
+add_filter( 'tiny_mce_before_init', 'dlinq_custom_styles' );
+
+function dlinq_theme_add_editor_styles() {
+	// Prefer compiled editor styles in the `css/` folder (minified first).
+	$theme_dir = get_stylesheet_directory();
+	if ( file_exists( $theme_dir . '/css/custom-editor-style.min.css' ) ) {
+		add_editor_style( 'css/custom-editor-style.min.css' );
+	} elseif ( file_exists( $theme_dir . '/css/custom-editor-style.css' ) ) {
+		add_editor_style( 'css/custom-editor-style.css' );
+	} else {
+		// Fallback to legacy root-level filename if present.
+		add_editor_style( 'custom-editor-style.css' );
+	}
+}
+add_action( 'init', 'dlinq_theme_add_editor_styles' );
