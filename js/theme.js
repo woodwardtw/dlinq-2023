@@ -6481,6 +6481,7 @@
       dlinqScrollTo(scrollId);
     }
     dlinqSideNav();
+    sideLayoutBigMenuFix();
     dlinqAttendance(); //what is the problem?
     dlinqEmailButton(); //email copy button for events
     dlinqFeedbackButton(); //email feedback button for events
@@ -6502,6 +6503,55 @@
       behavior: 'smooth',
       block: 'start'
     });
+  }
+
+  // Toggle fixed class for #side-layout-big-menu when it reaches top of viewport
+  function sideLayoutBigMenuFix() {
+    var el = document.getElementById('side-layout-big-menu');
+    if (!el) return;
+
+    // Compute element's offsetTop relative to the document
+    var getOrigin = function getOrigin() {
+      return el.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
+    };
+    var originOffsetTop = getOrigin();
+    var throttle = function throttle(fn, wait) {
+      if (wait === void 0) {
+        wait = 50;
+      }
+      var last = 0;
+      var timeout = null;
+      return function () {
+        var _this = this;
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+        var now = Date.now();
+        var run = function run() {
+          last = Date.now();
+          timeout = null;
+          fn.apply(_this, args);
+        };
+        if (now - last > wait) run();else if (!timeout) timeout = setTimeout(run, wait - (now - last));
+      };
+    };
+    var check = function check() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop >= originOffsetTop) {
+        if (!el.classList.contains('dlinq-fixed-top')) el.classList.add('fixed-top', 'dlinq-fixed-top');
+      } else {
+        el.classList.remove('fixed-top', 'dlinq-fixed-top');
+      }
+    };
+    var recompute = function recompute() {
+      originOffsetTop = getOrigin();
+      check();
+    };
+    window.addEventListener('scroll', throttle(check, 40));
+    window.addEventListener('resize', throttle(recompute, 150));
+
+    // Run once to initialize state
+    recompute();
   }
 
   //EXPAND DIV
@@ -6923,15 +6973,15 @@
         var last = 0;
         var timeout = null;
         return function () {
-          var _this = this;
-          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
+          var _this2 = this;
+          for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            args[_key2] = arguments[_key2];
           }
           var now = Date.now();
           var run = function run() {
             last = Date.now();
             timeout = null;
-            fn.apply(_this, args);
+            fn.apply(_this2, args);
           };
           if (now - last > wait) {
             run();

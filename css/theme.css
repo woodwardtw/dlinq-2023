@@ -15407,13 +15407,21 @@ figure.woocommerce-product-gallery__wrapper {
   padding: 2rem;
 }
 
-#side-layout-big-menu {
-  left: 0;
+#side-layout-big-menu.dlinq-fixed-top {
+  position: fixed;
   top: 83px;
+  width: 100%;
+  z-index: 1030;
+}
+
+#side-layout-big-menu {
   background-color: #bfdaf2;
   border-bottom: 1px solid #000911;
   border-top: 1px solid #000911;
   padding: 3px;
+  position: relative;
+  top: 0;
+  transition: all ease 0.2s;
 }
 
 #side-layout-big-menu a {

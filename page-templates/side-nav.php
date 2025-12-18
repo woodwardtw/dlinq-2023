@@ -35,6 +35,22 @@ $container = get_theme_mod( 'understrap_container_type' );
 							<header class="entry-header">
 								<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 							</header><!-- .entry-header -->
+							<?php 
+							if( have_rows('content') ):
+
+								// Loop through rows.
+								while ( have_rows('content') ) : the_row();
+									$big_group = get_sub_field('big_group', get_the_ID());
+									// Create an array of big group titles
+									$big_titles_array = array();
+									foreach($big_group as $group){
+										$title = $group['big_group_title'];
+										array_push($big_titles_array, $title);
+									}
+								endwhile;
+							endif;
+								dlinq_side_top_nav_builder($big_titles_array);
+							?>
 
 							<div class="entry-content">
 								<?php the_content(); ?>

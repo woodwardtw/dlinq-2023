@@ -63,13 +63,23 @@
   }
 }
 
-#side-layout-big-menu{
-  left: 0;
+#side-layout-big-menu.dlinq-fixed-top{
+  position: fixed;
   top: 83px;
+  width: 100%;
+  z-index: 1030; // Ensure it stays above other content
+}
+
+#side-layout-big-menu{
+  // left: 0;
+  // top: 83px;
   background-color: $light-blue;
   border-bottom: 1px solid darken($blue, 10%);
   border-top: 1px solid darken($blue, 10%);
   padding: 3px;
+  position: relative;
+  top: 0;
+  transition: all ease 0.2s;
 }
 
 #side-layout-big-menu a {

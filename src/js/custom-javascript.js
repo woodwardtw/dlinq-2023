@@ -7,6 +7,7 @@ window.onload = function() {
 		dlinqScrollTo(scrollId);
   }
 	dlinqSideNav();
+	sideLayoutBigMenuFix();
 	dlinqAttendance();//what is the problem?
 	dlinqEmailButton();//email copy button for events
 	dlinqFeedbackButton();//email feedback button for events
@@ -28,6 +29,46 @@ function dlinqScrollTo(id){
 	const destination = document.getElementById(id);
   destination.scrollIntoView({behavior: 'smooth', block: 'start'});
 	
+}
+
+// Toggle fixed class for #side-layout-big-menu when it reaches top of viewport
+function sideLayoutBigMenuFix() {
+	const el = document.getElementById('side-layout-big-menu');
+	if (!el) return;
+
+	// Compute element's offsetTop relative to the document
+	const getOrigin = () => el.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
+	let originOffsetTop = getOrigin();
+
+	const throttle = (fn, wait = 50) => {
+		let last = 0;
+		let timeout = null;
+		return function(...args) {
+			const now = Date.now();
+			const run = () => { last = Date.now(); timeout = null; fn.apply(this, args); };
+			if (now - last > wait) run(); else if (!timeout) timeout = setTimeout(run, wait - (now - last));
+		};
+	};
+
+	const check = () => {
+		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		if (scrollTop >= originOffsetTop) {
+			if (!el.classList.contains('dlinq-fixed-top')) el.classList.add('fixed-top', 'dlinq-fixed-top');
+		} else {
+			el.classList.remove('fixed-top', 'dlinq-fixed-top');
+		}
+	};
+
+	const recompute = () => {
+		originOffsetTop = getOrigin();
+		check();
+	};
+
+	window.addEventListener('scroll', throttle(check, 40));
+	window.addEventListener('resize', throttle(recompute, 150));
+
+	// Run once to initialize state
+	recompute();
 }
 
 //EXPAND DIV
