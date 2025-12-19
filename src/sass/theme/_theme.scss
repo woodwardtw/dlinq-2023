@@ -278,10 +278,14 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 }
 
 .topic-list a, .sub-topic a, .entry-content a, .topic-row a {
-  text-decoration: none;
-  border-bottom: 1px dashed $blue;
+  // text-decoration: none;
+  // border-bottom: 1px dashed $blue;
+  transition: all .3s ease;
 }
 
+.topic-list a:hover, .sub-topic a:hover, .entry-content a:hover, .topic-row a:hover {
+  background-color: $light-blue;
+}
 
 .btn-dlinq, #content .gform_button.button, #contactModal .gform_button.button {
   background-color: $blue;

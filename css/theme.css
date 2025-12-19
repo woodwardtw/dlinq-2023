@@ -15437,6 +15437,7 @@ figure.woocommerce-product-gallery__wrapper {
 
 #side-layout-big-menu li {
   border-right: 1px dashed #002444;
+  padding: 0 20px;
 }
 
 #side-layout-big-menu li:last-child {
@@ -15759,8 +15760,11 @@ p, .sub-topic ul, .sub-topic ol, .entry-content ul, .entry-content ol, .topic-ro
 }
 
 .topic-list a, .sub-topic a, .entry-content a, .topic-row a {
-  text-decoration: none;
-  border-bottom: 1px dashed #002444;
+  transition: all 0.3s ease;
+}
+
+.topic-list a:hover, .sub-topic a:hover, .entry-content a:hover, .topic-row a:hover {
+  background-color: #bfdaf2;
 }
 
 .btn-dlinq, #content .gform_button.button, #contactModal .gform_button.button {

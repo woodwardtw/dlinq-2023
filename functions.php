@@ -3085,19 +3085,3 @@ function dlinq_custom_styles( $init_array ) {
     return $init_array;  
 
 } 
-// Attach callback to 'tiny_mce_before_init' 
-add_filter( 'tiny_mce_before_init', 'dlinq_custom_styles' );
-
-function dlinq_theme_add_editor_styles() {
-	// Prefer compiled editor styles in the `css/` folder (minified first).
-	$theme_dir = get_stylesheet_directory();
-	if ( file_exists( $theme_dir . '/css/custom-editor-style.min.css' ) ) {
-		add_editor_style( 'css/custom-editor-style.min.css' );
-	} elseif ( file_exists( $theme_dir . '/css/custom-editor-style.css' ) ) {
-		add_editor_style( 'css/custom-editor-style.css' );
-	} else {
-		// Fallback to legacy root-level filename if present.
-		add_editor_style( 'custom-editor-style.css' );
-	}
-}
-add_action( 'init', 'dlinq_theme_add_editor_styles' );
