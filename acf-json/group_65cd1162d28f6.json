@@ -330,6 +330,51 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 0
+        },
+        {
+            "key": "field_68c1ae88b7e15",
+            "label": "Workshop Feedback Template",
+            "name": "workshop_feedback_template",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_696a5faf1e852",
+            "label": "Workshop Feedback Page",
+            "name": "workshop_feedback_page",
+            "aria-label": "",
+            "type": "page_link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "allow_archives": 0,
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0
         }
     ],
     "location": [
@@ -350,5 +395,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1757523609
+    "display_title": "",
+    "modified": 1768579144
 }

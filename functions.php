@@ -750,6 +750,8 @@ function dlinq_registered_people($form_id){
 		$workshop_title = get_the_title($post_id);
 		dlinq_set_registration_data($post_id, $total_reg, 'registered_total');//set total registered as custom field
 		$workshop_feedback_template = get_field('workshop_feedback_template', 'option');
+		$workshop_feedback_page = get_field('workshop_feedback_page', 'option');
+		$workshop_feedback_url_populated = $workshop_feedback_page.'?Workshop='.urlencode($workshop_title);
 		if($results){
 			$attendance_count = intval(0);
 			echo "<div class='registration-block'>
@@ -758,7 +760,9 @@ function dlinq_registered_people($form_id){
 					<button id='copy-emails' class='btn btn-dlinq'>Copy All Emails</button>
 					<button id='feedback-email' class='btn btn-dlinq'>Copy Feedback Email</button>
 					<div id='feedback-message' class='small-text'>
-						{$workshop_feedback_template}				
+						{$workshop_feedback_template}
+						
+						<a href='{$workshop_feedback_url_populated}' target='_blank'>We'd love your feedback on the workshop.</a>
 					</div>
 					<ol class='reg-list' id='registered'>";
 			foreach ($results as $key => $result) {
