@@ -39,10 +39,8 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 						<div class="page-content">
 
-							<p><?php esc_html_e( 'It looks like nothing was found at this location. You can try the archive of our old site or search for something else.', 'understrap' ); ?></p>
-							<p>We recently switched sites. You can try this link to get to content from the previous site.</p>
-							<h2> <a href="<?php echo $archive_url;?>"><?php echo $archive_url;?></a></h2>
-
+							<p><?php esc_html_e( 'It looks like nothing was found at this location. You can try searching for something else or reach out to dlinq@middlebury.edu directly.', 'understrap' ); ?></p>
+						
 							<?php get_search_form(); ?>
 
 							<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>

@@ -3096,3 +3096,67 @@ function dlinq_custom_styles( $init_array ) {
     return $init_array;  
 
 } 
+
+
+/** 
+ * DATA VISUALIZATION FUNCTIONS
+ * 
+*/
+
+function dlinq_workshop_counter($year){
+	//get current date and add 86400 seconds
+	$start = $year . '-06-31 00:01';
+	$end = ($year+1) . '-06-31 23:59';
+
+	//get Modern Tribe events that occur on current date +24 hrs from the events calendar
+	$year_events = tribe_get_events( [
+					   'posts_per_page' => 400,
+					   'start_date'   => $start,
+					   'end_date'   => $end,
+					   'post_status', array('private', 'publish'),
+					   'meta_query' => array(
+							'relation' => 'AND',
+							array(
+								'key'     => '_EventHideFromUpcoming',
+								'compare' => '=',  // "NOT EXIST" might work, though this makes more logical sense to me
+								'value' => 'yes',
+							),
+							array(
+								'key'     => '_EventHideFromUpcoming',
+								'compare' => 'NOT EXIST',
+							),
+						),
+					] );
+	if($year_events){	
+		$total_events = sizeof($year_events);
+		echo "<div class='event-summary'>Workshops held in the {$year} academic year: {$total_events}</div>";
+		foreach ($year_events as $key => $event) {		
+				
+				// $event_title = $event->post_title;//get title from the event
+				// $event_id = $event->ID;
+				// dlinq_workshop_registration_updater($event_id);//update the stuff
+				// $link = get_permalink($event_id);
+				// $event_date = tribe_events_event_schedule_details( $event_id);
+				// $clean_date = preg_replace('/<[^>]*>/', '', $event_date);
+				// $registered = get_post_meta($event_id, 'registered_total', TRUE);
+				// if(get_post_meta($event_id, 'attended_total', TRUE) !==''){
+				// 	$attended = get_post_meta($event_id, 'attended_total', TRUE);
+				// } else {
+				// 	$attended = 0;
+				// }
+				// if(get_field('classroom_attendance_number',$event_id)){
+				// 	$attendance = get_field('classroom_attendance_number',$event_id);
+				// 	$registered = 'N/A';
+				// 	$attended = $attendance;
+				// }
+				// //may need to run the function that sets the reg and attended prior to display per post. .. worry about load though
+				// echo "<tr>
+				// 		<td><a href='{$link}'>{$event_title}</a></td>
+				// 		<td>{$clean_date}</td>
+				// 		<td>{$registered}</td>
+				// 		<td>{$attended}</td>
+				// 	</tr>";
+		}
+	}
+			
+}
