@@ -1043,15 +1043,21 @@ function after_submission_bulk_enroll( $entry, $form ) {
 	//write_log($entry);
 	// Debug: Log all form fields and their types
 	//write_log('=== FORM FIELDS DEBUG ===');
-	
+
 	// Debug: Log all entry data
 	//write_log('=== ENTRY DATA DEBUG ===');
 	//write_log($entry);
-	
+
 	// Debug: Log $_POST data to see what was actually submitted
 	//write_log('=== POST DATA DEBUG ===');
 	//write_log($_POST);
-	
+
+	// Guards against creating duplicate registrations if this entry is reprocessed
+	// (e.g. via the "Process Bulk Enrollment" manual bulk action).
+	if ( gform_get_meta( $entry['id'], 'dlinq_bulk_enrollment_processed' ) ) {
+		return;
+	}
+
 	$gf_workshop_registration_id = get_field('workshop_registration_form', 'option');
  	$first = rgar($entry, '1.3');
  	$last = rgar($entry, '1.6');
@@ -1110,6 +1116,8 @@ function after_submission_bulk_enroll( $entry, $form ) {
  		//send_notifications( $gf_workshop_registration_id, $new_entry );//can send per event but might be messier
 		//JUST SEND THE SINGLE MESSAGE ON THE BULK FORM
  	}
+
+ 	gform_update_meta( $entry['id'], 'dlinq_bulk_enrollment_processed', 1 );
 }
 
 /**
@@ -1208,6 +1216,81 @@ function dlinq_get_event_ids_from_field( $entry, $field_id ) {
     return $event_ids;
 }
 
+
+// Adds a "Process Bulk Enrollment" bulk action to the bulk workshop request form's
+// entries list, so entries submitted before workshop_bulk_request_form was set
+// (and therefore missed the gform_after_submission hook) can be reprocessed manually.
+// Registered unconditionally (not gated behind acf/init + the ACF option like the
+// automatic hook is) so an unset option can't also hide this manual fallback - the
+// form_id is instead checked dynamically inside each callback.
+add_filter( 'gform_entry_list_bulk_actions', 'dlinq_add_bulk_enrollment_reprocess_action', 10, 2 );
+add_action( 'gform_entry_list_action_dlinq_reprocess_bulk_enrollment', 'dlinq_reprocess_bulk_enrollment_entries', 10, 3 );
+
+function dlinq_add_bulk_enrollment_reprocess_action( $actions, $form_id ) {
+	if ( $form_id != get_field( 'workshop_bulk_request_form', 'option' ) ) {
+		return $actions;
+	}
+
+	$actions['dlinq_reprocess_bulk_enrollment'] = __( 'Process Bulk Enrollment', 'dlinq' );
+	return $actions;
+}
+
+function dlinq_reprocess_bulk_enrollment_entries( $action, $entry_ids, $form_id ) {
+	if ( ! GFCommon::current_user_can_any( 'gravityforms_edit_entries' ) ) {
+		return;
+	}
+
+	if ( $form_id != get_field( 'workshop_bulk_request_form', 'option' ) ) {
+		return;
+	}
+
+	$form = GFAPI::get_form( $form_id );
+	$processed = 0;
+	$skipped = 0;
+
+	foreach ( $entry_ids as $entry_id ) {
+		$entry = GFAPI::get_entry( $entry_id );
+
+		if ( is_wp_error( $entry ) ) {
+			continue;
+		}
+
+		// after_submission_bulk_enroll() also checks this, but checking here lets us
+		// report skipped entries separately instead of silently doing nothing.
+		if ( gform_get_meta( $entry_id, 'dlinq_bulk_enrollment_processed' ) ) {
+			$skipped++;
+			continue;
+		}
+
+		after_submission_bulk_enroll( $entry, $form );
+		$processed++;
+	}
+
+	$entry_count = $processed === 1 ? esc_html__( '1 entry', 'dlinq' ) : sprintf( esc_html__( '%d entries', 'dlinq' ), $processed );
+	$message = sprintf( __( 'Bulk enrollment processed for %s.', 'dlinq' ), $entry_count );
+
+	if ( $skipped > 0 ) {
+		$skipped_count = $skipped === 1 ? esc_html__( '1 entry', 'dlinq' ) : sprintf( esc_html__( '%d entries', 'dlinq' ), $skipped );
+		$message      .= ' ' . sprintf( __( '%s already processed and skipped.', 'dlinq' ), $skipped_count );
+	}
+
+	echo '<div id="message" class="alert success"><p>' . esc_html( $message ) . '</p></div>';
+}
+
+// Works around a Gravity Forms core bug (still present in 2.9.27): when an entry's
+// submission_speeds meta doesn't decode to the expected nested array, GF_Honeypot_Handler::
+// get_submission_speeds_range() calls min() on an empty array, which fatals on PHP 8.
+// Removes GF's own meta box callback so viewing an affected entry no longer crashes.
+add_action( 'init', 'dlinq_remove_broken_honeypot_submission_speeds_meta_box' );
+function dlinq_remove_broken_honeypot_submission_speeds_meta_box() {
+	if ( ! class_exists( 'GFForms' ) || ! class_exists( '\Gravity_Forms\Gravity_Forms\Honeypot\GF_Honeypot_Service_Provider' ) ) {
+		return;
+	}
+
+	$honeypot_handler = GFForms::get_service_container()->get( \Gravity_Forms\Gravity_Forms\Honeypot\GF_Honeypot_Service_Provider::GF_HONEYPOT_HANDLER );
+
+	remove_filter( 'gform_entry_detail_meta_boxes', array( $honeypot_handler, 'submission_speeds_entry_detail_meta_box' ), 10 );
+}
 
 //create code for deletion to put in gravity form
 add_action( 'acf/init', 'dlinq_workshop_event_deletion' );
