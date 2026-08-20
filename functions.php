@@ -2679,6 +2679,57 @@ function add_event_categories_field_editor_js() {
     <?php
 }
 
+// Warns form editors (in a modal) when they save a form that has an "Events by Category"
+// field but isn't currently set as the Bulk Workshop Request Form in ACF options -
+// submissions to it would be created but never processed into event registrations.
+//
+// The form editor's "Update Form" button saves through GF's modern form-editor-saver
+// module (AJAX action=form_editor_save_form), not the legacy inline SaveForm() function,
+// so we can't wrap SaveForm() or rely on gform_after_save_form markup output to reach the
+// page. That module dispatches a real `gform/form_editor_saver/post_save_success`
+// CustomEvent on `document` after a successful save (confirmed in the compiled
+// scripts-admin.form-editor bundle), which is what we hook here. The legacy SaveForm()
+// is still wrapped too, in case gform_disable_ajax_save is ever used to fall back to it.
+add_action( 'gform_editor_js', 'dlinq_bulk_enrollment_form_warning_js' );
+function dlinq_bulk_enrollment_form_warning_js() {
+	$gf_bulk_workshop_request_id = (int) get_field( 'workshop_bulk_request_form', 'option' );
+	?>
+	<script type='text/javascript'>
+		( function() {
+			var dlinqBulkWorkshopFormId = <?php echo wp_json_encode( $gf_bulk_workshop_request_id ); ?>;
+
+			function dlinqCheckBulkEnrollmentForm() {
+				var hasEventCategoriesField = false;
+
+				for ( var i = 0; i < form.fields.length; i++ ) {
+					if ( form.fields[ i ].type === 'event_categories' ) {
+						hasEventCategoriesField = true;
+						break;
+					}
+				}
+
+				if ( hasEventCategoriesField && parseInt( form.id, 10 ) !== dlinqBulkWorkshopFormId ) {
+					gform.instances.dialogAlert(
+						<?php echo wp_json_encode( __( 'Bulk Enrollment Form Not Set', 'dlinq' ) ); ?>,
+						<?php echo wp_json_encode( __( 'This form has an "Events by Category" field, but it is not set as the Bulk Workshop Request Form on the Basics options page. Submissions to this form will not automatically create event registrations until that option is updated.', 'dlinq' ) ); ?>
+					);
+				}
+			}
+
+			document.addEventListener( 'gform/form_editor_saver/post_save_success', dlinqCheckBulkEnrollmentForm );
+
+			if ( typeof window.SaveForm === 'function' ) {
+				var dlinqOriginalSaveForm = window.SaveForm;
+				window.SaveForm = function() {
+					dlinqCheckBulkEnrollmentForm();
+					return dlinqOriginalSaveForm.apply( this, arguments );
+				};
+			}
+		} )();
+	</script>
+	<?php
+}
+
 
 //prompt data display
 function dlinq_prompt_display(){
