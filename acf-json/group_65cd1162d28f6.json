@@ -43,6 +43,7 @@
                 "7": "DLINQ Intern Consultation Form",
                 "3": "Reservation form",
                 "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                "9": "Summer Digital Teaching and Learning Series Registration 2026",
                 "1": "workshop feedback form",
                 "5": "Workshop request"
             },
@@ -78,6 +79,7 @@
                 "7": "DLINQ Intern Consultation Form",
                 "3": "Reservation form",
                 "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                "9": "Summer Digital Teaching and Learning Series Registration 2026",
                 "1": "workshop feedback form",
                 "5": "Workshop request"
             },
@@ -113,6 +115,7 @@
                 "7": "DLINQ Intern Consultation Form",
                 "3": "Reservation form",
                 "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                "9": "Summer Digital Teaching and Learning Series Registration 2026",
                 "1": "workshop feedback form",
                 "5": "Workshop request"
             },
@@ -132,7 +135,7 @@
             "name": "workshop_bulk_request_form",
             "aria-label": "",
             "type": "select",
-            "instructions": "Request a workshop to be run form",
+            "instructions": "Select the form that you need to do multiple enrollments. Usually this is a SDTL series or something similar.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -140,7 +143,6 @@
                 "class": "",
                 "id": ""
             },
-            "relevanssi_exclude": 0,
             "choices": {
                 "0": "",
                 "4": "Bulk event registration",
@@ -148,6 +150,7 @@
                 "7": "DLINQ Intern Consultation Form",
                 "3": "Reservation form",
                 "6": "Summer Digital Teaching and Learning Series Registration 2025",
+                "9": "Summer Digital Teaching and Learning Series Registration 2026",
                 "1": "workshop feedback form",
                 "5": "Workshop request"
             },
@@ -155,6 +158,7 @@
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
+            "allow_in_bindings": 1,
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
@@ -375,5 +379,7 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1768579933
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1787230654
 }
