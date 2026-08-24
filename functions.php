@@ -688,9 +688,10 @@ function dlinq_tribe_is_past_event( $event = null ){
   $event = tribe_events_get_event( $event );
   $event_time_zone = get_post_meta( $event->ID, '_EventTimezone', true );
   date_default_timezone_set($event_time_zone);
+  $admin = current_user_can('manage_options');
   // Grab the event End Date as UNIX time
   $end_date = tribe_get_end_date( $event, '', 'UTC');
-  if(time() > $end_date){
+  if(time() > $end_date && !$admin){
     return TRUE;//has expired
   } else {
     return FALSE;//still live
