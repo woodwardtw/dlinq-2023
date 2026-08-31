@@ -1768,7 +1768,7 @@ function dlinq_workshop_registration_updater($post_id){
 function dlinq_workshop_report(){
 	
 	//get current date and add 86400 seconds
-	$current_year = 2025;
+	$current_year = 2026;
 	$start = $current_year . '-06-31 00:01';
 	$end = ($current_year+1) . '-06-31 23:59';
 
