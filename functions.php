@@ -150,13 +150,15 @@ function dlinq_person_projects(){
 				$image = "<img src='{$url_stem}/imgs/no-pic.svg' class='img-fluid bio-pic-project' alt='A generic project placeholder.'>";
 			}
 			echo "
-			<div class='project'>
-				<a href='{$link}'>
-					{$image}					
-					<span class='project-name'>{$title}</span>
-				</a>
-				<div class='project-summary'>{$project_summary}</div>
-			</div>
+				<div class='project row'>
+					<div class='col-md-3'>
+						{$image}															
+					</div>
+					<div class='col-md-9'>
+						<div class='project-name'><a class='stretched-link' href='{$link}'>{$title}</a></div>
+						<div class='project-summary'>{$project_summary}</div>
+					</div>
+				</div>
 			";
 		}
 		echo "</div></div>";
