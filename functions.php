@@ -143,7 +143,7 @@ function dlinq_person_projects(){
 			$title = $project->post_title;
 			$link = get_permalink( $post_id);
 			$url_stem = get_template_directory_uri();
-			$project_summary = get_field('project_summary', $post_id);
+			$project_summary = wp_strip_all_tags(get_field('project_summary', $post_id));
 			if(has_post_thumbnail($post_id)){
 				$image = get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'img-fluid') );
 			} else {
@@ -156,7 +156,7 @@ function dlinq_person_projects(){
 					</div>
 					<div class='col-md-9'>
 						<div class='project-name'><a class='stretched-link' href='{$link}'>{$title}</a></div>
-						<div class='project-summary'>{$project_summary}</div>
+						<p class='project-summary'>{$project_summary}</p>
 					</div>
 				</div>
 			";
